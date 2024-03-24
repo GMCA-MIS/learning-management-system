@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Transcript of Record</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <style>
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+    /* Target specific input fields by their IDs */
+    #receiving_staff,
+    #claiming_date,
+    #contact,
+    #requested_date,
+    #or_number,
+    #paid_amount {
+      color: black !important; /* Change font color to black */
+    }
+
+    header.major::after {
+      background: #e3a539 !important;
+    }
+
+    /* Target specific input types */
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+      border-color: black !important; /* Change input border color to black */
+      border-width: 1px; /* Set initial border width */
+    }
+
+    #tor_purpose {
+      border-color: black !important; /* Change input border color to black */
+      border-width: 1px; /* Set initial border width */
+      color: black !important;
+      font-weight: bold !important;
+    }
+    #tor_purpose:focus {
+      border-color: rgb(
+        127,
+        98,
+        61,
+        0.5
+      ) !important; /* Change input border color to transparent blue */
+      border-width: 2px; /* Set thicker border width when focused */
+    }
+
+    /* Change border color and width of input fields when they are focused */
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    input[type="number"]:focus {
+      border-color: rgb(
+        127,
+        98,
+        61,
+        0.5
+      ) !important; /* Change input border color to transparent blue */
+      border-width: 2px; /* Set thicker border width when focused */
+    }
+
+    /* Change the color of placeholder text */
+    input[type="text"]::placeholder,
+    input[type="date"]::placeholder,
+    input[type="number"]::placeholder {
+      color: black !important; /* Change placeholder text color to black */
+      font-weight: bold !important;
+    }
+
+    input[type="date"] {
+      font-weight: bold !important;
+      color: black !important;
+    }
+
+    label {
+      color: black !important;
+    }
+
+    h2 {
+      color: black !important;
+    }
+
+    .style1 {
+      background: #f0f1f3 !important;
+    }
+
+    #header {
+      background: #341c14 !important;
+    }
+
+    #footer {
+      background: #341c14 !important;
+    }
+
+    #login_btn {
+      background: #e3a539 !important;
+      color: #fff !important;
+    }
+    #submit {
+      background: #341c14 !important;
+      color: #fff !important;
+    }
+
+    #login_btn:hover {
+      background: #7f623d !important;
+      color: #f0f1f3 !important;
+    }
+    #submit:hover {
+      background: #7f623d !important;
+      color: #f0f1f3 !important;
+    }
+
+    #header nav ul li a:hover {
+      color: #e3a539 !important;
+    }
+    .logo-gm {
+      vertical-align: middle;
+      width: 100px;
+      margin-left: -20px;
+    }
+
+    input {
+      color: black !important;
+      font-weight: bold;
+    }
+  </style>
+
+  <body class="is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header" class="hdr">
+        <h1 id="logo">
+          <a href="index.html"
+            ><img src="./images/gm-logo.png" alt="" class="logo-gm" />Golden
+            Minds Academy and Colleges</a
+          >
+        </h1>
+        <nav id="nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>
+              <a href="#">Menu</a>
+              <ul>
+                <li><a href="Announcements.html">Announcements</a></li>
+                <li><a href="school calendar.html">School Calendar</a></li>
+                <li><a href="courses.html">SHS Strands</a></li>
+                <li>
+                  <a href="#">Resources</a>
+                  <ul>
+                    <li><a href="#">Admission</a></li>
+                    <li><a href="#">Inquiries</a></li>
+                    <li><a href="tor.html">Transcript of Record</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Feedbacks</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="elements.html">Contact Us</a></li>
+            <li>
+              <a href="../newlogin.php" class="button primary" id="login_btn"
+                >Log in</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Main -->
+      <div id="main" class="wrapper style1">
+        <div class="container">
+          <header class="major">
+            <h2>Transcript of Records Request Form</h2>
+          </header>
+          <section>
+            <form action="tor.php" method="post" enctype="multipart/form-data">
+              <!-- Requester's Name -->
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-4 col-12-xsmall">
+                  <input
+                    type="text"
+                    name="lastname"
+                    id="lastname"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Lastname"
+                    required
+                  />
+                </div>
+                <div class="col-4 col-12-xsmall">
+                  <input
+                    type="text"
+                    name="firstname"
+                    id="firstname"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Firstname"
+                    required
+                  />
+                </div>
+                <div class="col-4 col-12-xsmall">
+                  <input
+                    type="text"
+                    name="middle_initial"
+                    id="middle_initial"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Middle Initial"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-4 col-12-xsmall">
+                  <label for="lastname">Last Name</label>
+                </div>
+                <div class="col-4 col-12-xsmall">
+                  <label for="firstname">First Name</label>
+                </div>
+                <div class="col-4 col-12-xsmall">
+                  <label for="middle_initial"
+                    >Middle Initial - input N/A if not applicable</label
+                  >
+                </div>
+              </div>
+
+              <br />
+
+              <!-- user email -->
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-12">
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Email ( request status will be sent to this email )"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-12">
+                  <label for="address">Email</label>
+                </div>
+              </div>
+              <br />
+
+              <!-- Requester's Address -->
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-12">
+                  <input
+                    type="text"
+                    name="address"
+                    id="address"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Address"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-12">
+                  <label for="address">Address</label>
+                </div>
+              </div>
+
+              <br />
+
+              <!-- Requester's Course/Program -->
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-12">
+                  <select name="course" value="" id="tor_purpose" required>
+                    <option value="" disabled selected>
+                      -- Select Strand --
+                    </option>
+                    <option value="" disabled></option>
+                    <option value="" disabled>ACADEMIC TRACK</option>
+                    <option value="STEM">STEM</option>
+                    <option value="HUMSS">HUMSS</option>
+                    <option value="ABM">ABM</option>
+                    <option value="GAS">GAS</option>
+                    <option value="" disabled></option>
+                    <option value="" disabled>
+                      TECHNICAL-VOCATIONAL-LIVELIHOOD TRACK
+                    </option>
+                    <option value="TVL-ICT">TVL-ICT</option>
+                    <option value="TVL-HE">TVL-HE</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-12">
+                  <label for="course">Course/Program</label>
+                </div>
+              </div>
+
+              <br />
+
+              <!-- Requester's Birth Info -->
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-4 col-12-xmall">
+                  <input
+                    type="date"
+                    name="dob"
+                    id="dob"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Date of Birth"
+                    required
+                  />
+                </div>
+                <div class="col-8 col-12-xsmall">
+                  <input
+                    type="text"
+                    name="pob"
+                    id="pob"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Place of Birth"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-4 col-12-xsmall">
+                  <label for="dob">Date of Birth</label>
+                </div>
+                <div class="col-8 col-12-xsmall">
+                  <label for="pob">Place of Birth</label>
+                </div>
+              </div>
+
+              <br />
+
+              <!--  -->
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-6">
+                  <input
+                    type="text"
+                    name="highschool"
+                    id="highschool"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Highschool"
+                    required
+                  />
+                </div>
+                <div class="col-6">
+                  <input
+                    type="text"
+                    name="other_colleges"
+                    id="other_colleges"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Other Colleges"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-6 col-12-xsmall">
+                  <label for="highschool">Highschool</label>
+                </div>
+                <div class="col-6">
+                  <label for="other_colleges"
+                    >Other Colleges - input N/A if not applicable</label
+                  >
+                </div>
+              </div>
+              <br />
+
+              <!--  -->
+
+              <!-- hs address -->
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-12">
+                  <input
+                    type="text"
+                    name="highschool_address"
+                    id="highschool_address"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Address of Highschool"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-12">
+                  <label for="highschool_address">Address of Highschool</label>
+                </div>
+              </div>
+              <br />
+
+              <!-- GMC Admission, Requirements, and Purpose of Request -->
+
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-6">
+                  <input
+                    type="date"
+                    name="gmc_admission_date"
+                    id="gmc_admission_date"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Date of Admission to GMC"
+                    required
+                  />
+                </div>
+                <div class="col-6">
+                  <input
+                    type="text"
+                    name="sem_attended"
+                    id="sem_attended"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Semesters Attended"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-6">
+                  <label for="gmc_admission_date"
+                    >Date of Admission to GMC</label
+                  >
+                </div>
+                <div class="col-6">
+                  <label for="sem_attended">Semesters Attended</label>
+                </div>
+              </div>
+              <br />
+              <!-- Request Info -->
+
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-4">
+                  <select name="doc_type" id="tor_purpose" required>
+                    <option value="" disabled selected>
+                      -- Select Document to request --
+                    </option>
+                    <option value="Card">Card</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="Form 137">Form 137</option>
+                    <option value="Good Moral">Good Moral</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <select name="tor_purpose" id="tor_purpose" required>
+                    <option value="" disabled selected>
+                      -- Select Purpose of Requesting ToR --
+                    </option>
+                    <option value="Employment">Employment</option>
+                    <option value="Job Application">Job Application</option>
+                    <option value="School Transfer">
+                      Transfer to other School
+                    </option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="file"
+                    id="creds_submitted"
+                    name="creds_submitted"
+                    accept=".pdf, .doc, .docx, .jpg, .jpeg"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row gtr-uniform gtr-50">
+                <div class="col-4">
+                  <label for="doc_type">Document to request</label>
+                </div>
+                <div class="col-4">
+                  <label for="tor_purpose">Purpose of ToR Request</label>
+                </div>
+                <div class="col-4">
+                  <label for="creds_submitted"
+                    >Upload Credentials (PDF, DOC, DOCX, JPG, JPEG)</label
+                  >
+                </div>
+              </div>
+
+              <br />
+              <div class="col-12">
+                <ul class="actions">
+                  <li>
+                    <input
+                      type="submit"
+                      name="submit"
+                      id="submit"
+                      class="primary"
+                    />
+                  </li>
+                </ul>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer" style="padding: 50px">
+        <ul
+          class="social-icons"
+          style="list-style: none; padding: 0; margin: 0"
+        >
+          <li style="display: inline-block; margin-right: 10px">
+            <a
+              href="https://www.facebook.com/profile.php/?id=100070550542307"
+              style="
+                text-decoration: none;
+                color: #ffffff;
+                font-size: 30px;
+                border-bottom: none;
+              "
+            >
+              <i class="bx bxl-facebook"></i>
+            </a>
+          </li>
+
+          <li style="display: inline-block; margin-right: 10px">
+            <a
+              href="#"
+              style="
+                text-decoration: none;
+                color: #ffffff;
+                font-size: 30px;
+                border-bottom: none;
+              "
+            >
+              <i class="bx bxl-linkedin"></i>
+            </a>
+          </li>
+          <li style="display: inline-block; margin-right: 10px">
+            <a
+              href="https://l.facebook.com/l.php?u=https%3A%2F%2Fyoutube.com%2F%40goldenmindscolleges7588%3Ffeature%3Dshared%26fbclid%3DIwAR0hJIgq-HJrEXbyxVQiTKdvNoI-jFAvItV7M0KoZWHPM4pJLCs-AmExVfw&h=AT0K3oXYIb5WCvCvMmGAEJwdXqar7Je0QKml_yx5f0C5Aphe7ch6Med2TE8OUiOKQtnstTvCnW6s4Yg2q5AWD1lJgQH8xBiiLZcNm0Y5S0OivyXRzLJo3SLLS-x5ZGea05IJAA"
+              style="
+                text-decoration: none;
+                color: #ffffff;
+                font-size: 30px;
+                border-bottom: none;
+              "
+            >
+              <i class="bx bxl-youtube"></i>
+            </a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li style="display: inline-block">
+            &copy; Copyright 2024 WeDev Enthusiast All rights reserved.
+          </li>
+          <li style="display: inline-block">
+            EMAIL: inquire@goldenmindsbulacan.com
+          </li>
+          <li style="display: inline-block">contact us: +639394499844</li>
+        </ul>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // Get today's date
+      var today = new Date();
+      // Set the maximum date 5 years ago
+      today.setFullYear(today.getFullYear() - 5);
+      // Format the date as YYYY-MM-DD
+      var maxDate = today.toISOString().split("T")[0];
+
+      // Get the date input element
+      var dateInput = document.getElementById("dob");
+
+      // Set the maximum date
+      dateInput.max = maxDate;
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

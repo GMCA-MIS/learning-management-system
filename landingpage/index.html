@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homepage</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+    .logo-gm {
+      vertical-align: middle;
+      width: 100px;
+      margin-left: -20px;
+    }
+    #header nav ul li a:hover {
+      color: #e3a539 !important;
+    }
+    #login_btn:hover {
+      background: #7f623d !important;
+      color: #f0f1f3 !important;
+    }
+    #login_btn {
+      background: #e3a539 !important;
+      color: #fff !important;
+    }
+    #footer {
+      background: #341c14 !important;
+    }
+    #header {
+      background: #341c14 !important;
+    }
+    #banner {
+      background: url("images/gm2.jpg");
+      background-position: center;
+    }
+    .img-logo {
+      border-radius: 100%;
+      display: inline-block;
+      height: 18em;
+      margin-left: -10em;
+      margin-top: -3em;
+      vertical-align: middle;
+      width: 18em;
+    }
+    @media screen and (max-width: 1200px) {
+      .img-logo {
+        display: none;
+      }
+      .logo-gm {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 736px) {
+      #titleBar .toggle:before {
+        background: #7f623d;
+      }
+      #titleBar .title {
+        background-color: #341c14;
+      }
+    }
+
+    #one,
+    #two,
+    #three,
+    #four {
+      background: #241510;
+    }
+    #one,
+    #two,
+    #three,
+    #four {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .spotlight.style3 .content {
+      border-color: #e3a539;
+    }
+    .spotlight.style2 .content {
+      border-color: #7f623d;
+    }
+    .spotlight.style1 .content {
+      border-color: #debc8e;
+    }
+    .img {
+      background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
+        url("images/gm.jpg") !important;
+    }
+    header.major:after {
+      background: #e3a539;
+    }
+    .icon.major {
+      background: #7f623d;
+    }
+    .icon.major.alt:before {
+      color: #fff !important;
+      text-shadow: 1px 0 0 #ffffff, -1px 0 0 #ffffff, 0 1px 0 #ffffff,
+        0 -1px 0 #ffffff;
+    }
+
+    .btn {
+      padding: 16px;
+      width: 150px;
+      background: transparent;
+      color: white;
+      box-shadow: none;
+      border: 1px solid white;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .btn:hover {
+      border: 1px solid #e3a539;
+      color: #e3a539 !important;
+    }
+    #five {
+      background: #1c1c1c;
+    }
+    .ico-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    iframe {
+      overflow-y: hidden;
+    }
+  </style>
+  <body class="is-preload landing">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header">
+        <h1 id="logo">
+          <a href="index.html"
+            ><img src="./images/gm-logo.png" alt="" class="logo-gm"
+          /></a>
+        </h1>
+        <nav id="nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>
+              <a href="#">Menu</a>
+              <ul>
+                <li><a href="Announcements.html">Announcements</a></li>
+                <li><a href="school calendar.html">School Calendar</a></li>
+                <li><a href="courses.html">SHS Strands</a></li>
+                <li>
+                  <a href="tor.html">Transcript of Record</a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="elements.html">Contact Us</a></li>
+            <li>
+              <a href="../newlogin.php" class="button primary" id="login_btn"
+                >Log in</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Banner -->
+      <section id="banner">
+        <div class="content">
+          <header>
+            <h2>Golden Minds Colleges And Academy</h2>
+            <p>Providing Quality Education.</p>
+          </header>
+          <span class="img-logo"
+            ><img
+              src="./images/gm-logo.png"
+              alt=""
+              style="vertical-align: middle"
+          /></span>
+        </div>
+        <a href="#one" class="goto-next scrolly">Next</a>
+      </section>
+
+      <!-- One -->
+      <section id="one" class="spotlight style1 bottom">
+        <span class="image fit main"
+          ><img src="./images/gmc3.jpg" alt=""
+        /></span>
+        <div class="content">
+          <div class="container">
+            <div class="row">
+              <div class="col-4 col-12-medium">
+                <header>
+                  <h2>ABOUT US</h2>
+                  <p>Golden Minds Colleges And Academy</p>
+                </header>
+              </div>
+              <div class="col-4 col-12-medium">
+                <p>
+                  Golden Minds Colleges was started February of 2010. The school
+                  then was offering Technical-Vocational Livelihood Program
+                  regulated by TESDA. During those years the school was offering
+                  Hardware Servicing NC2, Visual Grpphic Design NC3,Bookkeeping
+                  NC2, Housekeeping NC2, Food and Beverage NC2. It was situated
+                  in barangay Tabang of Guiguinto Bulacan and with a name Golden
+                  Minds Academy and Information Technology. Two years after it
+                  moved to Balagtas Bulacan a town away from where it started
+                  with a new name Golden Minds Colleges.
+                </p>
+              </div>
+              <div class="col-4 col-12-medium">
+                <p>
+                  Today, the school is now Senior High ready offering tracks
+                  like General academic Strand (GAS), Accountancy, Business and
+                  Management strand (ABM) and Technical-Vocation Livelihood
+                  Strands with Majors in Home Economics (TVL-HE) and Information
+                  and Communication Technology (TVL-ICT). People behind the
+                  institution believe that , it doesnt takes a genius to be
+                  successful in life. But having the passion to impart knowledge
+                  is more than enough to be able to influence young minds to
+                  pursue their dreams and thus become.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#two" class="goto-next scrolly">Next</a>
+      </section>
+
+      <!-- Two -->
+      <section id="two" class="spotlight style2 right">
+        <span class="image fit main"
+          ><img src="./images/gmc4.jpg" alt=""
+        /></span>
+        <div class="content">
+          <header>
+            <h2>MISSION</h2>
+            <!-- <p>Golden Minds Bulacan</p> -->
+          </header>
+
+          <p>
+            To create a supportive environment that nurture and empowers the
+            learning spirit of our students to be more productive, goal-driven,
+            academically explorative and thus become a good contributor to his
+            environment fostering respect and love for others.
+          </p>
+          <ul class="actions">
+            <li>
+              <!-- <button type="button" class="btn btn-outline-light">
+                Learn More
+              </button> -->
+            </li>
+          </ul>
+        </div>
+        <a href="#three" class="goto-next scrolly">Next</a>
+      </section>
+
+      <!-- Three -->
+      <section id="three" class="spotlight style3 left">
+        <span class="image fit main bottom"
+          ><img src="./images/gmc6.jpg" alt=""
+        /></span>
+        <div class="content">
+          <header>
+            <h2>VISION</h2>
+            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+          </header>
+          <p>
+            We are envisioned to cultivate and ignite a dynamic learning
+            environtment that equips students with knowledge and skills to
+            become ready in the fast changing technology, to seek excellence in
+            their choosen endeavour, develops critical thinking and fair
+            judgement.
+          </p>
+          <ul class="actions">
+            <li>
+              <!-- <button type="button" class="btn btn-outline-light">
+                Learn More
+              </button> -->
+            </li>
+          </ul>
+        </div>
+        <a href="#four" class="goto-next scrolly">Next</a>
+      </section>
+
+      <!-- Four -->
+      <section
+        id="four"
+        class="wrapper style1 special fade-up"
+        style="padding-top: 100px"
+      >
+        <div class="container">
+          <header class="major">
+            <h2>Discover What's Happening: Events and Announcements</h2>
+            <p>
+              Stay informed and be a part of our vibrant educational community.
+              Explore upcoming events, workshops, and important announcements
+              that enrich your learning journey and foster a sense of connection
+              and engagement.
+            </p>
+          </header>
+          <!-- cards -->
+          <iframe
+            src="cards.html"
+            frameborder="0"
+            width="100%"
+            height="920"
+          ></iframe>
+          <!-- end of cards -->
+        </div>
+      </section>
+
+      <!-- carousel -->
+      <iframe
+        src="carousel.php"
+        frameborder="0"
+        width="100%"
+        height="600"
+      ></iframe>
+      <!-- end of carousel -->
+      <!-- Five -->
+      <section id="five" class="wrapper style2 special fade">
+        <div class="container">
+          <header>
+            <h2>Enroll Now!</h2>
+            <p>
+              Golden Minds Bulacan is a private school that offers free
+              education, produce graduates that are <br />competitive in the
+              current global trends
+            </p>
+          </header>
+          <form method="post" action="#" class="cta">
+            <div class="row gtr-uniform gtr-50">
+              <div class="col-8 col-12-xsmall">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Your Email Address"
+                  style="
+                    font-size: 14px;
+                    padding: 5px;
+                    margin: 5px;
+                    width: 100%;
+                    border: 1px solid white;
+                  "
+                />
+              </div>
+              <div class="col-4 col-12-xsmall">
+                <button
+                  type="button"
+                  class="btn btn-outline-light"
+                  style="padding: 12px"
+                >
+                  View More
+                </button>
+                <a href="#"></a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer" style="padding: 50px">
+        <ul
+          class="social-icons"
+          style="list-style: none; padding: 0; margin: 0"
+        >
+          <li style="display: inline-block; margin-right: 10px">
+            <a
+              href="https://www.facebook.com/profile.php/?id=100070550542307"
+              style="
+                text-decoration: none;
+                color: #ffffff;
+                font-size: 30px;
+                border-bottom: none;
+              "
+            >
+              <i class="bx bxl-facebook"></i>
+            </a>
+          </li>
+
+          <li style="display: inline-block; margin-right: 10px">
+            <a
+              href="#"
+              style="
+                text-decoration: none;
+                color: #ffffff;
+                font-size: 30px;
+                border-bottom: none;
+              "
+            >
+              <i class="bx bxl-linkedin"></i>
+            </a>
+          </li>
+          <li style="display: inline-block; margin-right: 10px">
+            <a
+              href="https://l.facebook.com/l.php?u=https%3A%2F%2Fyoutube.com%2F%40goldenmindscolleges7588%3Ffeature%3Dshared%26fbclid%3DIwAR0hJIgq-HJrEXbyxVQiTKdvNoI-jFAvItV7M0KoZWHPM4pJLCs-AmExVfw&h=AT0K3oXYIb5WCvCvMmGAEJwdXqar7Je0QKml_yx5f0C5Aphe7ch6Med2TE8OUiOKQtnstTvCnW6s4Yg2q5AWD1lJgQH8xBiiLZcNm0Y5S0OivyXRzLJo3SLLS-x5ZGea05IJAA"
+              style="
+                text-decoration: none;
+                color: #ffffff;
+                font-size: 30px;
+                border-bottom: none;
+              "
+            >
+              <i class="bx bxl-youtube"></i>
+            </a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li style="display: inline-block">
+            &copy; Copyright 2024 WeDev Enthusiast All rights reserved.
+          </li>
+          <li style="display: inline-block">
+            EMAIL: inquire@goldenmindsbulacan.com
+          </li>
+          <li style="display: inline-block">contact us: +639394499844</li>
+        </ul>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Poppins',sans-serif;
+}
+
+.new-nav-bg{
+    background-color: #361e12;
+    border-right: 3px solid  bisque !important;
+    transition: transform 1s ease, opacity 1s ease;
+    background: #361e12;
+    opacity: 1;
+
+}
+
+
+.sidebar-brand img{
+    width: 50px;
+}
+
+.primarybtn-new{
+    color: #fff !important;
+    background-color: #050c4b !important;
+    border-color: #050c4b !important;
+
+}
+
+.navbar-nav .active > a {
+    color: #dba61e !important;
+}
+
+.nav-item.active .fa {
+    color:#050c4b;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: gray !important;
+    border-color: #ffffff !important;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #858796;
+    background-color: #fff;
+    border: 1px solid #dddfeb;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #858796;
+    text-decoration: none;
+    background-color: #eaecf4;
+    border-color: #dddfeb;
+}
+
+
+
+div.dataTables_wrapper div.dataTables_length label {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+    margin-top: 10px !important;
+}
+
+.swal2-styled.swal2-confirm {
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #050c4b !important;
+    color: #fff;
+    font-size: 1em;
+}
+
+.swal2-styled.swal2-confirm:focus{
+    box-shadow: none !important;
+}
+
+.newtopbar{
+  margin-bottom: 0rem !important;
+}
+
+
+.mb-0{
+    margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.border-left-sector {
+    border-left: 0.25rem solid #2d758d  !important;
+}
+
+.border-left-office {
+    border-left: 0.25rem solid #A569BD!important;
+}
+
+.border-left-process {
+    border-left: 0.25rem solid  #e36355!important;
+}
+
+.card{
+    transition: all 0.3s ease-in-out; /* Add a transition effect */
+}
+
+.card:hover{
+    transform: scale(1.02); /* Enlarge the input-box */
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); /* Add a larger box-shadow */
+}
+
+
+
+
+  
