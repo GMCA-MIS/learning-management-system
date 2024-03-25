@@ -5,16 +5,13 @@ include('includes/header.php');
 include('includes/navbar.php');
 ?>
 
-
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
-
     <!-- Main Content -->
     <div id="content">
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow newtopbar" style="margin-bottom:0;">
-
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
@@ -25,23 +22,17 @@ include('includes/navbar.php');
                 <h1 class="h3 mb-0 text-gray-800">Sections</h1>
             </div>
 
-
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
-
                 <!-- Nav Item - User Information -->
                 <?php include('includes/admin_name.php'); ?>
-
             </ul>
-
         </nav>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="card-body">
-
             <div class="table-responsive">
-
                 <td>
                     <!--Add Pop Up Modal -->
                     <div class="modal fade" id="add_class" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -103,133 +94,127 @@ include('includes/navbar.php');
                 $query = "SELECT * FROM class where strand = '$class_name_name'";
                 $query_run = mysqli_query($conn, $query);
                 ?>
-                <table id="dataTableID" class="table table-bordered table table-striped" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Section Number</th>
-                            <th>Section</th>
-                            <th>Track-Strand</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if (mysqli_num_rows($query_run) > 0) {
-                            while ($row = mysqli_fetch_assoc($query_run)) {
-                        ?>
-                                <tr>
-                                    <td><?php echo $row['class_id']; ?></td>
-                                    <td><a href="classprofile.php?class_id=<?php echo $row['class_id']; ?>"><?php echo $row['class_name']; ?></a></td>
+        <table id="dataTableID" class="table table-bordered table table-striped" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Section Number</th>
+                <th>Section</th>
+                <th>Track-Strand</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>View</th>
+            </tr>
+        </thead>
+            <tbody>
+            <?php
+            if (mysqli_num_rows($query_run) > 0) {
+                while ($row = mysqli_fetch_assoc($query_run)) {
+            ?>
+                <tr>
+                    <td><?php echo $row['class_id']; ?></td>
+                    <td><?php echo $row['class_name']; ?></td>
+                    <td><?php echo $row['strand']; ?></td> 
+                    <td>
+                        <!--Edit Pop Up Modal -->
+                        <div class="modal fade" id="edit_classModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Section Information</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
 
-                                    <td><?php echo $row['strand']; ?></td>
+                                    <form action="manage-class-function.php" method="POST">
 
-                                    <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-                                    <td>
-                                        <!--Edit Pop Up Modal -->
-                                        <div class="modal fade" id="edit_classModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Section Information</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
+                                        <div class="modal-body">
 
-                                                    <form action="manage-class-function.php" method="POST">
+                                            <input type="hidden" name="edit_ID" id="edit_ID">
 
-                                                        <div class="modal-body">
-
-                                                            <input type="hidden" name="edit_ID" id="edit_ID">
-
-                                                            <div class="form-group">
-                                                                <label for="strand">Track / Strand</label>
-                                                                <select type="text" class="form-control" id="edit_strand" name="strand" required placeholder="Enter Strand Type">
-                                                                    <option class="form-control" disabled selected> Select Track / Strand </Option>
-                                                                    <option class="form-control" value="Academic-ABM"> Academic-ABM </Option>
-                                                                    <option class="form-control" value="Academic-HUMSS"> Academic-HUMSS </Option>
-                                                                    <option class="form-control" value="TVL-ICT"> TVL-ICT </Option>
-                                                                    <option class="form-control" value="TVL-HE"> TVL-HE </Option>
-                                                                    <option class="form-control" value="TVL-CSS"> TVL-CSS </Option>
-                                                                    <option class="form-control" value="TVL-ANIMATION"> TVL-Animation </Option>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="#">Section Name</label>
-                                                                <input type="text" class="form-control" id="edit_Class_Name" name="class_name" required>
-                                                            </div>
-
-
-                                                        </div>
-
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" name="edit_class" class="btn btn-primary">Update</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="strand">Track / Strand</label>
+                                                <!-- <select type="text" class="form-control" id="edit_strand" name="strand" required placeholder="Enter Strand Type">
+                                                    <option class="form-control" disabled selected> Select Track / Strand </Option>
+                                                    <option class="form-control" value="Academic-ABM"> Academic-ABM </Option>
+                                                    <option class="form-control" value="Academic-HUMSS"> Academic-HUMSS </Option>
+                                                    <option class="form-control" value="TVL-ICT"> TVL-ICT </Option>
+                                                    <option class="form-control" value="TVL-HE"> TVL-HE </Option>
+                                                    <option class="form-control" value="TVL-CSS"> TVL-CSS </Option>
+                                                    <option class="form-control" value="TVL-ANIMATION"> TVL-Animation </Option>
+                                                </select> -->
+                                                <input type="text" class="form-control" id="edit_Process_Name" name="class_name" required>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label for="#">Section Name</label>
+                                                <input type="text" class="form-control" id="edit_Class_Name" name="class_name" required>
+                                            </div>
+
+
                                         </div>
 
-                                        <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_classModal ">Edit</button>
-                                    </td>
-
-                                    <td>
-            </div>
-
-
-            <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-            <!--Delete Pop Up Modal -->
-            <div class="modal fade" id="delete_class" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Delete Section</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="edit_class" class="btn btn-primary">Update</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
 
-                        <form action="manage-class-function.php" method="POST">
+                        <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_classModal ">Edit</button>
+                    </td>
+
+                    <td>
+                        <!--Delete Pop Up Modal -->
+                            <div class="modal fade" id="delete_class" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Section</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <form action="manage-class-function.php" method="POST">
 
 
-                            <div class="modal-body">
+                                            <div class="modal-body">
 
-                                <input type="hidden" name="delete_ID" id="delete_ID">
+                                                <input type="hidden" name="delete_ID" id="delete_ID">
 
-                                <h5>Do you want to remove this section?</h5>
+                                                <h5>Do you want to remove this section?</h5>
 
 
 
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" name="delete_class" class="btn btn-primary">Confirm</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="submit" name="delete_class" class="btn btn-primary">Confirm</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
-            <button type="submit" name="delete_btn" class="btn btn-danger delete_btn">Delete</button>
-            <!-- </form> -->
-            </td>
-            </tr>
-    <?php
-                            }
-                        } else {
-                            echo "No Record Found";
-                        }
-    ?>
-    </tbody>
-    </table>
-        </div>
+                        <button type="submit" name="delete_btn" class="btn btn-danger delete_btn">Delete</button>
+                    </td>
+                    <td width="15%">
+                        <a href="classprofile.php?class_id=<?php echo $row['class_id']; ?>" class="btn btn-secondary">View Student List</a>
+                    </td>
+                </tr>
+        <?php
+                }
+            } else {
+                echo "No Record Found";
+            }
+        ?>
+            </tbody>
+        </table>
     </div>
+</div>
 
 
 

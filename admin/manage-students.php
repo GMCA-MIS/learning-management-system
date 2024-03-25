@@ -152,17 +152,16 @@ include('includes/navbar.php');
                         <tr>
                             <th style="display:none;">Student ID</th>
                             <!-- <th>Photo</th> -->
-                            <th>Learner Reference Number</th>
+                            <th>LRN</th>
                             <th style="display:none;">Firstname</th>
                             <th style="display:none;">Lastname</th>
                             <th>Name</th>
                             <th>Strand</th>
-                            <th>Status</th>
                             <th>Section</th>
-                            <th>Email</th>
-                            <th>Date of Birth</th>
+                            <th>Status</th>
+                            <th>Attachment</th>
                             <th>Approval</th>
-                            <th> Edit</th>
+                            <!-- <th>Edit</th> -->
                             <th>Delete</th>
 
 
@@ -186,6 +185,7 @@ include('includes/navbar.php');
                                     <td style="display:none;"><?php echo $row['firstname']; ?></td>
                                     <td style="display:none;"><?php echo $row['lastname']; ?></td>
                                     <td><?php echo $row['strand_name']; ?></td>
+                                    <td><?php echo $row['class_name']; ?></td>
                                     <td><?php if ($row['is_regular'] == 1) { ?>
                                             <p>Regular</p>
                                         <?php } else {
@@ -194,9 +194,7 @@ include('includes/navbar.php');
                                         <?php
                                         } ?>
                                     </td>
-                                    <td><?php echo $row['class_name']; ?></td>
-                                    <td><?php echo $row['email']; ?></td>
-                                    <td><?php echo $row['dob']; ?></td>
+                                    <td> <button type="submit" name="attachment" class="btn btn-secondary" style="color:white">Attachment</button></td>
                                     <td>
                                         <?php
 
@@ -214,8 +212,8 @@ include('includes/navbar.php');
                                         }
                                         ?>
                                     </td>
-                                    <td>
-                                        <!--Edit Pop Up Modal -->
+                                    <!--  <td>
+                                        Edit Pop Up Modal
                                         <div class="modal fade" id="edit_studentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -275,7 +273,7 @@ include('includes/navbar.php');
 
 
                                                         </div>
-
+                                                                            
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                             <button type="submit" name="edit_student" class="btn btn-primary">Update</button>
@@ -283,10 +281,10 @@ include('includes/navbar.php');
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>  
 
                                         <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_studentModal">Edit</button>
-                                    </td>
+                                    </td>-->
 
                                     <td>
 
