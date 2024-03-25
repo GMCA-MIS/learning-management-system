@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,24 +10,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="css/newheader.css">
 </head>
+
 <body>
 
 
-<?php
-include('dbcon.php');
+    <?php
+    include('dbcon.php');
 
-// Manage User Delete Function
-if(isset($_POST['delete_student']))
-{
-    $id = $_POST['delete_ID'];
+    // Manage User Delete Function
+    if (isset($_POST['delete_student'])) {
+        $id = $_POST['delete_ID'];
 
-    // Delete from students table
-    $student_query = "DELETE FROM student WHERE student_id = '$id' ";
-    $student_query_run = mysqli_query($conn, $student_query);
+        // Delete from students table
+        $student_query = "DELETE FROM student WHERE student_id = '$id' ";
+        $student_query_run = mysqli_query($conn, $student_query);
 
-    if($student_query_run) {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo '<script>Swal.fire({
+        if ($student_query_run) {
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo '<script>Swal.fire({
             title: "Success",
             text: "User has been deleted successfully!",
             icon: "success",
@@ -34,24 +35,24 @@ if(isset($_POST['delete_student']))
         }).then(function() {
             window.location.href = "manage-students.php";
         });</script>';
-    } else {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo '<script>Swal.fire({
+        } else {
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo '<script>Swal.fire({
             title: "Error",
             text: "Failed to delete user!",
             icon: "error",
             confirmButtonText: "OK"
         });</script>';
+        }
     }
-}
 
 
-?>
+    ?>
 
-<?php 
+    <?php
     //Manage-Users Edit Function 
-    if(isset($_POST['edit_student'])) //Button Name
-    {       
+    if (isset($_POST['edit_student'])) //Button Name
+    {
         //Name attributes ang kinukuha dito pero dapat kapangalan ng nasa database
         $id = $_POST['edit_ID'];
 
@@ -61,13 +62,13 @@ if(isset($_POST['delete_student']))
         $email = $_POST['email'];
         $class_id = $_POST['class_id'];
         $dob = $_POST['dob'];
-      
-        
+
+
 
         $query = "UPDATE student SET username='$lrn', firstname='$firstname', lastname='$lastname', email='$email', class_id='$class_id', dob ='$dob' WHERE student_id='$id'  ";
         $query_run = mysqli_query($conn, $query);
 
-        if($query_run) {
+        if ($query_run) {
             echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
             echo '<script>Swal.fire({
                 title: "Success",
@@ -86,52 +87,53 @@ if(isset($_POST['delete_student']))
                 confirmButtonText: "OK"
             });</script>';
         }
-    } 
-?>
+    }
+    ?>
 
-<?php
+    <?php
+
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
     ?>
-<?php
-if (isset($_POST['add_student'])) {
-    include('dbcon.php');
+    <?php
+    if (isset($_POST['add_student'])) {
+        include('dbcon.php');
 
-    // Retrieve form data
-    $lrn = $_POST['lrn'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $class_id = $_POST['class_id'];
-    $dob = $_POST['dob'];
-    $user_type = $_POST['user_type'];
+        // Retrieve form data
+        $lrn = $_POST['lrn'];
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        $class_id = $_POST['class_id'];
+        $dob = $_POST['dob'];
+        $user_type = $_POST['user_type'];
 
-    // Check if email exists in any of the tables
-    $email_check_query = "SELECT COUNT(*) AS total FROM student WHERE username = '$email'
+        // Check if email exists in any of the tables
+        $email_check_query = "SELECT COUNT(*) AS total FROM student WHERE username = '$email'
                             UNION
                             SELECT COUNT(*) AS total FROM teacher WHERE email = '$email'
                             UNION
                             SELECT COUNT(*) AS total FROM coordinators WHERE email = '$email'
                             UNION
                             SELECT COUNT(*) AS total FROM users WHERE username = '$email'";
-    $result = mysqli_query($conn, $email_check_query);
+        $result = mysqli_query($conn, $email_check_query);
 
-    $email_exists = false;
-    while ($row = mysqli_fetch_assoc($result)) {
-        if ($row['total'] > 0) {
-            $email_exists = true;
-            break;
+        $email_exists = false;
+        while ($row = mysqli_fetch_assoc($result)) {
+            if ($row['total'] > 0) {
+                $email_exists = true;
+                break;
+            }
         }
-    }
 
-    // Check if LRN exists in the student table
-    $lrn_check_query = "SELECT COUNT(*) AS total FROM student WHERE username = '$lrn'";
-    $lrn_result = mysqli_query($conn, $lrn_check_query);
-    $lrn_row = mysqli_fetch_assoc($lrn_result);
+        // Check if LRN exists in the student table
+        $lrn_check_query = "SELECT COUNT(*) AS total FROM student WHERE username = '$lrn'";
+        $lrn_result = mysqli_query($conn, $lrn_check_query);
+        $lrn_row = mysqli_fetch_assoc($lrn_result);
 
-    if ($lrn_row['total'] > 0) {
-        echo "
+        if ($lrn_row['total'] > 0) {
+            echo "
         <script>
         Swal.fire({
             icon: 'error',
@@ -143,8 +145,8 @@ if (isset($_POST['add_student'])) {
             }
         });
         </script>";
-    } elseif ($email_exists) {
-        echo "
+        } elseif ($email_exists) {
+            echo "
         <script>
         Swal.fire({
             icon: 'error',
@@ -156,23 +158,23 @@ if (isset($_POST['add_student'])) {
             }
         });
         </script>";
-    } else {
-        // Generate a random password
-        $length = 10; // The length of the password
-        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+'; // Allowed characters
-        $password = '';
-        for ($i = 0; $i < $length; $i++) {
-            $password .= $characters[random_int(0, strlen($characters) - 1)];
-        }
+        } else {
+            // Generate a random password
+            $length = 10; // The length of the password
+            $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+'; // Allowed characters
+            $password = '';
+            for ($i = 0; $i < $length; $i++) {
+                $password .= $characters[random_int(0, strlen($characters) - 1)];
+            }
 
-        // Hash the password
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            // Hash the password
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert the student data into the database
-        $insert_query = "INSERT INTO student (username, firstname, lastname, email, class_id, dob, location, status, password, user_type)
+            // Insert the student data into the database
+            $insert_query = "INSERT INTO student (username, firstname, lastname, email, class_id, dob, location, status, password, user_type)
                         VALUES ('$lrn', '$firstname', '$lastname', '$email', '$class_id', '$dob', '../uploads/no-profile-picture-template.png', 'Unregistered', '$hashed_password', 'student')";
 
-// Insert the student data
+            // Insert the student data
             $insert_result = mysqli_query($conn, $insert_query);
 
             if ($insert_result) {
@@ -207,7 +209,7 @@ if (isset($_POST['add_student'])) {
                             $email_body .= "Here are your login credentials:\n";
                             $email_body .= "Username: $lrn\n";
                             $email_body .= "Password: $password\n"; // Note: You should consider a more secure way to send passwords.
-    
+
                             require 'includes/PHPMailer.php';
                             require 'includes/SMTP.php';
                             require 'includes/Exception.php';
@@ -259,33 +261,33 @@ if (isset($_POST['add_student'])) {
                     }
                 }
             }
-        if (mysqli_query($conn, $insert_query)) {
-            // Send email with login credentials
-            $email_body = "Dear $firstname $lastname,\n\n";
-            $email_body .= "Your account has been created successfully.\n";
-            $email_body .= "Here are your login credentials:\n";
-            $email_body .= "Username: $lrn\n";
-            $email_body .= "Password: $password\n"; // Note: You should consider a more secure way to send passwords.
+            if (mysqli_query($conn, $insert_query)) {
+                // Send email with login credentials
+                $email_body = "Dear $firstname $lastname,\n\n";
+                $email_body .= "Your account has been created successfully.\n";
+                $email_body .= "Here are your login credentials:\n";
+                $email_body .= "Username: $lrn\n";
+                $email_body .= "Password: $password\n"; // Note: You should consider a more secure way to send passwords.
 
-            require 'includes/PHPMailer.php';
-            require 'includes/SMTP.php';
-            require 'includes/Exception.php';
+                require 'includes/PHPMailer.php';
+                require 'includes/SMTP.php';
+                require 'includes/Exception.php';
 
-            $mail = new PHPMailer();
-            $mail->isSMTP();
-            $mail->Host = "smtp.gmail.com";
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = "tls";
-            $mail->Port = 587;
-            $mail->Username = "crustandrolls@gmail.com"; // your email address
-            $mail->Password = "dqriavmkaochvtod"; // your email password
-            $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
-            $mail->addAddress($email);
-            $mail->Subject = "LMS Credentials";
-            $mail->Body = $email_body;
+                $mail = new PHPMailer();
+                $mail->isSMTP();
+                $mail->Host = "smtp.gmail.com";
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = "tls";
+                $mail->Port = 587;
+                $mail->Username = "crustandrolls@gmail.com"; // your email address
+                $mail->Password = "dqriavmkaochvtod"; // your email password
+                $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
+                $mail->addAddress($email);
+                $mail->Subject = "LMS Credentials";
+                $mail->Body = $email_body;
 
-            if ($mail->send()) {
-                echo "
+                if ($mail->send()) {
+                    echo "
                 <script>
                 Swal.fire({
                     icon: 'success',
@@ -297,8 +299,8 @@ if (isset($_POST['add_student'])) {
                     }
                 });
                 </script>";
-            } else {
-                echo "
+                } else {
+                    echo "
                 <script>
                 Swal.fire({
                     icon: 'error',
@@ -310,9 +312,9 @@ if (isset($_POST['add_student'])) {
                     }
                 });
                 </script>";
-            }
-        } else {
-            echo "
+                }
+            } else {
+                echo "
             <script>
             Swal.fire({
                 icon: 'error',
@@ -324,12 +326,258 @@ if (isset($_POST['add_student'])) {
                 }
             });
             </script>";
+            }
         }
     }
-}
-?>
+    ?>
+    <?php
+    if (isset($_POST['approve_student'])) {
+        $id = $_POST['approvedinputid'];
+        $check_query = "SELECT * FROM student WHERE student_id = '$id'";
+        $check_result = mysqli_query($conn, $check_query);
+        if (mysqli_num_rows($check_result) > 0) {
+            // Fetch the result row
+            $row = mysqli_fetch_assoc($check_result);
+
+            // Access the specific column
+            $strand_id = $row['strand_id'];
+            $gradelevel = $row['grade_level'];
+            $regular_irregular = $row['is_regular'];
+            //check strand
+            $check_query_strand = "SELECT * FROM strand WHERE id = '$strand_id'";
+            $check_result_strand = mysqli_query($conn, $check_query_strand);
+            if (mysqli_num_rows($check_result_strand) > 0) {
+                // Fetch the result row
+                $row_strand = mysqli_fetch_assoc($check_result_strand);
+                $strand_name = $row_strand['name'];
+                $strand_fname = $row_strand['full_name_strand'];
+                //checking if the student is regular or not
+                if ($regular_irregular == 1) {
+                    // Check if there are any existing classes with less than 2 regular students
+                    $existing_classes_not_full = false;
+                    //select active school year 
+                    $check_query_school_year = "SELECT * FROM school_year where status = 1 ORDER BY school_year_id DESC LIMIT 1 ";
+                    $check_result_school_year = mysqli_query($conn,  $check_query_school_year);
+                    $row_school_year = mysqli_fetch_assoc($check_result_school_year);
+                    $current_school_year = $row_school_year['school_year_id'];
+                    // echo $current_school_year;
+                    //check strand that has a same school year
+                    $check_query_strand_student = "SELECT * FROM class WHERE strand = '$strand_fname' and school_year_id = '$current_school_year' and SUBSTRING_INDEX(SUBSTRING_INDEX(class_name, '-', 2), ' ', -1) = '$strand_name-$gradelevel'";
+                    $check_result_strand_student = mysqli_query($conn, $check_query_strand_student);
+                    $class_ids = [];
+
+                    if (mysqli_num_rows($check_result_strand_student) > 0) {
+                        while ($row_strand_student = mysqli_fetch_assoc($check_result_strand_student)) {
+                            $class_id = $row_strand_student['class_id'];
+                            $class_ids[] = $class_id;
+
+                            $check_query_strand_student_st = "SELECT COUNT(*) as id FROM student WHERE class_id = '$class_id' AND is_regular = 1";
+                            $check_result_strand_student_st = mysqli_query($conn, $check_query_strand_student_st);
+
+                            if ($check_result_strand_student_st && mysqli_num_rows($check_result_strand_student_st) > 0) {
+                                $row_strand_sta = mysqli_fetch_assoc($check_result_strand_student_st);
+                                $counts_of_students = $row_strand_sta['id'];
+
+                                // Check if the count of regular students is less than 40
+                                if ($counts_of_students < 40) {
+                                    // Update the student's class_id if the count of regular students is less than 2
+                                    $query = "UPDATE student SET class_id ='$class_id' WHERE student_id='$id'";
+                                    mysqli_query($conn, $query);
+                                    $existing_classes_not_full = true; // Set flag to indicate existing class not full
+                                    echo '<script>Swal.fire({
+                                        title: "Success",
+                                        text: "Student has been approved successfully!",
+                                        icon: "success",
+                                        confirmButtonText: "OK"
+                                    }).then(function() {
+                                        window.location.href = "manage-students.php";
+                                    });</script>';
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        $newsection = $strand_name . '-' . $gradelevel . '-A';
+                        $query_class_name = "INSERT INTO class (class_name,strand,school_year_id) VALUES ('$newsection','$strand_fname','$current_school_year')";
+                        mysqli_query($conn, $query_class_name);
+                        // Retrieve the ID of the inserted data
+                        $inserted_class_id = mysqli_insert_id($conn);
+
+                        // Update the student's class_id with the newly inserted class_id
+                        $queryaw = "UPDATE student SET class_id ='$inserted_class_id' WHERE student_id='$id'";
+                        mysqli_query($conn, $queryaw);
+                        echo '<script>Swal.fire({
+                            title: "Success",
+                            text: "Student has been approved successfully!",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        }).then(function() {
+                            window.location.href = "manage-students.php";
+                        });</script>';
+                        exit;
+                    }
+
+                    // If all existing classes have 2 regular students, create a new class
+                    if (!$existing_classes_not_full) {
+
+                        $check_query_strand_studentqwe = "SELECT * FROM class WHERE strand = '$strand_fname' AND SUBSTRING_INDEX(SUBSTRING_INDEX(class_name, '-', 2), ' ', -1) = '$strand_name-$gradelevel' ORDER BY class_id DESC LIMIT 1";
+                        $check_result_strand_studentqwe = mysqli_query($conn, $check_query_strand_studentqwe);
+
+                        if (mysqli_num_rows($check_result_strand_studentqwe) > 0) {
+
+                            $row_row = mysqli_fetch_assoc($check_result_strand_studentqwe);
+                            $class_name = $row_row['class_name'];
+
+                            // Extract the middle part of the class name
+                            $parts = explode('-', $class_name);
+                            $middle_part = $parts[1]; // Extract the middle part
+
+                            // Replace the middle part with the new grade level
+                            $new_class_name = $parts[0] . "-" . $gradelevel . "-" . $parts[2];
+
+                            // Increment the last character to get the next section
+                            $last_character = substr($new_class_name, -1); // Get the last character
+                            $next_section = chr(ord($last_character) + 1); // Increment the last character
+
+                            $class_nameu = substr($new_class_name, 0, -1) . $next_section;
+
+                            $query_class_name = "INSERT INTO class (class_name,strand,school_year_id) VALUES ('$class_nameu','$strand_fname','$current_school_year')";
+                            mysqli_query($conn, $query_class_name);
+
+                            // Retrieve the ID of the inserted data
+                            $inserted_class_id = mysqli_insert_id($conn);
+
+                            // Update the student's class_id with the newly inserted class_id
+                            $queryaw = "UPDATE student SET class_id ='$inserted_class_id' WHERE student_id='$id'";
+                            mysqli_query($conn, $queryaw);
+                        }
+                    }
 
 
+
+
+
+
+
+                    //search if the strand is exist
+                    // $check_query_class = "SELECT * FROM class WHERE class_name = '$strand_name'";
+                    // $check_result_class = mysqli_query($conn, $check_query_class);
+                    // if (mysqli_num_rows($check_result_class) < 1) {
+                    //     $strandnewsection =   $strand_name;
+                    //     $query_class = "INSERT INTO class (class_name,strand) VALUES ('$prodname','$strand_fname')";
+
+                    //     $query_run_class = mysqli_query($conn, $query_class);
+                    //     if ($query_run_class) {
+                    //     }
+                    // }
+                } else {
+                    //if the student is irreg
+
+                    // Check if there are any existing classes with less than 2 regular students
+                    $existing_classes_not_full = false;
+                    //select active school year 
+                    $check_query_school_year = "SELECT * FROM school_year where status = 1 ORDER BY school_year_id DESC LIMIT 1 ";
+                    $check_result_school_year = mysqli_query($conn,  $check_query_school_year);
+                    $row_school_year = mysqli_fetch_assoc($check_result_school_year);
+                    $current_school_year = $row_school_year['school_year_id'];
+                    // echo $current_school_year;
+                    //check strand that has a same school year
+                    $check_query_strand_student = "SELECT * FROM class WHERE strand = '$strand_fname' and school_year_id = '$current_school_year' and SUBSTRING_INDEX(SUBSTRING_INDEX(class_name, '-', 2), ' ', -1) = '$strand_name-$gradelevel'";
+                    $check_result_strand_student = mysqli_query($conn, $check_query_strand_student);
+                    $class_ids = [];
+
+                    if (mysqli_num_rows($check_result_strand_student) > 0) {
+                        while ($row_strand_student = mysqli_fetch_assoc($check_result_strand_student)) {
+                            $class_id = $row_strand_student['class_id'];
+                            $class_ids[] = $class_id;
+
+                            $check_query_strand_student_st = "SELECT COUNT(*) as id FROM student WHERE class_id = '$class_id' AND is_regular = 2";
+                            $check_result_strand_student_st = mysqli_query($conn, $check_query_strand_student_st);
+
+                            if ($check_result_strand_student_st && mysqli_num_rows($check_result_strand_student_st) > 0) {
+                                $row_strand_sta = mysqli_fetch_assoc($check_result_strand_student_st);
+                                $counts_of_students = $row_strand_sta['id'];
+
+                                // Check if the count of regular students is less than 2
+                                if ($counts_of_students < 10) {
+                                    // Update the student's class_id if the count of regular students is less than 2
+                                    $query = "UPDATE student SET class_id ='$class_id' WHERE student_id='$id'";
+                                    mysqli_query($conn, $query);
+                                    $existing_classes_not_full = true; // Set flag to indicate existing class not full
+                                    echo '<script>Swal.fire({
+                                        title: "Success",
+                                        text: "Student has been approved successfully!",
+                                        icon: "success",
+                                        confirmButtonText: "OK"
+                                    }).then(function() {
+                                        window.location.href = "manage-students.php";
+                                    });</script>';
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        $newsection = $strand_name . '-' . $gradelevel . '-A';
+                        $query_class_name = "INSERT INTO class (class_name,strand,school_year_id) VALUES ('$newsection','$strand_fname','$current_school_year')";
+                        mysqli_query($conn, $query_class_name);
+                        // Retrieve the ID of the inserted data
+                        $inserted_class_id = mysqli_insert_id($conn);
+
+                        // Update the student's class_id with the newly inserted class_id
+                        $queryaw = "UPDATE student SET class_id ='$inserted_class_id' WHERE student_id='$id'";
+                        mysqli_query($conn, $queryaw);
+                        echo '<script>Swal.fire({
+                            title: "Success",
+                            text: "Student has been approved successfully!",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        }).then(function() {
+                            window.location.href = "manage-students.php";
+                        });</script>';
+                        exit;
+                    }
+
+                    // If all existing classes have 2 regular students, create a new class
+                    if (!$existing_classes_not_full) {
+
+                        $check_query_strand_studentqwe = "SELECT * FROM class WHERE strand = '$strand_fname' AND SUBSTRING_INDEX(SUBSTRING_INDEX(class_name, '-', 2), ' ', -1) = '$strand_name-$gradelevel' ORDER BY class_id DESC LIMIT 1";
+                        $check_result_strand_studentqwe = mysqli_query($conn, $check_query_strand_studentqwe);
+
+                        if (mysqli_num_rows($check_result_strand_studentqwe) > 0) {
+
+                            $row_row = mysqli_fetch_assoc($check_result_strand_studentqwe);
+                            $class_name = $row_row['class_name'];
+
+                            // Extract the middle part of the class name
+                            $parts = explode('-', $class_name);
+                            $middle_part = $parts[1]; // Extract the middle part
+
+                            // Replace the middle part with the new grade level
+                            $new_class_name = $parts[0] . "-" . $gradelevel . "-" . $parts[2];
+
+                            // Increment the last character to get the next section
+                            $last_character = substr($new_class_name, -1); // Get the last character
+                            $next_section = chr(ord($last_character) + 1); // Increment the last character
+
+                            $class_nameu = substr($new_class_name, 0, -1) . $next_section;
+
+                            $query_class_name = "INSERT INTO class (class_name,strand,school_year_id) VALUES ('$class_nameu','$strand_fname','$current_school_year')";
+                            mysqli_query($conn, $query_class_name);
+
+                            // Retrieve the ID of the inserted data
+                            $inserted_class_id = mysqli_insert_id($conn);
+
+                            // Update the student's class_id with the newly inserted class_id
+                            $queryaw = "UPDATE student SET class_id ='$inserted_class_id' WHERE student_id='$id'";
+                            mysqli_query($conn, $queryaw);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ?>
 
 </body>
+
 </html>

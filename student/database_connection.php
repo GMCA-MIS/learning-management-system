@@ -1,15 +1,14 @@
 <?php
-// Database connection parameters
-$servername = "srv1320.hstgr.io";
-$username = "u944705315_capstone2024";
-$password = "Capstone@2024.";
-$dbname = "u944705315_capstone2024";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+    $host = "localhost";
+	$username = "root";
+	$password = "";
+	$database = "kapstown";
+	
+	// Creating database connection
+	$con = mysqli_connect($host,$username,"",$database);
+	// Check database connection
+	if(!$con)
+	{
+		die("Connection Failed: ". mysqli_connect_error());
+	}
 ?>
