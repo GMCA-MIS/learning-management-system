@@ -131,10 +131,10 @@ $student_id = $_SESSION['student_id'];
 // The existing SQL query to fetch teacher_class information
 $query = mysqli_query($conn, "SELECT * FROM teacher_class_student
     LEFT JOIN teacher_class ON teacher_class.teacher_class_id = teacher_class_student.teacher_class_id
-    LEFT JOIN class ON class.class_id = teacher_class.class_id
+    LEFT JOIN class ON class.class_id = teacher_class.class_id AND class.status = 1
     LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
     LEFT JOIN teacher ON teacher.teacher_id = teacher_class.teacher_id
-    WHERE student_id = '$student_id' AND school_year = '$school_year'") or die(mysqli_error());
+    WHERE student_id = '$student_id' AND class.class_id IS NOT NULL") or die(mysqli_error());
 
 $count = mysqli_num_rows($query);
 ?>
