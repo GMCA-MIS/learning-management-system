@@ -61,9 +61,13 @@ if (isset($_GET['class_id'])) {
 
         <?php
         // Displaying data into tables with class_name
-        $query = "SELECT student.*, class.class_name, strand.name as strand_name FROM student
-                LEFT JOIN class ON student.class_id = class.class_id
-                LEFT JOIN strand ON strand.id = student.strand_id where student.class_id =  '$class_id' ORDER BY student.student_id DESC";
+        $query = "SELECT student_class.*,student.*, class.class_name, strand.name AS strand_name 
+        FROM student_class 
+        LEFT JOIN student ON student.student_id = student_class.student_id 
+        LEFT JOIN class ON class.class_id = student_class.class_id 
+        LEFT JOIN strand ON strand.id = student.strand_id 
+        WHERE student_class.class_id = '$class_id' 
+        ORDER BY student.student_id DESC";
 
         $query_run = mysqli_query($conn, $query);
         ?>

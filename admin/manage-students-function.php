@@ -390,6 +390,9 @@
 
                                     $hashed_password = md5($password);
                                 
+                                    $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$class_id'";
+                                    mysqli_query($conn, $queryaw1);
+
                                     $query = "UPDATE student SET class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
                                     mysqli_query($conn, $query);
                                 
@@ -441,6 +444,9 @@
                         $password = bin2hex(random_bytes(8));
 
                         $hashed_password = md5($password);
+
+                        $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
+                        mysqli_query($conn, $queryaw1);
 
                         $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                         mysqli_query($conn, $queryaw);
@@ -513,6 +519,9 @@
 
                             $hashed_password = md5($password);
 
+                            $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
+                            mysqli_query($conn, $queryaw1);
+                            
                             $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                             mysqli_query($conn, $queryaw);
                              
@@ -596,7 +605,10 @@
                                     $password = bin2hex(random_bytes(8));
 
                                     $hashed_password = md5($password);
-                                            
+                                    
+                                    $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$class_id'";
+                                    mysqli_query($conn, $queryaw1);
+
                                     $query = "UPDATE student SET class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
                                     mysqli_query($conn, $query);
 
@@ -648,7 +660,10 @@
                         $password = bin2hex(random_bytes(8));
 
                         $hashed_password = md5($password);
-                                           
+
+                       $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
+                        mysqli_query($conn, $queryaw1);
+
                         $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                         mysqli_query($conn, $queryaw);
                       
@@ -722,6 +737,9 @@
                             $hashed_password = md5($password);
 
                             // Update the student's class_id with the newly inserted class_id
+                            $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
+                            mysqli_query($conn, $queryaw1);
+
                             $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                             mysqli_query($conn, $queryaw);
                             

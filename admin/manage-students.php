@@ -4,8 +4,6 @@ include('dbcon.php');
 include('includes/header.php');
 include('includes/navbar.php');
 ?>
-
-
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -194,7 +192,9 @@ include('includes/navbar.php');
                                         <?php
                                         } ?>
                                     </td>
-                                    <td> <button type="submit" name="attachment" class="btn btn-secondary" style="color:white">Attachment</button></td>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary attachment-btn" data-student-id="<?php echo $row['student_id']; ?>" style="color:white">Attachment</button>
+                                    </td>
                                     <td>
                                         <?php
 
@@ -370,10 +370,49 @@ include('includes/navbar.php');
                 </div>
             </div>
         </div>
+        <div class="modal" id="attachmentModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Attachments</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul id="attachmentList"></ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script>
             function doapprovedModal(id) {
                 document.getElementById("approvedinputid").value = id;
             }
+
+            $(document).ready(function() {
+                $('.attachment-btn').click(function() {
+                    var studentId = $(this).data('student-id');
+
+                    $.ajax({
+                        url: 'fetch_attachments.php',
+                        type: 'POST',
+                        data: { student_id: studentId },
+                        success: function(response) {
+                            $('#attachmentList').html(response);
+                            $('#attachmentModal').modal('show');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                });
+            });
+
         </script>
 
 

@@ -100,6 +100,7 @@ include('includes/navbar.php');
                 <th>Section Number</th>
                 <th>Section</th>
                 <th>Track-Strand</th>
+                <th>Status</th>
                 <th>Edit</th>
                 <th>Delete</th>
                 <th>View</th>
@@ -114,6 +115,14 @@ include('includes/navbar.php');
                     <td><?php echo $row['class_id']; ?></td>
                     <td><?php echo $row['class_name']; ?></td>
                     <td><?php echo $row['strand']; ?></td> 
+                    <td><?php if ($row['status'] == 1) { ?>
+                            <p>Active</p>
+                        <?php
+                        } else { ?>
+                            <p>Inactive</p>
+                        <?php
+                        } ?>
+                    </td>
                     <td>
                         <!--Edit Pop Up Modal -->
                         <div class="modal fade" id="edit_classModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
