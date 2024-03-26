@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $good_moral_uploadOk = 1;
     $good_moral_imageFileType = strtolower(pathinfo($good_moral_target_file, PATHINFO_EXTENSION));
 
-
     $tor_target_dir = "../attachment/";
     $tor_target_file = $tor_target_dir . basename($_FILES["tor"]["name"]);
     $tor_uploadOk = 1;
@@ -47,19 +46,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Function to handle file upload
     function handleFileUpload($file, &$uploadOk, $imageFileType, $type)
     {
+        if (empty($file["name"])) {
+            echo "File name is empty. Skipping file upload for this file.";
+            return false;
+        }
+    
         if ($uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
-        } elseif ($file["size"] > 1.5 * 1024 * 1024) { // Adjust the file size limit as per your requirement
+        } elseif ($file["size"] > 14 * 1024 * 1024) { 
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
-        } elseif (!in_array($imageFileType, array("pdf", "doc", "docx", "jpg", "jpeg"))) {
+        } elseif (!in_array($imageFileType, array("pdf", "jpg", "jpeg"))) {
             echo "Sorry, only PDF, DOC, DOCX, JPG, JPEG files are allowed.";
             $uploadOk = 0;
         } else {
             // Generate unique filename
             $unique_file_name = generateUniqueFilename($file["name"], $type); // Use $type to customize filename
             $target_file = "../attachment/" . $unique_file_name;
-
+    
             if (move_uploaded_file($file["tmp_name"], $target_file)) {
                 //echo "The file " . htmlspecialchars($unique_file_name) . " has been uploaded.";
                 return $unique_file_name;
@@ -69,8 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         return false;
     }
-
-
+    
     $grade_slip_uploaded = handleFileUpload($_FILES["grade_slip"], $grade_slip_uploadOk, $grade_slip_imageFileType, "grade_slip");
     $cor_uploaded = handleFileUpload($_FILES["cor"], $cor_uploadOk, $cor_imageFileType, "cor");
     $good_moral_uploaded = handleFileUpload($_FILES["good_moral"], $good_moral_uploadOk, $good_moral_imageFileType, "good_moral");
@@ -109,30 +112,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = [
             $grade_slip_uploaded, $cor_uploaded, $good_moral_uploaded, $tor_uploaded, $others_uploaded
         ];
-
+        
         foreach ($data as $uploaded_file) {
-
-            $description = "";
-            if ($uploaded_file == $grade_slip_uploaded) {
-                $description = "Grade Slip";
-            } elseif ($uploaded_file == $cor_uploaded) {
-                $description = "Certificate of Recognition";
-            } elseif ($uploaded_file == $good_moral_uploaded) {
-                $description = "Good Moral";
-            } elseif ($uploaded_file == $tor_uploaded) {
-                $description = "TOR";
-            } else {
-                $description = "Others";
+            // Check if the file name is empty
+            if (!empty($uploaded_file)) {
+                $description = "";
+                if ($uploaded_file == $grade_slip_uploaded) {
+                    $description = "Grade Slip";
+                } elseif ($uploaded_file == $cor_uploaded) {
+                    $description = "Certificate of Recognition";
+                } elseif ($uploaded_file == $good_moral_uploaded) {
+                    $description = "Good Moral";
+                } elseif ($uploaded_file == $tor_uploaded) {
+                    $description = "TOR";
+                } else {
+                    $description = "Others";
+                }
+                $document_sql = "INSERT INTO attachment (student_id, description, filename) 
+                VALUES ('$inserted_id', '$description', '$uploaded_file')";
+        
+                if (mysqli_query($conn, $document_sql)) {
+                    echo "Document paths inserted successfully";
+                } else {
+                    echo "Error: " . $document_sql . "<br>" . mysqli_error($conn);
+                }
             }
-            $document_sql = "INSERT INTO attachment (student_id, description, filename) 
-            VALUES ('$inserted_id', '$description', '$uploaded_file')";
-
-            if (mysqli_query($conn, $document_sql)) {
-                echo "Document paths inserted successfully";
-            } else {
-                echo "Error: " . $document_sql . "<br>" . mysqli_error($conn);
-            }
-        }
+        }        
 
         $email_body = "Hi, $firstname $lastname,<br><br>";
         $email_body .= "Your commitment to furthering your education with us is truly commendable, and we are thrilled to have you join our community of passionate learners. At Golden Minds Colleges And Academy we strive to provide an enriching and supportive environment where every student can thrive academically, socially, and personally.<br>";
