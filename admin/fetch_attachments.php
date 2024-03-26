@@ -14,9 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo '<tr><th>Description</th><th></th><th>Filename</th></tr>';
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<tr>';
-                    echo '<td width="20%">' . $row['description'] . '</td>';
-                    echo '<td width="20%"></td>';
-                    echo '<td width="60%"><a href="../attachment/' . $row['filename'] . '" target="_blank">' . $row['filename'] . '</a></td>';
+                    echo '<td width="30%">' . $row['description'] . '</td>';
+                    echo '<td width="10%"></td>';
+                    echo '<td width="50%"><a href="../attachment/' . $row['filename'] . '" target="_blank">' . $row['filename'] . '</a></td>';
                     echo '</tr>';
                 }
                 echo '</table>';
