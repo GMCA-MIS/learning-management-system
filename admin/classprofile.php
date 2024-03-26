@@ -83,6 +83,9 @@ if (isset($_GET['class_id'])) {
                         <th style="display:none;">Lastname</th>
                         <th>Name</th>
                         <th>Strand</th>
+                        <th>Enrollment</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,6 +101,23 @@ if (isset($_GET['class_id'])) {
                                 <td style="display:none;"><?php echo $row['firstname']; ?></td>
                                 <td style="display:none;"><?php echo $row['lastname']; ?></td>
                                 <td><?php echo $row['strand_name']; ?></td>
+                                <td><?php if ($row['is_regular'] == 1) { ?>
+                                        <p>Regular</p>
+                                    <?php } else {
+                                    ?>
+                                        <p>Irregular</p>
+                                    <?php
+                                    } ?>
+                                </td>
+                                <td><?php if ($row['status'] == 1) { ?>
+                                        <p>Archive</p>
+                                    <?php } else {
+                                    ?>
+                                        <p>ReArchive</p>
+                                    <?php
+                                    } ?>
+                                </td>
+                                <td width="15%"><a href="viewgrades.php?student_id=<?php echo urlencode($row['student_id']); ?>" class="btn btn-secondary">View Grades</a></td>
                             </tr>
                         <?php
                         }
