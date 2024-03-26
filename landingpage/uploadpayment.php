@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>
                         Swal.fire({
                             title: 'Success',
-                            text: 'Proof of payment sent successfully. We will email youe credentials once we have verified all your requirements.',
+                            text: 'Proof of payment sent successfully. We will email your credentials once we have verified all your requirements.',
                             icon: 'success',
                             confirmButtonText: 'OK'
                         }).then((result) => {
