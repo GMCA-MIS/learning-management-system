@@ -32,17 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = mysqli_query($conn, $query);
 
     if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
-        // Verify the password
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['user_type'] = 'student';
-            $_SESSION['username'] = $username;
-            $_SESSION['student_id'] = $row['student_id'];
-            header('Location: student/index.php');
-            exit();
-        }
-    }
+      $row = $result->fetch_assoc();
+  
+      $hashed_password = md5($password);
+  
+      // Verify the password
+      if ($hashed_password === $row['password']) {
+          $_SESSION['user_type'] = 'student';
+          $_SESSION['username'] = $username;
+          $_SESSION['student_id'] = $row['student_id'];
+          header('Location: student/index.php');
+          exit();
+      }
+  }  
     
      // Check in 'coordinators' table
      $query = "SELECT * FROM coordinators WHERE email = '$username'";

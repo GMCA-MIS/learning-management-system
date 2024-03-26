@@ -34,7 +34,7 @@ if (isset($_POST['delete_class'])) {
             icon: "warning",
             confirmButtonText: "OK"
         }).then(function() {
-            window.location.href = "manage-class.php";
+            window.location.href = "manage-strand.php";
         });</script>';
     } else {
         // No students associated, proceed with deletion

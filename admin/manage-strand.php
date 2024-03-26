@@ -104,9 +104,9 @@ include('includes/navbar.php');
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Strand</th>
                             <th>Status</th>
-                            <th>Full name strand</th>
-
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -115,7 +115,8 @@ include('includes/navbar.php');
                             while ($row = mysqli_fetch_assoc($query_run)) {
                         ?>
                                 <tr>
-                                    <td><a href="manage-class.php?class_name=<?php echo $row['full_name_strand']; ?>"><?php echo $row['name']; ?></a></td>
+                                    <td><?php echo $row['name']; ?></td>
+                                    <td><?php echo $row['full_name_strand']; ?></td>
                                     <td><?php if ($row['status'] == 1) { ?>
                                             <p>Active</p>
                                         <?php
@@ -124,10 +125,7 @@ include('includes/navbar.php');
                                         <?php
                                         } ?>
                                     </td>
-
-                                    <td><?php echo $row['full_name_strand']; ?></td>
-
-
+                                    <td width="15%"><a href="manage-class.php?class_name=<?php echo urlencode($row['full_name_strand']); ?>" class="btn btn-secondary">View Section List</a></td>
                                 </tr>
                         <?php
                             }

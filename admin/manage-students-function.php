@@ -331,6 +331,9 @@
     }
     ?>
     <?php
+    require 'includes/PHPMailer.php';
+    require 'includes/SMTP.php';
+    require 'includes/Exception.php';
     if (isset($_POST['approve_student'])) {
         $id = $_POST['approvedinputid'];
         $check_query = "SELECT * FROM student WHERE student_id = '$id'";
@@ -340,6 +343,10 @@
             $row = mysqli_fetch_assoc($check_result);
 
             // Access the specific column
+            $lrn = $row['username'];
+            $firstname = $row['firstname'];
+            $lastname = $row['lastname'];
+            $email = $row['email'];
             $strand_id = $row['strand_id'];
             $gradelevel = $row['grade_level'];
             $regular_irregular = $row['is_regular'];
@@ -378,23 +385,51 @@
                                 $row_strand_sta = mysqli_fetch_assoc($check_result_strand_student_st);
                                 $counts_of_students = $row_strand_sta['id'];
 
-                                // Check if the count of regular students is less than 40
                                 if ($counts_of_students < 40) {
-                                    // Update the student's class_id if the count of regular students is less than 2
-                                    $query = "UPDATE student SET class_id ='$class_id' WHERE student_id='$id'";
+                                    $password = bin2hex(random_bytes(8));
+
+                                    $hashed_password = md5($password);
+                                
+                                    $query = "UPDATE student SET class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
                                     mysqli_query($conn, $query);
-                                    $existing_classes_not_full = true; // Set flag to indicate existing class not full
-                                    echo '<script>Swal.fire({
-                                        title: "Success",
-                                        text: "Student has been approved successfully!",
-                                        icon: "success",
-                                        confirmButtonText: "OK"
-                                    }).then(function() {
-                                        window.location.href = "manage-students.php";
-                                    });</script>';
-                                    break;
-                                }
-                            }
+                                
+                                    // Email content
+                                    $email_body = "Dear $firstname $lastname,\n\n";
+                                    $email_body .= "Your account has been created successfully.\n";
+                                    $email_body .= "Here are your login credentials:\n";
+                                    $email_body .= "Username: $lrn\n";
+                                    $email_body .= "Password: $password\n"; 
+                                
+                                    $mail = new PHPMailer();
+                                    $mail->isSMTP();
+                                    $mail->Host = "smtp.gmail.com";
+                                    $mail->SMTPAuth = true;
+                                    $mail->SMTPSecure = "tls";
+                                    $mail->Port = 587;
+                                    $mail->Username = "crustandrolls@gmail.com";
+                                    $mail->Password = "dqriavmkaochvtod";
+                                    $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+                                    $mail->addAddress($email);
+                                    $mail->Subject = "LMS Credentials";
+                                    $mail->Body = $email_body;
+                                
+                                    // Check if mail sent successfully
+                                    if (!$mail->send()) {
+                                        echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+                                    } else {
+                                        $existing_classes_not_full = true; // Set flag to indicate existing class not full
+                                        echo '<script>Swal.fire({
+                                            title: "Success",
+                                            text: "Student has been approved successfully!",
+                                            icon: "success",
+                                            confirmButtonText: "OK"
+                                        }).then(function() {
+                                            window.location.href = "manage-students.php";
+                                        });</script>';
+                                        break;
+                                    }
+                                }     
+                            }                           
                         }
                     } else {
                         $newsection = $strand_name . '-' . $gradelevel . '-A';
@@ -402,21 +437,48 @@
                         mysqli_query($conn, $query_class_name);
                         // Retrieve the ID of the inserted data
                         $inserted_class_id = mysqli_insert_id($conn);
+                        
+                        $password = bin2hex(random_bytes(8));
 
-                        // Update the student's class_id with the newly inserted class_id
-                        $queryaw = "UPDATE student SET class_id ='$inserted_class_id' WHERE student_id='$id'";
+                        $hashed_password = md5($password);
+
+                        $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                         mysqli_query($conn, $queryaw);
-                        echo '<script>Swal.fire({
-                            title: "Success",
-                            text: "Student has been approved successfully!",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        }).then(function() {
-                            window.location.href = "manage-students.php";
-                        });</script>';
-                        exit;
+                        
+                        $email_body = "Dear $firstname $lastname,\n\n";
+                        $email_body .= "Your account has been created successfully.\n";
+                        $email_body .= "Here are your login credentials:\n";
+                        $email_body .= "Username: $lrn\n";
+                        $email_body .= "Password: $password\n"; 
+                        
+                        $mail = new PHPMailer();
+                        $mail->isSMTP();
+                        $mail->Host = "smtp.gmail.com";
+                        $mail->SMTPAuth = true;
+                        $mail->SMTPSecure = "tls";
+                        $mail->Port = 587;
+                        $mail->Username = "crustandrolls@gmail.com";
+                        $mail->Password = "dqriavmkaochvtod";
+                        $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+                        $mail->addAddress($email);
+                        $mail->Subject = "LMS Credentials";
+                        $mail->Body = $email_body;
+                        
+                        // Check if mail sent successfully
+                        if ($mail->send()) {
+                            echo '<script>Swal.fire({
+                                title: "Success",
+                                text: "Student has been approved successfully!",
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            }).then(function() {
+                                window.location.href = "manage-students.php";
+                            });</script>';
+                            exit;
+                        } else {
+                            echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+                        }                        
                     }
-
                     // If all existing classes have 2 regular students, create a new class
                     if (!$existing_classes_not_full) {
 
@@ -447,17 +509,48 @@
                             // Retrieve the ID of the inserted data
                             $inserted_class_id = mysqli_insert_id($conn);
 
-                            // Update the student's class_id with the newly inserted class_id
-                            $queryaw = "UPDATE student SET class_id ='$inserted_class_id' WHERE student_id='$id'";
+                            $password = bin2hex(random_bytes(8));
+
+                            $hashed_password = md5($password);
+
+                            $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                             mysqli_query($conn, $queryaw);
+                             
+                            $email_body = "Dear $firstname $lastname,\n\n";
+                            $email_body .= "Your account has been created successfully.\n";
+                            $email_body .= "Here are your login credentials:\n";
+                            $email_body .= "Username: $lrn\n";
+                            $email_body .= "Password: $password\n"; 
+                            
+                            $mail = new PHPMailer();
+                            $mail->isSMTP();
+                            $mail->Host = "smtp.gmail.com";
+                            $mail->SMTPAuth = true;
+                            $mail->SMTPSecure = "tls";
+                            $mail->Port = 587;
+                            $mail->Username = "crustandrolls@gmail.com";
+                            $mail->Password = "dqriavmkaochvtod";
+                            $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+                            $mail->addAddress($email);
+                            $mail->Subject = "LMS Credentials";
+                            $mail->Body = $email_body;
+                            
+                            // Check if mail sent successfully
+                            if ($mail->send()) {
+                                echo '<script>Swal.fire({
+                                    title: "Success",
+                                    text: "Student has been approved successfully!",
+                                    icon: "success",
+                                    confirmButtonText: "OK"
+                                }).then(function() {
+                                    window.location.href = "manage-students.php";
+                                });</script>';
+                                exit;
+                            } else {
+                                echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+                            }     
                         }
                     }
-
-
-
-
-
-
 
                     //search if the strand is exist
                     // $check_query_class = "SELECT * FROM class WHERE class_name = '$strand_name'";
@@ -500,19 +593,48 @@
 
                                 // Check if the count of regular students is less than 2
                                 if ($counts_of_students < 10) {
-                                    // Update the student's class_id if the count of regular students is less than 2
-                                    $query = "UPDATE student SET class_id ='$class_id' WHERE student_id='$id'";
+                                    $password = bin2hex(random_bytes(8));
+
+                                    $hashed_password = md5($password);
+                                            
+                                    $query = "UPDATE student SET class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
                                     mysqli_query($conn, $query);
-                                    $existing_classes_not_full = true; // Set flag to indicate existing class not full
-                                    echo '<script>Swal.fire({
-                                        title: "Success",
-                                        text: "Student has been approved successfully!",
-                                        icon: "success",
-                                        confirmButtonText: "OK"
-                                    }).then(function() {
-                                        window.location.href = "manage-students.php";
-                                    });</script>';
-                                    break;
+
+                                    // Email content
+                                    $email_body = "Dear $firstname $lastname,\n\n";
+                                    $email_body .= "Your account has been created successfully.\n";
+                                    $email_body .= "Here are your login credentials:\n";
+                                    $email_body .= "Username: $lrn\n";
+                                    $email_body .= "Password: $password\n"; 
+                                
+                                    $mail = new PHPMailer();
+                                    $mail->isSMTP();
+                                    $mail->Host = "smtp.gmail.com";
+                                    $mail->SMTPAuth = true;
+                                    $mail->SMTPSecure = "tls";
+                                    $mail->Port = 587;
+                                    $mail->Username = "crustandrolls@gmail.com";
+                                    $mail->Password = "dqriavmkaochvtod";
+                                    $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+                                    $mail->addAddress($email);
+                                    $mail->Subject = "LMS Credentials";
+                                    $mail->Body = $email_body;
+                                
+                                    // Check if mail sent successfully
+                                    if (!$mail->send()) {
+                                        echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+                                    } else {
+                                        $existing_classes_not_full = true; // Set flag to indicate existing class not full
+                                        echo '<script>Swal.fire({
+                                            title: "Success",
+                                            text: "Student has been approved successfully!",
+                                            icon: "success",
+                                            confirmButtonText: "OK"
+                                        }).then(function() {
+                                            window.location.href = "manage-students.php";
+                                        });</script>';
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -523,18 +645,46 @@
                         // Retrieve the ID of the inserted data
                         $inserted_class_id = mysqli_insert_id($conn);
 
-                        // Update the student's class_id with the newly inserted class_id
-                        $queryaw = "UPDATE student SET class_id ='$inserted_class_id' WHERE student_id='$id'";
+                        $password = bin2hex(random_bytes(8));
+
+                        $hashed_password = md5($password);
+                                           
+                        $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                         mysqli_query($conn, $queryaw);
-                        echo '<script>Swal.fire({
-                            title: "Success",
-                            text: "Student has been approved successfully!",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        }).then(function() {
-                            window.location.href = "manage-students.php";
-                        });</script>';
-                        exit;
+                      
+                        $email_body = "Dear $firstname $lastname,\n\n";
+                        $email_body .= "Your account has been created successfully.\n";
+                        $email_body .= "Here are your login credentials:\n";
+                        $email_body .= "Username: $lrn\n";
+                        $email_body .= "Password: $password\n"; 
+                        
+                        $mail = new PHPMailer();
+                        $mail->isSMTP();
+                        $mail->Host = "smtp.gmail.com";
+                        $mail->SMTPAuth = true;
+                        $mail->SMTPSecure = "tls";
+                        $mail->Port = 587;
+                        $mail->Username = "crustandrolls@gmail.com";
+                        $mail->Password = "dqriavmkaochvtod";
+                        $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+                        $mail->addAddress($email);
+                        $mail->Subject = "LMS Credentials";
+                        $mail->Body = $email_body;
+                        
+                        // Check if mail sent successfully
+                        if ($mail->send()) {
+                            echo '<script>Swal.fire({
+                                title: "Success",
+                                text: "Student has been approved successfully!",
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            }).then(function() {
+                                window.location.href = "manage-students.php";
+                            });</script>';
+                            exit;
+                        } else {
+                            echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+                        }                        
                     }
 
                     // If all existing classes have 2 regular students, create a new class
@@ -566,10 +716,48 @@
 
                             // Retrieve the ID of the inserted data
                             $inserted_class_id = mysqli_insert_id($conn);
+                            
+                            $password = bin2hex(random_bytes(8));
+
+                            $hashed_password = md5($password);
 
                             // Update the student's class_id with the newly inserted class_id
-                            $queryaw = "UPDATE student SET class_id ='$inserted_class_id' WHERE student_id='$id'";
+                            $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                             mysqli_query($conn, $queryaw);
+                            
+                            $email_body = "Dear $firstname $lastname,\n\n";
+                            $email_body .= "Your account has been created successfully.\n";
+                            $email_body .= "Here are your login credentials:\n";
+                            $email_body .= "Username: $lrn\n";
+                            $email_body .= "Password: $password\n"; 
+                            
+                            $mail = new PHPMailer();
+                            $mail->isSMTP();
+                            $mail->Host = "smtp.gmail.com";
+                            $mail->SMTPAuth = true;
+                            $mail->SMTPSecure = "tls";
+                            $mail->Port = 587;
+                            $mail->Username = "crustandrolls@gmail.com";
+                            $mail->Password = "dqriavmkaochvtod";
+                            $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+                            $mail->addAddress($email);
+                            $mail->Subject = "LMS Credentials";
+                            $mail->Body = $email_body;
+                            
+                            // Check if mail sent successfully
+                            if ($mail->send()) {
+                                echo '<script>Swal.fire({
+                                    title: "Success",
+                                    text: "Student has been approved successfully!",
+                                    icon: "success",
+                                    confirmButtonText: "OK"
+                                }).then(function() {
+                                    window.location.href = "manage-students.php";
+                                });</script>';
+                                exit;
+                            } else {
+                                echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+                            }                        
                         }
                     }
                 }
