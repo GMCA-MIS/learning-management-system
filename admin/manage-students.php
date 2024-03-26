@@ -157,9 +157,9 @@ include('includes/navbar.php');
                             <th>Strand</th>
                             <th>Section</th>
                             <th>Enrollment</th>
-                            <th>Status</th>
                             <th>Attachment</th>
                             <th>Approval</th>
+                            <th>Status</th>
                             <!-- <th>Edit</th> -->
                             <th>Delete</th>
 
