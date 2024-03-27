@@ -46,15 +46,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function handleFileUpload($file, &$uploadOk, $imageFileType, $type)
     {
         if (empty($file["name"])) {
-            throw new Exception("File name is empty. Skipping file upload for this file.");
+            echo "File name is empty. Skipping file upload for this file.";
         }
     
         if ($uploadOk == 0) {
-            throw new Exception("Sorry, your file was not uploaded.");
-        } elseif ($file["size"] > 14 * 1024 * 1024) { 
-            throw new Exception("Sorry, your file is too large.");
+            echo "Sorry, your file was not uploaded.";
+        } elseif ($file["size"] > 14 * 1024 * 1024) {
+            echo "Sorry, your file is too large.";
         } elseif (!in_array($imageFileType, array("pdf", "jpg", "jpeg"))) {
-            throw new Exception("Sorry, only PDF, DOC, DOCX, JPG, JPEG files are allowed.");
+            echo "Sorry, only PDF, JPG, JPEG files are allowed.";
         }
     
         // Generate unique filename
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($file["tmp_name"], $target_file)) {
             return $unique_file_name;
         } else {
-            throw new Exception("Sorry, there was an error uploading your file.");
+            echo "Sorry, there was an error uploading your file.";
         }
     }    
     
