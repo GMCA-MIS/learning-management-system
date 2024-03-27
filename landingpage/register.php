@@ -97,7 +97,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Execute the query
         if (mysqli_query($conn, $sql)) {
             $inserted_id = mysqli_insert_id($conn);
-            echo "New record inserted successfully";
+            echo "<div></div>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Proof of payment sent successfully. We will email your credentials once we have verified all your requirements.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'index.html';
+                        }
+                    });
+                </script>";
+            exit();
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
@@ -159,21 +173,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         try {
             $mail->send();
-            echo "<div></div>";
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-            echo "<script>
-                    Swal.fire({
-                        title: 'Success',
-                        text: 'Proof of payment sent successfully. We will email your credentials once we have verified all your requirements.',
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = 'index.html';
-                        }
-                    });
-                </script>";
-            exit();
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
