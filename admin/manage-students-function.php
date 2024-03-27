@@ -61,7 +61,7 @@
             icon: "success",
             confirmButtonText: "OK"
         }).then(function() {
-            window.location.href = "manage-students.php";
+            window.location.href = "manage-archive-students.php";
         });</script>';
         } else {
             echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";

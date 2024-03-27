@@ -107,6 +107,7 @@
         <h6 class="collapse-header">Manage Students</h6>
         <a class="collapse-item" href="manage-strand.php?id=<?php echo $school_year ?>"> <i class='fas fa-chalkboard'></i> Strand List</a>
         <a class="collapse-item" href="manage-students.php?id=<?php echo $school_year ?>"><i class="fas fa-book-reader" aria-hidden="true"></i> Student List </a>
+        <a class="collapse-item" href="manage-archive-students.php?id=<?php echo $school_year ?>"><i class="fas fa-book-reader" aria-hidden="true"></i> Archive Student List </a>
       </div>
     </div>
   </li>
