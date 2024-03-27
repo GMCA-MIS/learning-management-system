@@ -156,6 +156,7 @@ include('includes/navbar.php');
                             <th>Name</th>
                             <th>Strand</th>
                             <th>Section</th>
+                            <th>Enrollment</th>
                             <th>Status</th>
                             <th>Attachment</th>
                             <th>Approval</th>
@@ -212,118 +213,80 @@ include('includes/navbar.php');
                                         }
                                         ?>
                                     </td>
-                                    <!--  <td>
-                                        Edit Pop Up Modal
-                                        <div class="modal fade" id="edit_studentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Student Information</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-
-                                                    <form action="manage-students-function.php" method="POST">
-
-
-                                                        <div class="modal-body">
-
-                                                            <input type="hidden" name="edit_ID" id="edit_ID">
-
-
-                                                            <div class="form-group">
-                                                                <label for="#">Class - Section</label>
-                                                                <select name="class_id" class="form-control" required>
-                                                                    <option value="" disabled selected>Select Class</option>
-                                                                    <?php
-                                                                    $query = mysqli_query($conn, "SELECT * FROM class ORDER BY class_name");
-                                                                    while ($row = mysqli_fetch_array($query)) {
-                                                                    ?>
-                                                                        <option value="<?php echo $row['class_id']; ?>"><?php echo $row['class_name']; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="#">Learner Reference Number (LRN)</label>
-                                                                <input type="text" class="form-control" id="edit_lrn" name="lrn" maxlength="13" minlength="13" placeholder="Enter 12-Digit LRN" oninput="formatStudentNumber(this)" required>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="#">First Name</label>
-                                                                <input type="text" class="form-control" name="firstname" id="edit_firstname" placeholder="Enter First Name" required>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="#">Last Name</label>
-                                                                <input type="text" class="form-control" name="lastname" id="edit_lastname" placeholder="Enter Last Name" required>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="#">Email</label>
-                                                                <input type="email" class="form-control" name="email" id="edit_email" placeholder="Enter email" required>
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="dob">Date of Birth</label>
-                                                                <input type="text" class="form-control flatpickr" name="dob" id="edit_dob" required placeholder="Enter Date of Birth">
-                                                            </div>
-
-
-                                                        </div>
-                                                                            
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" name="edit_student" class="btn btn-primary">Update</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>  
-
-                                        <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_studentModal">Edit</button>
-                                    </td>-->
+                                    <td>
+                                        <?php
+                                        if ($row['status'] == 1) {
+                                        ?>
+                                            <p>Active</p>     
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <p>Archived</p>
+                                        <?php
+                                        }
+                                        ?>
+                                    </td>
 
                                     <td>
-
+                                    <?php
+                                        if ($row['status'] == 1) {
+                                        ?>
                                         <!--Delete Pop Up Modal -->
                                         <div class="modal fade" id="deletestudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Archive User</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-
                                                     <form action="manage-students-function.php" method="POST">
-
-
                                                         <div class="modal-body">
-
                                                             <input type="hidden" name="delete_ID" id="delete_ID">
-
-                                                            <h5>Do you want to delete this data?</h5>
-
-
-
+                                                            <h5>Do you want to archive this data?</h5>
                                                         </div>
-
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                            <button type="submit" name="delete_student" class="btn btn-primary">Confirm</button>
+                                                            <button type="submit" name="archivestudent" class="btn btn-primary">Confirm</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" name="delete_btn" class="btn btn-danger delete_btn">Archive</button>
+                                        <?php
+                                        } else {
+                                        ?>
+                                        <!--Delete Pop Up Modal -->
+                                        <div class="modal fade" id="deletestudentModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">ReArchive User</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="manage-students-function.php" method="POST">
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="delete_ID1" id="delete_ID1">
+                                                            <h5>Do you want to rearchive this data?</h5>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" name="rearchivestudent" class="btn btn-primary">Confirm</button>
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
 
-
-                                        <button type="submit" name="delete_btn" class="btn btn-danger delete_btn">Delete</button>
-
+                                        <!-- Button to trigger modal -->
+                                        <button type="button" name="delete_btn" class="btn btn-primary" data-toggle="modal" data-target="#deletestudentModal1" onclick="setDeleteID(<?php echo $row['student_id']; ?>)">ReArchive</button>
+                                        <?php
+                                        }
+                                        ?>
                                     </td>
 
                                 </tr>
@@ -413,6 +376,9 @@ include('includes/navbar.php');
                 });
             });
 
+            function setDeleteID(studentID) {
+                document.getElementById("delete_ID1").value = studentID;
+            }
         </script>
 
 
@@ -420,3 +386,77 @@ include('includes/navbar.php');
         include('includes/scripts.php');
         include('includes/footer.php');
         ?>
+
+            <!--  <td>
+        Edit Pop Up Modal
+        <div class="modal fade" id="edit_studentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Student Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="manage-students-function.php" method="POST">
+
+
+                        <div class="modal-body">
+
+                            <input type="hidden" name="edit_ID" id="edit_ID">
+
+
+                            <div class="form-group">
+                                <label for="#">Class - Section</label>
+                                <select name="class_id" class="form-control" required>
+                                    <option value="" disabled selected>Select Class</option>
+                                    <?php
+                                    $query = mysqli_query($conn, "SELECT * FROM class ORDER BY class_name");
+                                    while ($row = mysqli_fetch_array($query)) {
+                                    ?>
+                                        <option value="<?php echo $row['class_id']; ?>"><?php echo $row['class_name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="#">Learner Reference Number (LRN)</label>
+                                <input type="text" class="form-control" id="edit_lrn" name="lrn" maxlength="13" minlength="13" placeholder="Enter 12-Digit LRN" oninput="formatStudentNumber(this)" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="#">First Name</label>
+                                <input type="text" class="form-control" name="firstname" id="edit_firstname" placeholder="Enter First Name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="#">Last Name</label>
+                                <input type="text" class="form-control" name="lastname" id="edit_lastname" placeholder="Enter Last Name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="#">Email</label>
+                                <input type="email" class="form-control" name="email" id="edit_email" placeholder="Enter email" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="text" class="form-control flatpickr" name="dob" id="edit_dob" required placeholder="Enter Date of Birth">
+                            </div>
+
+
+                        </div>
+                                            
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" name="edit_student" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>  
+
+        <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_studentModal">Edit</button>
+    </td>-->

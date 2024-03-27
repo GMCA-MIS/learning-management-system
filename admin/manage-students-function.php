@@ -17,19 +17,19 @@
     <?php
     include('dbcon.php');
 
-    // Manage User Delete Function
-    if (isset($_POST['delete_student'])) {
+    // Manage User Archive Function
+    if (isset($_POST['archivestudent'])) {
         $id = $_POST['delete_ID'];
 
-        // Delete from students table
-        $student_query = "DELETE FROM student WHERE student_id = '$id' ";
+        // Archive from students table
+        $student_query = "UPDATE student SET status=0 WHERE student_id = '$id' ";
         $student_query_run = mysqli_query($conn, $student_query);
 
         if ($student_query_run) {
             echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
             echo '<script>Swal.fire({
             title: "Success",
-            text: "User has been deleted successfully!",
+            text: "User has been archive successfully!",
             icon: "success",
             confirmButtonText: "OK"
         }).then(function() {
@@ -46,7 +46,33 @@
         }
     }
 
+    if (isset($_POST['rearchivestudent'])) {
+        $id = $_POST['delete_ID1'];
 
+        // Delete from students table
+        $student_query = "UPDATE student SET status=1 WHERE student_id = '$id' ";
+        $student_query_run = mysqli_query($conn, $student_query);
+
+        if ($student_query_run) {
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo '<script>Swal.fire({
+            title: "Success",
+            text: "User has been rearchive successfully!",
+            icon: "success",
+            confirmButtonText: "OK"
+        }).then(function() {
+            window.location.href = "manage-students.php";
+        });</script>';
+        } else {
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo '<script>Swal.fire({
+            title: "Error",
+            text: "Failed to delete user!",
+            icon: "error",
+            confirmButtonText: "OK"
+        });</script>';
+        }
+    }
     ?>
 
     <?php
