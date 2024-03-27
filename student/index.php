@@ -24,7 +24,7 @@ include('dbcon.php');
                     <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top: 27px; margin-left: 10px;">
                         <h1 class="h3 mb-0 text-gray-800">Classes</h1>
                         <div class="d-sm-flex" style="margin-left: 1200px;">
-                            <a href="viewgrades.php?student_id=<?php echo urlencode($row['student_id']); ?>" class="btn btn-secondary">Enroll</a>
+                            <a href="../landingpage/reenrollment.php?id=<?php echo urlencode($row['student_id']); ?>" class="btn btn-secondary">Enroll</a>
                         </div>
                     </div>
 

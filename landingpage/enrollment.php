@@ -340,7 +340,6 @@ mysqli_close($conn);
                                 <label for="course">Course/Program</label>
                             </div>
                         </div>
-
                         <br />
 
                         <!-- Requester's Birth Info -->
@@ -405,14 +404,14 @@ mysqli_close($conn);
 
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-4">
-                                <input type="file" id="creds_submitted" name="grade_slip" accept=".pdf, .jpg, .jpeg" required />
+                                <input type="file" id="creds_submitted1" name="grade_slip" accept=".pdf, .jpg, .jpeg" required />
                             </div>
                             <div class="col-4">
-                                <input type="file" id="creds_submitted" name="cor" accept=".pdf, .jpg, .jpeg" required />
+                                <input type="file" id="creds_submitted2" name="cor" accept=".pdf, .jpg, .jpeg" required />
                             </div>
 
                             <div class="col-4">
-                                <input type="file" id="creds_submitted" name="good_moral" accept=".pdf, .jpg, .jpeg" required />
+                                <input type="file" id="creds_submitted3" name="good_moral" accept=".pdf, .jpg, .jpeg" required />
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
@@ -437,11 +436,11 @@ mysqli_close($conn);
                         <br>
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-4">
-                                <input type="file" id="creds_submitted" name="tor" accept=".pdf, .jpg, .jpeg" />
+                                <input type="file" id="creds_submitted4" name="tor" accept=".pdf, .jpg, .jpeg" />
                             </div>
 
                             <div class="col-4">
-                                <input type="file" id="creds_submitted" name="others" accept=".pdf, .jpg, .jpeg" />
+                                <input type="file" id="creds_submitted5" name="others" accept=".pdf, .jpg, .jpeg" />
                             </div>
 
                         </div>

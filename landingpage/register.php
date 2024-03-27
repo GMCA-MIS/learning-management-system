@@ -8,28 +8,28 @@ include('dbcon.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle file uploads for grade_slip
-    $grade_slip_target_dir = $_SERVER['DOCUMENT_ROOT'] . "/learning-management-system/uploads/";
+    $grade_slip_target_dir = "../attachment/";
     $grade_slip_target_file = $grade_slip_target_dir . basename($_FILES["grade_slip"]["name"]);
     $grade_slip_uploadOk = 1;
     $grade_slip_imageFileType = strtolower(pathinfo($grade_slip_target_file, PATHINFO_EXTENSION));
     // Handle file uploads for cor
-    $cor_target_dir = $_SERVER['DOCUMENT_ROOT'] . "/learning-management-system/uploads/";
+    $cor_target_dir = "../attachment/";
     $cor_target_file = $cor_target_dir . basename($_FILES["cor"]["name"]);
     $cor_uploadOk = 1;
     $cor_imageFileType = strtolower(pathinfo($cor_target_file, PATHINFO_EXTENSION));
     // Handle file uploads for good_moral
-    $good_moral_target_dir = $_SERVER['DOCUMENT_ROOT'] . "/learning-management-system/uploads/";
+    $good_moral_target_dir = "../attachment/";
     $good_moral_target_file = $good_moral_target_dir . basename($_FILES["good_moral"]["name"]);
     $good_moral_uploadOk = 1;
     $good_moral_imageFileType = strtolower(pathinfo($good_moral_target_file, PATHINFO_EXTENSION));
 
 
-    $tor_target_dir = $_SERVER['DOCUMENT_ROOT'] . "/learning-management-system/uploads/";
+    $tor_target_dir = "../attachment/";
     $tor_target_file = $tor_target_dir . basename($_FILES["tor"]["name"]);
     $tor_uploadOk = 1;
     $tor_imageFileType = strtolower(pathinfo($tor_target_file, PATHINFO_EXTENSION));
 
-    $others_target_dir = $_SERVER['DOCUMENT_ROOT'] . "/learning-management-system/uploads/";
+    $others_target_dir = "../attachment/";
     $others_target_file = $others_target_dir . basename($_FILES["others"]["name"]);
     $others_uploadOk = 1;
     $others_imageFileType = strtolower(pathinfo($others_target_file, PATHINFO_EXTENSION));
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // Generate unique filename
             $unique_file_name = generateUniqueFilename($file["name"], $type); // Use $type to customize filename
-            $target_file = $_SERVER['DOCUMENT_ROOT'] . "/learning-management-system/uploads/" . $unique_file_name;
+            $target_file = "../attachment/" . $unique_file_name;
 
             if (move_uploaded_file($file["tmp_name"], $target_file)) {
                 //echo "The file " . htmlspecialchars($unique_file_name) . " has been uploaded.";
@@ -160,9 +160,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Body = $email_body;
 
         try {
-
             $mail->send();
-            header("Location: enrollment.php");
+            echo "<div></div>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Proof of payment sent successfully. We will email your credentials once we have verified all your requirements.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'index.html';
+                        }
+                    });
+                </script>";
+            exit();
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
