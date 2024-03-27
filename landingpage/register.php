@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     {
         if ($uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
-        } elseif ($file["size"] > 500000) { // Adjust the file size limit as per your requirement
+        } elseif ($file["size"] > 1.5 * 1024 * 1024) { // Adjust the file size limit as per your requirement
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         } elseif (!in_array($imageFileType, array("pdf", "doc", "docx", "jpg", "jpeg"))) {
