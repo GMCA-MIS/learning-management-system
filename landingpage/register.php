@@ -42,31 +42,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return $type . $unique_suffix;
     }
 
-    // Function to handle file upload
     function handleFileUpload($file, &$uploadOk, $imageFileType, $type)
     {
         if (empty($file["name"])) {
-            echo "File name is empty. Skipping file upload for this file.";
+            // echo "File name is empty. Skipping file upload for this file.";
         }
-    
+
         if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
+            // echo "Sorry, your file was not uploaded.";
         } elseif ($file["size"] > 14 * 1024 * 1024) {
-            echo "Sorry, your file is too large.";
+            // echo "Sorry, your file is too large.";
         } elseif (!in_array($imageFileType, array("pdf", "jpg", "jpeg"))) {
-            echo "Sorry, only PDF, JPG, JPEG files are allowed.";
+            // echo "Sorry, only PDF, JPG, JPEG files are allowed.";
         }
-    
+
         // Generate unique filename
         $unique_file_name = generateUniqueFilename($file["name"], $type); // Use $type to customize filename
         $target_file = "../attachment/" . $unique_file_name;
-    
+
         if (move_uploaded_file($file["tmp_name"], $target_file)) {
             return $unique_file_name;
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            // echo "Sorry, there was an error uploading your file.";
         }
-    }    
+    }
     
     $grade_slip_uploaded = handleFileUpload($_FILES["grade_slip"], $grade_slip_uploadOk, $grade_slip_imageFileType, "grade_slip");
     $cor_uploaded = handleFileUpload($_FILES["cor"], $cor_uploadOk, $cor_imageFileType, "cor");
