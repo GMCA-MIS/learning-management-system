@@ -19,6 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '<td width="50%"><a href="../attachment/' . $row['filename'] . '" target="_blank">' . $row['filename'] . '</a></td>';
                     echo '</tr>';
                 }
+                echo '<tr>';
+                echo '<td width="30%">Enrollment Form</td>';
+                echo '<td width="10%"></td>';
+                echo '<td width="50%"><a href="../landingpage/enrollment_form.php?id=' . $studentId . '" target="_blank">View</a></td>';
+                echo '</tr>';          
                 echo '</table>';
             } else {
                 echo 'No attachments available.';
