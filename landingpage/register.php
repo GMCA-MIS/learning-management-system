@@ -73,9 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tor_uploaded = handleFileUpload($_FILES["tor"], $tor_uploadOk, $tor_imageFileType, "tor");
     $others_uploaded = handleFileUpload($_FILES["others"], $others_uploadOk, $others_imageFileType, "others");
 
-
     if ($grade_slip_uploaded && $cor_uploaded && $good_moral_uploaded) {
-
+        // Extract POST data
         $lastname = $_POST["lastname"];
         $firstname = $_POST["firstname"];
         $middle_initial = $_POST["middle_initial"];
@@ -91,95 +90,91 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $grade_level = $_POST["grade_level"];
         $is_regular = $_POST["is_regular"];
 
+        // Insert student data into the database
         $sql = "INSERT INTO student (username, lastname, firstname, middle_initial, email, location, strand_id, dob, pob, highschool, other_colleges, highschool_address, grade_level, is_regular) 
-            VALUES ('$lrn','$lastname', '$firstname', '$middle_initial', '$email', '$address', '$course', '$dob', '$pob', '$highschool', '$other_colleges', '$highschool_address','$grade_level','$is_regular')";
-
-        // Execute the query
+                VALUES ('$lrn','$lastname', '$firstname', '$middle_initial', '$email', '$address', '$course', '$dob', '$pob', '$highschool', '$other_colleges', '$highschool_address','$grade_level','$is_regular')";
         if (mysqli_query($conn, $sql)) {
+            // Get the ID of the inserted student record
             $inserted_id = mysqli_insert_id($conn);
-            echo "<div></div>";
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-            echo "<script>
-                    Swal.fire({
-                        title: 'Success',
-                        text: 'Proof of payment sent successfully. We will email your credentials once we have verified all your requirements.',
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = 'index.html';
-                        }
-                    });
-                </script>";
-            exit();
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-
-        $data = [
-            $grade_slip_uploaded, $cor_uploaded, $good_moral_uploaded, $tor_uploaded, $others_uploaded
-        ];
-        
-        foreach ($data as $uploaded_file) {
-            // Check if the file name is empty
-            if (!empty($uploaded_file)) {
-                $description = "";
-                if ($uploaded_file == $grade_slip_uploaded) {
-                    $description = "Grade Slip";
-                } elseif ($uploaded_file == $cor_uploaded) {
-                    $description = "Certificate of Recognition";
-                } elseif ($uploaded_file == $good_moral_uploaded) {
-                    $description = "Good Moral";
-                } elseif ($uploaded_file == $tor_uploaded) {
-                    $description = "TOR";
-                } else {
-                    $description = "Others";
-                }
-                $document_sql = "INSERT INTO attachment (student_id, description, filename) 
-                VALUES ('$inserted_id', '$description', '$uploaded_file')";
-        
-                if (mysqli_query($conn, $document_sql)) {
-                    echo "Document paths inserted successfully";
-                } else {
-                    echo "Error: " . $document_sql . "<br>" . mysqli_error($conn);
+            
+            // Insert attachment data into the database
+            $data = [
+                $grade_slip_uploaded, $cor_uploaded, $good_moral_uploaded, $tor_uploaded, $others_uploaded
+            ];
+            foreach ($data as $uploaded_file) {
+                if (!empty($uploaded_file)) {
+                    // Determine the description based on the uploaded file
+                    $description = "";
+                    if ($uploaded_file == $grade_slip_uploaded) {
+                        $description = "Grade Slip";
+                    } elseif ($uploaded_file == $cor_uploaded) {
+                        $description = "Certificate of Recognition";
+                    } elseif ($uploaded_file == $good_moral_uploaded) {
+                        $description = "Good Moral";
+                    } elseif ($uploaded_file == $tor_uploaded) {
+                        $description = "TOR";
+                    } else {
+                        $description = "Others";
+                    }
+                    // Insert attachment data into the database
+                    $document_sql = "INSERT INTO attachment (student_id, description, filename) 
+                                     VALUES ('$inserted_id', '$description', '$uploaded_file')";
+                    mysqli_query($conn, $document_sql);
                 }
             }
-        }  
 
-        require 'PHPMailer/PHPMailer.php';
-        require 'PHPMailer/SMTP.php';
-        require 'PHPMailer/Exception.php';
+            // Send email to the student
+            require 'includes/PHPMailer.php';
+            require 'includes/SMTP.php';
+            require 'includes/Exception.php';
 
-        $email_body = "Hi, $firstname $lastname,<br><br>";
-        $email_body .= "Your commitment to furthering your education with us is truly commendable, and we are thrilled to have you join our community of passionate learners. At Golden Minds Colleges And Academy we strive to provide an enriching and supportive environment where every student can thrive academically, socially, and personally.<br>";
-        $email_body .= "By choosing to embark on this journey with us, you have placed your trust in our faculty, staff, and resources, and we are fully dedicated to helping you achieve your goals and aspirations. Whether you're pursuing your academic interests, developing new skills, or preparing for your future career, we are here to support you every step of the way.<br>";
-        $email_body .= "To complete the enrollment process, we kindly ask you to upload your payment confirmation using the following link: <br>";
-        $email_body .= '<a href="https://gmca.online/landingpage/uploadpayment.php?uppstdid=' . $inserted_id . '">Upload Payment Confirmation</a><br>';
-        $email_body .= "You can check your enrollment form by following the link: <br>";
-        $email_body .= '<a href="https://gmca.online/landingpage/enrollment_form.php?id=' . $inserted_id . '">Enrollment Form</a>';
+            $email_body = "Hi, $firstname $lastname,<br><br>";
+            $email_body .= "Your commitment to furthering your education with us is truly commendable, and we are thrilled to have you join our community of passionate learners. At Golden Minds Colleges And Academy we strive to provide an enriching and supportive environment where every student can thrive academically, socially, and personally.<br>";
+            $email_body .= "By choosing to embark on this journey with us, you have placed your trust in our faculty, staff, and resources, and we are fully dedicated to helping you achieve your goals and aspirations. Whether you're pursuing your academic interests, developing new skills, or preparing for your future career, we are here to support you every step of the way.<br>";
+            $email_body .= "To complete the enrollment process, we kindly ask you to upload your payment confirmation using the following link: <br>";
+            $email_body .= '<a href="https://gmca.online/landingpage/uploadpayment.php?uppstdid=' . $inserted_id . '">Upload Payment Confirmation</a><br>';
+            $email_body .= "You can check your enrollment form by following the link: <br>";
+            $email_body .= '<a href="https://gmca.online/landingpage/enrollment_form.php?id=' . $inserted_id . '">Enrollment Form</a>';
 
-        $mail = new PHPMailer();
-        $mail->isSMTP();
-        $mail->Host = "smtp.gmail.com";
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = "tls";
-        $mail->Port = 587;
-        $mail->Username = "crustandrolls@gmail.com"; // your email address
-        $mail->Password = "dqriavmkaochvtod"; // your email password
-        $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
-        $mail->addAddress($email);
-        $mail->Subject = "LMS Enrollment";
-        $mail->isHTML(true);
-        $mail->Body = $email_body;
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = "tls";
+            $mail->Port = 587;
+            $mail->Username = "crustandrolls@gmail.com"; // your email address
+            $mail->Password = "dqriavmkaochvtod"; // your email password
+            $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
+            $mail->addAddress($email);
+            $mail->Subject = "LMS Enrollment";
+            $mail->isHTML(true);
+            $mail->Body = $email_body;
 
-        try {
-            $mail->send();
-        } catch (Exception $e) {
+            try {
+                $mail->send();
+                // Display success message
+                echo "<div></div>";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'Proof of payment sent successfully. We will email your credentials once we have verified all your requirements.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'index.html';
+                            }
+                        });
+                    </script>";
+                exit();
+            } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     } else {
         echo "Error in submission";
     }
+}
 } else {
     // Redirect back to the form if accessed directly
     header("Location: index.html");
