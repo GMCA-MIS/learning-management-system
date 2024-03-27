@@ -144,7 +144,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "Error: " . $document_sql . "<br>" . mysqli_error($conn);
                 }
             }
-        }        
+        }  
+
+        require 'PHPMailer/PHPMailer.php';
+        require 'PHPMailer/SMTP.php';
+        require 'PHPMailer/Exception.php';
 
         $email_body = "Hi, $firstname $lastname,<br><br>";
         $email_body .= "Your commitment to furthering your education with us is truly commendable, and we are thrilled to have you join our community of passionate learners. At Golden Minds Colleges And Academy we strive to provide an enriching and supportive environment where every student can thrive academically, socially, and personally.<br>";
@@ -153,9 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email_body .= '<a href="https://gmca.online/landingpage/uploadpayment.php?uppstdid=' . $inserted_id . '">Upload Payment Confirmation</a><br>';
         $email_body .= "You can check your enrollment form by following the link: <br>";
         $email_body .= '<a href="https://gmca.online/landingpage/enrollment_form.php?id=' . $inserted_id . '">Enrollment Form</a>';
-        require $_SERVER['DOCUMENT_ROOT'] . '/learning-management-system/admin/includes/PHPMailer.php';
-        require $_SERVER['DOCUMENT_ROOT'] . '/learning-management-system/admin/includes/SMTP.php';
-        require $_SERVER['DOCUMENT_ROOT'] . '/learning-management-system/admin/includes/Exception.php';
 
         $mail = new PHPMailer();
         $mail->isSMTP();
