@@ -70,7 +70,7 @@ if (isset($_POST['delete_course'])) {
     {       
         // Name attributes are used here, make sure they match your form fields
         $id = $_POST['edit_ID'];
-
+        $get_id = $_POST['get_id'];
         $course_code = $_POST['course_code'];
         $course_title = $_POST['course_title'];
         $description = $_POST['description'];
@@ -89,7 +89,7 @@ if (isset($_POST['delete_course'])) {
                 icon: "success",
                 confirmButtonText: "OK"
             }).then(function() {
-                window.location.href = "manage-courses.php";
+                window.location.href = "manage-courses.php?id=' . $get_id . '";
             });</script>';
         } else {
             echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
@@ -112,6 +112,7 @@ if(isset($_POST['add_course']))
     $description = $_POST['description'];
     $course_type = $_POST['course_type'];
     $track = $_POST['track'];
+    $get_id = $_POST['get_id'];
     
     // Database connection (include your database connection file)
     include('dbcon.php');
@@ -128,7 +129,7 @@ if(isset($_POST['add_course']))
                     title: "Success",
                     text: "Subject added successfully!",
                 }).then(function(){
-                    window.location.href = "manage-courses.php"; // Redirect to your desired page
+                    window.location.href = "manage-courses.php?id=' . $get_id . '";
                 });
               </script>';
     } else {

@@ -5,7 +5,7 @@ include('includes/header.php');
 include('includes/navbar.php');
 ?>
 
-<?php //$id = $_GET['id']; ?>
+<?php $id = $_GET['id']; ?>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -57,6 +57,7 @@ include('includes/navbar.php');
                                             <form action="manage-courses-function.php" method="POST">
                                                 <div class="modal-body">
                                                     <input type="hidden" name="add_ID" id="add_ID">
+                                                    <input type="hidden" name= "get_id" value = <?php echo $id?>>
 
                                                     <div class="form-group">
                                                         <label for="course_code">Subject Code</label>
@@ -163,7 +164,7 @@ include('includes/navbar.php');
                                         <div class="modal-body">
 
                                                 <input type="hidden" name= "edit_ID" id ="edit_ID">
-
+                                                <input type="hidden" name= "get_id" value = <?php echo $id?>>
                                                 <div class="form-group">
                                                     <label for="course_code">Subject Code</label>
                                                     <input type="text" class="form-control" id="edit_course_code" name="course_code" required placeholder="Enter Subject Code">
