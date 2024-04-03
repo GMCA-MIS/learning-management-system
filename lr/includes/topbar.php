@@ -33,7 +33,7 @@ if ($query) {
     <div class="logoPic">
             <img src="img/slshslogo1.png" alt="logo">
                 <a href ="index.php" class="logo" style="text-decoration: none;">
-                    <span>Sta. Lucia Senior High School</span>
+                    <span>Golden Minds College and Academy</span>
                     <p class="subtitle">Learning Management System</p>
                 </a>
         </div>
@@ -46,7 +46,7 @@ if ($query) {
 
                 <div class="dropdown-content" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="profile_teacher.php"><i class="fa fa-user" aria-hidden="true"></i> My Profile</a>
-                    <a class="dropdown-item" href="change_password_teacher.php"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Change Password</a>
+                    
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php"><i class="icon-signout"></i> Logout</a>
                 </div>
