@@ -2,6 +2,7 @@
 <ul class="navbar-nav new-nav-bg sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center"
     <div class="sidebar-brand-icon">
         <img src="../img/gmlogo.png" alt="">
     </div>
