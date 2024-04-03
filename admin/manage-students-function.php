@@ -246,9 +246,9 @@
                             $mail->SMTPAuth = true;
                             $mail->SMTPSecure = "tls";
                             $mail->Port = 587;
-                            $mail->Username = "crustandrolls@gmail.com"; // your email address
-                            $mail->Password = "dqriavmkaochvtod"; // your email password
-                            $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
+                            $mail->Username = "goldenmindcollege@gmail.com"; // your email address
+                            $mail->Password = "teom csjx dlat gsqc"; // your email password
+                            $mail->setFrom("goldenmindcollege@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
                             $mail->addAddress($email);
                             $mail->Subject = "LMS Credentials";
                             $mail->Body = $email_body;
