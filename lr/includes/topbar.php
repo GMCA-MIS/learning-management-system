@@ -33,7 +33,7 @@ if ($query) {
     <div class="logoPic">
             <img src="img/slshslogo1.png" alt="logo">
                 <a href ="index.php" class="logo" style="text-decoration: none;">
-                    <span>Sta. Lucia Senior High School</span>
+                    <span>Golden Minds College and Academy</span>
                     <p class="subtitle">Learning Management System</p>
                 </a>
         </div>
