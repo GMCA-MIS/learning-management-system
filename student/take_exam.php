@@ -485,6 +485,7 @@ if ($questionData['question_type_id'] == 1 || $questionData['question_type_id'] 
     var currentQuestion = 1;
     var questionContainers = document.querySelectorAll(".question-container");
     var questionNumbers = document.querySelectorAll(".btns"); // Update the class name here
+    var submitButton = document.getElementById("submit_button"); // Assuming your submit button has the id "submit_button"
     var nextButton = document.getElementById("next-button"); // Assuming your "Next" button has the id "next-button"
 
     function showQuestion(questionId) {

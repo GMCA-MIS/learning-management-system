@@ -8,7 +8,7 @@
     <div class="sidebar-brand-icon">
     <img class="rounded-circle" src="<?php echo $imageLocation; ?>" alt="Teacher Image">
     </div>
-    <div class="sidebar-brand-text mx-3">GMC</div>
+    <div class="sidebar-brand-text mx-3">GMC </div>
 </a>
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
@@ -93,7 +93,7 @@
 <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'library.php') echo 'active'; ?>">
   <a class="nav-link" href="library.php">
   <i class="fa fa-book" aria-hidden="true"></i>
-    <span>GMC</span><span> E-Library </span>
+    <span>SLSHS</span><span> E-Library </span>
   </a>
 </li>
 
