@@ -44,13 +44,13 @@ if ($query) {
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="d-none d-lg-inline text-gray-600 small">Welcome, <?php echo $firstname . ' ' . $lastname; ?></span>
+                <span class="d-none d-lg-inline text-gray-600 small">Welcome! Student :  <?php echo $firstname . ' ' . $lastname; ?></span>
                 <img class="img-profile rounded-circle" src="<?php echo $imageLocation; ?>" alt="Teacher Image" width="40" height="40">
             </a>
             <!-- Dropdown menu -->
             <div class="dropdown-menu" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="profile.php"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
-                <a class="dropdown-item" href="change_password.php"><i class="fa fa-lock" aria-hidden="true"></i> Change Password</a>
+
             </div>
         </li>
     </div>
