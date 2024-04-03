@@ -64,7 +64,7 @@ if ($userTeacher !== null) {
     $stmtUpdateTeacher = $mysqli->prepare($sqlUpdateTeacher);
     $stmtUpdateTeacher->bind_param("ss", $password_hash, $userTeacher["teacher_id"]);
     $stmtUpdateTeacher->execute();
-    echo "<script>alert('Password updated. You can now login to your account.'); window.location.href = '../login.php';</script>";
+    echo "<script>alert('Password updated. You can now login to your account.'); window.location.href = '../newlogin.php';</script>";
 }
 
 if ($userStudent !== null) {
@@ -76,7 +76,7 @@ if ($userStudent !== null) {
     $stmtUpdateStudent = $mysqli->prepare($sqlUpdateStudent);
     $stmtUpdateStudent->bind_param("ss", $hashed_password, $userStudent["student_id"]);
     $stmtUpdateStudent->execute();
-    echo "<script>alert('Password updated. You can now login to your account.'); window.location.href = '../login.php';</script>";
+    echo "<script>alert('Password updated. You can now login to your account.'); window.location.href = '../newlogin.php';</script>";
 }
 
 if ($userCoordinator !== null) {
@@ -88,6 +88,6 @@ if ($userCoordinator !== null) {
     $stmtUpdateCoordinator = $mysqli->prepare($sqlUpdateCoordinator);
     $stmtUpdateCoordinator->bind_param("ss", $password_hash, $userCoordinator["coordinator_id"]);
     $stmtUpdateCoordinator->execute();
-    echo "<script>alert('Password updated. You can now login to your account.'); window.location.href = '../login.php';</script>";
+    echo "<script>alert('Password updated. You can now login to your account.'); window.location.href = '../newlogin.php';</script>";
 }
 ?>
