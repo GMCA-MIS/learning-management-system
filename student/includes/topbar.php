@@ -30,7 +30,7 @@ if ($query) {
 <body>
 <header class="bar">
     <div class="logoPic">
-        <img src="img/gmlogo.png" alt="logo">
+        <img src="gmc.png" alt="logo">
         <a href="index.php" class="logo" style="text-decoration: none;">
             <span>Golden Minds Colleges and Academy </span>
             <p class="subtitle">Management Information System</p>
@@ -50,7 +50,7 @@ if ($query) {
             <!-- Dropdown menu -->
             <div class="dropdown-menu" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="profile.php"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
-
+                <!--<a class="dropdown-item" href="change_password.php"><i class="fa fa-lock" aria-hidden="true"></i> Change Password</a>-->
             </div>
         </li>
     </div>
