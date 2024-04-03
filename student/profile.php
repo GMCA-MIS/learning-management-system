@@ -98,10 +98,11 @@ if ($result) {
                     <hr>
                     <div class="list-group list-group-flush account-settings-links">
                         <a class="list-group-item list-group-item-action active" data-toggle="list"
-                            href="#account-general">General</a>
+                            href="#account-general">General Information</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#account-change-password">Change password</a>
-
+                       <!-- <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-info">Information</a>-->
                     </div>
                 </div>
                 <div class="col-md-9">
