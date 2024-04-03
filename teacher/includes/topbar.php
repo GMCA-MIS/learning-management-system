@@ -29,7 +29,7 @@ if ($query) {
 <body>
 <header class="bar">
     <div class="logoPic">
-        <img src="C:\Users\System Acct\Documents\GitHub\learning-management-system\teacher\includes\gmlogo1.png" alt="logo">
+        <img src="../img/gmlogo1.png" alt="logo">
         <a href="index.php" class="logo" style="text-decoration: none;">
             <span>Golden Minds Colleges and Academy</span>
             <p class="subtitle">Management Information System</p>
