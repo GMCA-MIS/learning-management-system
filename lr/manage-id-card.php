@@ -276,16 +276,15 @@
                                     <!--modal dialog -->
                                 </div>
                                 <!--modal fade -->
-                                <button type="button" class="btn btn-success add_btn" data-toggle="modal"
-                                    data-target="#add_lcardkModal">
+                                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardkModal">
                                     <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
                                 </button>
-                                <button type="button" class="btn btn-success add_btn" data-toggle="modal"
-                                    data-target="#gen_lcardModal">
+                                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_lcardModal">
+                                    <a href="generate-id.php"></a>
                                     <i class="fa fa-address-card" aria-hidden="true"></i> Generate ID Card
                                 </button>
-                                <button type="button" class="btn btn-success add_btn" data-toggle="modal"
-                                    data-target="#gen_qrModal">
+                                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_qrModal">
+                                    <a href="generate-qr.php"></a>
                                     <i class="fa fa-qrcode" aria-hidden="true"></i> Generate QR Code
                                 </button>
                             </td>
