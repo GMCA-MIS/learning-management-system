@@ -55,3 +55,11 @@ include('dbcon.php');
             </a>
           </div>
         </div>
+
+    </div>
+</div>
+
+<?php
+    include('includes/scripts.php');
+    include('includes/footer.php');
+?>

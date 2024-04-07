@@ -604,7 +604,7 @@ include('dbcon.php');
 
 
 
-        <?php
-        include('includes/scripts.php');
-        include('includes/footer.php');
-        ?>
+<?php
+include('includes/scripts.php');
+include('includes/footer.php');
+?>
