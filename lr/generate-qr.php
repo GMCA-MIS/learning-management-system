@@ -191,7 +191,49 @@
             </div>
         </div>
 
+        <div id="content" class="p-4 p-md-5 pt-5">
+        <div class="container">
+          <h2 class="generate-qr mb-4">QR Code Generator</h2>
+        </div>
 
+        <!--Buttons-->
+        <div class="row mb-5">
+          <div class="btn-group">
+            <a href="id-card.php"><button type="button" class="btn"><span class="fa fa-eye mr-3"></span>View Users</button></a>
+            <a href="generate.php"><button type="button" class="btn"><span class="fa fa-address-card mr-3"></span>Generate ID Card</button></a>
+            <a href="generate-qr.php"><button type="button" class="btn"><span class="fa fa-qrcode mr-3"></span>Generate QR Code</button></a>
+          </div>
+        </div>
+
+        <!-- Page Content: QR -->
+        <?php
+            $first_name = "";
+              
+              if (isset($_POST["generate"])) {
+                  $first_name = $_POST["first_name"];
+        }
+        ?>
+
+        <div class="row">
+            <div class="col-7">
+              <label for="generate">Student ID Card No.</label>
+                  <form autocomplete="off" action="generate-qr.php" method="post">
+                     <input type="text" class="form-control col-8" value="<?php echo $first_name;?>" name="first_name" placeholder="Type your ID no. here"><br>
+                     <button type="submit" class="btn btn-warning" name="generate"><span class="fa fa-cog mr-3"></span>Generate</button>
+                  </form>
+            </div>
+          
+          <div class="qr-card">
+            <div class="qr-img card">
+                <?php echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" />'; ?>
+            </div>
+          
+          </div>
+        </div>
+
+
+      </div>
+    </div>
 
 <?php
     include('includes/scripts.php');
