@@ -56,6 +56,13 @@
   </a>
 </li>
 
+<li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-id-card.php') echo 'active'; ?>">
+  <a class="nav-link" href="manage-id-card.php">
+    <i class="fas fa-book-reader" aria-hidden="true"></i>
+    <span>Library Card</span>
+  </a>
+</li>
+
 
 
 
