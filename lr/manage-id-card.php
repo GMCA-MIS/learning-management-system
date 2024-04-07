@@ -186,7 +186,7 @@
                                                 enctype="multipart/form-data" name="upload">
                                                 <div class="modal-body">
                                                     <div class="form-group">
-                                                        <label for="title">Book Title</label>
+                                                        <label for="title">Student Number</label>
                                                         <input type="text" class="form-control" id="title" name="title"
                                                             required placeholder="Enter Book Title">
                                                     </div>
@@ -299,10 +299,10 @@
                                 cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Book_id</th>
-                                        <th>Book Cover</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
+                                        <th>Student Number</th>
+                                        <th>Name</th>
+                                        <th>ID Card Number</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
