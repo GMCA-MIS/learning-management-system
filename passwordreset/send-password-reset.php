@@ -66,7 +66,7 @@ if ($resultTeacher->num_rows > 0 || $resultStudent->num_rows > 0 || $resultCoord
         if ($stmtTeacher->affected_rows > 0 || $stmtStudent->affected_rows > 0 || $stmtCoordinator->affected_rows > 0) {
         $email_body = "We have received a password reset request with the account associated with this email. <br><br>";
         $email_body .= "Please proceed with the link for your password reset.<br>";
-        $email_body .= "Click <a href='https://gmca.online/passwordreset/reset-password.php?token=$token'>here</a> to reset your password.";
+        $email_body .= "Click <a href='https://gmca.online/passwordreset/send-password-reset.php?token=$token'>here</a> to reset your password.";
 
         $mail = require __DIR__ . "/mailer.php";
 
