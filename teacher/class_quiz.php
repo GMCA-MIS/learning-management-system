@@ -65,11 +65,7 @@ if ($class_row) { ?>
                                     <a class="nav-link active" style="color:black;" id="uploadTab" data-toggle="tab"
                                         href="#Quizzes" role="tab" aria-controls="Quizzes" aria-selected="false">Quizzes</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " style="color:black" id="createTab" data-toggle="tab"
-                                        href="#quizf2f" role="tab" aria-controls="quizf2f" aria-selected="true">Quizzes
-                                        (F2F)</a>
-                                </li>
+                                
                                 <li class="nav-item">
                                     <a class="nav-link " style="color:black" id="createTab" data-toggle="tab"
                                         href="#archived" role="tab" aria-controls="f2f" aria-selected="true"> <i
