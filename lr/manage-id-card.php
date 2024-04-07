@@ -284,10 +284,11 @@
                                         <i class="fa fa-address-card" aria-hidden="true"></i> Generate ID Card
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_qrModal">
-                                    <a href="generate-qr.php"></a>
-                                    <i class="fa fa-qrcode" aria-hidden="true"></i> Generate QR Code
-                                </button>
+                                <a href="generate-qr.php">
+                                    <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_qrModal">  
+                                        <i class="fa fa-qrcode" aria-hidden="true"></i> Generate QR Code
+                                    </button>
+                                </a>
                             </td>
 
                             <div class="d-sm-flex align-items-center justify-content-between mb-2"
