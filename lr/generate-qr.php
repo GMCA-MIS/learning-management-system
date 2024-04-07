@@ -52,6 +52,8 @@
         </nav>
         <!-- End of Topbar -->
 
+        <div></div>
+
         <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardkModal">
             <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
         </button>
