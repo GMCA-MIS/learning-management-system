@@ -44,12 +44,12 @@ include('dbcon.php');
                 <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
             </button>
             <a href="generate-id.php">
-                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardModal">
+                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gend_lcardModal">
                     <i class="fa fa-plus" aria-hidden="true"></i> Generate ID Card
                 </button>
             </a>
             <a href="generate-qr.php">
-                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardModal">
+                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_qrModal">
                     <i class="fa fa-plus" aria-hidden="true"></i> Generate QR Code
                 </button>
             </a>
