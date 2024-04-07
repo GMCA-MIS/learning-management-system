@@ -277,8 +277,16 @@
                                 </div>
                                 <!--modal fade -->
                                 <button type="button" class="btn btn-success add_btn" data-toggle="modal"
-                                    data-target="#add_bookModal">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> Add Book
+                                    data-target="#add_lcardkModal">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
+                                </button>
+                                <button type="button" class="btn btn-success add_btn" data-toggle="modal"
+                                    data-target="#gen_lcardModal">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Generate ID Card
+                                </button>
+                                <button type="button" class="btn btn-success add_btn" data-toggle="modal"
+                                    data-target="#gen_qrModal">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Generate QR Code
                                 </button>
                             </td>
 
