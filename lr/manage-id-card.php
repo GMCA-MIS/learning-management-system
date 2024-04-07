@@ -40,11 +40,10 @@ include('dbcon.php');
         <!--Buttons-->
         <div class="row mb-5">
           <div class="btn-group">
-            <button type="button" class="btn btn-success add_btn" data-toggle="modal"
-                                    data-target="#add_bookModal">
+            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardModal">
                 <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
             </button>
-            <a href="generate.php"><button type="button" class="btn"><span class="fa fa-address-card mr-3"></span>Generate ID Card</button></a>
+            <a href="generate-id.php"><button type="button" class="btn"><span class="fa fa-address-card mr-3"></span>Generate ID Card</button></a>
             <a href="generate-qr.php"><button type="button" class="btn"><span class="fa fa-qrcode mr-3"></span>Generate QR Code</button></a>
           </div>
         </div>
