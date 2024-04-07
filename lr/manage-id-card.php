@@ -270,10 +270,10 @@
                                 </button>
                             </td>
 
-                            <!-- <div class="d-sm-flex align-items-center justify-content-between mb-2"
+                            <div class="d-sm-flex align-items-center justify-content-between mb-2"
                                 style="margin-top: 10px; margin-left: 10px;">
-                                <h1 class="h5 mb-0 text-gray-800">Book List</h1>
-                            </div> -->
+                                <!-- <h1 class="h5 mb-0 text-gray-800">Book List</h1> -->
+                            </div>
                             <?php
                             // Displaying data into tables
                             $query = "SELECT booklist.*, category.category_name
