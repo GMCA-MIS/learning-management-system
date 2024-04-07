@@ -197,92 +197,78 @@
                                                 </button>
                                             </div>
 
-                                            <form class="" action="library-function.php" method="post"
-                                                enctype="multipart/form-data" name="upload">
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="title">Student Number</label>
-                                                        <input type="text" class="form-control" id="title" name="title"
-                                                            required placeholder="Enter Book Title">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="desc">Description</label>
-                                                        <textarea class="form-control" id="description" name="desc"
-                                                            rows="4" max-length="5000" required
-                                                            placeholder="Enter Description"></textarea>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="author">Author</label>
-                                                        <input type="text" class="form-control" id="author"
-                                                            name="author" placeholder="Enter Author" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for "theme">Category</label>
-                                                        <select name="category" id="category" class="form-control"
-                                                            required>
-                                                            <option value="" disabled selected>Select Category</option>
-                                                            <?php
-                                                            $query = "SELECT * FROM category ORDER BY category_name ASC";
-                                                            $result = mysqli_query($conn, $query);
-
-                                                            // Check if there are any results
-                                                            if (mysqli_num_rows($result) > 0) {
-                                                                while ($row = mysqli_fetch_assoc($result)) {
-                                                                    $category_id = $row['category_id'];
-                                                                    $category_name = $row['category_name'];
-                                                                    // Create an option for each category
-                                                                    echo '<option value="' . $category_id . '">' . $category_name . '</option>';
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="publication_year">Publication Year</label>
-                                                        <input type="number" class="form-control" id="publication_year"
-                                                            name="publication_year" placeholder="Enter Publication Year"
-                                                            required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="call_number">Call Number</label>
-                                                        <input type="number" class="form-control" id="call_number"
-                                                            name="call_number" placeholder="Enter Call Number" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="book_cover" class="form-label">Book Cover
-                                                            Photo:</label>
-                                                        <input type="file" class="form-control" name="book_cover"
-                                                            id="book_cover" accept="image/*" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="file_path" class="form-label">E-book File (PDF
-                                                            only):</label>
-                                                        <input type="file" class="form-control" name="file_path"
-                                                            id="file_path" accept="application/pdf" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="book_status">Book Status</label>
-                                                        <select class="form-control" id="book_status" name="book_status"
-                                                            required>
-                                                            <option value="" selected disabled>Select Book Status
-                                                            </option>
-                                                            <option value="Available">Available</option>
-                                                            <option value="Archived">Archived</option>
-                                                        </select>
-                                                    </div>
+                                            <form method="POST" enctype="multipart/form-data">
+                                                <div class="row">
+                                                
+                                                <div class="col">
+                                                    <label for="name">Full Name</label>
+                                                    <input type="text" class="form-control" placeholder="Full name" name="name">
                                                 </div>
+                                                <div class="col">
+                                                    <label for="department">Department</label>
+                                                    <select name="dept" class="custom-select custom-select">
+                                                        <option selected></option>
+                                                        <option value="Computer Studies">Computer Studies</option>
+                                                        <option value="Education">Education</option>
+                                                        <option value="Agriculture">Agriculture</option>
+                                                        <option value="Junior High School">Junior High School</option>
+                                                        <option value="Senior High School">Senior High School</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="category">Category</label>
+                                                    <select name="cat" class="custom-select custom-select">
+                                                        <option selected></option>
+                                                        <option value="Student">Student</option>
+                                                        <option value="Faculty">Faculty</option>
+                                                        <option value="Admin">Admin</option>
+                                                    </select>
+                                                </div>
+                                                </div>
+
+                                                <div class="row">
+                                                <div class="col">
+                                                    <label for="address">Address</label>
+                                                    <input type="text" class="form-control" placeholder="Type your address" name="address">
+                                                </div>
+                                                </div>
+
+                                                <div class="row">
+                                                <div class="col">
+                                                    <label for="email">Email</label>
+                                                    <input type="text" class="form-control" placeholder="Your email" name="email">
+                                                </div>
+                                                <div class="col">
+                                                    <label for="birthdate">Birthdate</label>
+                                                    <input type="date" class="form-control" id="birthdate" name="dob">
+                                                </div>
+                                                </div>
+
+                                                <div class="row">
+                                                <div class="col">
+                                                    <label for="id">ID Card No.</label>
+                                                    <input type="text" class="form-control" placeholder="ID No." name="id_no">
+                                                </div>
+                                                <div class="col">
+                                                    <label for="contact">Contact No.</label>
+                                                    <input type="text" class="form-control" placeholder="Phone number" name="phone">
+                                                </div>
+                                                </div>
+
+                                                <div class="row">
+                                                <div class="col">
+                                                    <label for="photo">Upload Photo</label>
+                                                    <input type="file" class="form-control" name="image">
+                                                </div>
+                                                </div>
+
+                                            
+                                                </div>
+                                                
+                                                <!-- Modal footer -->
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-warning"
-                                                        data-dismiss="modal">Close</button>
-                                                    <button type="submit" name="add_book"
-                                                        class="btn btn-success">Create</button>
+                                                <button type="submit" class="btn btn-warning">Submit</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>
                                             </form>
                                         </div>
