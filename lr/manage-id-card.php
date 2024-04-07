@@ -270,10 +270,10 @@
                                 </button>
                             </td>
 
-                            <div class="d-sm-flex align-items-center justify-content-between mb-2"
+                            <!-- <div class="d-sm-flex align-items-center justify-content-between mb-2"
                                 style="margin-top: 10px; margin-left: 10px;">
                                 <h1 class="h5 mb-0 text-gray-800">Book List</h1>
-                            </div>
+                            </div> -->
                             <?php
                             // Displaying data into tables
                             $query = "SELECT booklist.*, category.category_name
@@ -287,18 +287,10 @@
                                 cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th style="display:none;">Book_id</th>
+                                        <th>Book_id</th>
                                         <th>Book Cover</th>
                                         <th>Title</th>
-                                        <th style="display:none;">Description</th>
-                                        <th>Author</th>
-                                        <th>Publication Year</th>
-                                        <th>Category</th>
-                                        <th>Book Status</th>
-                                        <th>Edit</th>
-                                        <th>Archive</th>
-                                        <th>Delete</th>
-                                        <th style="display:none;">Call Number</th>
+                                        <th>Description</th>
                                     </tr>
                                 </thead>
                                 <tbody>
