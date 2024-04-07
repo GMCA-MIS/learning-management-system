@@ -1,9 +1,24 @@
 <?php
-include('includes/lr_session.php');
-include('includes/header.php');
-include('includes/navbar.php');
-include('dbcon.php');
+    include('includes/lr_session.php');
+    include('includes/header.php');
+    include('includes/navbar.php');
+    include('dbcon.php');
 ?>
+<style>
+    a {
+        text-decoration: underline;
+        /* Add underline to the anchor text */
+        color: black;
+        /* Set the text color to blue */
+    }
+
+    a:hover {
+        color: brown;
+    }
+    label {
+        margin-top: 5%;
+    }
+</style>
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -36,28 +51,6 @@ include('dbcon.php');
 
         </nav>
         <!-- End of Topbar -->
-
-        <!--Buttons-->
-        <div class="row mb-5">
-          <div class="btn-group">
-            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardModal">
-                <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
-            </button>
-            <a href="generate-id.php">
-                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gend_lcardModal">
-                    <i class="fa fa-plus" aria-hidden="true"></i> Generate ID Card
-                </button>
-            </a>
-            <a href="generate-qr.php">
-                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_qrModal">
-                    <i class="fa fa-plus" aria-hidden="true"></i> Generate QR Code
-                </button>
-            </a>
-          </div>
-        </div>
-
-    </div>
-</div>
 
 <?php
     include('includes/scripts.php');
