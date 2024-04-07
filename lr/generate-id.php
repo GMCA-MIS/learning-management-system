@@ -51,13 +51,11 @@
 
         </nav>
         <!-- End of Topbar -->
-
-        <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardkModal">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
-            <?php
-                include('manage-id-card-modal.php');
-            ?>
-        </button>
+        <a href="manage-id-card-modal.php">
+            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardkModal">
+                <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
+            </button>
+        </a>
         <a href="generate-id.php">
             <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_lcardModal">
                 <i class="fa fa-address-card" aria-hidden="true"></i> Generate ID Card
