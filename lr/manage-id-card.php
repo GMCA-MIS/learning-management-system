@@ -269,7 +269,7 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                            
+
                                         </div>
                                         <!--modal content -->
                                     </div>
@@ -366,99 +366,23 @@
                                                                         Information
                                                                     </h5>
                                                                 </div>
-                                                                <form class="" action="library-function.php" method="post"
-                                                                    enctype="multipart/form-data" name="upload">
+                                                                <form method="POST">
                                                                     <div class="modal-body">
-                                                                        <input type="hidden" class="form-control"
-                                                                            id="edit_book_id" name="edit_book_id">
+                                                                        <input type="hidden" name="snoEdit" id="snoEdit">
                                                                         <div class="form-group">
-                                                                            <label for="edit_title">Book Title</label>
-                                                                            <input type="text" class="form-control"
-                                                                                id="edit_title" name="edit_title" required
-                                                                                placeholder="Enter Book Title">
+                                                                            <label for="name">Student Name</label>
+                                                                            <input type="text" class="form-control" id="nameEdit" name="nameEdit">
                                                                         </div>
-                                                                        <div class="form-group">
-                                                                            <label for="edit_description">Description</label>
-                                                                            <textarea class="form-control" id="edit_description"
-                                                                                name="edit_description" rows="4"
-                                                                                max-length="5000" required
-                                                                                placeholder="Enter Description"></textarea>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="edit_author">Author</label>
-                                                                            <input type="text" class="form-control"
-                                                                                id="edit_author" name="edit_author"
-                                                                                placeholder="Enter Author" required>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for "theme">Category</label>
-                                                                            <select name="edit_category" id="edit_category"
-                                                                                class="form-control">
-                                                                                <option value="" disabled selected>Select
-                                                                                    Category</option>
-                                                                                <?php
-                                                                                $query = "SELECT * FROM category ORDER BY category_name ASC";
-                                                                                $result = mysqli_query($conn, $query);
-                                                                                // Check if there are any results
-                                                                                if (mysqli_num_rows($result) > 0) {
-                                                                                    while ($row = mysqli_fetch_assoc($result)) {
-                                                                                        $category_id = $row['category_id'];
-                                                                                        $category_name = $row['category_name'];
-                                                                                        // Create an option for each category
-                                                                                        echo '<option value="' . $category_id . '">' . $category_name . '</option>';
-                                                                                    }
-                                                                                }
-                                                                                ?>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="edit_publication_year">Publication
-                                                                                Year</label>
-                                                                            <input type="number" class="form-control"
-                                                                                id="edit_publication_year"
-                                                                                name="edit_publication_year"
-                                                                                placeholder="Enter Publication Year" required>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="edit_call_number">Call Number</label>
-                                                                            <input type="number" class="form-control"
-                                                                                id="edit_call_number" name="edit_call_number"
-                                                                                placeholder="Enter Call Number" required>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="edit_book_cover" class="form-label">Book
-                                                                                Cover
-                                                                                Photo:</label>
-                                                                            <input type="file" class="form-control"
-                                                                                name="edit_book_cover" id="edit_book_cover"
-                                                                                accept="image/*" required>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="file_path" class="form-label">E-book
-                                                                                File (PDF
-                                                                                only):</ <input type="file" class="form-control"
-                                                                                    name="edit_file_path" id="edit_file_path"
-                                                                                    accept="application/pdf" required>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="edit_book_status">Book Status</label>
-                                                                            <select class="form-control" id="edit_book_status"
-                                                                                name="edit_book_status" required>
-                                                                                <option value="" selected disabled>Select Book
-                                                                                    Status
-                                                                                </option>
-                                                                                <option value="Available">Available</option>
-                                                                                <option value="Archived">Archived</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-warning"
-                                                                            data-dismiss="modal">Close</button>
-                                                                        <button type="submit" name="edit_book"
-                                                                            class="btn btn-primary">Update</button>
-                                                                    </div>
 
+                                                                        <div class="form-group">
+                                                                            <label for="desc">ID Card Number:</label>
+                                                                            <input class="form-control" id="id_noEdit" name="id_noEdit" rows="3"></input>
+                                                                        </div> 
+                                                                    </div>
+                                                                    <div class="modal-footer d-block mr-auto">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                                    </div>
                                                                 </form>
                                                             </div> <!--modal content -->
                                                         </div> <!--modal dialog -->
