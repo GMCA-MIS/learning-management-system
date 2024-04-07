@@ -282,11 +282,11 @@
                                 </button>
                                 <button type="button" class="btn btn-success add_btn" data-toggle="modal"
                                     data-target="#gen_lcardModal">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> Generate ID Card
+                                    <i class="fa fa-address-card" aria-hidden="true"></i> Generate ID Card
                                 </button>
                                 <button type="button" class="btn btn-success add_btn" data-toggle="modal"
                                     data-target="#gen_qrModal">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> Generate QR Code
+                                    <i class="fa fa-qrcode" aria-hidden="true"></i> Generate QR Code
                                 </button>
                             </td>
 
