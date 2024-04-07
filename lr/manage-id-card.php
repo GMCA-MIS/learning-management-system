@@ -199,12 +199,11 @@
                                             <div class="container">
                                                 <form method="POST" enctype="multipart/form-data">
                                                     <div class="row">
-                                                    
-                                                        <div class="col">
+                                                        <div class="col-sm-4">
                                                             <label for="name">Full Name</label>
                                                             <input type="text" class="form-control" placeholder="Full name" name="name">
                                                         </div>
-                                                        <div class="col">
+                                                        <div class="col-sm-4">
                                                             <label for="department">Department</label>
                                                             <select name="dept" class="custom-select custom-select">
                                                                 <option selected></option>
@@ -215,7 +214,7 @@
                                                                 <option value="Senior High School">Senior High School</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col">
+                                                        <div class="col-sm-4">
                                                             <label for="category">Category</label>
                                                             <select name="cat" class="custom-select custom-select">
                                                                 <option selected></option>
@@ -227,36 +226,36 @@
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col">
+                                                        <div class="col-sm-12">
                                                             <label for="address">Address</label>
                                                             <input type="text" class="form-control" placeholder="Type your address" name="address">
                                                         </div>
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col">
+                                                        <div class="col-sm-6">
                                                             <label for="email">Email</label>
                                                             <input type="text" class="form-control" placeholder="Your email" name="email">
                                                         </div>
-                                                        <div class="col">
+                                                        <div class="col-sm-6">
                                                             <label for="birthdate">Birthdate</label>
                                                             <input type="date" class="form-control" id="birthdate" name="dob">
                                                         </div>
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col">
+                                                        <div class="col-sm-6">
                                                             <label for="id">ID Card No.</label>
                                                             <input type="text" class="form-control" placeholder="ID No." name="id_no">
                                                         </div>
-                                                        <div class="col">
+                                                        <div class="col-sm-6">
                                                             <label for="contact">Contact No.</label>
                                                             <input type="text" class="form-control" placeholder="Phone number" name="phone">
                                                         </div>
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col">
+                                                        <div class="col-sm-12">
                                                             <label for="photo">Upload Photo</label>
                                                             <input type="file" class="form-control" name="image">
                                                         </div>
