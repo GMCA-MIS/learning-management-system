@@ -191,20 +191,6 @@
             </div>
         </div>
 
-        <div id="content" class="p-4 p-md-5 pt-5">
-        <div class="container">
-          <h2 class="generate-qr mb-4">QR Code Generator</h2>
-        </div>
-
-        <!--Buttons-->
-        <div class="row mb-5">
-          <div class="btn-group">
-            <a href="id-card.php"><button type="button" class="btn"><span class="fa fa-eye mr-3"></span>View Users</button></a>
-            <a href="generate.php"><button type="button" class="btn"><span class="fa fa-address-card mr-3"></span>Generate ID Card</button></a>
-            <a href="generate-qr.php"><button type="button" class="btn"><span class="fa fa-qrcode mr-3"></span>Generate QR Code</button></a>
-          </div>
-        </div>
-
         <!-- Page Content: QR -->
         <?php
             $first_name = "";
