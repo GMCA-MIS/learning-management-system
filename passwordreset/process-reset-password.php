@@ -52,7 +52,6 @@ if ($_POST["password"] !== $_POST["password_confirmation"]) {
 }
 
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-$hashed_password = md5($_POST["password"]);
 
 // Update teacher table if the user is found in teacher table
 if ($userTeacher !== null) {
@@ -74,7 +73,7 @@ if ($userStudent !== null) {
                 reset_token_expires_at = NULL
             WHERE student_id = ?";
     $stmtUpdateStudent = $mysqli->prepare($sqlUpdateStudent);
-    $stmtUpdateStudent->bind_param("ss", $hashed_password, $userStudent["student_id"]);
+    $stmtUpdateStudent->bind_param("ss", $password_hash, $userStudent["student_id"]);
     $stmtUpdateStudent->execute();
     echo "<script>alert('Password updated. You can now login to your account.'); window.location.href = '../newlogin.php';</script>";
 }
