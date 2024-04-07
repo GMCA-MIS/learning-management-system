@@ -23,7 +23,7 @@ include('dbcon.php');
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4"
                 style="margin-top: 27px; margin-left: 10px;">
-                <h1 class="h3 mb-0 text-gray-800">Books</h1>
+                <h1 class="h3 mb-0 text-gray-800">Library Card</h1>
             </div>
 
             <!-- Topbar Navbar -->
@@ -36,3 +36,45 @@ include('dbcon.php');
 
         </nav>
         <!-- End of Topbar -->
+
+        <!--Buttons-->
+        <div class="row mb-5">
+          <div class="btn-group">
+            <button type="button" class="btn" data-toggle="modal" data-target="#myModal"><span class="fa fa-plus mr-3"></span>Add New Card</button>
+            <a href="generate.php"><button type="button" class="btn"><span class="fa fa-address-card mr-3"></span>Generate ID Card</button></a>
+            <a href="generate-qr.php"><button type="button" class="btn"><span class="fa fa-qrcode mr-3"></span>Generate QR Code</button></a>
+          </div>
+        </div>
+
+        <!--Data Table-->
+        <div class="table-striped">
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>Student No.</th>
+                      <th>Name</th>
+                      <th>ID Card No.</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+                  <?php 
+                  $sql = "SELECT * FROM `cards` order by 1 DESC";
+                  $result = mysqli_query($conn, $sql);
+                  $sno = 0;
+                    
+                    while($row = mysqli_fetch_assoc($result)){
+                  $sno = $sno + 1;
+                      echo "<tr>
+                              <th scope='row'>". $sno . "</th>
+                              <td>". $row['name'] . "</td>
+                              <td>". $row['id_no'] . "</td>
+                              <td> <button class='edit btn btn-sm btn-success col-5' id=".$row['sno'].">Edit</button> <button class='delete btn btn-sm btn-danger col-5' id=d".$row['sno'].">Delete</button></td>
+                            </tr>";
+                  } 
+                  ?>
+    
+              </tbody>
+          </table>
+        </div>
