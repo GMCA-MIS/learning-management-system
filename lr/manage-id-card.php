@@ -35,7 +35,7 @@
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4"
                 style="margin-top: 27px; margin-left: 10px;">
-                <h1 class="h3 mb-0 text-gray-800">Books</h1>
+                <h1 class="h3 mb-0 text-gray-800">Library Card</h1>
             </div>
 
             <!-- Topbar Navbar -->
@@ -51,24 +51,8 @@
 
         <!-- Begin Page Content -->
         <div class="modal-body">
-            <ul class="nav nav-tabs" id="assignmentTabs" role="tablist">
-            <li class="nav-item">
-                    <a class="nav-link active" id="createTab" data-toggle="tab" href="#createAssignment" role="tab"
-                        aria-controls="createAssignment" aria-selected="true">Available Books</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " id="uploadTab" data-toggle="tab" href="#uploadAssignment" role="tab"
-                        aria-controls="uploadAssignment" aria-selected="false">Archived</a>
-                </li>
-              
-            </ul>
-            <hr>
             <div class="tab-content" id="assignmentTabsContent">
                 <div class="tab-pane fade" id="uploadAssignment" role="tabpanel" aria-labelledby="uploadTab">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-2"
-                        style="margin-top: 10px; margin-left: 10px;">
-                        <h1 class="h5 mb-0 text-gray-800">Book List</h1>
-                    </div>
                     <?php
                     // Displaying data into tables
                     $query = "SELECT booklist.*, category.category_name
@@ -92,41 +76,21 @@
                                     <?php
                                         if (mysqli_num_rows($query_run) > 0) {
                                         while ($row = mysqli_fetch_assoc($query_run)) {
-                                            $book_id = $row['book_id'];
+                                            $student_id = $row['student_id'];
                                     ?>
                                     <tr>
-                                        <td style="display:none;">
-                                            <?php echo $row['book_id']; ?>
-                                        </td>
                                         <td>
-                                            <center>
-                                                <img src="<?php echo $row['book_cover']; ?>" class="img-fluid"
-                                                    alt="Book Photo" style="width: 50px; height: auto;">
-                                            </center>
+                                            <?php echo $row['name']; ?>
                                         </td>
                                         <td>
                                             <a href="view_book-all.php?book_id=<?php echo $book_id; ?>">
-                                                <?php echo $row['book_title']; ?>
+                                                <?php echo $row['id_card_number']; ?>
                                             </a>
                                         </td>
                                         <td style="display:none;">
-                                            <?php echo $row['book_description']; ?>
+                                            <?php echo $row['actions']; ?>
                                         </td>
-                                        <td>
-                                            <?php echo $row['author']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['publication_year']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['category_name']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['book_status']; ?>
-                                        </td>
-                                        <td style="display:none;">
-                                            <?php echo $row['call_number']; ?>
-                                        </td>
+                                        
 
                                         <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                                         
