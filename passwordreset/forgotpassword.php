@@ -27,7 +27,7 @@
 								<input type="email" id="email" name="email" class="form-control my-3" placeholder="Email Address" required>
 							</div>
 							<button class="btn btn-primary w-100" style="background:#361e12 !important;">Request New Password</button>
-								<a href="../login.php" class="btn" style="color: #02062c;"> Sign in</a>
+								<a href="../newlogin.php" class="btn" style="color: #02062c;"> Sign in</a>
 						</div>
 				</div>
 			</form>
