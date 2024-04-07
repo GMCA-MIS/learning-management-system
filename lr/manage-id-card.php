@@ -103,6 +103,21 @@
                                             <?php echo $row['actions']; ?>
                                         </td>
                                         
+                                        <?php 
+                                            $sql = "SELECT * FROM `cards` order by 1 DESC";
+                                            $result = mysqli_query($conn, $sql);
+                                            $sno = 0;
+                                                
+                                                while($row = mysqli_fetch_assoc($result)){
+                                            $sno = $sno + 1;
+                                                echo "<tr>
+                                                        <th scope='row'>". $sno . "</th>
+                                                        <td>". $row['name'] . "</td>
+                                                        <td>". $row['id_no'] . "</td>
+                                                        <td> <button class='edit btn btn-sm btn-success col-5' id=".$row['sno'].">Edit</button> <button class='delete btn btn-sm btn-danger col-5' id=d".$row['sno'].">Delete</button></td>
+                                                        </tr>";
+                                            } 
+                                        ?>
 
                                         <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                                         
