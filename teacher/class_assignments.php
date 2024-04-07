@@ -187,10 +187,7 @@ if ($class_row) { ?>
                                         <a class="nav-link active"  style = "color:black;" id="uploadTab" data-toggle="tab" href="#assignments"
                                             role="tab" aria-controls="assignments" aria-selected="false">Assignments</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link "  style = "color:black" id="createTab" data-toggle="tab" href="#f2f"
-                                            role="tab" aria-controls="f2f" aria-selected="true">Assignments (F2F)</a>
-                                    </li>
+                                    
                                     <li class="nav-item">
                                         <a class="nav-link " style = "color:black" id="createTab" data-toggle="tab" href="#archived"
                                             role="tab" aria-controls="f2f" aria-selected="true"> <i class="fa fa-archive" aria-hidden="true"></i> Archived</a>
