@@ -52,15 +52,14 @@
         <!-- Begin Page Content -->
         <div class="modal-body">
             <ul class="nav nav-tabs" id="assignmentTabs" role="tablist">
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link active" id="createTab" data-toggle="tab" href="#createAssignment" role="tab"
-                        aria-controls="createAssignment" aria-selected="true">Available Books</a>
+                        aria-controls="createAssignment" aria-selected="true"></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " id="uploadTab" data-toggle="tab" href="#uploadAssignment" role="tab"
-                        aria-controls="uploadAssignment" aria-selected="false">Archived</a>
-                </li> -->
-            
+                        aria-controls="uploadAssignment" aria-selected="false"></a>
+                </li>
             </ul>
             <hr>
             <div class="tab-content" id="assignmentTabsContent">
