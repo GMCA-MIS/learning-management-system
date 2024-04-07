@@ -15,6 +15,9 @@
     a:hover {
         color: brown;
     }
+    label {
+        margin-top: 3%;
+    }
 </style>
 
 <!-- Content Wrapper -->
