@@ -93,7 +93,7 @@
 <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'library.php') echo 'active'; ?>">
   <a class="nav-link" href="library.php">
   <i class="fa fa-book" aria-hidden="true"></i>
-    <span>SLSHS</span><span> E-Library </span>
+    <span>GMC</span><span> E-Library </span>
   </a>
 </li>
 
