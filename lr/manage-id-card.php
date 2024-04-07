@@ -169,7 +169,7 @@
 
                             <td>
                                 <!--Add Pop Up Modal -->
-                                <div class="modal fade" id="add_bookModal" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="add_lcardkModal" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
