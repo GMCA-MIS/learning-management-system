@@ -1,56 +1,43 @@
-body {
-	background: #FFF;
-	font-family: "Poppins";
+.qr-card {
+	background-color: #ddd ;
+	height: 270px;
+	width: 270px;
 }
-#sidebar h1 .logo::before {
-	content: '';
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	background: url("../images/gmc-logo.png");
+
+.qr-img {
+	background-color: #FFF;
+	height: 250px;
+	width: 250px;
+	border: 4px dotted #000;
+	border-radius: 10px;
+	margin: auto;
+	margin-top: 10px;
+}
+
+.preview-card {
+	height: 320px;
+	width: 500px;
+	background-color: #FFF;
+	float: right;
+}
+
+.id-preview {
+	background-image: url("../images/id-background.png");
 	background-size: contain;
-	float: left;
-	margin-right: 10px;
+	background-repeat: no-repeat;
+	height: 320px;
+	width: 500px;
+	border: 4px dotted #000;
+	border-radius: 10px;
+	margin: 20px 20px 10px 20px;
 }
-#sidebar{
-	background: #361e12;
-	color: #000;
-	min-width: 300px;
-	max-width: 300px;
-	border-right: 3px solid #e3a539;
-}
-#sidebar.active {
-	margin-left: -300px;
-}
-#sidebar h1 .logo {
-	background: #361e12;
-}
-#sidebar li:hover {
-	background-color: #e3a539 !important;
-	border-bottom: 0;
-}
-#sidebar a:hover {
-	background-color: #e3a539 !important;
-	border-bottom: 0;
-}
-.wrapper {
-	background: #ECECEC;
-}
+
 #preview {
 	height: 300px;
 	width: 500px;
 	padding: 10px;
 }
-.container:nth-child(2) {
-	background: #c7c7c7 !important;
-	width: 45%;
-	margin-bottom: 40px;
-	display: flex;
-}
-.container:nth-child(3) {
-	width: 100%;
-	height: auto;
-}
+
 #qr-id::before {
 	content: '';
 	display: inline-block;
@@ -62,96 +49,7 @@ body {
 	margin-bottom: 10px;
 	color: #000 !important;
 }
-input {
-	width: 45%;
-	height: 30px;
-	border: none;
-	border-color: none;
-	border-radius: 5px;
-	padding: 10px;
-}
-.scan::before {
-	content: '';
-	display: inline-block;
-	width: 40px;
-	height: 40px;
-	background: url("../images/qr-code.png");
-	background-size: contain;
-	margin-right: 10px;
-}
-.table {
-	background: #FFF;
-	font-family: "Poppins";
-}
-thead {
-	background: #361e12;
-	color: #FFF;
-}
-footer {
-	background: #FFF;
-}
-footer p {
-	padding-left: 20px;
-}
-.ms-3 img {
-	height: 30px;
-	width: 30px;
-	margin-right: 20px;
-}
-.content {
-	display: inline-block;
-}
-.dt-length, .dt-search, .dt-info {
-	font-family: "Poppins";
-}
-.page-item.active .page-link {
-	background-color: #e3a539;
-}
-.dropdown-menu.show {
-	width: 290px;
-}
-.dropdown-menu a {
-	color: #000 !important;
-}
-.fa-caret-down {
-	margin-left: 50px;
-}
-.attendance::before {
-	content: '';
-	display: inline-block;
-	width: 40px;
-	height: 40px;
-	background: url("../images/calendar.png");
-	background-size: contain;
-	margin-right: 10px;
-}
-.users::before {
-	content: '';
-	display: inline-block;
-	width: 40px;
-	height: 40px;
-	background: url("../images/group.png");
-	background-size: contain;
-	margin-right: 10px;
-}
-.new-user::before {
-	content: '';
-	display: inline-block;
-	width: 40px;
-	height: 40px;
-	background: url("../images/contact.png");
-	background-size: contain;
-	margin-right: 10px;
-}
-.identity::before {
-	content: '';
-	display: inline-block;
-	width: 40px;
-	height: 40px;
-	background: url("../images/identity-card.png");
-	background-size: contain;
-	margin-right: 10px;
-}
+
 .generate-qr::before {
 	content: '';
 	display: inline-block;
@@ -161,6 +59,7 @@ footer p {
 	background-size: contain;
 	margin-right: 10px;
 }
+
 .generate-id::before {
 	content: '';
 	display: inline-block;
@@ -170,6 +69,7 @@ footer p {
 	background-size: contain;
 	margin-right: 10px;
 }
+
 .update-user::before {
 	content: '';
 	display: inline-block;
@@ -178,49 +78,4 @@ footer p {
 	background: url("../images/user-avatar.png");
 	background-size: contain;
 	margin-right: 10px;
-}
-.btn-group .btn {
-	background-color: #361e12;
-	margin: 10px;
-	color: #FFF;
-	width: 200px;
-}
-button.btnn a:hover {
-	color: #361e12;
-	background: #e3a539;
-}
-.page-item.active .page-link {
-	background-color: #e3a539 !important;
-	border-color: #e3a539 !important;
-	color: yellow !important;
-}
-.preview-card {
-	height: 320px;
-	width: 500px;
-	background-color: #FFF;
-	float: right;
-}
-.id-preview {
-	background-image: url("../images/id-background.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	height: 320px;
-	width: 500px;
-	border: 4px dotted #000;
-	border-radius: 10px;
-	margin: 20px 20px 10px 20px;
-}
-.qr-card {
-	background-color: #ddd ;
-	height: 270px;
-	width: 270px;
-}
-.qr-img {
-	background-color: #FFF;
-	height: 250px;
-	width: 250px;
-	border: 4px dotted #000;
-	border-radius: 10px;
-	margin: auto;
-	margin-top: 10px;
 }
