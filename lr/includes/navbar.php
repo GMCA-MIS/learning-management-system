@@ -57,10 +57,18 @@
 </li>
 
 <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-id-card.php') echo 'active'; ?>">
-  <a class="nav-link" href="manage-id-card.php">
-    <i class="fas fa-book-reader" aria-hidden="true"></i>
-    <span>Library Card</span>
-  </a>
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapseTwo">
+      <i class='fas fa-book-open'></i>
+      <span>Manage Library Card</span>
+    </a>
+  <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Manage Library Card</h6>
+        <a class="collapse-item" href="manage-id-card.php?id=<?php echo $school_year ?>"> <i class='fas fa-book-open'></i> Student List</a>
+        <a class="collapse-item" href="generate-id.php?id=<?php echo $school_year ?>"> <i class="fas fa-book-reader" aria-hidden="true"></i> ID Generator</a>
+        <a class="collapse-item" href="generate-qr.php?id=<?php echo $school_year ?>"> <i class="fas fa-book-reader" aria-hidden="true"></i> QR Generator</a>
+      </div>
+    </div>
 </li>
 
 
