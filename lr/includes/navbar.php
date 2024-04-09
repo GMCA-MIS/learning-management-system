@@ -64,7 +64,7 @@
   <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Manage Library Card</h6>
-        <a class="collapse-item" href="manage-id-card.php?id=<?php echo $school_year ?>"><i class='fas fa-book-open'></i> Student List</a>
+        <a class="collapse-item" href="manage-id-card.php?id=<?php echo $school_year ?>"><i class='fas fa-book-open'></i> Manage Library Cards</a>
         <a class="collapse-item" href="generate-id.php?id=<?php echo $school_year ?>"><i class="fas fa-book-reader" aria-hidden="true"></i> ID Generator</a>
         <a class="collapse-item" href="generate-qr.php?id=<?php echo $school_year ?>"><i class="fas fa-book-reader" aria-hidden="true"></i> QR Generator</a>
       </div>
