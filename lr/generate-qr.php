@@ -201,7 +201,7 @@
         ?>
 
         <div class="row">
-            <div class="col-7">
+            <div class="col-6">
               <label for="generate">Student ID Card No.</label>
                   <form autocomplete="off" action="generate-qr.php" method="post">
                      <input type="text" class="form-control col-8" value="<?php echo $first_name;?>" name="first_name" placeholder="Type your ID no. here"><br>
