@@ -54,17 +54,7 @@
 
         <!-- Begin Page Content -->
         <div class="modal-body">
-            <!-- <ul class="nav nav-tabs" id="assignmentTabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="createTab" data-toggle="tab" href="#createAssignment" role="tab"
-                        aria-controls="createAssignment" aria-selected="true"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " id="uploadTab" data-toggle="tab" href="#uploadAssignment" role="tab"
-                        aria-controls="uploadAssignment" aria-selected="false"></a>
-                </li>
-            </ul>
-            <hr> -->
+            
             <div></div>
             <div class="tab-content" id="assignmentTabsContent">
                 <div class="tab-pane fade" id="uploadAssignment" role="tabpanel" aria-labelledby="uploadTab">
@@ -200,21 +190,25 @@
         }
         ?>
 
-        <div class="row">
-            <div class="col-7">
-              <label for="generate">Student ID Card No.</label>
-                  <form autocomplete="off" action="generate-qr.php" method="post">
-                     <input type="text" class="form-control col-8" value="<?php echo $first_name;?>" name="first_name" placeholder="Type your ID no. here"><br>
-                     <button type="submit" class="btn btn-warning" name="generate"><span class="fa fa-cog mr-3"></span>Generate</button>
-                  </form>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <label for="generate">Student ID Card No.</label>
+                    <form autocomplete="off" action="generate-qr.php" method="post">
+                        <input type="text" class="form-control col-6" value="<?php echo $first_name;?>" name="first_name" placeholder="Type your ID no. here">
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-warning" name="generate"><span class="fa fa-cog mr-3"></span>Generate</button>
+                    </form>
+                </div>
+            
+                <div class="qr-card">
+                    <div class="qr-img card">
+                        <?php echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" />'; ?>
+                    </div>
+                
+                </div>
             </div>
-          
-          <div class="qr-card">
-            <div class="qr-img card">
-                <?php echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" />'; ?>
-            </div>
-          
-          </div>
         </div>
 
 

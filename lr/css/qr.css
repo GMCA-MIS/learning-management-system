@@ -1,0 +1,81 @@
+.qr-card {
+	background-color: #ddd ;
+	height: 270px;
+	width: 270px;
+}
+
+.qr-img {
+	background-color: #FFF;
+	height: 250px;
+	width: 250px;
+	border: 4px dotted #000;
+	border-radius: 10px;
+	margin: auto;
+	margin-top: 10px;
+}
+
+.preview-card {
+	height: 320px;
+	width: 500px;
+	background-color: #FFF;
+	float: right;
+}
+
+.id-preview {
+	background-image: url("../images/id-background.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	height: 320px;
+	width: 500px;
+	border: 4px dotted #000;
+	border-radius: 10px;
+	margin: 20px 20px 10px 20px;
+}
+
+#preview {
+	height: 300px;
+	width: 500px;
+	padding: 10px;
+}
+
+#qr-id::before {
+	content: '';
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	background: url("../images/id-card.png");
+	background-size: contain;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	color: #000 !important;
+}
+
+.generate-qr::before {
+	content: '';
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background: url("../images/qr-code.png");
+	background-size: contain;
+	margin-right: 10px;
+}
+
+.generate-id::before {
+	content: '';
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background: url("../images/generate-id.png");
+	background-size: contain;
+	margin-right: 10px;
+}
+
+.update-user::before {
+	content: '';
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background: url("../images/user-avatar.png");
+	background-size: contain;
+	margin-right: 10px;
+}

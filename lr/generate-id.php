@@ -54,17 +54,7 @@
 
         <!-- Begin Page Content -->
         <div class="modal-body">
-            <!-- <ul class="nav nav-tabs" id="assignmentTabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="createTab" data-toggle="tab" href="#createAssignment" role="tab"
-                        aria-controls="createAssignment" aria-selected="true"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " id="uploadTab" data-toggle="tab" href="#uploadAssignment" role="tab"
-                        aria-controls="uploadAssignment" aria-selected="false"></a>
-                </li>
-            </ul>
-            <hr> -->
+            
             <div></div>
             <div class="tab-content" id="assignmentTabsContent">
                 <div class="tab-pane fade" id="uploadAssignment" role="tabpanel" aria-labelledby="uploadTab">
@@ -191,6 +181,29 @@
             </div>
         </div>
 
+        <!-- Page Content: ID Generator -->
+        <div class="container">
+            <div class="row">
+                <div class="col-5">
+                    <label for="generate">Student ID Card No.</label>
+                    <form class="form-group" action="generate.php" method="post">
+                        <input type="search" class="form-control col-10" placeholder="Type your ID No. here" name="STUDENTID"><br>
+                        <button type="submit" class="btn btn-success" name="search"><span class="fa fa-cog mr-3"></span>Generate</button>
+                    </form>
+                </div>
+            
+                <div class="preview-card col-7">
+                    <div class="id-preview card mt-2" id="mycard">
+                        <?php echo $html ?>
+                    </div>
+                    <center>
+                        <button type="submit" class="btn btn-warning" onclick="kingDownload()">
+                            <i class="fa fa-download"> </i>Download
+                        </button>
+                    </center>
+                </div>
+            </div>
+        </div>
 
 
 <?php
