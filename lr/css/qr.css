@@ -13,3 +13,21 @@
 	margin: auto;
 	margin-top: 10px;
 }
+
+.preview-card {
+	height: 320px;
+	width: 500px;
+	background-color: #FFF;
+	float: right;
+}
+
+.id-preview {
+	background-image: url("../images/id-background.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	height: 320px;
+	width: 500px;
+	border: 4px dotted #000;
+	border-radius: 10px;
+	margin: 20px 20px 10px 20px;
+}

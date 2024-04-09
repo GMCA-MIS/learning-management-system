@@ -186,8 +186,8 @@
             <div class="row">
                 <div class="col-6">
                     <label for="generate">Student ID Card No.</label>
-                    <form autocomplete="off" action="generate-qr.php" method="post">
-                        <input type="text" class="form-control col-6" value="<?php echo $first_name;?>" name="first_name" placeholder="Type your ID no. here">
+                    <form autocomplete="off" action="generate-id.php" method="post">
+                        <input type="search" class="form-control col-10" name="student_id" placeholder="Type your ID no. here">
                         <br>
                         <br>
                         <button type="submit" class="btn btn-warning" name="generate"><span class="fa fa-cog mr-3"></span>Generate</button>
