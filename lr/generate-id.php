@@ -198,7 +198,7 @@
                     </div>
                     <center>
                         <button type="submit" class="btn btn-warning" onclick="kingDownload()">
-                            <span class="fa-solid fa-download mr-3"></span>Download
+                            <i class="fa-solid fa-download"></i>Download
                         </button>
                     </center>
                 </div>
