@@ -1,0 +1,15 @@
+.qr-card {
+	background-color: #ddd ;
+	height: 270px;
+	width: 270px;
+}
+
+.qr-img {
+	background-color: #FFF;
+	height: 250px;
+	width: 250px;
+	border: 4px dotted #000;
+	border-radius: 10px;
+	margin: auto;
+	margin-top: 10px;
+}
