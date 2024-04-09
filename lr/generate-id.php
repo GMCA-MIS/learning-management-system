@@ -184,7 +184,7 @@
         <!-- Page Content: ID Generator -->
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-5">
                     <label for="generate">Student ID Card No.</label>
                     <form autocomplete="off" action="generate-id.php" method="post">
                         <input type="search" class="form-control col-10" name="student_id" placeholder="Type your ID no. here">
