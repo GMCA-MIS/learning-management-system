@@ -31,3 +31,45 @@
 	border-radius: 10px;
 	margin: 20px 20px 10px 20px;
 }
+
+#qr-id::before {
+	content: '';
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	background: url("../images/id-card.png");
+	background-size: contain;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	color: #000 !important;
+}
+
+.generate-qr::before {
+	content: '';
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background: url("../images/qr-code.png");
+	background-size: contain;
+	margin-right: 10px;
+}
+
+.generate-id::before {
+	content: '';
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background: url("../images/generate-id.png");
+	background-size: contain;
+	margin-right: 10px;
+}
+
+.update-user::before {
+	content: '';
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background: url("../images/user-avatar.png");
+	background-size: contain;
+	margin-right: 10px;
+}
