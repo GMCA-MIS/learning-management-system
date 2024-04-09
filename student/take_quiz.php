@@ -63,7 +63,7 @@ function getQuizTheme($conn, $quiz_id)
             die("Quiz with ID $quiz_id not found.");
         }
 
-        mysqli_stmt_close($stmt);
+        //mysqli_stmt_close($stmt);
     } else {
         die("Error in SQL statement: " . mysqli_error($conn));
     }
