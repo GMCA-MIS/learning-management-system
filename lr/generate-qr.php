@@ -3,7 +3,27 @@
     include('includes/header.php');
     include('includes/navbar.php');
     include('dbcon.php');
+
+
+//Save generated QRs to temp folder     
+include "qrcode/phpqrcode/qrlib.php";
+                
+    $PNG_TEMP_DIR = 'temp/';
+                
+    if (!file_exists($PNG_TEMP_DIR))
+        mkdir($PNG_TEMP_DIR);
+
+    $filename = $PNG_TEMP_DIR . 'qr-code.png';
+
+    if (isset($_POST["generate"])) {
+
+    $codeString = $_POST["first_name"] . "\n";
+    $filename = $PNG_TEMP_DIR . 'test' . md5($codeString) . '.png';
+
+        QRcode::png($codeString, $filename);
+}
 ?>
+
 <style>
     a {
         text-decoration: none;
