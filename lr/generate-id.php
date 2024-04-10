@@ -32,6 +32,92 @@ $cat = $row['cat'];
 $image = $row['image'];
 $phone = $row['phone'];
 $address = $row['address'];
+
+//ID design
+$html.="
+    <!--Department-->
+    <div class='row justify-content-center' style='height: 60px;'>
+            <span class='font-weight-bold pt-5 mt-1' style='color: #e3a539; font-family: Poppins; font-size: 11px;'>
+            $dept
+            </span>
+    </div>
+
+    <!--ID Photo-->
+    <div class='row mt-3'>
+        <div class='col-3 pl-4'>
+            <img class='mx-auto d-block' src='$image' style='width: 100px; height: 100px; background-size: 100px 100px; background-repeat: no-repeat;'/>
+            
+            </img>
+        </div>
+
+        <!--Full Name-->
+        <div class='col-5'>
+            <span class='font-weight-bold mx-auto' style='color: #FFF; font-family: Poppins; font-size: 25px;'>$firstname</br>
+        </div>
+
+        <!--Signature-->
+        <div class='col-4'>
+            <img src='images/signature.png' style='width: 100px; height: 100px;'>
+        </div>
+    </div>
+
+    <!--Student Information-->
+    <div class='row mt-1'>
+        <!--ID No.-->
+        <div class='col-3 mx-auto'>
+        <span class='font-weight-bold ml-5' style='color: #fff; font-family: Poppins; font-size: 12px;'>$stud_id</span>
+        </div>
+        <div class='col-3'>
+        <span class='font-weight-bold ml-1' style='color: #e3a539; font-family: Poppins; font-size: 12px;'>Category</span>
+        </div>
+        <div class='col-6'>
+        <span  class='font-weight-bold ml-1' style='color: #e3a539; font-family: Poppins; font-size: 12px;'>Address</span>
+        </div>
+    </div>
+
+    <!--Second Row-->
+    <div class='row'>
+
+        <div class='col-3'>
+        <span class='font-weight-bold ml-5' style='color: #fff; font-family: Poppins; font-size: 11px;'></span>
+        </div>
+        <div class='col-3'>
+        <span class='font-weight-normal' style='color: #fff; font-family: Poppins; font-size: 11px;'>$category</span>
+        </div>
+        <div class='col-6'>
+        <span  class='font-weight-normal' style='color: #fff; font-family: Poppins; font-size: 11px;'>$address</span>
+        </div>
+    </div>
+
+    <!--Third Row-->
+    <div class='row mt-1'>
+
+        <div class='col-3 mx-auto'>
+        <span class='font-weight-bold ml-5' style='color: #fff; font-family: Poppins; font-size: 12px;'></span>
+        </div>
+        <div class='col-3'>
+        <span class='font-weight-bold ml-1' style='color: #e3a539; font-family: Poppins; font-size: 12px;'>Phone</span>
+        </div>
+        <div class='col-6'>
+        <span  class='font-weight-bold ml-1' style='color: #e3a539; font-family: Poppins; font-size: 12px;'>Birthdate</span>
+        </div>
+    </div>
+
+    <!--Last Row-->
+    <div class='row'>
+
+        <div class='col-3'>
+        <span class='font-weight-bold ml-5' style='color: #fff; font-family: Poppins; font-size: 11px;'></span>
+        </div>
+        <div class='col-3'>
+        <span class='font-weight-normal' style='color: #fff; font-family: Poppins; font-size: 11px;'>$phone</span>
+        </div>
+        <div class='col-6'>
+        <span  class='font-weight-normal' style='color: #fff; font-family: Poppins; font-size: 11px;'>$dob</span>
+        </div>
+    </div>
+    ";
+
 }
 }
 }
