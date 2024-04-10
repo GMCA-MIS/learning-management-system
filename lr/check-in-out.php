@@ -12,7 +12,7 @@
         die("Connection failed" .$conn->connect_error);
     }
 
-    if(isset($_POST['studentID'])){
+    if(isset($_POST['stud_no'])){
         
         $stud_id =$_POST['stud_no'];
 		$date = date('Y-m-d');
