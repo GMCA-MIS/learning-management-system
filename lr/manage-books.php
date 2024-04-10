@@ -4,6 +4,44 @@ include('includes/header.php');
 include('includes/navbar.php');
 include('dbcon.php');
 ?>
+
+<!---------------------------------------------------->
+
+<?php 
+
+$notfound = false;  
+$html = '';
+      
+    if(isset($_POST['search'])) {
+
+$STUDENTID = $_POST['stud_id'];
+$sql = "Select * from cards where id_no= '$stud_id' ";
+$result = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($result)>0) {
+  
+
+$html="";
+
+    while($row=mysqli_fetch_assoc($result)) {
+                           
+$firstname = $row["name"];
+$stud_id = $row["id_no"];
+$dob = $row["dob"];
+$dept = $row['dept'];
+$cat = $row['cat'];
+$image = $row['image'];
+$phone = $row['phone'];
+$address = $row['address'];
+}
+}
+}
+
+?>
+
+
+
+
 <style>
     a {
         text-decoration: none;
