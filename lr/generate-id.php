@@ -169,31 +169,42 @@ $html.="
         </nav>
         <!-- End of Topbar -->
 
-        <!--Top buttons-->
-        <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardkModal">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
-        </button>
-        
-        <a href="generate-id.php">
-            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_lcardModal">
-                <i class="fa fa-address-card" aria-hidden="true"></i> Generate ID Card
-            </button>
-        </a>
-        
-        <a href="generate-qr.php">
-            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_qrModal">  
-                <i class="fa fa-qrcode" aria-hidden="true"></i> Generate QR Code
-            </button>
-        </a>
+        <!-- Begin Page Content -->
+        <div class="modal-body">
+            
+            <div></div>
+            <div class="tab-content" id="assignmentTabsContent">
+                <div class="tab-pane fade" id="uploadAssignment" role="tabpanel" aria-labelledby="uploadTab">
+            </div>
+            <div class="tab-pane fade show active" id="createAssignment" role="tabpanel" aria-labelledby="createTab">
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
                         
-        <div class="d-sm-flex align-items-center justify-content-between mb-2"
-            style="margin-top: 10px; margin-left: 10px;">
-            <h1 class="h5 mb-0 text-gray-800"></h1>
+                            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardkModal">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
+                            </button>
+                            <a href="generate-id.php">
+                                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_lcardModal">
+                                    <i class="fa fa-address-card" aria-hidden="true"></i> Generate ID Card
+                                </button>
+                            </a>
+                            <a href="generate-qr.php">
+                                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_qrModal">  
+                                    <i class="fa fa-qrcode" aria-hidden="true"></i> Generate QR Code
+                                </button>
+                            </a>
+                        </td>
+
+                        <div class="d-sm-flex align-items-center justify-content-between mb-2"
+                            style="margin-top: 10px; margin-left: 10px;">
+                            <h1 class="h5 mb-0 text-gray-800"></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
 
         <!-- Page Content: ID Generator -->
         <div class="container">
