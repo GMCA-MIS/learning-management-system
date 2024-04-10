@@ -5,6 +5,9 @@
     include('dbcon.php');
 ?>
 
+<!--Camera Scanner JS-->
+<script type="text/javascript" src="js/instascan.min.js"></script>
+
 <style>
     a {
         text-decoration: none;
