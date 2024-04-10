@@ -62,7 +62,7 @@ $html.="
     <div class='row mt-1'>
         <!--ID No.-->
         <div class='col-3'>
-        <span class='font-weight-bold ml-5' style='color: #fff; font-family: Poppins; font-size: 11px;'>$stud_id</span>
+        <span class='font-weight-bold ml-3' style='color: #fff; font-family: Poppins; font-size: 11px;'>$stud_id</span>
         </div>
         <div class='col-3'>
         <span class='font-weight-bold ml-1' style='color: #e3a539; font-family: Poppins; font-size: 12px;'>Category</span>
