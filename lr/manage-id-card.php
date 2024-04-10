@@ -233,7 +233,7 @@
                         aria-controls="uploadAssignment" aria-selected="false"></a>
                 </li>
             </ul>
-            <hr> -->
+            -->
             <div></div>
             <div class="tab-content" id="assignmentTabsContent">
                 <div class="tab-pane fade" id="uploadAssignment" role="tabpanel" aria-labelledby="uploadTab">
@@ -487,44 +487,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                    if (mysqli_num_rows($query_run) > 0) {
-                                        while ($row = mysqli_fetch_assoc($query_run)) {
-                                            $book_id = $row['book_id'];
-                                            ?>
-                                            <tr>
-                                                <td style="display:none;">
-                                                    <?php echo $row['book_id']; ?>
-                                                </td>
-                                                <td>
-                                                    <center>
-                                                        <img src="<?php echo $row['book_cover']; ?>" class="img-fluid"
-                                                            alt="Book Photo" style="width: 50px; height: auto;">
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <a href="view_book-all.php?book_id=<?php echo $book_id; ?>">
-                                                        <?php echo $row['book_title']; ?>
-                                                    </a>
-                                                </td>
-                                                <td style="display:none;">
-                                                    <?php echo $row['book_description']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $row['author']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $row['publication_year']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $row['category_name']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $row['book_status']; ?>
-                                                </td>
-                                                <td style="display:none;">
-                                                    <?php echo $row['call_number']; ?>
-                                                </td>
+                                    <?php 
+                                        $sql = "SELECT * FROM `cards` order by 1 DESC";
+                                        $result = mysqli_query($conn, $sql);
+                                        $sno = 0;
+                                            
+                                            while($row = mysqli_fetch_assoc($result)){
+                                        $sno = $sno + 1;
+                                            echo "<tr>
+                                                    <th scope='row'>". $sno . "</th>
+                                                    <td>". $row['name'] . "</td>
+                                                    <td>". $row['id_no'] . "</td>
+                                                    <td> <button class='edit btn btn-sm btn-success col-5' id=".$row['sno'].">Edit</button> <button class='delete btn btn-sm btn-danger col-5' id=d".$row['sno'].">Delete</button></td>
+                                                    </tr>";
+                                        } 
+                                    ?>
+                                </tbody>
 
                                                 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                                                 <td>
