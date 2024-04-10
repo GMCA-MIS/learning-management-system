@@ -39,7 +39,7 @@
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4"
                 style="margin-top: 27px; margin-left: 10px;">
-                <h1 class="h3 mb-0 text-gray-800">Library Card</h1>
+                <h1 class="h3 mb-0 text-gray-800">QR Scanner</h1>
             </div>
 
             <!-- Topbar Navbar -->
