@@ -79,7 +79,7 @@ $html.="
         <span class='font-weight-bold ml-5' style='color: #fff; font-family: Poppins; font-size: 11px;'></span>
         </div>
         <div class='col-3'>
-        <span class='font-weight-normal' style='color: #fff; font-family: Poppins; font-size: 11px;'>$category</span>
+        <span class='font-weight-normal' style='color: #fff; font-family: Poppins; font-size: 11px;'>$cat</span>
         </div>
         <div class='col-6'>
         <span  class='font-weight-normal' style='color: #fff; font-family: Poppins; font-size: 11px;'>$address</span>
@@ -310,7 +310,7 @@ $html.="
                 </div>
             
                 <div class="preview-card col-7">
-                    <div class="id-preview card mt-2" id="mycard" style="background: url('img/id-background.png');">
+                    <div class="id-preview card mt-2" id="mycard" style="background: url('img/id-background.png'); ">
                         <?php echo $html ?>
                     </div>
                     <center>
