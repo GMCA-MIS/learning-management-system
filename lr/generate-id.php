@@ -322,9 +322,7 @@ $html.="
             </div>
         </div>
 
-<?php
-    include('includes/scripts.php');
-?>
+
 
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
