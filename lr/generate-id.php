@@ -303,8 +303,8 @@ $html.="
             <div class="row">
                 <div class="col-5">
                     <label for="generate">Student ID Card No.</label>
-                    <form class="form-group" action="generate.php" method="post">
-                        <input type="search" class="form-control col-10" placeholder="Type your ID No. here" name="STUDENTID"><br>
+                    <form class="form-group" action="generate-id.php" method="post">
+                        <input type="search" class="form-control col-10" placeholder="Type your ID No. here" name="stud_id"><br>
                         <button type="submit" class="btn btn-success" name="search"><span class="fa fa-cog mr-3"></span>Generate</button>
                     </form>
                 </div>
