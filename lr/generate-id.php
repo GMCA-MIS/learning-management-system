@@ -41,7 +41,7 @@ $html.="
 
     <!--ID Photo-->
     <div class='row mt-3'>
-        <div class='col-3 pl-3'>
+        <div class='col-3 pl-4'>
             <img class='mx-auto d-block' src='$image' style='width: 100px; height: 100px; background-size: 100px 100px; background-repeat: no-repeat;'/>
             
             </img>
@@ -61,10 +61,10 @@ $html.="
     <!--Student Information-->
     <div class='row mt-1'>
         <!--ID No.-->
-        <div class='col-3 mx-auto'>
+        <div class='col-4 mx-auto'>
         <span class='font-weight-bold ml-5' style='color: #fff; font-family: Poppins; font-size: 11px;'>$stud_id</span>
         </div>
-        <div class='col-3'>
+        <div class='col-2'>
         <span class='font-weight-bold ml-1' style='color: #e3a539; font-family: Poppins; font-size: 12px;'>Category</span>
         </div>
         <div class='col-6'>
