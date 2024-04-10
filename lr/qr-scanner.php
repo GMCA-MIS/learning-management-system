@@ -121,7 +121,7 @@
                   die("Connection failed" .$conn->connect_error);
                 }
 
-                $sql ="SELECT * FROM attendance_lr LEFT JOIN student ON attendance_lr.stud_no=cards.stud_no WHERE LOGDATE='$date'";
+                $sql ="SELECT * FROM attendance LEFT JOIN cards ON attendance.stud_no=cards.stud_no WHERE logdate='$date'";
                 $query = $conn->query($sql);
                   while ($row = $query->fetch_assoc()){
                 ?>
