@@ -30,7 +30,7 @@
 				$sql ="SELECT * FROM attendance WHERE stud_no='$id' AND logdate='$date' AND status='0'";
 				$query=$conn->query($sql);
 				if($query->num_rows>0){
-				$sql = "UPDATE attendance SET TIMEOUT='$time', status='1' WHERE stud_no='$stud_id' AND logdate='$date'";
+				$sql = "UPDATE attendance SET timeout='$time', status='1' WHERE stud_no='$stud_id' AND logdate='$date'";
 				$query=$conn->query($sql);
 				$_SESSION['success'] = 'Successfully Time Out: '.$row['firstname'].' '.$row['lastname'];
 			}else{
