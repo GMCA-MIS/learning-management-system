@@ -312,9 +312,9 @@ $html.="
                 <div class="preview-card col-7">
                     <div class="id-preview card mt-2" id="mycard" style="background: url('img/id-background.png'); background-size: contain; background-repeat: no-repeat; ">
                         <?php echo $html ?>
-                    </div>
+                    </div></br>
                     <center>
-                        <button type="submit" class="btn btn-warning" onclick="kingDownload()">
+                        <button type="submit" class="btn btn-danger" onclick="kingDownload()">
                             <i class="fa fa-download"> </i>Download
                         </button>
                     </center>
@@ -322,9 +322,8 @@ $html.="
             </div>
         </div>
 
-<div class="row">
+<div class="row"></div>
 <?php
     include('includes/scripts.php');
     include('includes/footer.php');
 ?>
-</div>
