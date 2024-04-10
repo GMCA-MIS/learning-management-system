@@ -315,26 +315,14 @@ $html.="
                     </div></br>
                     <center>
                         <button type="submit" class="btn btn-danger" onclick="kingDownload()">
-                            <i class="fa fa-download"> </i>Download
+                            <i class="fa fa-download">Download</i>
                         </button>
                     </center>
                 </div>
             </div>
         </div>
 
-
-
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span> &copy; Golden Minds Colleges and Academy</span>
-                    </div>
-                </div>
-</footer>
-            <!-- End of Footer -->
-
-        <!-- End of Content Wrapper -->
-</body>
-
-</html>
+<?php
+    include('includes/scripts.php');
+    include('includes/footer.php');
+?>
