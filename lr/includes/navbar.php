@@ -56,6 +56,13 @@
   </a>
 </li>
 
+<li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-book-approval.php') echo 'active'; ?>">
+  <a class="nav-link" href="qr-scanner.php">
+    <i class="fa fa-qrcode" aria-hidden="true"></i>
+    <span>Scan QR Code</span>
+  </a>
+</li>
+
 <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-id-card.php') echo 'active'; ?>">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fa-solid fa-id-card-clip'></i>
