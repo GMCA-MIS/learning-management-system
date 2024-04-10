@@ -95,7 +95,7 @@
         else {
       
         // Image upload 
-        $uploaddir = 'assets/uploads/';
+        $uploaddir = 'lr/img';
         $uploadfile = $uploaddir . basename($_FILES['image']['name']);
     
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
