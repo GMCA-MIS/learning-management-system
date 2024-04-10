@@ -493,7 +493,7 @@
                                         $stud_no = 0;
                                             
                                             while($row = mysqli_fetch_assoc($result)){
-                                        $sno = $sno + 1;
+                                        $stud_no = $stud_no + 1;
                                             echo "<tr>
                                                     <th scope='row'>". $stud_no . "</th>
                                                     <td>". $row['name'] . "</td>
