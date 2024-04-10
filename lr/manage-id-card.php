@@ -490,16 +490,18 @@
                                     <?php 
                                         $sql = "SELECT * FROM `cards` order by 1 DESC";
                                         $result = mysqli_query($conn, $sql);
-                                        $sno = 0;
+                                        $stud_no = 0;
                                             
                                             while($row = mysqli_fetch_assoc($result)){
                                         $sno = $sno + 1;
                                             echo "<tr>
-                                                    <th scope='row'>". $sno . "</th>
+                                                    <th scope='row'>". $stud_no . "</th>
                                                     <td>". $row['name'] . "</td>
                                                     <td>". $row['id_no'] . "</td>
-                                                    <td> <button class='edit btn btn-sm btn-success col-5' id=".$row['sno'].">Edit</button> <button class='delete btn btn-sm btn-danger col-5' id=d".$row['sno'].">Delete</button></td>
-                                                    </tr>";
+                                                    <td>
+                                                        <button class='edit btn btn-sm btn-success col-5' id=".$row['stud_no'].">Edit</button>
+                                                        <button class='delete btn btn-sm btn-danger col-5' id=d".$row['stud_no'].">Delete</button></td>
+                                                  </tr>";
                                         } 
                                         ?>
                                                 
@@ -542,96 +544,6 @@
                                                     <button type="submit" name="edit_btn"
                                                         class="btn btn-success edit_btn">Edit</button>
                                                 </td>
-
-                                                <td>
-
-
-                                                    <!--Archive Pop Up Modal -->
-                                                    <div class="modal fade" id="archive_bookModal" tabindex="-1" role="dialog"
-                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Archive Book
-                                                                    </h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-
-                                                                <form action="library-function.php" method="POST">
-
-
-                                                                    <div class="modal-body">
-
-                                                                        <input type="hidden" name="archive_ID" id="archive_ID">
-
-                                                                        <h5>Do you want to Archive this book? <br> <span
-                                                                                style="font-size:15px;"> The book will not be
-                                                                                available for other users to view. </span></h5>
-
-
-
-                                                                    </div>
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger"
-                                                                            data-dismiss="modal">Cancel</button>
-                                                                        <button type="submit" name="archive_book"
-                                                                            class="btn btn-success">Confirm</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit" name="archive_btn"
-                                                        class="btn btn-warning archive_btn">Archive</button>
-                                                </td>
-                                </div>
-                                <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-                                <td>
-                                    <!--Delete Pop Up Modal -->
-                                    <div class="modal fade" id="delete_bookModal" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <form action="library-function.php" method="POST">
-
-
-                                                    <div class="modal-body">
-
-                                                        <input type="hidden" name="delete_ID" id="delete_ID">
-
-                                                        <h5>Do you want to delete this book?</h5>
-
-
-
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" name="delete_book"
-                                                            class="btn btn-success">Confirm</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <button type="submit" name="delete_btn" class="btn btn-warning delete_btn">Delete</button>
-                                    <!-- </form> -->
-                                </td>
-                                </tr>
                 
                         </tbody>
                         </table>
