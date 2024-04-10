@@ -322,8 +322,9 @@ $html.="
             </div>
         </div>
 
-
+<div class="row">
 <?php
     include('includes/scripts.php');
     include('includes/footer.php');
 ?>
+</div>
