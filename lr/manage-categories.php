@@ -7,7 +7,7 @@ include('includes/navbar.php');
 
 <style>
     a {
-        text-decoration: underline; /* Add underline to the anchor text */
+        text-decoration: none; /* Remove underline to the anchor text */
         color: black; /* Set the text color to blue */
     }
 
