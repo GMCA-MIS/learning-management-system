@@ -501,8 +501,8 @@
                                                     <td> <button class='edit btn btn-sm btn-success col-5' id=".$row['sno'].">Edit</button> <button class='delete btn btn-sm btn-danger col-5' id=d".$row['sno'].">Delete</button></td>
                                                     </tr>";
                                         } 
-                                    ?>
-                                </tbody>
+                                        ?>
+                                                
 
                                                 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                                                 <td>
@@ -632,12 +632,7 @@
                                     <!-- </form> -->
                                 </td>
                                 </tr>
-                                <?php
-                                        }
-                                    } else {
-                                        echo "No Record Found";
-                                    }
-                                    ?>
+                
                         </tbody>
                         </table>
                     </div>
