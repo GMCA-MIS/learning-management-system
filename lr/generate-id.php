@@ -301,7 +301,7 @@ $html.="
         <!-- Page Content: ID Generator -->
         <div class="container">
             <div class="row">
-                <div class="col-5">
+                <div class="col-6">
                     <label for="generate">Student ID Card No.</label>
                     <form class="form-group" action="generate-id.php" method="post">
                         <input type="search" class="form-control col-10" placeholder="Type your ID No. here" name="stud_id"><br>
@@ -309,7 +309,7 @@ $html.="
                     </form>
                 </div>
             
-                <div class="preview-card col-7">
+                <div class="preview-card col-6">
                     <div class="id-preview card mt-2" id="mycard" style="background: url('img/id-background.png'); background-size: contain; background-repeat: no-repeat; ">
                         <?php echo $html ?>
                     </div></br>
