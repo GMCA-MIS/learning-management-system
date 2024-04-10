@@ -10,7 +10,7 @@ $html = '';
       
     if(isset($_POST['search'])) {
 
-$STUDENTID = $_POST['stud_id'];
+$stud_id = $_POST['stud_id'];
 $sql = "Select * from cards where id_no= '$stud_id' ";
 $result = mysqli_query($conn, $sql);
 
