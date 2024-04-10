@@ -310,7 +310,7 @@ $html.="
                 </div>
             
                 <div class="preview-card col-7">
-                    <div class="id-preview card mt-2" id="mycard">
+                    <div class="id-preview card mt-2" id="mycard" style="background: url('img/id-background.png');">
                         <?php echo $html ?>
                     </div>
                     <center>
