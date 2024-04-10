@@ -57,12 +57,12 @@
 
         <!--Camera Preview-->
         <div class="row justify-content-center">
-            <form action="CheckInOut.php" method="post" class="form-group" id="divvideo">
+            <form action="check-in-out.php" method="post" class="form-group" id="divvideo">
                 <div class="card">
                     <video id="preview"></video>
                 </div>
                 <div class="card">
-                    <input type="text" class="form-control" name="studentID" id="text"></input>
+                    <input type="text" class="form-control" name="stud_no" id="text"></input>
                 </div>
             </form>
         </div>
@@ -130,7 +130,7 @@
                 ?>
                     <tr>
                       <td><?php echo $row['firstname'];?></td>
-                      <td><?php echo $row['stud_id'];?></td>
+                      <td><?php echo $row['stud_no'];?></td>
                       <td><?php echo $row['timein'];?></td>
                       <td><?php echo $row['timeout'];?></td>
                       <td><?php echo $row['logdate'];?></td>
