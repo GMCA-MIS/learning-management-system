@@ -49,21 +49,20 @@
                 <?php include('includes/lr_name.php'); ?>
 
             </ul>
-
-            <!--Camera Preview-->
-            <div class="row justify-content-center">
-                <form action="CheckInOut.php" method="post" class="form-group" id="divvideo">
-                    <div class="card">
-                        <video id="preview"></video>
-                    </div>
-                    <div class="card">
-                        <input type="text" class="form-control" name="studentID" id="text"></input>
-                    </div>
-                </form>
-            </div>
-
         </nav>
         <!-- End of Topbar -->
+
+        <!--Camera Preview-->
+        <div class="row justify-content-center">
+            <form action="CheckInOut.php" method="post" class="form-group" id="divvideo">
+                <div class="card">
+                    <video id="preview"></video>
+                </div>
+                <div class="card">
+                    <input type="text" class="form-control" name="studentID" id="text"></input>
+                </div>
+            </form>
+        </div>
 
 
 <?php
