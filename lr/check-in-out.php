@@ -1,7 +1,16 @@
 <?php
     session_start();
 
-    include('dbcon.php');
+    $server = "srv1320.hstgr.io";
+    $username="u944705315_capstone2024";
+    $password="Capstone@2024.";
+    $dbname="u944705315_capstone2024";
+
+    $conn = new mysqli($server,$username,$password,$dbname);
+
+    if($conn->connect_error){
+        die("Connection failed" .$conn->connect_error);
+    }
 
     if(isset($_POST['studentID'])){
         
