@@ -314,8 +314,8 @@ $html.="
                         <?php echo $html ?>
                     </div></br>
                     <center>
-                        <button type="submit" class="btn btn-danger" onclick="kingDownload()">
-                            <i class="fa fa-download">Download</i>
+                        <button type="submit" class="btn btn-warning" onclick="kingDownload()">
+                        <span class="fa-solid fa-download mr-3"></span>Download
                         </button>
                     </center>
                 </div>
