@@ -22,7 +22,7 @@
 }
 
 .id-preview {
-	background-image: url("../img/id-background.png");
+	background-image: url("img/id-background.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 	height: 320px;

@@ -54,7 +54,7 @@ $html.="
 
         <!--Signature-->
         <div class='col-4'>
-            <img src='images/signature.png' style='width: 100px; height: 100px;'>
+            <img src='img/signature.png' style='width: 100px; height: 100px;'>
         </div>
     </div>
 
