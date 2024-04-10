@@ -41,7 +41,7 @@ $html.="
 
     <!--ID Photo-->
     <div class='row mt-3'>
-        <div class='col-3 pl-4'>
+        <div class='col-3 pl-3'>
             <img class='mx-auto d-block' src='$image' style='width: 100px; height: 100px; background-size: 100px 100px; background-repeat: no-repeat;'/>
             
             </img>
