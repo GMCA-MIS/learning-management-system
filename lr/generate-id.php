@@ -181,10 +181,11 @@ $html.="
 
                     <div class="table-responsive">
 
-                        
+                            <a href="manage-id-card.php">
                             <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_lcardkModal">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Add New Card
+                                <i class="fa fa-eye" aria-hidden="true"></i> View Users
                             </button>
+                            </a>
                             <a href="generate-id.php">
                                 <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#gen_lcardModal">
                                     <i class="fa fa-address-card" aria-hidden="true"></i> Generate ID Card
