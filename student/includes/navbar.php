@@ -99,6 +99,17 @@
 
 
 
+<li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'tor_student_request.php') echo 'active'; ?>">
+  <a class="nav-link" href="tor_student_request.php">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <span>TOR</span><span> Request </span>
+  </a>
+</li>
+
+
+
+
+
 <hr class="sidebar-divider">
 
 <li class="nav-item">
