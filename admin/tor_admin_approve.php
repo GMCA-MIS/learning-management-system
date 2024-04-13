@@ -43,7 +43,7 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"]) && isset($_GET["amount"]) && i
 
         // Create the email body
         $email_body = "Dear $to,\n\n";
-        $email_body .= "Your TOR request with OR Number $id has been approved by $session_id.\n\nAmount to pay is: $amount \n\nPlease send payment to the following Bank Account Details\n\nAccount Name: Sample Account \n\nAccount Number: 12345678910 \n\nIf payment is complete, please proceed with completing the form by clicking on the link provided below:\n\nhttp://localhost/gmlms/landingpage/tor_transaction.php";
+        $email_body .= "Your TOR request with OR Number $id has been approved by $session_id.\n\nAmount to pay is: $amount \n\nPlease send payment to the following Bank Account Details\n\nAccount Name: Sample Account \n\nAccount Number: 12345678910 \n\nIf payment is complete, please proceed with completing the form by clicking on the link provided below:\n\nhttps://gmca.online//landingpage/tor_transaction.php";
 
         // Send the email
         require 'includes/PHPMailer.php';
