@@ -181,9 +181,9 @@ mysqli_close($conn);
                         <a href="#">Menu</a>
                         <ul>
                             <li><a href="Announcements.html">Announcements</a></li>
-                            <li><a href="school calendar.html">School Calendar</a></li>
+                            <!-- <li><a href="school calendar.html">School Calendar</a></li> -->
                             <li><a href="courses.html">SHS Strands</a></li>
-                            <li>
+                            <!-- <li>
                                 <a href="#">Resources</a>
                                 <ul>
                                     <li><a href="#">Admission</a></li>
@@ -195,6 +195,13 @@ mysqli_close($conn);
                                     <li><a href="#">Support</a></li>
                                     <li><a href="#">Feedbacks</a></li>
                                 </ul>
+                            </li>
+                            -->
+                            <li>
+                                <a href="tor.html">Transcript of Record</a>
+                            </li>
+                            <li>
+                                 <a href="enrollment.php">Enroll Now !</a>
                             </li>
                         </ul>
                     </li>
