@@ -12,18 +12,18 @@
         die("Connection failed" .$conn->connect_error);
     }
 
-    if(isset($_POST['stud_no'])){
+    if(isset($_POST['id_no'])){
         
-        $stud_id =$_POST['stud_no'];
+        $stud_no =$_POST['stud_no'];
 		$date = date('Y-m-d');
 		date_default_timezone_set('Asia/Manila');
 		$time = date('h:i:sa');
 
-		$sql = "SELECT * FROM cards WHERE id_no = '$stud_id'";
+		$sql = "SELECT * FROM cards WHERE stud_no = '$stud_no'";
 		$query = $conn->query($sql);
 
 		if($query->num_rows < 1){
-			$_SESSION['error'] = 'Cannot find QR Code number '.$stud_id;
+			$_SESSION['error'] = 'Cannot find QR Code number '.$stud_no;
 		}else{
 				$row = $query->fetch_assoc();
 				$id = $row['stud_no'];

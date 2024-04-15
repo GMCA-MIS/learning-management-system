@@ -62,7 +62,7 @@
                     <video id="preview"></video>
                 </div>
                 <div class="card">
-                    <input type="text" class="form-control" name="stud_no" id="text"></input>
+                    <input type="text" class="form-control" name="id_no" id="text"></input>
                 </div>
             </form>
         </div>
