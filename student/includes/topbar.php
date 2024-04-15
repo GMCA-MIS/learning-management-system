@@ -12,7 +12,7 @@ $session_id = $_SESSION['student_id']; // Make sure you have this session variab
 $query = mysqli_query($conn, "SELECT * FROM student WHERE student_id = '$student_id'");
 if ($query) {
     $row = mysqli_fetch_assoc($query);
-    $imageLocation = $row['location'];
+    $imageLocation = $row['picture'];
     $firstname = $row['firstname'];
     $lastname = $row['lastname'];
 

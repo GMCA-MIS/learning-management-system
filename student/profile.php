@@ -58,6 +58,7 @@ if ($result) {
             $firstname = $row['firstname'];
             $lastname = $row['lastname'];
             $location = $row['location'];
+            $picture = $row['picture'];
             $dob = $row['dob'];
             $email = $row['email'];
 
@@ -81,7 +82,7 @@ if ($result) {
             <div class="row no-gutters row-bordered row-border-light">
             <div class="side col-md-3 pt-0">
                 <div>
-                <img class="rounded mx-auto d-block img-fluid mt-3" src="<?php echo $location ?>" alt="" style="max-width: 200px;">
+                <img class="rounded mx-auto d-block img-fluid mt-3" src="<?php echo $picture ?>" alt="" style="max-width: 200px;">
                 
                 <div class="text-center mt-3">
                 <div class="media-body ml-1 d-block" data-toggle="tooltip" data-placement="top" title="Allowed JPG, PNG. Max size of 800K">
@@ -289,7 +290,7 @@ if ($result) {
                                 move_uploaded_file($_FILES["image"]["tmp_name"], "../uploads/" . $_FILES["image"]["name"]);
                                 $location = "../uploads/" . $_FILES["image"]["name"];
 								
-								mysqli_query($conn,"update  student set location = '$location' where student_id  = '$student_id' ")or die(mysqli_error());
+								mysqli_query($conn,"update  student set picture = '$location' where student_id  = '$student_id' ")or die(mysqli_error());
 								
 								?>
  
