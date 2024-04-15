@@ -79,7 +79,7 @@ if ($resultTeacher->num_rows > 0 || $resultStudent->num_rows > 0 || $resultCoord
             $mail->send();
             echo "<script>
             alert('Password Request sent, please check your Email.');
-            window.location.href = '../login.php';
+            window.location.href = '../index.php';
             </script>";
         } catch (Exception $e) {
             echo "<script>alert('Message could not be sent. Mailer error: {$mail->ErrorInfo}')</script>";
