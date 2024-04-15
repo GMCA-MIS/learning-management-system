@@ -19,7 +19,7 @@
 		date_default_timezone_set('Asia/Manila');
 		$time = date('h:i:sa');
 
-		$sql = "SELECT * FROM cards WHERE stud_no = '$stud_id'";
+		$sql = "SELECT * FROM cards WHERE id_no = '$stud_id'";
 		$query = $conn->query($sql);
 
 		if($query->num_rows < 1){
@@ -27,10 +27,10 @@
 		}else{
 				$row = $query->fetch_assoc();
 				$id = $row['stud_no'];
-				$sql ="SELECT * FROM attendance WHERE stud_no='$id' AND logdate='$date' AND status='0'";
+				$sql ="SELECT * FROM attendance WHERE id_no='$id' AND logdate='$date' AND status='0'";
 				$query=$conn->query($sql);
 				if($query->num_rows>0){
-				$sql = "UPDATE attendance SET timeout='$time', status='1' WHERE stud_no='$stud_id' AND logdate='$date'";
+				$sql = "UPDATE attendance SET timeout='$time', status='1' WHERE id_no='$stud_id' AND logdate='$date'";
 				$query=$conn->query($sql);
 				$_SESSION['success'] = 'Successfully Time Out: '.$row['firstname'].' '.$row['lastname'];
 			}else{
