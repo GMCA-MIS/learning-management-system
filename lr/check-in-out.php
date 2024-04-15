@@ -19,7 +19,7 @@
 		date_default_timezone_set('Asia/Manila');
 		$time = date('h:i:sa');
 
-		$sql = "SELECT * FROM cards WHERE stud_no = '$stud_id'";
+		$sql = "SELECT * FROM cards WHERE id_no = '$stud_id'";
 		$query = $conn->query($sql);
 
 		if($query->num_rows < 1){
