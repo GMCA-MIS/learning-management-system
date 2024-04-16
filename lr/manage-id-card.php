@@ -489,7 +489,7 @@
                                             echo "<tr>
                                                     <th scope='row'>". $stud_no . "</th>
                                                     <td>". $row['name'] . "</td>
-                                                    <td>". $row['id_no'] . "</td>
+                                                    <td>". $row['stud_no'] . "</td>
                                                     <td>
                                                         <button class='edit btn btn-sm btn-success col-5' id=".$row['stud_no'].">Edit</button>
                                                         <button class='delete btn btn-sm btn-danger col-5' id=d".$row['stud_no'].">Delete</button></td>
