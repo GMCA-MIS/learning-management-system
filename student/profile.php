@@ -371,7 +371,7 @@ if ($dec_password === $hashedPassword) {
             // Check if the new password is different from the current password
             if ($newPassword !== $currentPassword) {
                 // Hash the new password
-                $hashedNewPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+                $hashedNewPassword = md5($newPassword);
 
                 // Update the password in the database
                 $updateQuery = "UPDATE student SET password = ? WHERE student_id = ?";
