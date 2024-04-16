@@ -7,7 +7,7 @@ $result = mysqli_query($conn, $sql);
 $options = "";
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $options .= "<option value='" . $row["id"] . "'>" . $row["name"] . "</option>";
+        $options .= "<option value='" . $row["id"] . "'>" . $row["full_name_strand"] . " (" . $row["name"] . ")" ."</option>";
     }
 } else {
     $options = "<option value=''>No options available</option>";
