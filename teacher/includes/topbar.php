@@ -36,9 +36,12 @@ if ($query) {
         </a>
     </div>
     <div class="user ml-auto">
+        
+        <!-- notification ICON
         <a href="#" class="mr-4" onclick="toggleNotifi()">
             <i class="fa fa-bell" aria-hidden="true"></i>
         </a>
+        -->
         
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
