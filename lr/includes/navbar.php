@@ -65,13 +65,13 @@
 
 <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-id-card.php') echo 'active'; ?>">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapseTwo">
-      <i class='fa-solid fa-id-card-clip'></i>
-      <span>Manage Library Card</span>
-    </a>
+    <i class="fa fa-clipboard-user"></i>
+    <span>Manage Library Card</span>
+  </a>
   <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Manage Library Card</h6>
-        <a class="collapse-item" href="manage-id-card.php?id=<?php echo $school_year ?>"><i class='fa-solid fa-id-card-clip'></i> Manage Library Cards</a>
+        <a class="collapse-item" href="manage-id-card.php?id=<?php echo $school_year ?>"><i class="fa fa-clipboard-user"></i> Manage Library Cards</a>
         <a class="collapse-item" href="generate-id.php?id=<?php echo $school_year ?>"><i class="fa fa-id-card"></i> ID Generator</a>
         <a class="collapse-item" href="generate-qr.php?id=<?php echo $school_year ?>"><i class="fa fa-qrcode" aria-hidden="true"></i> QR Generator</a>
       </div>
