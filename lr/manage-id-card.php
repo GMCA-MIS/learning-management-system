@@ -467,15 +467,7 @@
                                 <h1 class="h5 mb-0 text-gray-800"></h1>
                             </div>
                             
-                            <?php
-                            // Displaying data into tables
-                            $query = "SELECT booklist.*, category.category_name
-                            FROM booklist
-                            JOIN category ON booklist.category_id = category.category_id
-                            WHERE booklist.book_status = 'Available'
-                            ORDER BY booklist.book_id DESC";
-                            $query_run = mysqli_query($conn, $query);
-                            ?>
+                            
                             <table id="dataTableID" class="table table-bordered table table-striped" width="100%"
                                 cellspacing="0">
                                 <thead>
