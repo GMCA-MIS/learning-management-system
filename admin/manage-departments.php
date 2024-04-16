@@ -89,7 +89,7 @@ include('includes/navbar.php');
                     </div>
             <?php
             //Displaying data into tables
-            $query ="SELECT * FROM department";
+            $query ="SELECT * FROM department ORDER BY department_id DESC";
             $query_run=mysqli_query($conn, $query);
             ?>
             <table id = "dataTableID" class="table table-bordered table table-striped" width = "100%" cellspacing="0">

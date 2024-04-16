@@ -78,15 +78,33 @@ if ($query) {
 
       <?php
        
-        $sql = "SELECT * FROM notification";
+       $sql2 = "SELECT class_id FROM student_class WHERE student_id = '$session_id'";
+       $result2 = $conn->query($sql2);
+       if ($result2->num_rows > 0) {
+        while ($row2 = $result2->fetch_assoc()) {
+
+       
+
+
+
+        //$sql = "SELECT * FROM notification";
+        $sql = "SELECT n.notification, n.date_of_notification, n.link, te.location, CONCAT(te.firstname, ' ', te.lastname) AS teacher_name
+                          FROM notification n
+                          JOIN teacher_class tc ON n.teacher_class_id = tc.teacher_class_id
+                          JOIN teacher te ON tc.teacher_id = te.teacher_id
+                          WHERE tc.class_id = ".$row2['class_id']."
+                          ORDER BY n.date_of_notification DESC";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             // Display each notification
             echo "<div class='notifi-item'>";
-           // echo "<img src='" . $row['picture'] . "' alt='student-image'>";
+            echo "<img src='" . $row['location'] . "' alt='student-image'>";
+
             echo "<div class='text'>";
+            
+            echo "<h5>" . "Prof : " . $row['teacher_name'] . "</h5>";
             echo "<h4>" . $row['notification'] . "</h4>";
             echo "<p>Date: " . $row['date_of_notification'] . "</p>";
             echo "</div>";
@@ -95,6 +113,10 @@ if ($query) {
         } else {
           echo "<h6 class='text-center mt-4'>No notifications Yet</h6>";
         }
+
+          }
+        }
+
       ?>
 
     </div>
@@ -108,6 +130,7 @@ if ($query) {
       <hr>
 
       <?php
+      /*
         $sql = "SELECT * FROM notification";
         $result = $conn->query($sql);
 
@@ -115,7 +138,7 @@ if ($query) {
           while ($row = $result->fetch_assoc()) {
             // Display each notification
             echo "<div class='notifi-item'>";
-            //echo "<img src='img/avatar.png' alt='img'>"; // Replace with actual image source
+            echo "<img src='img/avatar.png' alt='img'>"; // Replace with actual image source
             echo "<div class='text'>";
             echo "<h4>" . $row['notification'] . "</h4>";
             echo "<p>Date: " . $row['date_of_notification'] . "</p>";
@@ -126,6 +149,7 @@ if ($query) {
         } else {
           echo "<h6 class='text-center mt-4'>No notifications Yet</h6>";
         }
+           */
       ?>
 
     </div>
