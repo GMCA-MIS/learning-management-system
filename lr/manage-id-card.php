@@ -23,6 +23,57 @@
 <!--Code for queries-->
 <?php 
 
+        if(isset($_POST['updatecard'])){
+
+            
+
+                
+            
+            
+                
+            $cardid = $_POST["idcard"];
+            $name = $_POST["name"];
+            $dept = $_POST["dept"];
+            $cat = $_POST["cat"];
+            $address = $_POST["address"];
+            $email = $_POST["email"];
+            $dob = $_POST["dob"];
+            $id_no = $_POST["id_no"];
+            $phone = $_POST["phone"];
+
+
+            // Image upload 
+            $uploaddir = 'img/';
+            $uploadfile = $uploaddir . basename($_FILES['image']['name']);
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+            } 
+
+            //SQL query
+            $sql = "UPDATE `cards` SET `name` = '$name' , `dept` = '$dept' , `cat` =  '$cat', `address` =  '$address', `email` =  '$email', `dob` =  '$dob', `stud_no` =  '$id_no', `phone` =  '$phone', `image` =  '$uploadfile'
+            
+            WHERE `id` = $cardid";
+            $result = mysqli_query($conn, $sql);
+            
+            if($result) {
+            
+                echo "<script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Card details updated successfully!',
+                            showConfirmButton: false
+                        }).then(function() {
+                            window.location = 'manage-id-card.php'; // Redirect to profile.php
+                        });
+                    </script>";
+
+            }
+        
+        }
+
+
+
+
     $insert = false;
     $update = false;
     $empty = false;
@@ -95,7 +146,7 @@
         else {
       
         // Image upload 
-        $uploaddir = 'img';
+        $uploaddir = 'img/';
         $uploadfile = $uploaddir . basename($_FILES['image']['name']);
     
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
@@ -511,11 +562,11 @@
                                             </div>
 
                                             <div class="container">
-                                                <form method="POST" enctype="multipart/form-data" action="id-card-update-function.php">
+                                                <form method="POST" enctype="multipart/form-data" >
                                                     <div class="row">
                                                         <div class="col-sm-4">
                                                             <input type="text" value="<?php echo $row['stud_no'] ?>" name="updatecard" hidden>
-                                                            <input type="text" value="<?php echo $row['stud_no'] ?>" name="stud_no" hidden>
+                                                            <input type="text" value="<?php echo $row['id'] ?>" name="idcard" hidden>
                                                             <label for="name">Full Name</label>
                                                             <input type="text" class="form-control" value="<?php echo $row['name']; ?>" placeholder="Full name" name="name">
                                                         </div>

@@ -129,7 +129,7 @@
                   while ($row = $query->fetch_assoc()){
                 ?>
                     <tr>
-                      <td><?php echo $row['firstname'];?></td>
+                      <td><?php echo $row['name'];?></td>
                       <td><?php echo $row['stud_no'];?></td>
                       <td><?php echo $row['timein'];?></td>
                       <td><?php echo $row['timeout'];?></td>
