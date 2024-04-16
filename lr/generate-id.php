@@ -10,8 +10,8 @@ $html = '';
       
     if(isset($_POST['search'])) {
 
-$stud_id = $_POST['stud_id'];
-$sql = "Select * from cards where id_no= '$stud_id' ";
+$stud_no = $_POST['stud_no'];
+$sql = "Select * from cards where stud_no= '$stud_no' ";
 $result = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result)>0) {
@@ -22,7 +22,7 @@ $html="";
     while($row=mysqli_fetch_assoc($result)) {
                            
 $firstname = $row["name"];
-$stud_id = $row["id_no"];
+$stud_no = $row["stud_no"];
 $dob = $row["dob"];
 $dept = $row['dept'];
 $cat = $row['cat'];
@@ -62,7 +62,7 @@ $html.="
     <div class='row mt-1'>
         <!--ID No.-->
         <div class='col-3'>
-        <span class='font-weight-bold ml-4' style='color: #fff; font-family: Poppins; font-size: 11px;'>$stud_id</span>
+        <span class='font-weight-bold ml-4' style='color: #fff; font-family: Poppins; font-size: 11px;'>$stud_no</span>
         </div>
         <div class='col-3'>
         <span class='font-weight-bold ml-1' style='color: #e3a539; font-family: Poppins; font-size: 12px;'>Category</span>
@@ -213,7 +213,7 @@ $html.="
                 <div class="col-6">
                     <label for="generate">Student ID Card No.</label>
                     <form class="form-group" action="generate-id.php" method="post">
-                        <input type="search" class="form-control col-10" placeholder="Type your ID No. here" name="stud_id"><br>
+                        <input type="search" class="form-control col-10" placeholder="Type your ID No. here" name="stud_no"><br>
                         <button type="submit" class="btn btn-success" name="search"><span class="fa fa-cog mr-3"></span>Generate</button>
                     </form>
                 </div>
@@ -231,7 +231,40 @@ $html.="
             </div>
         </div>
 
+        <!--Download button script-->
+    <script>
+
+        function kingDownload() {
+
+            var node = document.getElementById('mycard');
+
+            domtoimage.toPng(node)
+                .then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    downloadURI(dataUrl, 'id-card.png')
+                })
+                .catch(function (error) {
+                    alert('Oops, something went wrong.', error);
+                });
+
+        }
+
+
+
+        function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+        }
+
+        </script>
+
 <?php
     include('includes/scripts.php');
-    include('includes/footer.php');
+    //include('includes/footer.php');
 ?>
