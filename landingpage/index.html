@@ -15,6 +15,9 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
   </head>
   <style>
     body {
@@ -251,7 +254,7 @@
             <!-- <p>Golden Minds Bulacan</p> -->
           </header>
 
-          <p>
+          <p id="missioncontent">
             To create a supportive environment that nurture and empowers the
             learning spirit of our students to be more productive, goal-driven,
             academically explorative and thus become a good contributor to his
@@ -278,7 +281,7 @@
             <h2>VISION</h2>
             <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
           </header>
-          <p>
+          <p id="visioncontent">
             We are envisioned to cultivate and ignite a dynamic learning
             environtment that equips students with knowledge and skills to
             become ready in the fast changing technology, to seek excellence in
@@ -434,7 +437,40 @@
         </ul>
       </footer>
     </div>
+    <script>
 
+      //MISSION
+       $.ajax({
+            url: 'parse_content.php',
+            type: 'POST',
+            data: 'content=mission',
+            beforeSend:function()
+      {
+          $("#missioncontent").html('Working on Please wait ..');
+      },
+      success:function(data)
+      {
+        $("#missioncontent").html(data);
+      },
+          });
+        
+
+      //VISION
+          $.ajax({
+            url: 'parse_content.php',
+            type: 'POST',
+            data: 'content=vision',
+            beforeSend:function()
+      {
+          $("#visioncontent").html('Working on Please wait ..');
+      },
+      success:function(data)
+      {
+        $("#visioncontent").html(data);
+      },
+          });
+
+    </script>
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
