@@ -160,7 +160,7 @@ $query = "SELECT tc.teacher_class_id, t.firstname, t.lastname, s.subject_code, c
     INNER JOIN subject s ON tc.subject_id = s.subject_id
     INNER JOIN class cl ON tc.class_id = cl.class_id
     WHERE tc.school_year_id = $school_year
-    ORDER BY tc.teacher_class_id ASC";
+    ORDER BY tc.teacher_class_id DESC";
 $query_run = mysqli_query($conn, $query);
 ?>
 <table id="dataTableID" class="table table-bordered table table-striped" width="100%" cellspacing="0">

@@ -125,7 +125,7 @@ include('includes/navbar.php');
                     <?php
                     // Displaying data into tables
                     $query = "SELECT *
-                            FROM coordinators";
+                            FROM coordinators order by coordinator_id DESC";
                     $query_run = mysqli_query($conn, $query);
                     ?>
 
