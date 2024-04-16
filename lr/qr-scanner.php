@@ -111,7 +111,7 @@
                 <!--Table value from 'attendance' and 'student'-->
                 <?php
                 
-                /*$server = "srv1320.hstgr.io";
+                $server = "srv1320.hstgr.io";
                 $username="u944705315_capstone2024";
                 $password="Capstone@2024.";
                 $dbname="u944705315_capstone2024";
@@ -122,7 +122,7 @@
 
                 /*  if($conn->connect_error){
                   die("Connection failed" .$conn->connect_error);
-                }*/
+                }
 
                 $sql ="SELECT * FROM attendance LEFT JOIN cards ON attendance.stud_no=cards.stud_no WHERE logdate='$date'";
                 $query = $conn->query($sql);
