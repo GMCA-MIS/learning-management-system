@@ -419,7 +419,7 @@
                                     $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$class_id'";
                                     mysqli_query($conn, $queryaw1);
 
-                                    $query = "UPDATE student SET class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
+                                    $query = "UPDATE student SET picture='../uploads/student.jpg',class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
                                     mysqli_query($conn, $query);
                                 
                                     // Email content

@@ -146,11 +146,13 @@ include('includes/navbar.php');
                 $query_run = mysqli_query($conn, $query);
                 ?>
 
-                <table id="dataTableID" class="table table-bordered table table-striped" width="100%" cellspacing="0">
+                <table id="dataTableID" class="table table-bordered table table-striped "  width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th style="display:none;">Student ID</th>
                             <!-- <th>Photo</th> -->
+                            
+                            <th>Student I.D</th>
                             <th>LRN</th>
                             <th style="display:none;">Firstname</th>
                             <th style="display:none;">Lastname</th>
@@ -180,6 +182,7 @@ include('includes/navbar.php');
 
                                     <td style="display:none;"><?php echo $row['student_id']; ?></td>
                                     <!-- <td><img src="<?php echo $row['location']; ?>" alt="" class="rounded-circle d-block mx-auto" style="width: 60px;"></td> -->
+                                    <td><?php if (empty($row['class_name'])){  echo "Enlisted"; } else{  echo $row['student_id'];}  ?></td>
                                     <td><?php echo $row['username']; ?></td>
                                     <td><a href="profile.php?student_id=<?php echo $row['student_id']; ?>"><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></a></td>
                                     <td style="display:none;"><?php echo $row['firstname']; ?></td>

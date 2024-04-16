@@ -135,7 +135,7 @@ if (isset($_POST['add_instructor'])) {
     } else {
         // Insert teacher data
         mysqli_query($conn, "INSERT INTO teacher (username, firstname, lastname, department_id, teacher_stat, dob, location, email, password, user_type, specialization)
-            VALUES ('$username', '$firstname', '$lastname', '$department_id', 'Activated', '$dob', '../uploads/no-profile-picture-template.png', '$email', '$hashed_password', 'teacher', '$specialization')") or die(mysqli_error());
+            VALUES ('$username', '$firstname', '$lastname', '$department_id', 'Activated', '$dob', '../uploads/teacher.png', '$email', '$hashed_password', 'teacher', '$specialization')") or die(mysqli_error());
 if (mysqli_affected_rows($conn) > 0) {
     // Create the email body
     $email_body = "Dear $firstname $lastname,\n\n";

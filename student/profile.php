@@ -53,12 +53,15 @@ if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
             // Access the columns by their names
             $student_id = $row['student_id'];
+            $location = $row['location'];
             $username = $row['username'];
             $password = $row['password'];
             $firstname = $row['firstname'];
             $lastname = $row['lastname'];
             $location = $row['location'];
+            $picture = $row['picture'];
             $dob = $row['dob'];
+            $pob = $row['pob'];
             $email = $row['email'];
 
 
@@ -81,7 +84,7 @@ if ($result) {
             <div class="row no-gutters row-bordered row-border-light">
             <div class="side col-md-3 pt-0">
                 <div>
-                <img class="rounded mx-auto d-block img-fluid mt-3" src="<?php echo $location ?>" alt="" style="max-width: 200px;">
+                <img class="rounded mx-auto d-block img-fluid mt-3" src="<?php echo $picture ?>" alt="" style="max-width: 200px;">
                 
                 <div class="text-center mt-3">
                 <div class="media-body ml-1 d-block" data-toggle="tooltip" data-placement="top" title="Allowed JPG, PNG. Max size of 800K">
@@ -115,6 +118,20 @@ if ($result) {
                                     <h2 style="color: black;">General Information</h2>
                                 </div>
                                 <hr>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <span class="info-label">Student ID:</span>
+                                        <?php echo $student_id; ?>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <span class="info-label">LRN:</span>
+                                        <?php echo $username; ?>
+                                    </label>
+                                </div>
+                                
 
                                 <div class="form-group">
                                     <label class="form-label">
@@ -123,6 +140,17 @@ if ($result) {
                                     </label>
                                 </div>
 
+
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <span class="info-label">Address:</span>
+                                        <?php echo $location; ?>
+                                    </label>
+                                </div>
+                                
+
+                                
                                 <div class="form-group">
                                     <label class="form-label">
                                         <span class="info-label">Date of Birth:</span>
@@ -130,6 +158,13 @@ if ($result) {
                                             $dob ; 
                                             echo date_create($dob)->format('F d, Y');
                                         ?>
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <span class="info-label">Place of Birth:</span>
+                                        <?php echo $pob; ?>
                                     </label>
                                 </div>
 
@@ -289,7 +324,7 @@ if ($result) {
                                 move_uploaded_file($_FILES["image"]["tmp_name"], "../uploads/" . $_FILES["image"]["name"]);
                                 $location = "../uploads/" . $_FILES["image"]["name"];
 								
-								mysqli_query($conn,"update  student set location = '$location' where student_id  = '$student_id' ")or die(mysqli_error());
+								mysqli_query($conn,"update  student set picture = '$location' where student_id  = '$student_id' ")or die(mysqli_error());
 								
 								?>
  
@@ -323,62 +358,56 @@ if (isset($_POST['update_password'])) {
     $stmt->fetch();
     $stmt->close();
 
-    if (password_verify($currentPassword, $hashedPassword)) {
-        // Current password is correct
+    
+    $password = mysqli_real_escape_string($conn, $_POST['current_password']);
+    $dec_password = md5($password);
 
-        if (strlen($newPassword) >= 8 && preg_match('/[A-Z]/', $newPassword)) {
-            // New password meets the criteria
+if ($dec_password === $hashedPassword) {
+    // Current password is correct
+    if (strlen($newPassword) >= 8 && preg_match('/[A-Z]/', $newPassword)) {
+        // New password meets the criteria
 
-            if ($newPassword === $repeatPassword) {
-                // Check if the new password is different from the current password
-                if ($newPassword !== $currentPassword) {
-                    // Hash the new password
-                    $hashedNewPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+        if ($newPassword === $repeatPassword) {
+            // Check if the new password is different from the current password
+            if ($newPassword !== $currentPassword) {
+                // Hash the new password
+                $hashedNewPassword = md5($newPassword);
 
-                    // Update the password in the database
-                    $updateQuery = "UPDATE student SET password = ? WHERE student_id = ?";
-                    $stmt = $conn->prepare($updateQuery);
-                    $stmt->bind_param("si", $hashedNewPassword, $student_id);
+                // Update the password in the database
+                $updateQuery = "UPDATE student SET password = ? WHERE student_id = ?";
+                $stmt = $conn->prepare($updateQuery);
+                $stmt->bind_param("si", $hashedNewPassword, $student_id);
 
-                    if ($stmt->execute()) {
-                        // Password updated successfully
-                        echo "<script>
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Password updated successfully!',
-                                showConfirmButton: false
-                            }).then(function() {
-                                window.location = 'profile.php'; // Redirect to profile.php
-                            });
-                        </script>";
-                    } else {
-                        // Error handling if the update fails
-                        echo "<script>
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error updating password',
-                                text: 'There was an error while updating the password. Please try again.',
-                                confirmButtonColor: '#d33'
-                            });
-                        </script>";
-                    }
-
-                    $stmt->close();
+                if ($stmt->execute()) {
+                    // Password updated successfully
+                    echo "<script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Password updated successfully!',
+                            showConfirmButton: false
+                        }).then(function() {
+                            window.location = 'profile.php'; // Redirect to profile.php
+                        });
+                    </script>";
                 } else {
+                    // Error handling if the update fails
                     echo "<script>
                         Swal.fire({
                             icon: 'error',
-                            title: 'Error',
-                            text: 'The new password cannot be the same as the current password.'
+                            title: 'Error updating password',
+                            text: 'There was an error while updating the password. Please try again.',
+                            confirmButtonColor: '#d33'
                         });
                     </script>";
                 }
+
+                $stmt->close();
             } else {
                 echo "<script>
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'New passwords do not match.'
+                        text: 'The new password cannot be the same as the current password.'
                     });
                 </script>";
             }
@@ -387,7 +416,7 @@ if (isset($_POST['update_password'])) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'The new password must be at least 8 characters long and contain at least one capital letter.'
+                    text: 'New passwords do not match.'
                 });
             </script>";
         }
@@ -396,10 +425,21 @@ if (isset($_POST['update_password'])) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Current password is incorrect.'
+                text: 'The new password must be at least 8 characters long and contain at least one capital letter.'
             });
         </script>";
     }
+} else {
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Current password is incorrect.'
+        });
+    </script>";
+}
+
+
 }
 ?>
 

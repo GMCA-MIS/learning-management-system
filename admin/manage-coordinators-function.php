@@ -212,7 +212,7 @@ if (mysqli_affected_rows($conn) > 0) {
         Swal.fire({
             icon: 'success',
             title: 'Success',
-            text: 'Coordniator added successfully.',
+            text: 'Coordinator added successfully.',
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location = 'manage-coordinators.php';

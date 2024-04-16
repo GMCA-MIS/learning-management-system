@@ -228,6 +228,7 @@ $(document).ready(function () {
 </script>
 
 
+
 <!--JS for Warning Deleting data from DELETE pop up modal "Manage STUDENTS" -->
 <script>
     $(document).ready(function () {
@@ -453,7 +454,10 @@ $(document).ready(function () {
 <!--Data Tales/Pagination and Search -->
 <script>
 $(document).ready(function () {
-    $('#dataTableID').DataTable();
+    $('#dataTableID').DataTable( {
+        "aaSorting": []
+    });
+
 });
 </script>
 
