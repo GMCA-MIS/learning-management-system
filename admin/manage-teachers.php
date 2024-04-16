@@ -137,7 +137,7 @@ include('includes/navbar.php');
                     // Displaying data into tables
                     $query = "SELECT t.*, d.department_name 
                             FROM teacher t
-                            INNER JOIN department d ON t.department_id = d.department_id"; // Assuming 'department_id' is the foreign key linking teacher and department tables
+                            INNER JOIN department d ON t.department_id = d.department_id ORDER BY t.teacher_id DESC"; // Assuming 'department_id' is the foreign key linking teacher and department tables
                     $query_run = mysqli_query($conn, $query);
                     ?>
             
