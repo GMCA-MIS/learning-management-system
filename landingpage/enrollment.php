@@ -352,10 +352,10 @@ mysqli_close($conn);
                         <!-- Requester's Birth Info -->
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-4 col-12-xmall">
-                                <input type="date" name="dob" id="dob" value="" autocomplete="off" placeholder="Date of Birth" required />
+                                <input type="date" name="dob" id="dob" value="" autocomplete="off"  placeholder="Date of Birth" required />
                             </div>
                             <div class="col-8 col-12-xsmall">
-                                <input type="text" name="pob" id="pob" value="" autocomplete="off" placeholder="Place of Birth" required />
+                                <input type="text" name="pob" id="pob" value="" autocomplete="off"  placeholder="Place of Birth" required />
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">

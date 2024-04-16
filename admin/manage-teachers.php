@@ -97,7 +97,7 @@ include('includes/navbar.php');
 
                                                         <div class="form-group">
                                                             <label for="dob">Date of Birth</label>
-                                                            <input type="text" class="form-control flatpickr" id="dob" name="dob" required placeholder="Enter Date of Birth">
+                                                            <input type="date" class="form-control" max="<?= date('Y-m-d', strtotime(' -15 Year')) ?>" id="dob" name="dob" required placeholder="Enter Date of Birth">
                                                         </div>
 
                                                          
