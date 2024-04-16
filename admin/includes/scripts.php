@@ -454,7 +454,10 @@ $(document).ready(function () {
 <!--Data Tales/Pagination and Search -->
 <script>
 $(document).ready(function () {
-    $('#dataTableID').DataTable();
+    $('#dataTableID').DataTable( {
+        order: [ 1, 'desc' ]
+    });
+
 });
 </script>
 

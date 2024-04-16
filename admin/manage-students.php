@@ -146,7 +146,7 @@ include('includes/navbar.php');
                 $query_run = mysqli_query($conn, $query);
                 ?>
 
-                <table id="dataTableID" class="table table-bordered table table-striped" width="100%" cellspacing="0">
+                <table id="dataTableID" class="table table-bordered table table-striped "  width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th style="display:none;">Student ID</th>
