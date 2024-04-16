@@ -483,15 +483,17 @@ $(document).ready(function () {
 
 <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 		<script>
-		CKEDITOR.replace( 'description' );
+		CKEDITOR.replace( 'description');
 		</script>
-        		<script>
+        <script>
 		CKEDITOR.replace( 'description13' );
 		</script>
 
 </script>
-        		<script>
+        <script>
 		CKEDITOR.replace( 'description1' );
+        CKEDITOR.replace( 'description2' );
+        CKEDITOR.replace( 'description3' );
 		</script>
 <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 <script>

@@ -55,6 +55,8 @@ $query = "SELECT * FROM content";
 $query_run = mysqli_query($conn, $query);
 $missions = array();
 
+$counterid = "";
+
 if (mysqli_num_rows($query_run) > 0) {
     while ($row = mysqli_fetch_assoc($query_run)) {
         $missions[] = $row;
@@ -102,7 +104,7 @@ if (mysqli_num_rows($query_run) > 0) {
                         </div>
                         <div class="form-group">
                             <label for="missionContent">Content</label>
-                            <textarea class="form-control" id="description" name="missionContent" rows="5"><?php echo $mission['content']; ?></textarea>
+                            <textarea class="form-control" id="<?php echo "description" . $counterid; ?>" name="missionContent" rows="5"><?php echo $mission['content']; ?></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -113,7 +115,7 @@ if (mysqli_num_rows($query_run) > 0) {
             </div>
         </div>
     </div>
-<?php } ?>
+<?php $counterid++; } ?>
 
 
     
