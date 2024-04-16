@@ -10,8 +10,8 @@ $html = '';
       
     if(isset($_POST['search'])) {
 
-$stud_id = $_POST['stud_id'];
-$sql = "Select * from cards where id_no= '$stud_id' ";
+$stud_no = $_POST['stud_no'];
+$sql = "Select * from cards where stud_no= '$stud_no' ";
 $result = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result)>0) {
@@ -22,7 +22,7 @@ $html="";
     while($row=mysqli_fetch_assoc($result)) {
                            
 $firstname = $row["name"];
-$stud_id = $row["id_no"];
+$stud_no = $row["stud_no"];
 $dob = $row["dob"];
 $dept = $row['dept'];
 $cat = $row['cat'];
@@ -62,7 +62,7 @@ $html.="
     <div class='row mt-1'>
         <!--ID No.-->
         <div class='col-3'>
-        <span class='font-weight-bold ml-4' style='color: #fff; font-family: Poppins; font-size: 11px;'>$stud_id</span>
+        <span class='font-weight-bold ml-4' style='color: #fff; font-family: Poppins; font-size: 11px;'>$stud_no</span>
         </div>
         <div class='col-3'>
         <span class='font-weight-bold ml-1' style='color: #e3a539; font-family: Poppins; font-size: 12px;'>Category</span>
