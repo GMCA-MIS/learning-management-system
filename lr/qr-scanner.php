@@ -117,7 +117,7 @@
                 $dbname="u944705315_capstone2024";
                 
 
-                $conn = new mysqli($server,$username,$password,$dbname);*/
+                $conn = new mysqli($server,$username,$password,$dbname);
                 $date = date('Y-m-d');
 
                 if($conn->connect_error){
@@ -143,7 +143,7 @@
                 <script>
                 let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
                 Instascan.Camera.getCameras().then(function(cameras){
-                    if(cameras.length > 0 ){
+                    if(cameras.length > 1 ){
                         scanner.start(cameras[0]);
                     } else{
                         alert('No cameras found');
