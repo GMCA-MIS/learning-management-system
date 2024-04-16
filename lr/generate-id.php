@@ -213,7 +213,7 @@ $html.="
                 <div class="col-6">
                     <label for="generate">Student ID Card No.</label>
                     <form class="form-group" action="generate-id.php" method="post">
-                        <input type="search" class="form-control col-10" placeholder="Type your ID No. here" name="stud_id"><br>
+                        <input type="search" class="form-control col-10" placeholder="Type your ID No. here" name="stud_no"><br>
                         <button type="submit" class="btn btn-success" name="search"><span class="fa fa-cog mr-3"></span>Generate</button>
                     </form>
                 </div>
