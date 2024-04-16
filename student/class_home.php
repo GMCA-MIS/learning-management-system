@@ -142,7 +142,7 @@ $class_row = mysqli_fetch_array($class_query);
 
                         function getQuizzesDeadlines($conn, $get_id)
                         {
-                            $query = "SELECT * FROM class_quiz WHERE teacher_class_id = '$get_id' AND deadline >= CURDATE() ORDER BY deadline ASC";
+                            $query = "SELECT * FROM class_quiz INNER JOIN quiz ON class_quiz.quiz_id = quiz.quiz_id  WHERE teacher_class_id = '$get_id' AND deadline >= CURDATE() ORDER BY deadline ASC";
                             $result = mysqli_query($conn, $query);
                             return mysqli_fetch_all($result, MYSQLI_ASSOC);
                         }
@@ -192,7 +192,7 @@ $class_row = mysqli_fetch_array($class_query);
                                                 echo "<li class='list-group-item'>";
                                                 echo "<div class='row'>";
                                                 echo "<div class='col'>";
-                                                echo "{$quiz['quiz_id']}";
+                                                echo "{$quiz['quiz_title']}";
                                                 echo "</div>";
                                                 echo "</div>";
                                                 echo "<div class='row'>";
