@@ -242,7 +242,7 @@ $html.="
                 .then(function (dataUrl) {
                     var img = new Image();
                     img.src = dataUrl;
-                    downloadURI(dataUrl, "id-card.png")
+                    downloadURI(dataUrl, 'id-card.png')
                 })
                 .catch(function (error) {
                     alert('Oops, something went wrong.', error);
@@ -261,7 +261,7 @@ $html.="
             document.body.removeChild(link);
             delete link;
         }
-        
+
         </script>
 
 <?php
