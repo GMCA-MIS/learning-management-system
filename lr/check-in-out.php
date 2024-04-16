@@ -47,6 +47,6 @@
 		$_SESSION['error'] = 'Please scan your QR Code number';
 } 
 header("location: qr-scanner.php");
-	   
+	
+
 $conn->close();
-?>
