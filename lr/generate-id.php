@@ -231,6 +231,41 @@ $html.="
             </div>
         </div>
 
+        <!--Download button script-->
+    <script>
+
+        function kingDownload() {
+
+            var node = document.getElementById('mycard');
+
+            domtoimage.toPng(node)
+                .then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    downloadURI(dataUrl, "id-card.png")
+                })
+                .catch(function (error) {
+                    alert('Oops, something went wrong.', error);
+                });
+
+        }
+
+
+
+        function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+        }
+
+
+
+        </script>
+
 <?php
     include('includes/scripts.php');
     include('includes/footer.php');
