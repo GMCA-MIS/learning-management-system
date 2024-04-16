@@ -261,9 +261,7 @@ $html.="
             document.body.removeChild(link);
             delete link;
         }
-
-
-
+        
         </script>
 
 <?php
