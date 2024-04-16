@@ -53,6 +53,7 @@ if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
             // Access the columns by their names
             $student_id = $row['student_id'];
+            $location = $row['location'];
             $username = $row['username'];
             $password = $row['password'];
             $firstname = $row['firstname'];
@@ -60,6 +61,7 @@ if ($result) {
             $location = $row['location'];
             $picture = $row['picture'];
             $dob = $row['dob'];
+            $pob = $row['pob'];
             $email = $row['email'];
 
 
@@ -116,6 +118,20 @@ if ($result) {
                                     <h2 style="color: black;">General Information</h2>
                                 </div>
                                 <hr>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <span class="info-label">Student ID:</span>
+                                        <?php echo $student_id; ?>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <span class="info-label">LRN:</span>
+                                        <?php echo $username; ?>
+                                    </label>
+                                </div>
+                                
 
                                 <div class="form-group">
                                     <label class="form-label">
@@ -124,6 +140,17 @@ if ($result) {
                                     </label>
                                 </div>
 
+
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <span class="info-label">Address:</span>
+                                        <?php echo $location; ?>
+                                    </label>
+                                </div>
+                                
+
+                                
                                 <div class="form-group">
                                     <label class="form-label">
                                         <span class="info-label">Date of Birth:</span>
@@ -131,6 +158,13 @@ if ($result) {
                                             $dob ; 
                                             echo date_create($dob)->format('F d, Y');
                                         ?>
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <span class="info-label">Place of Birth:</span>
+                                        <?php echo $pob; ?>
                                     </label>
                                 </div>
 
