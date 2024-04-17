@@ -165,6 +165,10 @@
                     document.getElementById('text').value=c;
                     //document.forms[0].submit();
                 });
+
+                $( document ).ready(function() {
+                                $('#myModal').modal('show')  
+                            });
                 </script>
 
                 <!--Time-->
@@ -178,10 +182,6 @@
                 $(function(){
                 setInterval(updateTime, 1000);
                 });
-
-                $( document ).ready(function() {
-                                $('#myModal').modal('show')  
-                            });
                 </script>
 
                 <!--Script for DataTable-->
