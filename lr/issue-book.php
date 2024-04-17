@@ -130,15 +130,29 @@
                 });
                 </script>
 
-
+                <!--Script for DataTable-->
                 <script>
-                new DataTable('#example1');
+                    new DataTable('#example1');
                 </script>
 
-            </tbody>
-            </table>
-          </div>
-    </div>
+
+                <!--Display DataTable-->
+                <div class="table-striped">
+                    <table id="example1" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Book Number</th>
+                            <th>Book Name</th>
+                            <th>Borrower's ID</th>
+                            <th>Borrowed Date</th>
+                            <th>Return Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    
+                    </table>
+                </div>
+            </div>
 
 
 
