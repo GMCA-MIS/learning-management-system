@@ -54,3 +54,9 @@
 
         </nav>
         <!-- End of Topbar -->
+
+
+
+<?php
+    include('includes/footer.php');
+?>
