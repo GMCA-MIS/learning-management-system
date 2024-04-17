@@ -51,10 +51,12 @@ if ($_POST["password"] !== $_POST["password_confirmation"]) {
     die("Passwords must match");
 }
 
-$password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 // Update teacher table if the user is found in teacher table
 if ($userTeacher !== null) {
+
+    $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
     $sqlUpdateTeacher = "UPDATE teacher
             SET password = ?,
                 reset_token_hash = NULL,
@@ -67,6 +69,9 @@ if ($userTeacher !== null) {
 }
 
 if ($userStudent !== null) {
+
+    $password_hash = md5($_POST["password"]);
+
     $sqlUpdateStudent = "UPDATE student
             SET password = ?,
                 reset_token_hash = NULL,
@@ -75,10 +80,13 @@ if ($userStudent !== null) {
     $stmtUpdateStudent = $mysqli->prepare($sqlUpdateStudent);
     $stmtUpdateStudent->bind_param("ss", $password_hash, $userStudent["student_id"]);
     $stmtUpdateStudent->execute();
-    echo "<script>alert('Password updated. You can now login to your account.'); window.location.href = '../newlogin.php';</script>";
+    echo "<script>alert(' Password updated. You can now login to your account.'); window.location.href = '../newlogin.php';</script>";
 }
 
 if ($userCoordinator !== null) {
+
+    $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
     $sqlUpdateCoordinator = "UPDATE coordinators
             SET password = ?,
                 reset_token_hash = NULL,

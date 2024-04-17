@@ -154,7 +154,7 @@ include('includes/navbar.php');
                     <?php
 // Fetch data from the database
 
-$query = "SELECT tc.teacher_class_id, t.firstname, t.lastname, s.subject_code, cl.class_name, s.subject_title
+$query = "SELECT tc.teacher_id,tc.teacher_class_id, t.firstname, t.lastname, s.subject_code, cl.class_name, s.subject_title
     FROM teacher_class tc
     INNER JOIN teacher t ON tc.teacher_id = t.teacher_id
     INNER JOIN subject s ON tc.subject_id = s.subject_id
@@ -180,6 +180,7 @@ $query_run = mysqli_query($conn, $query);
         <?php
         if (mysqli_num_rows($query_run) > 0) {
             while ($row = mysqli_fetch_assoc($query_run)) {
+                 $teacher_idz = $row["teacher_id"];
                 ?>
                 <tr>
                     <td style="display:none;"><?php echo $row['teacher_class_id']; ?></td>
@@ -188,7 +189,7 @@ $query_run = mysqli_query($conn, $query);
                     <td><?php echo $row['class_name']; ?></td>
                     <td><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></td>
              
-                    <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#view_scheduleModal">View Schedule</button>
+                    <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="<?php echo "#modal".$teacher_idz ?>">View Schedule</button>
                     </td>
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                         <td>
@@ -270,7 +271,7 @@ $query_run = mysqli_query($conn, $query);
                         </div>
                         
                         <!--Schedule Pop Up Modal -->
-                        <div class="modal fade" id="view_scheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="<?php echo "modal".$teacher_idz; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -283,7 +284,27 @@ $query_run = mysqli_query($conn, $query);
                                     <form action="manage-assigncourses-function.php" method = "POST"> 
 
                                         <div class="modal-body">
-                                                    Schedule List
+
+                                        <table>
+                                                <tr>
+                                                    <th>Class</th>
+                                                    <th>Day</th>
+                                                    <th>Time</th>
+                                                </tr>
+                                                
+                                                <?php
+                                                $querys = mysqli_query($conn, "SELECT * FROM teacher_class tc INNER JOIN `class` c ON tc.class_id = c.class_id WHERE tc.teacher_id = ". $teacher_idz );
+                                                while ($rows = mysqli_fetch_array($querys)) {
+                                                ?>
+                                                <tr>
+                                                    <td> <?php echo $rows['class_name'] ?> </td>
+                                                    <td> <?php echo $rows['schedule_day'] ?> </td>
+                                                    <td> <?php echo $rows['schedule_time'] ?> </td>
+                                                
+                                                </tr>
+                                                <?php } ?>
+                                              
+                                                </table> 
                                         </div> <!-- modal body -->
                                     </form>
                                     </div>

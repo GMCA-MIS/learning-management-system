@@ -239,13 +239,13 @@ include('dbcon.php');
 
                                             <div class="mb-2">
                                                 <label for="start_datetime" class="control-label">Start</label>
-                                                <input type="datetime-local"
+                                                <input type="datetime-local" 
                                                     class="form-control form-control-sm rounded-2 flatpickr1" name="start_datetime"
                                                     id="start_datetime" required placeholder="Enter Start Date">
                                             </div>
                                             <div class="mb-2">
                                                 <label for="end_datetime" class="control-label">End</label>
-                                                <input type="datetime-local"
+                                                <input type="datetime-local" 
                                                     class="form-control form-control-sm rounded-2 flatpickr1" name="end_datetime"
                                                     id="end_datetime" required  placeholder="Enter End Date">
                                             </div>
@@ -535,6 +535,24 @@ include('dbcon.php');
                             // Reset the end datetime value to the start datetime
                             endDatetimeInput.value = startDatetimeInput.value;
                         }
+                        
+                        // START DATE VALIDATE TO MINIMUM DAY
+                        var d = new Date,
+                            dformat = [d.getFullYear()+1,
+                                    d.getMonth(),
+                                    d.getDate()].join('-')+' '+
+                                    [('0'+d.getHours()).substr(-2),
+                                    ('0'+ d.getMinutes()).substr(-2)].join(':');
+
+                        if(startDate < Date.now()){
+                            
+                            startDatetimeInput.value = dformat; 
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Cannot select previous Date ',
+                            });
+                        }
                     });
 
                     // Add an event listener to the end datetime input to check when its value changes
@@ -586,6 +604,25 @@ include('dbcon.php');
 
                             // Reset the end datetime value to the start datetime
                             editEndDatetimeInput.value = editStartDatetimeInput.value;
+                            
+                        }
+
+                        // START DATE VALIDATE TO MINIMUM DAY
+                        var d = new Date,
+                            dformat = [d.getFullYear()+1,
+                                    d.getMonth(),
+                                    d.getDate()].join('-')+' '+
+                                    [('0'+d.getHours()).substr(-2),
+                                    ('0'+ d.getMinutes()).substr(-2)].join(':');
+
+                        if(startDate < Date.now()){
+                            
+                            editStartDatetimeInput.value = dformat; 
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Cannot select previous Date ',
+                            });
                         }
                     });
 
