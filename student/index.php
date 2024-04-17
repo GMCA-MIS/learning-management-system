@@ -21,13 +21,14 @@ include('dbcon.php');
                     </button>
                 
                  <!-- Page Heading -->
+                    <!--
                     <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top: 27px; margin-left: 10px;">
                         <h1 class="h3 mb-0 text-gray-800">Classes</h1>
                         <div class="d-sm-flex" style="margin-left: 1200px;">
                             <a href="../landingpage/reenrollment.php?id=<?php echo urlencode($row['student_id']); ?>" class="btn btn-secondary">Enroll</a>
                         </div>
                     </div>
-
+                    -->
                   <!-- Topbar Search 
                   <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
