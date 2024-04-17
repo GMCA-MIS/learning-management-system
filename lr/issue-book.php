@@ -44,7 +44,7 @@
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4"
                 style="margin-top: 27px; margin-left: 10px;">
-                <h1 class="h3 mb-0 text-gray-800">Book Issuance</h1>
+                <h1 class="h3 mb-0 text-gray-800">Book Borrowing</h1>
             </div>
 
             <!-- Topbar Navbar -->
