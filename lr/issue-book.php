@@ -113,11 +113,9 @@
                 $query = $conn->query($sql);
 
                 if(isset($_POST["book_id"])){
-                    echo "<script>
-                            $( document ).ready(function() {
-                                $('#myModal').modal('show')  
-                            });
-                          </script>";
+                    echo '<div class="alert alert-success">
+                            <strong>Success!</strong> Indicates a successful or positive action.
+                          </div>';
                 } 
                   while ($row = $query->fetch_assoc()){
 
