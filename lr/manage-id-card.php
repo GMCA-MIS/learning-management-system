@@ -303,7 +303,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Studen Number</th>
+                                        <th>Student Number</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
