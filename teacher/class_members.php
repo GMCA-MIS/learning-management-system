@@ -9,6 +9,49 @@ include('includes/sidebar.php');
 include('dbcon.php');
 include('initialize.php');
 
+if(isset($_GET['addstudent'])){
+
+
+
+    
+    $teacher_id = $_SESSION['teacher_id'];
+    $student_id1 = $_GET['studentid'];
+    $teacher_class_id =  $_GET['id'];    
+    $idclaz =  $_GET['classid'];
+    $subjid =  $_GET['subjid'];
+
+
+
+    
+
+    
+   $sql= "INSERT INTO teacher_class_student (teacher_class_id, student_id, teacher_id) VALUES ('$teacher_class_id', '$student_id1', $teacher_id)";
+    if ($conn->query($sql) === TRUE) {
+
+    }    
+    $sql= "INSERT INTO student_class (class_id, student_id, `status`) VALUES ('$idclaz', '$student_id1', 1)";
+   
+
+    if ($conn->query($sql) === TRUE) {
+
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+
+        echo "<script>Swal.fire({
+            title: 'success',
+            text: 'Successfully added the Student!',
+            icon: 'Success',
+        }).then(function() {
+
+           // window.location = 'class_members.php?id=$teacher_class_id&subjid=$subjid&classid=$idclaz';
+            
+        });</script>";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+
+ 
+}
 
 ?>
 
@@ -125,9 +168,9 @@ include('initialize.php');
                                                     <td> <?php echo $rows1['username']; ?> </td>
                                                     <td> <?php echo $rows1['firstname'] . " " . $rows1['lastname']; ?> </td>
                                                     <td> 
-                                                        <form action="class_members_functions_add.php" method="get"> 
+                                                        <form action="" method="get"> 
                                                             <input type="hidden" name="addstudent" value="set" />
-                                                            <input type="hidden" name="classid" value="<?php echo $class_id ?>" />
+                                                            <input type="hidden" name="classid" value="<?php echo $classid ?>" />
                                                             <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
                                                             <input type="hidden" name="subjid" value="<?php echo $_GET['subjid'] ?>" />
 
