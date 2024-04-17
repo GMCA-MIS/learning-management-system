@@ -113,9 +113,11 @@
                 $query = $conn->query($sql);
 
                 if(isset($_POST["book_id"])){
-                    echo '<div class="alert alert-success">
-                            <strong>Success!</strong> Indicates a successful or positive action.
-                          </div>';
+                    echo "<script>
+                            $( document ).ready(function() {
+                                $('#myModal').modal('show')  
+                            });
+                          </script>";
                 } 
                   while ($row = $query->fetch_assoc()){
 
@@ -161,7 +163,7 @@
 
                 scanner.addListener('scan',function(c){
                     document.getElementById('text').value=c;
-                    document.forms[0].submit();
+                    //document.forms[0].submit();
                 });
                 </script>
 
