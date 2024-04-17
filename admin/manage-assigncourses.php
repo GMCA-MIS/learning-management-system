@@ -284,14 +284,27 @@ $query_run = mysqli_query($conn, $query);
                                     <form action="manage-assigncourses-function.php" method = "POST"> 
 
                                         <div class="modal-body">
+
+                                        <table>
+                                                <tr>
+                                                    <th>Class</th>
+                                                    <th>Day</th>
+                                                    <th>Time</th>
+                                                </tr>
+                                                
                                                 <?php
                                                 $querys = mysqli_query($conn, "SELECT * FROM teacher_class tc INNER JOIN `class` c ON tc.class_id = c.class_id WHERE tc.teacher_id = ". $teacher_idz );
                                                 while ($rows = mysqli_fetch_array($querys)) {
                                                 ?>
-                                                <p><b> <?php echo $rows['schedule_day'] . ' </b> |  ' . $rows['class_name'] . ' | '. $rows['schedule_time']; ?></p>
-                                                <hr>
+                                                <tr>
+                                                    <td> <?php echo $rows['class_name'] ?> </td>
+                                                    <td> <?php echo $rows['schedule_day'] ?> </td>
+                                                    <td> <?php echo $rows['schedule_time'] ?> </td>
+                                                
+                                                </tr>
                                                 <?php } ?>
-
+                                              
+                                                </table> 
                                         </div> <!-- modal body -->
                                     </form>
                                     </div>
