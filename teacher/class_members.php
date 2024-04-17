@@ -9,42 +9,6 @@ include('includes/sidebar.php');
 include('dbcon.php');
 include('initialize.php');
 
-if(isset($_GET['addstudent'])){
-
-
-
-    
-    $teacher_id = $_SESSION['teacher_id'];
-    $student_id1 = $_GET['studentid'];
-    $teacher_class_id =  $_GET['id'];
-
-    
-    $sql= "INSERT INTO teacher_class_student (teacher_class_id, student_id, teacher_id) VALUES ('$teacher_class_id', '$student_id1', $teacher_id)";
-   // if ($conn->query($sql) === TRUE) {
-
-    //}    
-    //$sql= "INSERT INTO student_class (class_id, student_id, `status`) VALUES ('$teacher_class_id', '$student_id1', 1)";
-   
-
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: 'Course assigned successfully to teacher!'
-        });
-
-        // Redirect to manage-assigncourses.php after 2 seconds
-        setTimeout(function() {
-        }, 2000);
-    </script>";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-
- 
-}
 
 ?>
 
@@ -135,37 +99,49 @@ if(isset($_GET['addstudent'])){
                                                 <tr>
                                                     <th>Student ID</th>
                                                     <th>Name</th>
-                                                    <th>asd</th>
+                                                    <th></th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
+                                                
+                                                
+                                                $classid = $_GET['classid'];
+                                                $subjid = $_GET['subjid'];
+                                                $querys1 = mysqli_query($conn, "SELECT *,s.student_id as studno  FROM student s 
+                                                LEFT JOIN teacher_class tc ON s.class_id = tc.class_id
+                                                WHERE s.class_id = " . $classid . " and tc.subject_id = " . $subjid . "
+
+                                                 ;");
+                                                while ($rows1 = mysqli_fetch_array($querys1)) {
 
 
-                                                $querys = mysqli_query($conn, "SELECT subject_id FROM teacher_class WHERE teacher_class_id = " . $get_id . ";");
-                                                $rows = mysqli_fetch_array($querys);
-                                                $subject_id = $rows['subject_id'];
-
-                                                $querys = mysqli_query($conn, "SELECT *,s.student_id as studno FROM student s LEFT JOIN teacher_class_student tcs  ON s.student_id = tcs.student_id LEFT JOIN teacher_class tc ON tcs.teacher_class_id = tc.teacher_class_id WHERE s.status='1' and tcs.teacher_class_id IS NULL or tc.subject_id != " . $subject_id . ";");
-                                                while ($rows = mysqli_fetch_array($querys)) {
+                                                    $querys2 = "SELECT *   FROM  teacher_class_student WHERE student_id = " . $rows1['studno'] .";";
+                                                    $results2 = mysqli_query($conn, $querys2);
+                                                    if ($results2->num_rows <= 0) {
                                                 ?>
                                                     <tr>
-                                                    <td> <?php echo $rows['studno']; ?> </td>
-                                                    <td> <?php echo $rows['firstname'] . $rows['lastname']; ?> </td>
+                                                    <td> <?php echo $rows1['username']; ?> </td>
+                                                    <td> <?php echo $rows1['firstname'] . " " . $rows1['lastname']; ?> </td>
                                                     <td> 
-                                                        <form action="" method="get"> 
-                                                            <input type="hidden" name="addstudent" value="<?php echo $_GET['id'] ?>" />
+                                                        <form action="class_members_functions_add.php" method="get"> 
+                                                            <input type="hidden" name="addstudent" value="set" />
+                                                            <input type="hidden" name="classid" value="<?php echo $class_id ?>" />
                                                             <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
+                                                            <input type="hidden" name="subjid" value="<?php echo $_GET['subjid'] ?>" />
 
-                                                            <input type="hidden" name="studentid" hidden value="<?php echo $rows['studno'] ?>" />
+                                                            
+                                                            <input type="hidden" name="studentid" hidden value="<?php echo $rows1['studno'] ?>" />
                                                             <button type="submit" name="" class="btn btn-primary">ADD</button>
 
                                                         </form>
                                                     </td>
                                                 
                                                     </tr>
-                                                <?php } ?>
+                                                <?php } 
+                                                }
+                                                ?>
                                                 </tbody>  
                                             </table> 
                                         </div> <!-- modal body -->

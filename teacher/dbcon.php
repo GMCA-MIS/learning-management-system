@@ -5,6 +5,14 @@ $username = "u944705315_capstone2024";
 $password = "Capstone@2024.";
 $dbname = "u944705315_capstone2024";
 
+
+// Database connection parameters
+//$servername = "localhost";
+//$username = "root";
+//$password = "";
+//$dbname = "u944705315_capstone2024";
+
+
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
