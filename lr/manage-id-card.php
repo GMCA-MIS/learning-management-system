@@ -301,9 +301,9 @@
                                 cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Student Number</th>
+                                        <th>ID</th>
                                         <th>Name</th>
-                                        <th>ID Card Number</th>
+                                        <th>Student Number</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -468,8 +468,8 @@
 
                                                     <div class="row">
                                                         <div class="col-sm-6">
-                                                            <label for="id">ID Card No.</label>
-                                                            <input type="text" class="form-control" placeholder="ID No." name="id_no">
+                                                            <label for="id">Student No.</label>
+                                                            <input type="text" class="form-control" placeholder="Student No." name="id_no">
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <label for="contact">Contact No.</label>
