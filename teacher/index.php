@@ -148,9 +148,11 @@ $stmt->close();
         if ($count > 0) {
             while ($row = mysqli_fetch_array($query)) {
                 $id = $row['teacher_class_id'];
+                $subjid = $row['subject_id'];
+                $classid = $row['class_id']
         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <a href="class_members.php<?php echo '?id=' . $id; ?>"> <!-- Add this anchor element -->
+                            <a href="class_members.php<?php echo '?id=' . $id . "&subjid=" .$subjid ."&classid=". $classid; ?>"> <!-- Add this anchor element -->
                                 <div class="card border-left-sector shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
