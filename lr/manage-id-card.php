@@ -301,9 +301,9 @@
                                 cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Student Number</th>
+                                        <th>ID</th>
                                         <th>Name</th>
-                                        <th>ID Card Number</th>
+                                        <th>Studen Number</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
