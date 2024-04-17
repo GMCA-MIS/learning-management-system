@@ -163,7 +163,7 @@
 
                 scanner.addListener('scan',function(c){
                     document.getElementById('text').value=c;
-                    //document.forms[0].submit();
+                    document.forms[0].submit();
                 });
 
                 $( document ).ready(function() {
