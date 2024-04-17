@@ -149,7 +149,7 @@ if (isset($_POST['assign_course'])) {
     $schedule_time = $_POST['schedule_time']; // Array of times
 
     // Check if the course is already assigned
-    $query = mysqli_query($conn, "SELECT * FROM teacher_class WHERE subject_id = '$subject_id' AND class_id = '$class_id' AND teacher_id = '$teacher_id' AND school_year_id = '$school_year_id'") or die(mysqli_error());
+    $query = mysqli_query($conn, "SELECT * FROM teacher_class WHERE subject_id = '$subject_id' AND class_id = '$class_id' AND school_year_id = '$school_year_id'") or die(mysqli_error());
     $count = mysqli_num_rows($query);
 
     if ($count > 0) {
@@ -158,7 +158,7 @@ if (isset($_POST['assign_course'])) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Subject is already assigned.'
+                text: 'A teacher already assigned for this Subject for this Class.'
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Redirect to manage-assigncourses.php
