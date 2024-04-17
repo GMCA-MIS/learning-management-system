@@ -145,8 +145,8 @@
                             <th>Book Name</th>
                             <th>Borrower's ID</th>
                             <th>Borrowed Date</th>
-                            <th>Return Date</th>
                             <th>Status</th>
+                            <th>Returned Date</th>
                         </tr>
                     </thead>
                     
