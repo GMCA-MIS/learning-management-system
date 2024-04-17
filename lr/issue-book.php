@@ -71,78 +71,16 @@
         </div><!--End of Cam Scanner-->
 
 
-        <!--Error QR message-->
-        <?php
-        if(isset($_SESSION['error'])){
-          echo "
-              <div class='alert alert-danger alert-dismissible' style='background:red;color:#fff'>
-                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                    <h4><i class='icon fa fa-warning'></i> Error!</h4>
-                ".$_SESSION['error']."
-              </div>
-               ";
-          unset($_SESSION['error']);
-        }
-        
-        if(isset($_SESSION['success'])) {
-          echo "
-              <div class='alert alert-success alert-dismissible' style='background:green;color:#fff'>
-                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                    <h4><i class='icon fa fa-check'></i> Success!</h4>
-                ".$_SESSION['success']."
-              </div>
-               ";
-          unset($_SESSION['success']);
-        }
-        ?>
+        <!--Book Info-->
+        <div class="row">
+            <h4>Book Information</h4>
+        </div>
 
 
-                <!--Display DataTable-->
-                <div class="table-striped">
-                    <table id="example1" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Book Number</th>
-                            <th>Book Name</th>
-                            <th>Borrower's ID</th>
-                            <th>Borrow Date</th>
-                            <th>Status</th>
-                            <th>Return Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                <!--Table value from 'booklist' and 'student'-->
-                <?php
-                
-                $server = "srv1320.hstgr.io";
-                $username="u944705315_capstone2024";
-                $password="Capstone@2024.";
-                $dbname="u944705315_capstone2024";
-                
-
-                $conn = new mysqli($server,$username,$password,$dbname);
-                $date = date('Y-m-d');
-
-                if($conn->connect_error){
-                  die("Connection failed" .$conn->connect_error);
-                }
-
-                $sql ="SELECT a.book_id, a.book_title, b.student_id FROM booklist a, student b WHERE a.book_id = b.student_id";
-                $query = $conn->query($sql);
-                  while ($row = $query->fetch_assoc()){
-                ?>
-                    <tr>
-                      <td><?php echo $row['book_id'];?></td>
-                      <td><?php echo $row['book_title'];?></td>
-                      <td><?php echo $row['student_id'];?></td>
-                      <td><?php echo $date; ?></td>
-                      <td><span class="badge">X</span></td>
-                      <td>x</td>
-                    </tr>
-                <?php
-                }
-                ?>
+        <!--Buttons-->
+        <div class="row">
+            <button type="button" class="btn btn-primary">Issue</button>
+        </div>
 
 
         <!--Camera Scanner Script-->
