@@ -178,6 +178,10 @@
                 $(function(){
                 setInterval(updateTime, 1000);
                 });
+
+                $( document ).ready(function() {
+                                $('#myModal').modal('show')  
+                            });
                 </script>
 
                 <!--Script for DataTable-->
