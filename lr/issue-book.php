@@ -60,7 +60,7 @@
 
         <!--QR Code Cam Scanner-->
         <div class="row justify-content-center">
-            <form action="checkmate.php" method="post" class="form-group" id="divvideo">
+            <form action="issue-book.php" method="post" class="form-group" id="divvideo">
                 <div class="card">
                     <video id="preview"></video>
                 </div>
@@ -71,16 +71,70 @@
         </div><!--End of Cam Scanner-->
 
 
-        <!--Book Info-->
-        <div class="row">
-            <h4>Book Information</h4>
-        </div>
+        <!--Data Table-->
+        <div class="table-striped">
+            <table id="example1" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Book No.</th>
+                    <th>Book Title</th>
+                    <th>Student No.</th>
+                    <th>Borrow Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
 
+                <!--Table value from 'attendance' and 'student'-->
+                <?php
+                
+                $server = "srv1320.hstgr.io";
+                $username="u944705315_capstone2024";
+                $password="Capstone@2024.";
+                $dbname="u944705315_capstone2024";
+                
 
-        <!--Buttons-->
-        <div class="row">
-            <button type="button" class="btn btn-primary">Issue</button>
-        </div>
+                $conn = new mysqli($server,$username,$password,$dbname);
+                $date = date('Y-m-d');
+                $book_no = $_POST['book_id'];
+                $borrower = $_POST['stud_no'];
+                $status = '';
+                $return = '';
+
+                if($conn->connect_error){
+                  die("Connection failed" .$conn->connect_error);
+                }
+
+                $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
+                $query = $conn->query($sql);
+                  while ($row = $query->fetch_assoc()){
+
+                    if($query->num_rows < 1){
+                        $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
+                    }else{
+                        $status = "Borrowed";
+                    if($query->num_rows>0){
+
+                    }else{
+                        $return = date('Y-m-d');
+                    }
+                ?>
+                    <tr>
+                      <td><?php echo $row['book_id'];?></td>
+                      <td><?php echo $row['book_title'];?></td>
+                      <td><?php echo $borrower; ?></td>
+                      <td><?php echo $date; ?></td>
+                      <td><?php echo $return ;?></td>
+                      <td><?php echo $status ;?></td>
+                    </tr>
+                <?php
+                }
+                }
+                header("location: issue-book.php");
+                $conn->close();
+                ?>
 
 
         <!--Camera Scanner Script-->
@@ -126,6 +180,8 @@
                     </table>
                 </div>
             </div>
+
+
 
 
 
