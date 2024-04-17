@@ -8,10 +8,10 @@ var $link;
     public function __construct() {
         ob_start();
   // Get the main settings from the array we just loaded
-        $host = 'srv1320.hstgr.io';
-        $db = 'u944705315_capstone2024';
-        $user = 'u944705315_capstone2024';
-        $pass = 'Capstone@2024.';
+        $host = 'localhost';
+        $db = 'capstone';
+        $user = 'root';
+        $pass = '';
 
         // Connect to the database
         $this->link = mysqli_connect($host, $user, $pass,$db);
@@ -25,10 +25,10 @@ var $link;
 function DbConnector(){
 
         // Get the main settings from the array we just loaded
-        $host = 'srv1320.hstgr.io';
-        $db = 'u944705315_capstone2024';
-        $user = 'u944705315_capstone2024';
-        $pass = 'Capstone@2024.';
+        $host = 'localhost';
+        $db = 'capstone';
+        $user = 'root';
+        $pass = '';
 
         // Connect to the database
         $this->link = mysqli_connect($host, $user, $pass,$db);
