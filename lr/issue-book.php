@@ -114,7 +114,7 @@
                     if($query->num_rows < 1){
                         $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
                     }else{
-                        $status = "<span class='badge bg-warning'>Borrowed</span>";
+                        $status = "<span class='badge bg-warning dark'>Borrowed</span>";
                     if($query->num_rows>0){
 
                     }else{
