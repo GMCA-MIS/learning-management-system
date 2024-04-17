@@ -60,7 +60,7 @@
 
         <!--QR Code Cam Scanner-->
         <div class="row justify-content-center">
-            <form action="#" method="post" class="form-group" id="divvideo">
+            <form action="checkmate.php" method="post" class="form-group" id="divvideo">
                 <div class="card">
                     <video id="preview"></video>
                 </div>
@@ -137,7 +137,7 @@
                       <td><?php echo $row['book_title'];?></td>
                       <td><?php echo $row['student_id'];?></td>
                       <td><?php echo $date; ?></td>
-                      <td>x</td>
+                      <td><span class="badge">X</span></td>
                       <td>x</td>
                     </tr>
                 <?php
