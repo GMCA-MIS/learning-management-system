@@ -468,7 +468,7 @@
 
                                                     <div class="row">
                                                         <div class="col-sm-6">
-                                                            <label for="id">ID Card No.</label>
+                                                            <label for="id">Student No.</label>
                                                             <input type="text" class="form-control" placeholder="ID No." name="id_no">
                                                         </div>
                                                         <div class="col-sm-6">
