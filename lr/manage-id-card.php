@@ -469,7 +469,7 @@
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <label for="id">Student No.</label>
-                                                            <input type="text" class="form-control" placeholder="ID No." name="id_no">
+                                                            <input type="text" class="form-control" placeholder="Student No." name="id_no">
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <label for="contact">Contact No.</label>
