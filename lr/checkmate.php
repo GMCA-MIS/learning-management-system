@@ -35,7 +35,7 @@
 				$query=$conn->query($sql);
 				$_SESSION['success'] = 'Successfully Returned Book: '.$row['book_id'].' '.$row['book_title'];
 			}else{
-					$sql = "INSERT INTO borrowed_books(stud_no,timein,logdate,status) VALUES ('$stud_no','$time','$date','0')";
+					$sql = "INSERT INTO borrowed_books(book_id, book_title, student_id,borrowed_date, status, returned_date) VALUES ('$book_no','','$date','0')";
 					if($conn->query($sql) ===TRUE){
 					 $_SESSION['success'] = 'Successfully Borrowed Book: '.$row['book_id'].' '.$row['book_title'];
 			 }else{

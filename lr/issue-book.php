@@ -105,9 +105,9 @@
                             <th>Book Number</th>
                             <th>Book Name</th>
                             <th>Borrower's ID</th>
-                            <th>Borrowed Date</th>
+                            <th>Borrow Date</th>
                             <th>Status</th>
-                            <th>Returned Date</th>
+                            <th>Return Date</th>
                         </tr>
                     </thead>
                     <tbody>
