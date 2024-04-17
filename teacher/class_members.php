@@ -8,6 +8,44 @@ include('includes/navbar.php');
 include('includes/sidebar.php');
 include('dbcon.php');
 include('initialize.php');
+
+if(isset($_GET['addstudent'])){
+
+
+
+    
+    $teacher_id = $_SESSION['teacher_id'];
+    $student_id1 = $_GET['studentid'];
+    $teacher_class_id =  $_GET['id'];
+
+    
+    $sql= "INSERT INTO teacher_class_student (teacher_class_id, student_id, teacher_id) VALUES ('$teacher_class_id', '$student_id1', $teacher_id)";
+   // if ($conn->query($sql) === TRUE) {
+
+    //}    
+    //$sql= "INSERT INTO student_class (class_id, student_id, `status`) VALUES ('$teacher_class_id', '$student_id1', 1)";
+   
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Course assigned successfully to teacher!'
+        });
+
+        // Redirect to manage-assigncourses.php after 2 seconds
+        setTimeout(function() {
+        }, 2000);
+    </script>";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+
+ 
+}
+
 ?>
 
        	 <!-- breadcrumb -->
@@ -74,11 +112,73 @@ include('initialize.php');
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_assignmentModal" >
-                    <i class="fa fa-plus" aria-hidden="true"></i> Add Student</button>
+                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_student" >
+                    <i class="fa fa-plus" aria-hidden="true"></i>Active Students </button>
+
+                <!-- add student function -->
+                <div class="modal fade " id="add_student" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg " role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Schedule</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+
+                                        <div class="modal-body">
+                                                
+                                            <table id="dataTableID" class="table table-bordered table table-striped" width="100%" cellspacing="0">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>Student ID</th>
+                                                    <th>Name</th>
+                                                    <th>asd</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+
+
+                                                $querys = mysqli_query($conn, "SELECT subject_id FROM teacher_class WHERE teacher_class_id = " . $get_id . ";");
+                                                $rows = mysqli_fetch_array($querys);
+                                                $subject_id = $rows['subject_id'];
+
+                                                $querys = mysqli_query($conn, "SELECT *,s.student_id as studno FROM student s LEFT JOIN teacher_class_student tcs  ON s.student_id = tcs.student_id LEFT JOIN teacher_class tc ON tcs.teacher_class_id = tc.teacher_class_id WHERE s.status='1' and tcs.teacher_class_id IS NULL or tc.subject_id != " . $subject_id . ";");
+                                                while ($rows = mysqli_fetch_array($querys)) {
+                                                ?>
+                                                    <tr>
+                                                    <td> <?php echo $rows['studno']; ?> </td>
+                                                    <td> <?php echo $rows['firstname'] . $rows['lastname']; ?> </td>
+                                                    <td> 
+                                                        <form action="" method="get"> 
+                                                            <input type="hidden" name="addstudent" value="<?php echo $_GET['id'] ?>" />
+                                                            <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
+
+                                                            <input type="hidden" name="studentid" hidden value="<?php echo $rows['studno'] ?>" />
+                                                            <button type="submit" name="" class="btn btn-primary">ADD</button>
+
+                                                        </form>
+                                                    </td>
+                                                
+                                                    </tr>
+                                                <?php } ?>
+                                                </tbody>  
+                                            </table> 
+                                        </div> <!-- modal body -->
+                                    </div>
+                                </div>
+                         </div>  
+
+
+
+
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    
                     </div>
 
                     <!-- Content Row -->
