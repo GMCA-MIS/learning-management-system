@@ -139,7 +139,7 @@ if (mysqli_num_rows($check_access_query) > 0) {
                     $id = $row['teacher_class_student_id'];
                 ?>
                 <tr>
-                    <td> <img src="<?php echo $row['location']; ?>" alt=""></td>
+                    <td> <img src="<?php echo $row['picture']; ?>" alt=""></td>
                     <td class ="rem"> <?php echo $row['firstname'] . ' ' . $row['lastname']; ?></td>
                     <td></td>
                 </tr>
