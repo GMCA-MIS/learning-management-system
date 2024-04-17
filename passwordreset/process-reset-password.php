@@ -80,7 +80,7 @@ if ($userStudent !== null) {
     $stmtUpdateStudent = $mysqli->prepare($sqlUpdateStudent);
     $stmtUpdateStudent->bind_param("ss", $password_hash, $userStudent["student_id"]);
     $stmtUpdateStudent->execute();
-    echo "<script>alert('Student Password updated. You can now login to your account.'); window.location.href = '../newlogin.php';</script>";
+    echo "<script>alert(' Password updated. You can now login to your account.'); window.location.href = '../newlogin.php';</script>";
 }
 
 if ($userCoordinator !== null) {
