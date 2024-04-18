@@ -123,11 +123,11 @@
                 if($query->num_rows < 1){
                     $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
 
-                    $row = $query->fetch_assoc();
-
                 //Get 'text' value and pass to $book_num variable
                 if(isset($_POST['book_id'])) {
                     $stud_num = $_POST['book_id'];
+
+                    $row = $query->fetch_assoc();
 
     
                 ?>
