@@ -119,19 +119,12 @@
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query = $conn->query($sql);
 
-                while ($row = $query->fetch_assoc()){
+                if($query->num_rows < 1){
+                    $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
 
-                    if($query->num_rows < 1){
-                        $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
-                    }else{
-                        $status = "<span class='badge bg-warning' style='color: #FFF;'>Borrowed</span>";
-                    if($query->num_rows>0){
+                    $row = $query->fetch_assoc();
 
-                    }else{
-                        $return = date('Y-m-d');
-                    }
-                } 
-                  
+    
                 ?>
                     <tr>
                       <td><?php echo $row['book_id'];?></td>
