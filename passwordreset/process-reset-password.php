@@ -74,7 +74,7 @@ if ($_POST["password"] !== $_POST["password_confirmation"]) {
         title: 'Passwords must match!',
         showConfirmButton: false
     }).then(function() {
-       // window.location = 'manage-id-card.php'; // Redirect to profile.php
+        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
     });
     </script>";
     
