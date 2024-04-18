@@ -117,13 +117,13 @@
                 if(isset($_POST["book_id"])){
                     echo '<div class="alert alert-success" role="alert">
                             <div class="row">
-                                <strong><div class="col-3">Book successfully scanned.</div></strong>
+                                <strong><div class="col">Book successfully scanned.</div></strong>
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <input type="text" placeholder="Enter Student No."></input>
-                                    <input type="submit" name="issue">Issue</input>
+                                    <input class="form-group" type="submit" name="issue"nvalue="Issue"></input>
                                 </div>
                             </div>
                           </div>';
