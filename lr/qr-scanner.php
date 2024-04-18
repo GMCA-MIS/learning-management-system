@@ -175,7 +175,7 @@
 
                 <script>
                    $(document).ready(function() {
-                        jq('#example1').DataTable();
+                        $('#example1').DataTable();
                     } );
 
 
