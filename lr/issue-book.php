@@ -67,7 +67,7 @@
                     <video id="preview"></video>
                 </div>
                 <div class="card">
-                    <input type="text" class="form-control" name="book_id" id="text"></input>
+                    <input type="text" class="form-control" name="book_id" id="text" data-toggle="modal" data-target="#myModal"></input>
                 </div>
             </form>
         </div><!--End of Cam Scanner-->
