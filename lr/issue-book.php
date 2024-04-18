@@ -125,7 +125,7 @@
 
                 //Get 'text' value and pass to $book_num variable
                 if(isset($_POST['book_id'])) {
-                    $stud_num = $_POST['book_id'];
+                    //$stud_num = $_POST['book_id'];
 
                     while ($row = $query->fetch_assoc()) {
 
