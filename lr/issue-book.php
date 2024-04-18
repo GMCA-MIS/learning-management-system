@@ -68,7 +68,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="book_id">
-                    <div class="input-group-append">
+                    <div class="input-group">
                         <button class="btn" style="background-color: teal; color: #FFF;" type="button">Issue</button>
                         <button class="btn" style="background-color: green; color: #FFF;" type="button">Return</button>
                     </div>
