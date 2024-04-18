@@ -113,8 +113,11 @@
                 $query = $conn->query($sql);
 
                 if(isset($_POST["book_id"])){
-                    echo '<div class="alert alert-primary" role="alert">
-                            A simple primary alert—check it out!
+                    echo '<div class="alert alert-info" role="alert">
+                            <div class="row">
+                                <div class="col-3">Book No.</div>
+                                <div class="col-9">Book Title</div>
+                            </div>
                           </div>';
 
                           while ($row = $query->fetch_assoc()){
