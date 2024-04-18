@@ -127,7 +127,7 @@
                 if(isset($_POST['book_id'])) {
                     $stud_num = $_POST['book_id'];
 
-                    while ($row = $result -> fetch_row()) {
+                    while ($row = $query->fetch_assoc()) {
 
     
                 ?>
