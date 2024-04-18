@@ -123,7 +123,7 @@
                             <div class="row">
                                 <div class="col">
                                     <input type="text" placeholder="Enter Student No."></input>
-                                    <input class="form-group" type="submit" name="issue"nvalue="Issue"></input>
+                                    <input class="form-group" type="submit" name="issue" value="Issue"></input>
                                 </div>
                             </div>
                           </div>';
