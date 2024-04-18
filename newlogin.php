@@ -191,7 +191,7 @@ if ($result->num_rows > 0) {
 
       }elseif($row1['attemptcount'] >= 5 && $row1['trytime'] == 0){
 
-        $trytime = time()+180;
+        $trytime = time()+300;
         $query2 = "UPDATE user_attempt_login SET trytime = $trytime  WHERE username = '$username'";
         $result = mysqli_query($conn, $query2);
 
