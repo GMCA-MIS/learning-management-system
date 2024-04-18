@@ -127,7 +127,7 @@
                 if(isset($_POST['book_id'])) {
                     $stud_num = $_POST['book_id'];
 
-                    $row = $query->fetch_assoc();
+                    while ($row = $result -> fetch_row()) {
 
     
                 ?>
@@ -140,7 +140,7 @@
                       <td><?php echo $status ;?></td>
                     </tr>
                 <?php
-                
+                }
                 }
                 }
                 header("location: issue-book.php");
