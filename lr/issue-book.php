@@ -127,11 +127,12 @@
                                     <input type="text" placeholder="Enter Student No." name="stud_no"></input>
 
                                     <form action="issue-book.php" method="POST">
-                                        <button class="btn btn-primary" type="submit" name="issue" value="Issue"></button>
+                                        <button class="btn btn-primary" name="issue" value="Issue"></button>
                                     </form>
                                 </div>
                             </div>
                           </div>';
+                }
 
                 if(isset($_POST["issue"])) {
                          
@@ -158,7 +159,7 @@
                     </tr>
                 <?php
                 }
-                }
+                
                 //}
                 header("location: issue-book.php");
                 $conn->close();
