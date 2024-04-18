@@ -233,6 +233,8 @@ $html.="
 
 
         <!--Download button script-->
+
+    <script src="includes/dom-to-image.min.js" ></script>
     <script>
 
         function kingDownload() {
