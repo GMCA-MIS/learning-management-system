@@ -126,7 +126,7 @@
 
                     if ( isset($_POST['book_id']) && preg_match("/^\d{14}$/", $_POST['book_id']) ) {
 
-                        header("Location: issue-book.php{$_POST['book_id']}");
+                        header("Location: issue-book.php?id={$_POST['book_id']}");
                         exit;
                     
                     }
