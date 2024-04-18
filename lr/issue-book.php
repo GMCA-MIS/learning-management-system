@@ -112,15 +112,23 @@
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query = $conn->query($sql);
 
+                while ($row = $query->fetch_assoc()){
+
                 if(isset($_POST["book_id"])){
-                    echo '<div class="alert alert-info" role="alert">
+                    echo '<div class="alert alert-success" role="alert">
                             <div class="row">
-                                <div class="col-3">Book No.</div>
-                                <div class="col-9">Book Title</div>
+                                <strong><div class="col-3">Book successfully scanned.</div></strong>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" placeholder="Enter Student No."></input>
+                                    <input type="submit" name="issue">Issue</input>
+                                </div>
                             </div>
                           </div>';
 
-                          while ($row = $query->fetch_assoc()){
+                         
 
                             if($query->num_rows < 1){
                                 $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
