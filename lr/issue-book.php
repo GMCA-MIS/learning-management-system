@@ -112,12 +112,10 @@
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query = $conn->query($sql);
 
-                if(!empty($_POST["submit"])){
-                    echo "<script>
-                            $( document ).ready(function() {
-                                $('#myModal').modal('show')  
-                            });
-                          </script>";
+                if(isset($_POST["book_id"])){
+                    echo '<div class="alert alert-primary" role="alert">
+                            A simple primary alert—check it out!
+                          </div>';
 
                           while ($row = $query->fetch_assoc()){
 
