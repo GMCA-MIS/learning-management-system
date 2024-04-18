@@ -69,8 +69,8 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="book_id">
                     <div class="input-group justify-content-center">
-                        <button class="btn mr-1" style="background-color: teal; color: #FFF;" type="button">Issue</button>
-                        <button class="btn mr-1" style="background-color: green; color: #FFF;" type="button">Return</button>
+                        <button class="btn mr-2" style="background-color: teal; color: #FFF;" type="button">Issue</button>
+                        <button class="btn mr-2" style="background-color: green; color: #FFF;" type="button">Return</button>
                     </div>
                 </div>
                 <!--<div class="card">
@@ -121,29 +121,27 @@
 
                 $query = $conn->query($sql);
 
+                //Get the value from input then append to URL
                 while ($row = $query->fetch_assoc()){
 
-                if(isset($_POST["book_id"])){
-                    echo '<div class="alert alert-success justify-content-center mr-1" role="alert">
-                            <strong><div class="col-7">Book successfully scanned.</div></strong>
-                          </div>';
-                          
-                }
+                    if ( isset($_POST['book_id']) && preg_match("/^\d{14}$/", $_POST['book_id']) ) {
 
-                if(isset($_POST["issue"])) {
-                
-            
+                        header("Location: issue-book.php{$_POST['book_id']}");
+                        exit;
+                    
+                    }
+                    
                          
 
-                            //if($query->num_rows < 1){
-                                //$_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
-                            //}else{
-                                $status = "<span class='badge bg-warning' style='color: #FFF;'>Borrowed</span>";
-                            if($query->num_rows>0){
-        
-                            }else{
-                                $return = date('Y-m-d');
-                            }
+                    if($query->num_rows < 1){
+                        $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
+                    }else{
+                        $status = "<span class='badge bg-warning' style='color: #FFF;'>Borrowed</span>";
+                    if($query->num_rows>0){
+
+                    }else{
+                        $return = date('Y-m-d');
+                    }
                 } 
                   
                 ?>
