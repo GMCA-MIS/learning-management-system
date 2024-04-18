@@ -67,7 +67,7 @@
                     <video id="preview"></video>
                 </div>
                 <div class="card">
-                    <input type="text" class="form-control" name="book_id" id="text"></input>
+                    <input type="text" class="form-control" name="book_id" id="text" data-toggle="modal" data-target="#myModal"></input>
                 </div>
             </form>
         </div><!--End of Cam Scanner-->
@@ -110,26 +110,47 @@
                 }
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
+                $sqll = "SELECT * FROM student WHERE student_id='$borrower'";
+
                 $query = $conn->query($sql);
 
-                if(isset($_POST["submit"])){
-                    echo "<script>
-                            $( document ).ready(function() {
-                                $('#myModal').modal('show')  
-                            });
-                          </script>";
+                while ($row = $query->fetch_assoc()){
+
+                if(isset($_POST["book_id"])){
+                    echo '<div class="alert alert-success" role="alert">
+                            <div class="row">
+                                <strong><div class="col">Book successfully scanned.</div></strong>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" placeholder="Enter Student No." name="stud_no"></input>
+
+                                    <form action="issue-book.php" method="POST">
+                                        <button class="btn btn-primary" name="issue" value="Issue"></button>
+                                    </form>
+                                </div>
+                            </div>
+                          </div>';
+                          
+                }
+
+                if(isset($_POST["issue"])) {
+                
+            
+                         
+
+                            //if($query->num_rows < 1){
+                                //$_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
+                            //}else{
+                                $status = "<span class='badge bg-warning' style='color: #FFF;'>Borrowed</span>";
+                            if($query->num_rows>0){
+        
+                            }else{
+                                $return = date('Y-m-d');
+                            }
                 } 
-                  while ($row = $query->fetch_assoc()){
-
-                    if($query->num_rows < 1){
-                        $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
-                    }else{
-                        $status = "<span class='badge bg-warning' style='color: #FFF;'>Borrowed</span>";
-                    if($query->num_rows>0){
-
-                    }else{
-                        $return = date('Y-m-d');
-                    }
+                  
                 ?>
                     <tr>
                       <td><?php echo $row['book_id'];?></td>
@@ -141,7 +162,8 @@
                     </tr>
                 <?php
                 }
-                }
+                //}
+                //}
                 header("location: issue-book.php");
                 $conn->close();
                 ?>
