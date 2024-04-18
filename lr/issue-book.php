@@ -108,10 +108,7 @@
                 $conn = new mysqli($server,$username,$password,$dbname);
                 $date = date('Y-m-d');
                 $book_no = $_POST['book_id'];
-                $stud_num = '';
-                $borrower = $_POST['stud_no'];
-                $status = '';
-                $return = '';
+                
 
                 if($conn->connect_error){
                   die("Connection failed" .$conn->connect_error);
@@ -124,9 +121,8 @@
                     $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
 
                 //Get 'text' value and pass to $book_num variable
-                if(isset($_POST['book_id'])) {
-                    $stud_num = $_POST['book_id'];
-                    echo $stud_num;
+                //if(isset($_POST['book_id'])) {
+                    
 
                     while ($row = $query->fetch_assoc()) {
 
