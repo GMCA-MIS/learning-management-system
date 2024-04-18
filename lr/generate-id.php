@@ -218,7 +218,7 @@ $html.="
                     </form>
                 </div>
             
-                <div class="preview-card col-6">
+                <div class=" col-6">
                     <div class="id-preview card mt-2" id="mycard" style="background: url('img/id-background.png'); background-size: contain; background-repeat: no-repeat; ">
                         <?php echo $html ?>
                     </div></br>
@@ -230,6 +230,7 @@ $html.="
                 </div>
             </div>
         </div>
+
 
         <!--Download button script-->
     <script>
