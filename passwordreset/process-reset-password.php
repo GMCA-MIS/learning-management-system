@@ -49,7 +49,7 @@ if (!preg_match("/[0-9]/", $_POST["password"])) {
 }
 
 if ($_POST["password"] !== $_POST["password_confirmation"]) {
-    die("");
+    //die("");
 
 
     
