@@ -1,6 +1,10 @@
 <?php 
 include('teacher_session.php');  ?>
 <?php $get_id = $_GET['id']; ?>
+<?php $get_subjid = $_GET['subjid']; ?>
+<?php $get_classid = $_GET['classid']; ?>
+
+
 <?php
 include('includes/topbar.php');
 include('includes/header.php');
