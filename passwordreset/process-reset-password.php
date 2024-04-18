@@ -48,18 +48,62 @@ if ($userTeacher === null && $userStudent === null && $userCoordinator === null)
 }
 
 if (strtotime($userTeacher["reset_token_expires_at"] ?? "") <= time() && strtotime($userStudent["reset_token_expires_at"] ?? "") <= time() && strtotime($userCoordinator["reset_token_expires_at"] ?? "") <= time()) {
+    
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Token has expired',
+        showConfirmButton: false
+    }).then(function() {
+        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
+    });
+    </script>";
+    
     die("Token has expired");
 }
 
 if (strlen($_POST["password"]) < 8) {
+
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Password must be at least 8 characters',
+        showConfirmButton: false
+    }).then(function() {
+        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
+    });
+    </script>";
+
     die("Password must be at least 8 characters");
 }
 
 if (!preg_match("/[a-z]/i", $_POST["password"])) {
+
+    
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Password must contain at least one letter!',
+        showConfirmButton: false
+    }).then(function() {
+        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
+    });
+    </script>";
     die("Password must contain at least one letter");
 }
 
 if (!preg_match("/[0-9]/", $_POST["password"])) {
+    
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Password must contain at least one number!',
+        showConfirmButton: false
+    }).then(function() {
+        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
+    });
+    </script>";
+    
     die("Password must contain at least one number");
 }
 
