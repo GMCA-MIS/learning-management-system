@@ -110,6 +110,8 @@
                 }
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
+                $sqll = "SELECT * FROM student WHERE student_id='$borrower'";
+
                 $query = $conn->query($sql);
 
                 while ($row = $query->fetch_assoc()){
@@ -122,12 +124,16 @@
 
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" placeholder="Enter Student No."></input>
-                                    <input class="form-group" type="submit" name="issue" value="Issue"></input>
+                                    <input type="text" placeholder="Enter Student No." name="stud_no"></input>
+
+                                    <form action="issue-book.php" method="POST">
+                                        <button class="btn btn-primary" type="submit" name="issue" value="Issue"></button>
+                                    </form>
                                 </div>
                             </div>
                           </div>';
 
+                if(isset($_POST["issue"])) {
                          
 
                             if($query->num_rows < 1){
@@ -151,6 +157,7 @@
                       <td><?php echo $status ;?></td>
                     </tr>
                 <?php
+                }
                 }
                 }
                 header("location: issue-book.php");
