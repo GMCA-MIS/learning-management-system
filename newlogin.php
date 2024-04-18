@@ -38,13 +38,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
       // Verify the password
       if ($hashed_password === $row['password']) {
-          $_SESSION['user_type'] = 'student';
-          $_SESSION['username'] = $username;
-          $_SESSION['student_id'] = $row['student_id'];
-          header('Location: student/index.php');
-          exit();
+
+          $query1 = "SELECT * FROM user_attempt_login WHERE username = '$username'";
+          $result1 = mysqli_query($conn, $query1);
+          if ($result1->num_rows > 0) {
+          $row1 = $result1->fetch_assoc();
+          $timenow = time();
+
+            if($row1['trytime'] < $timenow ){
+
+              $query2 = "UPDATE user_attempt_login SET trytime = 0 , attemptcount = 0 WHERE username = '$username'";
+              $result2 = mysqli_query($conn, $query2);
+
+              $_SESSION['user_type'] = 'student';
+              $_SESSION['username'] = $username;
+              $_SESSION['student_id'] = $row['student_id'];
+              header('Location: student/index.php');
+              exit();
+
+            }else{
+
+              echo "<script>alert('Account locked for 3 minutes due to wrong login attempt for 5 times.');</script>";
+
+            }
+          }
+
       }
-  }  
+    }  
      // Check in 'coordinators' table
      $query = "SELECT * FROM coordinators WHERE email = '$username'";
      $result = mysqli_query($conn, $query);
@@ -54,11 +74,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  
          // Verify the password
          if (password_verify($password, $row['password'])) {
-             $_SESSION['user_type'] = 'LR';
-             $_SESSION['username'] = $username;
-             $_SESSION['coordinator_id'] = $row['coordinator_id'];
-             header('Location: lr/index.php');
-             exit();
+
+            $query1 = "SELECT * FROM user_attempt_login WHERE username = '$username'";
+            $result1 = mysqli_query($conn, $query1);
+            if ($result1->num_rows > 0) {
+                $row1 = $result1->fetch_assoc();
+                $timenow = time();
+                
+                  if($row1['trytime'] < $timenow ){
+
+                  $query2 = "UPDATE user_attempt_login SET trytime = 0 , attemptcount = 0 WHERE username = '$username'";
+                  $result2 = mysqli_query($conn, $query2);
+
+                $_SESSION['user_type'] = 'LR';
+                $_SESSION['username'] = $username;
+                $_SESSION['coordinator_id'] = $row['coordinator_id'];
+                header('Location: lr/index.php');
+                exit();
+
+                }else{
+
+                    echo "<script>alert('Account locked for 3 minutes due to wrong login attempt for 5 times.');</script>";
+
+                  }
+            }           
          }
      }
 
@@ -71,11 +110,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Verify the password
         if (password_verify($password, $row['password'])) {
-            $_SESSION['user_type'] = 'teacher';
-            $_SESSION['username'] = $username;
-            $_SESSION['teacher_id'] = $row['teacher_id'];
-            header('Location: teacher/index.php');
-            exit();
+
+
+            $query1 = "SELECT * FROM user_attempt_login WHERE username = '$username'";
+            $result1 = mysqli_query($conn, $query1);
+            if ($result1->num_rows > 0) {
+              $row1 = $result1->fetch_assoc();
+               $timenow = time();
+          
+              if($row1['trytime'] < $timenow ){
+
+                $query2 = "UPDATE user_attempt_login SET trytime = 0 , attemptcount = 0 WHERE username = '$username'";
+                $result2 = mysqli_query($conn, $query2);
+
+
+                $_SESSION['user_type'] = 'teacher';
+                $_SESSION['username'] = $username;
+                $_SESSION['teacher_id'] = $row['teacher_id'];
+                header('Location: teacher/index.php');
+                exit();
+
+              }else{
+
+                echo "<script>alert('Account locked for 3 minutes due to wrong login attempt for 5 times.');</script>";
+
+              }
+            }
         }
     }
 
@@ -84,15 +144,68 @@ $query = "SELECT * FROM users WHERE username = '$username' AND password = '$pass
 $result = mysqli_query($conn, $query);
 
 if ($result->num_rows > 0) {
+
+    $query1 = "SELECT * FROM user_attempt_login WHERE username = '$username'";
+    $result1 = mysqli_query($conn, $query1);
+    if ($result1->num_rows > 0) {
+      $row1 = $result1->fetch_assoc();
+       $timenow = time();
+  
+      if($row1['trytime'] < $timenow ){
+
+        $query2 = "UPDATE user_attempt_login SET trytime = 0 , attemptcount = 0 WHERE username = '$username'";
+        $result2 = mysqli_query($conn, $query2);
+
+
     $row = $result->fetch_assoc();
     $_SESSION['user_type'] = 'admin';
     $_SESSION['username'] = $username;
     $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
     header('Location: admin/index.php');
     exit();
+
+
+      }else{
+
+        echo "<script>alert('Account locked for 3 minutes due to wrong login attempt for 5 times.');</script>";
+
+      }
+    }
 }
 
+    // check how many attempt made
+    $query1 = "SELECT * FROM user_attempt_login WHERE username = '$username'";
+    $result1 = mysqli_query($conn, $query1);
+    if ($result1->num_rows > 0) {
+      $row1 = $result1->fetch_assoc();
+      $timenow = time();
+      $newcount = $row1['attemptcount'] + 1 ;
 
+
+      if($row1['trytime'] > $timenow ){
+        echo "<script>alert('Account locked for 3 minutes due to wrong login attempt for 5 times.');</script>";
+      }elseif($row1['trytime'] < $timenow && $row1['attemptcount'] < 1 ){
+
+        $query2 = "UPDATE user_attempt_login SET attemptcount = 1 WHERE username = '$username'";
+        $result = mysqli_query($conn, $query2);
+
+      }elseif($row1['attemptcount'] >= 5 && $row1['trytime'] == 0){
+
+        $trytime = time()+180;
+        $query2 = "UPDATE user_attempt_login SET trytime = $trytime  WHERE username = '$username'";
+        $result = mysqli_query($conn, $query2);
+
+      }elseif($row1['attemptcount'] <= 4){
+        // Add failed attempt data if username not existing
+        $query2 = "UPDATE user_attempt_login SET attemptcount = $newcount  WHERE username = '$username'";
+        $result = mysqli_query($conn, $query2);
+      }
+
+
+    }else{
+      $query3 = "INSERT INTO user_attempt_login (attemptcount,username) VALUES (1,'$username')";
+      $result = mysqli_query($conn, $query3);
+    }
     $login_error = "Login failed. Please try again.";
 }
 
