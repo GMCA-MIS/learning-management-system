@@ -118,7 +118,7 @@
 
                 if(isset($_POST["book_id"])){
                     echo '<form action="issue-book.php" method="POST">
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-success justify-content-center mr-1" role="alert">
                                 
                                     <strong><div class="col-7">Book successfully scanned.</div></strong>
                                     <div class="col-3"><input type="text" placeholder="Enter Student No." name="stud_no"></input></div>
