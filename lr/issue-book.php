@@ -132,14 +132,16 @@
                                 </div>
                             </div>
                           </div>';
-                }
+                          
 
                 if(isset($_POST["issue"])) {
+                
+                }else{
                          
 
                             //if($query->num_rows < 1){
-                                $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
-                            }else{
+                               // $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
+                           // }else{
                                 $status = "<span class='badge bg-warning' style='color: #FFF;'>Borrowed</span>";
                             if($query->num_rows>0){
         
@@ -149,17 +151,10 @@
                 } 
                   
                 ?>
-                    <tr>
-                      <td><?php echo $row['book_id'];?></td>
-                      <td><?php echo $row['book_title'];?></td>
-                      <td><?php echo $borrower; ?></td>
-                      <td><?php echo $date; ?></td>
-                      <td><?php echo $return ;?></td>
-                      <td><?php echo $status ;?></td>
-                    </tr>
+                    
                 <?php
                 }
-                
+                }
                 //}
                 header("location: issue-book.php");
                 $conn->close();
