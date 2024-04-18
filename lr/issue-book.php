@@ -117,21 +117,20 @@
                 while ($row = $query->fetch_assoc()){
 
                 if(isset($_POST["book_id"])){
-                    echo '<div class="alert alert-success" role="alert">
-                            <div class="row">
-                                <strong><div class="col">Book successfully scanned.</div></strong>
-                            </div>
+                    echo '<form action="issue-book.php" method="POST">
+                            <div class="alert alert-success" role="alert">
+                                <div class="row">
+                                    <strong><div class="col">Book successfully scanned.</div></strong>
+                                </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <input type="text" placeholder="Enter Student No." name="stud_no"></input>
-
-                                    <form action="issue-book.php" method="POST">
-                                        <button class="btn btn-primary" name="issue" value="Issue"></button>
-                                    </form>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" placeholder="Enter Student No." name="stud_no"></input>
+                                            <button class="btn btn-primary" name="issue" value="Issue"></button>
+                                    </div>
                                 </div>
                             </div>
-                          </div>';
+                          </form>';
                           
                 }
 
