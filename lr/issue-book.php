@@ -112,7 +112,7 @@
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query = $conn->query($sql);
 
-                if(!empty($_POST["book_id"])){
+                if(!empty($_POST["submit"])){
                     echo "<script>
                             $( document ).ready(function() {
                                 $('#myModal').modal('show')  
