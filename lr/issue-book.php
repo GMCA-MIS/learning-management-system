@@ -69,8 +69,8 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button class="btn" style="background-color: teal; color: #FFF;" type="button">Issue</button>
-                        <button class="btn" style="background-color: green; color: #FFF;" type="button">Return</button>
+                        <button class="btn mr-1" style="background-color: teal; color: #FFF;" type="button">Issue</button>
+                        <button class="btn mr-1" style="background-color: green; color: #FFF;" type="button">Return</button>
                     </div>
                 </div>
                 <!--<div class="card">
