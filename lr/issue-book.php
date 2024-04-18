@@ -117,11 +117,9 @@
                 }
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
-                $sqll = "SELECT * FROM student WHERE student_id='$borrower'";
-
                 $query = $conn->query($sql);
 
-                 
+                while ($row = $query->fetch_assoc()){
 
                     if($query->num_rows < 1){
                         $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
@@ -145,7 +143,7 @@
                     </tr>
                 <?php
                 
-                //}
+                }
                 //}
                 header("location: issue-book.php");
                 $conn->close();
