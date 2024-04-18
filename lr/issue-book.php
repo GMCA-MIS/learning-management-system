@@ -112,7 +112,7 @@
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $sqll = "SELECT * FROM student WHERE student_id='$borrower'";
 
-                $query = $conn->query($sql, $sqll);
+                $query = $conn->query($sql);
 
                 while ($row = $query->fetch_assoc()){
 
