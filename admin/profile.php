@@ -24,7 +24,7 @@ if (isset($_GET['student_id'])) {
             $firstname = $row['firstname'];
             $lastname = $row['lastname'];
             $dob = $row['dob'];
-            $photo = $row['location'];
+            $photo = $row['picture'];
             $email = $row['email'];
             $lrn = $row['username'];
             $class_id = $row['class_id'];
