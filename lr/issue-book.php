@@ -121,17 +121,7 @@
 
                 $query = $conn->query($sql);
 
-                //Get the value from input then append to URL
-                while ($row = $query->fetch_assoc()){
-
-                    if ( isset($_POST['book_id']) && preg_match("/^\d{14}$/", $_POST['book_id']) ) {
-
-                        header("Location: issue-book.php?id={$_POST['book_id']}");
-                        exit;
-                    
-                    }
-                    
-                         
+                 
 
                     if($query->num_rows < 1){
                         $_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
@@ -154,7 +144,7 @@
                       <td><?php echo $status ;?></td>
                     </tr>
                 <?php
-                }
+                
                 //}
                 //}
                 header("location: issue-book.php");
