@@ -52,6 +52,17 @@ if ($_POST["password"] !== $_POST["password_confirmation"]) {
     
 
 
+    
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Passwords must match!',
+        showConfirmButton: false
+    }).then(function() {
+       // window.location = 'manage-id-card.php'; // Redirect to profile.php
+    });
+    </script>";
+    
     die("Passwords must match!");
 }
 
