@@ -166,9 +166,6 @@
                     document.forms[0].submit();
                 });
 
-                $( document ).ready(function() {
-                                $('#myModal').modal('show')  
-                            });
                 </script>
 
                 <!--Time-->
