@@ -467,8 +467,8 @@ include('dbcon.php');
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label for="file_path" class="form-label">E-book
-                                                                                File (PDF
-                                                                                only):</ <input type="file" class="form-control"
+                                                                                File (PDF only):
+                                                                                </label> <input type="file" class="form-control"
                                                                                     name="edit_file_path" id="edit_file_path"
                                                                                     accept="application/pdf" required>
                                                                         </div>
