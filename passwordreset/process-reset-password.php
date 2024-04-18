@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <?php
 $token = $_POST["token"];
 $token_hash = hash("sha256", $token);
@@ -48,7 +49,20 @@ if (!preg_match("/[0-9]/", $_POST["password"])) {
 }
 
 if ($_POST["password"] !== $_POST["password_confirmation"]) {
-    die("Passwords must match");
+    die("");
+
+
+    
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Passwords must match!',
+        showConfirmButton: false
+    }).then(function() {
+       // window.location = 'manage-id-card.php'; // Redirect to profile.php
+    });
+    </script>";
+    
 }
 
 
