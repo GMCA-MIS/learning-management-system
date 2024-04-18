@@ -174,7 +174,11 @@
 
 
                 <script>
-                new DataTable('#example1');
+                   $(document).ready(function() {
+                        jq('#example1').DataTable();
+                    } );
+
+
                 </script>
 
             </tbody>

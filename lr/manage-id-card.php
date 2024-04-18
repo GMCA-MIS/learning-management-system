@@ -26,9 +26,6 @@
         if(isset($_POST['updatecard'])){
 
             
-
-                
-            
             
                 
             $cardid = $_POST["idcard"];
