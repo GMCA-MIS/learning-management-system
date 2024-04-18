@@ -66,9 +66,15 @@
                 <div class="card">
                     <video id="preview"></video>
                 </div>
-                <div class="card">
-                    <input type="text" class="form-control" name="book_id" id="text" data-toggle="modal" data-target="#myModal"></input>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">@example.com</span>
+                    </div>
                 </div>
+                <!--<div class="card">
+                    <input type="text" class="form-control" name="book_id" id="text" data-toggle="modal" data-target="#myModal"></input>
+                </div>-->
             </form>
         </div><!--End of Cam Scanner-->
 
@@ -117,15 +123,9 @@
                 while ($row = $query->fetch_assoc()){
 
                 if(isset($_POST["book_id"])){
-                    echo '<form action="issue-book.php" method="POST">
-                            <div class="alert alert-success justify-content-center mr-1" role="alert">
-                                
-                                    <strong><div class="col-7">Book successfully scanned.</div></strong>
-                                    <div class="col-3"><input type="text" placeholder="Enter Student No." name="stud_no"></input></div>
-                                    <div class="col-2"><button name="issue" value="Issue"></button></div>
-                            
-                            </div>
-                          </form>';
+                    echo '<div class="alert alert-success justify-content-center mr-1" role="alert">
+                            <strong><div class="col-7">Book successfully scanned.</div></strong>
+                          </div>';
                           
                 }
 
