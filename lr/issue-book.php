@@ -67,7 +67,7 @@
                     <video id="preview"></video>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control" name="book_id">
                     <div class="input-group-append">
                         <button class="btn" style="background-color: teal; color: #FFF;" type="button">Issue</button>
                         <button class="btn" style="background-color: green; color: #FFF;" type="button">Return</button>
