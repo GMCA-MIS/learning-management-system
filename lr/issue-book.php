@@ -108,6 +108,7 @@
                 $conn = new mysqli($server,$username,$password,$dbname);
                 $date = date('Y-m-d');
                 $book_no = $_POST['book_id'];
+                $stud_num = '';
                 $borrower = $_POST['stud_no'];
                 $status = '';
                 $return = '';
@@ -124,6 +125,10 @@
 
                     $row = $query->fetch_assoc();
 
+                //Get 'text' value and pass to $book_num variable
+                if(isset($_POST['book_id'])) {
+                    $stud_num = $_POST['book_id'];
+
     
                 ?>
                     <tr>
@@ -131,13 +136,13 @@
                       <td><?php echo $row['book_title'];?></td>
                       <td><?php echo $borrower; ?></td>
                       <td><?php echo $date; ?></td>
-                      <td><?php echo $return ;?></td>
+                      <td><?php echo $stud_num ;?></td>
                       <td><?php echo $status ;?></td>
                     </tr>
                 <?php
                 
                 }
-                //}
+                }
                 header("location: issue-book.php");
                 $conn->close();
                 ?>
