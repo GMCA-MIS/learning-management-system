@@ -139,7 +139,7 @@
                 <?php
                 }
                 }
-                }
+                
                 header("location: issue-book.php");
                 $conn->close();
                 ?>
