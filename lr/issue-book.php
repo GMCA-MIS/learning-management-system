@@ -119,15 +119,10 @@
                 if(isset($_POST["book_id"])){
                     echo '<form action="issue-book.php" method="POST">
                             <div class="alert alert-success" role="alert">
-                                <div class="row">
-                                    <strong><div class="col">Book successfully scanned.</div></strong>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="text" placeholder="Enter Student No." name="stud_no"></input>
-                                            <button class="btn btn-primary" name="issue" value="Issue"></button>
-                                    </div>
+                                <d class="row">
+                                    <strong><div class="col-7">Book successfully scanned.</div></strong>
+                                    <div class="col-3"><input type="text" placeholder="Enter Student No." name="stud_no"></input></div>
+                                    <div class="col-2"<button class="btn btn-primary" name="issue" value="Issue"></button></div>
                                 </div>
                             </div>
                           </form>';
