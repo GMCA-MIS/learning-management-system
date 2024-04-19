@@ -82,9 +82,9 @@
 
     $stud_no = $_GET['delete'];
     $delete = true;
-    $sql = "DELETE FROM `cards` WHERE `stud_no` = $stud_no";
+    $sql = "DELETE FROM `cards` WHERE `id` = $stud_no";
     $result = mysqli_query($conn, $sql);
-
+    
     }
       
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -334,7 +334,9 @@
                                                         <th scope='row'>". $id . "</th>
                                                         <td>". $row['name'] . "</td>
                                                         <td>". $row['stud_no'] . "</td>
-                                                        <td> <button class='edit btn btn-sm btn-success col-5' id=".$row['id'].">Edit</button> <button class='delete btn btn-sm btn-danger col-5' id=delete".$row['id'].">Delete</button></td>
+                                                        <td> <button class='edit btn btn-sm btn-success col-5' id=".$row['id'].">Edit</button> <                                                        
+                                                        <a class='delete btn btn-sm btn-danger col-5' onclick='return confirm('Are you sure want to delete this?');'   href='manage-id-card.php?delete=".$row['id']."'>Delete</a></td>
+                                                        </td>
                                                         </tr>";
                                             } 
                                         ?>
@@ -540,8 +542,8 @@
                                                     <td>". $row['stud_no'] . "</td>
                                                     <td>
                                                         <button class='edit btn btn-sm btn-success  col-5' data-toggle='modal' data-target='#editcard".$row['stud_no']."' id=".$row['stud_no'].">Edit</button>
-                                                        <button class='delete btn btn-sm btn-danger col-5' id=d".$row['stud_no'].">Delete</button></td>
-                                                  </tr>";
+                                                        <button class='delete btn btn-sm btn-danger col-5' onclick='alert('red')'; data-id='manage-id-card.php?delete=".$row['id']."' id='confirmdeletes' >Deletesss</button></td>
+                                                    </tr>";
                                         
                                         ?>
 
@@ -679,7 +681,15 @@
         </div>
 
 
+ <script>
 
+    $(document).ready(function () {
+
+        alert("sad");
+    });
+
+
+ </script>       
 <?php
     include('includes/scripts.php');
     include('includes/footer.php');
