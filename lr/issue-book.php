@@ -118,10 +118,10 @@
                     //Echo SweetAlert2
                     echo "<script type='text/javascript'>
                             Swal.fire({
-                                title: 'Scanned successfully.',
-                                text: 'Something went wrong!',
+                                title: 'Good job!',
+                                text: 'You clicked the button!'',
                                 icon: 'success'
-                                confirmButtonText: 'Issue'
+                            });
                             })
                           </script>";
 
