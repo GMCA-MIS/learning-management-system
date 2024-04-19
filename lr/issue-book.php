@@ -9,6 +9,10 @@
 <!--Camera Scanner JS-->
 <script type="text/javascript" src="js/instascan.min.js"></script>
 
+<!--SweetAlert2-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css">
+
 <style>
     a {
         text-decoration: none;
@@ -115,7 +119,12 @@
 
                 if(mysqli_num_rows($query_run) > 0) {
 
-                    while ($row = $query_run->fetch_assoc()) {
+                    //Echo SweetAlert2
+                    echo '<script type="text/javascript">
+                            alert("Welcome to Geeks for Geeks")
+                          </script>';
+
+                   /* while ($row = $query_run->fetch_assoc()) {
                         ?>
                             <tr>
                                 <td><?php echo $row['book_id']; ?></td>
@@ -133,7 +142,8 @@
                         ?> 
                         
                         <?php
-                    }
+                    }*/
+                }
                 ?>
     
                 
