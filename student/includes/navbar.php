@@ -112,7 +112,7 @@
 
 
         <a class="collapse-item" href="tor_student_request.php">Request Form</a>
-        <a class="collapse-item" href=""> Request Status</a>
+        <a class="collapse-item" href="tor_transaction_preview.php"> Request Status</a>
 
       </div>
     </div>
