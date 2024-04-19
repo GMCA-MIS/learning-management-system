@@ -114,8 +114,12 @@
                 }
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
-                $query = $conn->query($sql);
+                $query_run = mysqli_query($conn, $sql);
 
+                if(mysqli_num_rows($query_run) > 0) {
+
+                }
+                else {
     
                 ?>
                     <tr>
@@ -126,9 +130,13 @@
                       <td><?php echo $stud_num ;?></td>
                       <td><?php echo $status ;?></td>
                     </tr>
+
+                <?php
+                }
+                ?>
+                
                 
                 <?php
-                
                 
                 header("location: issue-book.php");
                 $conn->close();
