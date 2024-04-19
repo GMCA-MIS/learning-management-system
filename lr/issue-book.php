@@ -119,7 +119,7 @@
                     echo "<script type='text/javascript'>
                             Swal.fire({
                                 title: 'Good job!',
-                                text: 'You clicked the button!'',
+                                text: 'You clicked the button!',
                                 icon: 'success'
                             });
                         
