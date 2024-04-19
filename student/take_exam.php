@@ -445,7 +445,7 @@ if ($questionData['question_type_id'] == 1 || $questionData['question_type_id'] 
     <button id="next-button" type="button" class="btn btn-success" onclick="showNextQuestion()">Next</button>
     <button type="submit" name="submit_exam" id="exam_submit" class="btn btn-success" style = "display: none;">Submit</button>
     <button type="button" name="submit_exam" id="submit_button" class="btn btn-success">Submit</button>
-    </br>
+    </br></br></br>
     <button type="button" name="forcecomplete" onclick="forcecomplete()" class="btn btn-success">Complete</button>
 
 </div>
