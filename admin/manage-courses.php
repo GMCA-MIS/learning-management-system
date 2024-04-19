@@ -167,7 +167,7 @@ include('includes/navbar.php');
                                             </button>
                                         </div>
 
-                                    <form action="manage-courses-function.php" method = "POST"> 
+                                    <form action="manage-courses-function.php" method = "POST" enctype="multipart/form-data"> 
 
                                         <div class="modal-body">
 
@@ -206,6 +206,10 @@ include('includes/navbar.php');
                                                         <span class="details">Description</span>
                                                         <!-- Textarea for Description -->
                                                         <textarea  style="width: 100%;" rows= "6" id="edit_description" name="description"></textarea>
+                                                    </div>
+                                                    <div class="form-group" style="width: 100%;">
+                                                        <span class="details">Subject Photo :</span>
+                                                        <input type="file" class="form-control" name="images" id="images" >
                                                     </div>
 
 
