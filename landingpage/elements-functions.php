@@ -23,9 +23,12 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+
     //Manage-Users Edit Function 
     if (isset($_POST['contactus_emailer'])) //Button Name
     {
+
+
 
         // Retrieve form data
         
@@ -55,9 +58,8 @@ use PHPMailer\PHPMailer\Exception;
             $mail2->SMTPAuth = true;
             $mail2->SMTPSecure = "tls";
             $mail2->Port = 587;
-            $mail2->Username = "goldenmindsbulacan@gmail.com"; // your email address
-            $mail2->Password = "teom csjx dlat gsqc"; // your email password
-
+            $mail2->Username = "crustandrolls@gmail.com"; // your email address
+            $mail2->Password = "dqriavmkaochvtod"; // your email password
             $mail2->setFrom("goldenmindsbulacan@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
             $mail2->addAddress($email);
             $mail2->Subject = "Photo copy of mail sent to goldenmindsbulacan@gmail.com";
@@ -72,8 +74,8 @@ use PHPMailer\PHPMailer\Exception;
          $mail->SMTPAuth = true;
          $mail->SMTPSecure = "tls";
          $mail->Port = 587;
-         $mail->Username = "goldenmindsbulacan@gmail.com"; // your email address
-         $mail->Password = "teom csjx dlat gsqc"; // your email password
+         $mail->Username = "crustandrolls@gmail.com"; // your email address
+         $mail->Password = "dqriavmkaochvtod"; // your email password
          $mail->setFrom($email, $email); // Change "Your Name" to your name or desired sender name
          $mail->addAddress("goldenmindsbulacan@gmail.com");
          $mail->Subject = "Inquiry by " . $name ;
