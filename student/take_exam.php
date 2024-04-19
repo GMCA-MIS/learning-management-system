@@ -455,7 +455,7 @@ if ($questionData['question_type_id'] == 1 || $questionData['question_type_id'] 
     var currentPage = 1;
     var totalPages = <?php echo $totalPages; ?>;
 
-    function forcecomplete{
+    function forcecomplete(){
 
         Swal.fire({
             title: "Are you sure?",
@@ -464,7 +464,7 @@ if ($questionData['question_type_id'] == 1 || $questionData['question_type_id'] 
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Confirm!"
             }).then((result) => {
             if (result.isConfirmed) {
                 
