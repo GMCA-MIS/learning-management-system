@@ -97,6 +97,7 @@ if (mysqli_num_rows($result) > 0) {
                                 <th>Email</th>
                                 <th>Amount to Pay</th>
                                 <th>Paid Amount</th>
+                                <th>Claiming Date</th>
                                 <th>status</th>
                             </tr>
                         </thead>
@@ -124,6 +125,10 @@ if (mysqli_num_rows($result) > 0) {
                                         </td>
                                         <td>
                                             <?php echo $row['amt_to_pay']; ?>
+                                        </td>
+                                        
+                                        <td>
+                                            <?php echo $row['claiming_date']; ?>
                                         </td>
                                         <td>
                                             <?php echo $row['amt_paid']; ?>

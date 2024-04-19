@@ -138,7 +138,24 @@ include('includes/navbar.php');
                                             <?php echo $row['email']; ?>
                                         </td>
                                         <td>
-                                            <?php echo $row['status']; ?>
+                                            <?php 
+                                                if( empty( $row['status'] )){
+
+                                                    echo "<b style='color:gray'> pending </b>";
+                                                    
+                                                }elseif($row['status'] == 'approved'){
+                                                    echo "<b style='color:#FF8C00'> ".$row['status'] ." </b>";
+
+
+                                                }elseif($row['status'] == 'confirmed'){
+                                                    echo "<b style='color:green'> ".$row['status'] ."</b>";
+
+                                                    
+                                                }else{
+                                                    echo "<b style='color:red'> ".$row['status'] ." </b>";
+
+                                                }
+                                            ?>
                                         </td>
                                         <td>
                                         <button type="button" name="edit_bttn" class="btn btn-success edit_btn btn-sm mb-2" onclick="confirmApprove('<?php echo $row['or_number']; ?>')" style="font-size:12px">Approve</button>
