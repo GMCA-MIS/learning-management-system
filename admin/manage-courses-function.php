@@ -113,12 +113,29 @@ if(isset($_POST['add_course']))
     $course_type = $_POST['course_type'];
     $track = $_POST['track'];
     $get_id = $_POST['get_id'];
-    
+
+
+    // Image upload 
+    $uploaddir  = '../uploads/';
+    $uploadfile = $uploaddir . time() . basename($_FILES['images']['name']);
+
+    if (move_uploaded_file($_FILES['images']['tmp_name'], $uploadfile)) {
+
+        
+    } 
+    if($_FILES["file"]["error"] != 0) {
+        //stands for any kind of errors happen during the uploading
+        $uploaddir = "../uploads/1713538808pngwing.png";
+
+    } 
+
+
+
     // Database connection (include your database connection file)
     include('dbcon.php');
 
     // SQL query to insert data into the Subject table
-    $insertQuery = "INSERT INTO subject (subject_code, subject_title, description, subject_type, track) VALUES ('$course_code', '$course_title', '$description', '$course_type', '$track' )";
+    $insertQuery = "INSERT INTO subject (subject_code, subject_title, description, subject_type, track , photo) VALUES ('$course_code', '$course_title', '$description', '$course_type', '$track', '$uploadfile' )";
 
     // Execute the query
     if(mysqli_query($conn, $insertQuery)){

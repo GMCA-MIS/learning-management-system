@@ -54,7 +54,7 @@ include('includes/navbar.php');
                                                 </button>
                                             </div>
 
-                                            <form action="manage-courses-function.php" method="POST">
+                                            <form action="manage-courses-function.php" method="POST" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     <input type="hidden" name="add_ID" id="add_ID">
                                                     <input type="hidden" name= "get_id" value = <?php echo $id?>>
@@ -92,6 +92,12 @@ include('includes/navbar.php');
                                                         <span class="details">Description</span>
                                                         <textarea id="description" name="description"></textarea>
                                                     </div>
+                                                    <div class="form-group" style="width: 100%;">
+                                                        <span class="details">Subject Photo : </span>
+                                                        <input type="file" class="form-control" name="images" id="image" >
+                                                    </div>
+
+
                                                 </div>
 
                                                 <div class="modal-footer">
@@ -123,6 +129,7 @@ include('includes/navbar.php');
                         <th style="display:none;">Subject ID</th>
                         <th>Subject Code</th>
                         <th>Subject Title</th>
+                        <th>Subject Photo</th>
                         <th>Type</th>
                         <th>Track</th>
                         <th>Description</th>
@@ -139,6 +146,7 @@ include('includes/navbar.php');
                     <tr>
                         <td style="display:none;"><?php echo $row['subject_id']; ?></td>      
                         <td><?php echo $row['subject_code']; ?></td>
+                        <td><img src="<?php echo $row['photo'];?>"  width="100px" height="100px" /></td>
                         <td><?php echo $row['subject_title']; ?></td>
                         <td><?php echo $row['subject_type']; ?></td>
                         <td><?php echo $row['track']; ?></td>
