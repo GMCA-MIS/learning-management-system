@@ -206,6 +206,8 @@ include('includes/navbar.php');
                              <!-- Total Class Card -->
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card shadow h-100">
+                                <a href="manage-all-class.php">
+
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
@@ -233,6 +235,7 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                             </div>
 
