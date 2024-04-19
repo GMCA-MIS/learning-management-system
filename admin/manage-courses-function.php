@@ -77,8 +77,27 @@ if (isset($_POST['delete_course'])) {
         $course_type = $_POST['course_type'];
         $track = $_POST['track'];
 
+
+        
+        if($_FILES["images"]["error"] != 0) {
+            //stands for any kind of errors happen during the uploading
+            
+            $query = "UPDATE subject SET subject_code='$course_code', subject_title='$course_title', description='$description', subject_type ='$course_type', track = '$track' WHERE subject_id = '$id'";
+
+        } else{
+            // Image upload 
+            $uploaddir  = '../uploads/';
+            $uploadfile = $uploaddir . time() . basename($_FILES['images']['name']);
+
+            if (move_uploaded_file($_FILES['images']['tmp_name'], $uploadfile)) {
+
+                
+            } 
+            $query = "UPDATE subject SET photo = '$uploadfile', subject_code='$course_code', subject_title='$course_title', description='$description', subject_type ='$course_type', track = '$track' WHERE subject_id = '$id'";
+        }
+
+        
         // Corrected the SQL query, added proper quotation marks
-        $query = "UPDATE subject SET subject_code='$course_code', subject_title='$course_title', description='$description', subject_type ='$course_type', track = '$track' WHERE subject_id = '$id'";
         $query_run = mysqli_query($conn, $query);
 
         if($query_run) {
@@ -113,12 +132,32 @@ if(isset($_POST['add_course']))
     $course_type = $_POST['course_type'];
     $track = $_POST['track'];
     $get_id = $_POST['get_id'];
-    
+
+
+ 
+    if($_FILES["images"]["error"] != 0) {
+        //stands for any kind of errors happen during the uploading
+        $uploadfile = "../uploads/1713538808pngwing.png";
+
+    } else{
+        // Image upload 
+        $uploaddir  = '../uploads/';
+        $uploadfile = $uploaddir . time() . basename($_FILES['images']['name']);
+
+        if (move_uploaded_file($_FILES['images']['tmp_name'], $uploadfile)) {
+
+            
+        } 
+
+    }
+
+
+
     // Database connection (include your database connection file)
     include('dbcon.php');
 
     // SQL query to insert data into the Subject table
-    $insertQuery = "INSERT INTO subject (subject_code, subject_title, description, subject_type, track) VALUES ('$course_code', '$course_title', '$description', '$course_type', '$track' )";
+    $insertQuery = "INSERT INTO subject (subject_code, subject_title, description, subject_type, track , photo) VALUES ('$course_code', '$course_title', '$description', '$course_type', '$track', '$uploadfile' )";
 
     // Execute the query
     if(mysqli_query($conn, $insertQuery)){

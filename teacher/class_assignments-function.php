@@ -8,6 +8,8 @@ include('includes/navbar.php');
 include('includes/sidebar.php');
 include('dbcon.php');
 include('initialize.php');
+
+
 ?>
 
 
@@ -107,8 +109,8 @@ if ($query) {
 
 <?php 
 
-include('dbcon.php');
-require("opener_db.php");
+
+//require("opener_db.php");
 
 // Edit Assignment
 if(isset($_POST['edit_assignment'])) { // Button Name
@@ -237,14 +239,15 @@ if ($query) {
     </script>
     <?php
 } else {
-}}
+}
+
+}
 ?>
 
 
 <!-- For updating score assignment -->
 <?php
 // Include your database connection file if not already included
-include("dbcon.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_scoreAssignmentf2f"])) {
     // Get the values from the form
@@ -315,7 +318,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_scoreAssignment
 
 
 <?php
-include("dbcon.php");
 // Assuming database connection and session handling are already present
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET['id'])  && isset($_GET['get_id']) && $_GET['action'] === 'archive') {
@@ -359,7 +361,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET
 ?>
 
 <?php
-include("dbcon.php");
 // Assuming database connection and session handling are already present
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET['id']) && isset($_GET['get_id']) && $_GET['action'] === 'available') {

@@ -30,10 +30,10 @@ if(isset($_GET['addstudent'])){
 
     
    $sql= "INSERT INTO teacher_class_student (teacher_class_id, student_id, teacher_id) VALUES ('$teacher_class_id', '$student_id1', $teacher_id)";
-    if ($conn->query($sql) === TRUE) {
+   // if ($conn->query($sql) === TRUE) {
 
-    }    
-    $sql= "INSERT INTO student_class (class_id, student_id, `status`) VALUES ('$idclaz', '$student_id1', 1)";
+    //}    
+    //$sql= "INSERT INTO student_class (class_id, student_id, `status`) VALUES ('$idclaz', '$student_id1', 1)";
    
 
     if ($conn->query($sql) === TRUE) {

@@ -1,8 +1,14 @@
+
 <?php
 include("dbcon.php");
+
 include("includes/header.php");
 include("student_session.php");
-// include("includes/topbar.php");
+
+?>
+
+<?php
+
 
 // Assuming you have a database connection in $conn
 
@@ -71,7 +77,9 @@ if (isset($_POST['submit_quiz'])) {
     $studentTotalScore = $correctAnswersCount;
 
 // Print the results, including question text, correct answer, user's answer, and points
-echo '<div class="container">'; // Start a container to separate the cards
+echo '<div class="">'; // Start a container to separate the cards
+
+
  // Display the student's total score
 //  echo "Total Score: $studentTotalScore/$totalPoints"; // Display the score as X/Y points, where Y is the total points for the quiz.
 foreach ($results as $quiz_question_id => $result) {
@@ -216,13 +224,30 @@ if (isset($_POST['submit_exam'])) {
     $studentTotalScore = $correctAnswersCount;
 
 // Print the results, including question text, correct answer, user's answer, and points
-echo '<div class="container">'; // Start a container to separate the cards
+echo '<div class="col-md-12" >'; // Start a container to separate the cards
  // Display the student's total score
- echo "Total Score: $studentTotalScore/$totalPoints"; // Display the score as X/Y points, where Y is the total points for the exam.
-foreach ($results as $exam_question_id => $result) {
+
+    echo "<nav class='navbar ' style='background-color:#381C14;margin-top:10px;margin-bottom:30px;padding:20px 20px 15px 20px;margin-left:100px;margin-right:100px;' >";
+    
+?>
+<form class="form-inline">
+
+    <?php
+        echo "<h5 style='color:white' ><b>Total Score: $studentTotalScore/$totalPoints </b></h5>"; // Display the score as X/Y points, where Y is the total points for the exam.
+
+    ?>
+  </form>
+
+    <a class="btn btn-outline-light" href="index.php" >Close</a>
+
+<?php
+    echo "</nav>";
+
+    foreach ($results as $exam_question_id => $result) {
     echo '<div class="row">'; // Start a new row for each card
     echo '<div class="col-md-6 mx-auto">'; // Center the card horizontally using mx-auto
     echo '<div class="card">'; // Start card
+    
     echo '<div class="card-body">'; // Start card-body
 
     echo "Question $exam_question_id: <br>";
@@ -276,7 +301,9 @@ foreach ($results as $exam_question_id => $result) {
                 echo "Error inserting the score into the database.";
             }
         } else {
-            echo "A record already exists for this student and class exam.";
+            
+            //sucess submitting exam
+           // echo "A record already exists for this student and class exam.";
         }
     } else {
         echo "The form has not been submitted.";
@@ -285,3 +312,7 @@ foreach ($results as $exam_question_id => $result) {
 
 
 ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+</script>
