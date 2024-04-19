@@ -91,7 +91,7 @@ use PHPMailer\PHPMailer\Exception;
                 Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: 'Succesfully sent to goldenmindcollege@gmail.com. ',
+                text: 'Succesfully sent to goldenmindsbulacan@gmail.com. ',
                 }).then((result) => {
                 if (result.isConfirmed) {
                     window.location = 'elements.html';
