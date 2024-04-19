@@ -119,8 +119,8 @@
                     echo "<script type='text/javascript'>
                             Swal.fire({
                                 title: 'Scanned successfully.',
-                                text: 'Do you want to continue',
-                                icon: 'success',
+                                html: '<input class='swal2-input id='book_id' placeholder='Enter student Number'
+                                icon: 'success'
                                 confirmButtonText: 'Issue'
                             })
                           </script>";
