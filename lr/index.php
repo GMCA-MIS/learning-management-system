@@ -90,6 +90,7 @@ include('includes/navbar.php');
                         <!-- Total Books Card-->
                         <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-sector shadow h-100 py-2">
+                                    <a href="manage-books.php">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
@@ -113,12 +114,14 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                             </div>
 
                              <!-- Total Pending Card-->
                         <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-sector shadow h-100 py-2">
+                                    <a href="manage-book-approval.php">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
@@ -142,12 +145,14 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                             </div>
 
                              <!-- Total Archived Card-->
                         <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-sector shadow h-100 py-2">
+                                    <a href="manage-books.php">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
@@ -171,12 +176,15 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                             </div>
 
                                          <!-- Total Archived Card-->
                         <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-sector shadow h-100 py-2">
+                                 <a href="manage-books.php">
+
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
@@ -200,6 +208,7 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                             </div>
                             
