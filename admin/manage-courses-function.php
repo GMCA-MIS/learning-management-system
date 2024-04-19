@@ -115,19 +115,22 @@ if(isset($_POST['add_course']))
     $get_id = $_POST['get_id'];
 
 
-    // Image upload 
-    $uploaddir  = '../uploads/';
-    $uploadfile = $uploaddir . time() . basename($_FILES['images']['name']);
-
-    if (move_uploaded_file($_FILES['images']['tmp_name'], $uploadfile)) {
-
-        
-    } 
-    if($_FILES["file"]["error"] != 0) {
+ 
+    if($_FILES["images"]["error"] != 0) {
         //stands for any kind of errors happen during the uploading
-        $uploaddir = "../uploads/1713538808pngwing.png";
+        $uploadfile = "../uploads/1713538808pngwing.png";
 
-    } 
+    } else{
+        // Image upload 
+        $uploaddir  = '../uploads/';
+        $uploadfile = $uploaddir . time() . basename($_FILES['images']['name']);
+
+        if (move_uploaded_file($_FILES['images']['tmp_name'], $uploadfile)) {
+
+            
+        } 
+
+    }
 
 
 

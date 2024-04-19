@@ -167,7 +167,7 @@ $count = mysqli_num_rows($query);
                                     <div class="h5 mb-0 font-weight-bold text-gray-800"> <?php echo $row['class_name']; ?> </div>
                                 </div>
                                 <div class="col-auto">
-                                    <img src="img/gmlogo1.png" class="circle" alt="" width="100" height="100">
+                                    <img src="<?php echo $row['photo'] ?>" class="circle" alt="" width="100" height="100">
                                 </div>
                             </div>
                         </div>
