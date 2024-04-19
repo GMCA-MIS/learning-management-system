@@ -109,9 +109,9 @@
                 $book_no = $_POST['book_id'];
                 
 
-                if($conn->connect_error){
-                  die("Connection failed" .$conn->connect_error);
-                }
+                //if($conn->connect_error){
+                  //die("Connection failed" .$conn->connect_error);
+                //}
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query_run = mysqli_query($conn, $sql);
@@ -135,7 +135,7 @@
                 }
                 ?>
                 
-                
+
                 <?php
                 
                 header("location: issue-book.php");
