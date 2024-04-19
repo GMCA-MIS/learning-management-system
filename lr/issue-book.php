@@ -120,11 +120,16 @@
                 if(mysqli_num_rows($query_run) > 0) {
 
                     //Echo SweetAlert2
-                    echo '<script type="text/javascript">
-                            alert("Welcome to Geeks for Geeks")
-                          </script>';
+                    echo "<script type='text/javascript'>
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Do you want to continue',
+                                icon: 'error',
+                                confirmButtonText: 'Cool'
+                            })
+                          </script>";
 
-                header('location: book-issue.php');
+                //header('location: book-issue.php');
                 
 
                    /* while ($row = $query_run->fetch_assoc()) {
