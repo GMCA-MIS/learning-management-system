@@ -4,8 +4,28 @@ include('dbcon.php');
 include('includes/header.php');
 include('includes/navbar.php');
 
-if (isset($_GET['class_id'])) {
+if (isset($_GET['student_id'])) {
     $class_id = $_GET['class_id'];
+    $student_id = $_GET['student_id'];
+
+    // Query to retrieve user data
+    $query = "SELECT * FROM student WHERE student_id = $student_id";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        // Fetch user data
+        $row = mysqli_fetch_assoc($result);
+
+        if ($row) {
+            $firstname = $row['firstname'];
+            $lastname = $row['lastname'];
+            
+        } else {
+            echo "Student not Found.";
+        }
+    } else {
+        echo "Error fetching user data: " . mysqli_error($conn);
+    }
 
     // Query to retrieve user data
     $query = "SELECT * FROM class WHERE class_id = $class_id";
@@ -17,13 +37,18 @@ if (isset($_GET['class_id'])) {
 
         if ($row) {
             $class_name = $row['class_name'];
-            $class_id = $row['class_id'];
+            
         } else {
-            echo "Class not Found.";
+            echo "Student not Found.";
         }
     } else {
         echo "Error fetching user data: " . mysqli_error($conn);
     }
+
+
+
+
+
 } else {
     echo "User ID not provided.";
 }
@@ -44,7 +69,7 @@ if (isset($_GET['class_id'])) {
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mt-2" style="margin-top: 36px; margin-left: 10px;">
-                <h1 class="h3 mb-0 text-gray-800">Class Profile</h1>
+                <h1 class="h3 mb-0 text-gray-800">Subjects Grades under Class : <?php echo $class_name?></h1>
             </div>
 
             <!-- Topbar Navbar -->
@@ -56,18 +81,17 @@ if (isset($_GET['class_id'])) {
         <!-- End of Topbar -->
 
         <div class="d-sm-flex align-items-center justify-content-between" style="margin-top: 20px; margin-left: 10px;">
-            <h1 class="h5 mb-0 text-gray-800 ml-4"><?php echo  $class_name; ?></h1>
+            <h1 class="h5 mb-0 text-gray-800 ml-4"><?php echo " NAME : ".  $firstname . " " . $lastname; ?></h1>
         </div>
 
         <?php
         // Displaying data into tables with class_name
-        $query = "SELECT student_class.*,student.*, class.class_name, strand.name AS strand_name 
-        FROM student_class 
-        LEFT JOIN student ON student.student_id = student_class.student_id 
-        LEFT JOIN class ON class.class_id = student_class.class_id 
-        LEFT JOIN strand ON strand.id = student.strand_id 
-        WHERE student_class.class_id = '$class_id' 
-        ORDER BY student.student_id DESC";
+  
+
+        $query = " SELECT * FROM student_grade sg 
+                    INNER JOIN teacher_class tc ON sg.teacher_class_id =  tc.teacher_class_id
+                    INNER JOIN `subject` s ON tc.subject_id = s.subject_id 
+                    WHERE sg.student_id = $student_id and tc.class_id = $class_id ";
 
         $query_run = mysqli_query($conn, $query);
         ?>
@@ -76,16 +100,11 @@ if (isset($_GET['class_id'])) {
             <table id="dataTableID" class="table table-bordered table-striped" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th style="display:none;">Student ID</th>
-                        <th>Learner Reference Number</th>
-                        <th>Email</th>
-                        <th style="display:none;">Firstname</th>
-                        <th style="display:none;">Lastname</th>
-                        <th>Name</th>
-                        <th>Strand</th>
-                        <th>Enrollment</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>Subject</th>
+                        <th>Task Grade</th>
+                        <th>Assignment Grade</th>
+                        <th>Exam Grade</th>
+                        <th>Quiz Grade</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,30 +113,11 @@ if (isset($_GET['class_id'])) {
                         while ($row = mysqli_fetch_assoc($query_run)) {
                             ?>
                             <tr>
-                                <td style="display:none;"><?php echo $row['student_id']; ?></td>
-                                <td><?php echo $row['username']; ?></td>
-                                <td><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></td>
-                                <td><?php echo $row['email']; ?></td>
-                                <td style="display:none;"><?php echo $row['firstname']; ?></td>
-                                <td style="display:none;"><?php echo $row['lastname']; ?></td>
-                                <td><?php echo $row['strand_name']; ?></td>
-                                <td><?php if ($row['is_regular'] == 1) { ?>
-                                        <p>Regular</p>
-                                    <?php } else {
-                                    ?>
-                                        <p>Irregular</p>
-                                    <?php
-                                    } ?>
-                                </td>
-                                <td><?php if ($row['status'] == 1) { ?>
-                                        <p>Archive</p>
-                                    <?php } else {
-                                    ?>
-                                        <p>ReArchive</p>
-                                    <?php
-                                    } ?>
-                                </td>
-                                <td width="15%"><a href="student_gradelist.php?student_id=<?php echo urlencode($row['student_id']) . "&class_id=" .$_GET['class_id']; ?>" class="btn btn-secondary">View Grades</a></td>
+                                <td><?php   if(!empty($row['subject'])){ echo $row['subject'] ; }else{ echo "N.A" ; }  ?></td>
+                                <td><?php echo $row['task_grade']; ?></td>
+                                <td><?php echo $row['assignment_grade']; ?></td>
+                                <td><?php echo $row['exam_grade']; ?></td>
+                                <td><?php echo $row['quiz_grade']; ?></td>
                             </tr>
                         <?php
                         }
