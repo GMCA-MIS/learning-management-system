@@ -115,29 +115,29 @@
 
                 if(mysqli_num_rows($query_run) > 0) {
 
-                }
-                else {
+                    foreach($query_run as $row) {
+                        ?>
+                            <tr>
+                                <td><?php echo $row['book_id']; ?></td>
+                                <td><?php echo $row['book_title']; ?></td>
+                                <td><?php echo $book_no; ?></td>
+                                <td><?php echo $date; ?></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        
+                        <?php
+                    }
+                    }
+                    else {
+                        ?> 
+                        
+                        <?php
+                    }
+                ?>
     
-                ?>
-                    <tr>
-                      <td><?php echo $row['book_id'];?></td>
-                      <td><?php echo $row['book_title'];?></td>
-                      <td><?php echo $borrower; ?></td>
-                      <td><?php echo $date; ?></td>
-                      <td><?php echo $stud_num ;?></td>
-                      <td><?php echo $status ;?></td>
-                    </tr>
-
-                <?php
-                }
-                ?>
                 
-
-                <?php
-                
-                header("location: issue-book.php");
-                $conn->close();
-                ?>
+            
 
 
         <!--Camera Scanner Script-->
