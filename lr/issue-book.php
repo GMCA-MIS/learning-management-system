@@ -122,7 +122,7 @@
                                 text: 'You clicked the button!'',
                                 icon: 'success'
                             });
-                            })
+                        
                           </script>";
 
                 //header('location: book-issue.php');
