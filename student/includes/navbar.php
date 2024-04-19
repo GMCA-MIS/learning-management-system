@@ -99,14 +99,24 @@
 
 
 
-<li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'tor_student_request.php') echo 'active'; ?>">
-  <a class="nav-link" href="tor_student_request.php">
-  <i class="fa fa-folder" aria-hidden="true"></i>
-    <span>TOR</span><span> Request </span>
+
+<li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'tor_student_request') echo 'active'; ?>">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapseTwo">
+    <i class="fa  fa-folder"></i>
+    <span>TOR</span>
   </a>
+  <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Manage TOR</h6>
+
+
+
+        <a class="collapse-item" href="tor_student_request.php">Request Form</a>
+        <a class="collapse-item" href=""> Request Status</a>
+
+      </div>
+    </div>
 </li>
-
-
 
 
 
