@@ -542,7 +542,8 @@
                                                     <td>". $row['stud_no'] . "</td>
                                                     <td>
                                                         <button class='edit btn btn-sm btn-success  col-5' data-toggle='modal' data-target='#editcard".$row['stud_no']."' id=".$row['stud_no'].">Edit</button>
-                                                        <button class='delete btn btn-sm btn-danger col-5' onclick='alert('red')'; data-id='manage-id-card.php?delete=".$row['id']."' id='confirmdeletes' >Deletesss</button></td>
+                                                        <a class='delete btn btn-sm btn-danger col-5' href='manage-id-card.php?delete=".$row['id']."' onclick='return confirm('Are you sure want to delete this?');' >Delete</a></td>
+                                                 
                                                     </tr>";
                                         
                                         ?>
@@ -680,16 +681,6 @@
             </div>
         </div>
 
-
- <script>
-
-    $(document).ready(function () {
-
-        alert("sad");
-    });
-
-
- </script>       
 <?php
     include('includes/scripts.php');
     include('includes/footer.php');

@@ -1,3 +1,16 @@
+
+<?
+    include('dbcon.php');
+
+
+          
+          $sql = "SELECT * FROM `school_year` status=1";
+          $result = mysqli_query($conn, $sql);
+            
+          $row = mysqli_fetch_assoc($result);
+          $school_year = $row['school_year'];
+?>
+
 <!-- Sidebar -->
 <ul class="navbar-nav new-nav-bg sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -72,14 +85,6 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Manage Library Card</h6>
 
-        <?
-          
-          $sql = "SELECT * FROM `school_year` status=1";
-          $result = mysqli_query($conn, $sql);
-            
-            $row = mysqli_fetch_assoc($result);
-            $school_year = $row['school_year'];
-        ?>
         <a class="collapse-item" href="manage-id-card.php?id=<?php echo $school_year ?>"><i class="fa fa-clipboard-user"></i> Manage Library Cards</a>
         <a class="collapse-item" href="generate-id.php?id=<?php echo $school_year ?>"><i class="fa fa-id-card"></i> ID Generator</a>
         <a class="collapse-item" href="generate-qr.php?id=<?php echo $school_year ?>"><i class="fa fa-qrcode" aria-hidden="true"></i> QR Generator</a>
