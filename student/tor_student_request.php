@@ -165,7 +165,7 @@ if ($result) {
                                         </div>
                                         <div class="col-4 col-12-xsmall">
                                         <label for="middle_initial"
-                                            >Middle Initial - input N/A if not applicable</label
+                                            >Middle Name - input N/A if not applicable</label
                                         >
                                         </div>
                                     </div>
