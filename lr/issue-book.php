@@ -115,7 +115,7 @@
 
                 if(mysqli_num_rows($query_run) > 0) {
 
-                    foreach($query_run as $row) {
+                    while ($row = $query_run->fetch_assoc()) {
                         ?>
                             <tr>
                                 <td><?php echo $row['book_id']; ?></td>
