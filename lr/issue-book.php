@@ -124,6 +124,9 @@
                             alert("Welcome to Geeks for Geeks")
                           </script>';
 
+                header('location: book-issue.php');
+                
+
                    /* while ($row = $query_run->fetch_assoc()) {
                         ?>
                             <tr>
