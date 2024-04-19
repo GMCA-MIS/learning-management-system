@@ -55,17 +55,15 @@ use PHPMailer\PHPMailer\Exception;
             $mail2->SMTPAuth = true;
             $mail2->SMTPSecure = "tls";
             $mail2->Port = 587;
-            $mail2->Username = "goldenmindcollege@gmail.com"; // your email address
+            $mail2->Username = "goldenmindsbulacan@gmail.com"; // your email address
             $mail2->Password = "teom csjx dlat gsqc"; // your email password
-            $mail2->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
 
-            $mail2->setFrom("goldenmindcollege@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
+            $mail2->setFrom("goldenmindsbulacan@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
             $mail2->addAddress($email);
-            $mail2->Subject = "Photo copy of mail sent to goldenmindcollege@gmail.com ";
+            $mail2->Subject = "Photo copy of mail sent to goldenmindsbulacan@gmail.com";
             $mail2->Body = $email_body;
             if($mail2->send()){
             }
-        
         }  
         // INQUIRY BY CLIENTS SENT TO GMC
          $mail = new PHPMailer();
@@ -74,11 +72,10 @@ use PHPMailer\PHPMailer\Exception;
          $mail->SMTPAuth = true;
          $mail->SMTPSecure = "tls";
          $mail->Port = 587;
-         $mail->Username = "goldenmindcollege@gmail.com"; // your email address
+         $mail->Username = "goldenmindsbulacan@gmail.com"; // your email address
          $mail->Password = "teom csjx dlat gsqc"; // your email password
          $mail->setFrom($email, $email); // Change "Your Name" to your name or desired sender name
-         $mail->addAddress("reyleonilreyes@gmail.com");
-         $mail->addAddress("goldenmindcollege@gmail.com");
+         $mail->addAddress("goldenmindsbulacan@gmail.com");
          $mail->Subject = "Inquiry by " . $name ;
          $mail->Body = $email_body;
 
