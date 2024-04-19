@@ -141,8 +141,10 @@ include('includes/navbar.php');
                      
 
                         <!-- Total Students Card-->
+                      
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-sector shadow h-100 py-2">
+                                <a href="manage-students.php">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
@@ -166,12 +168,15 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                     </div>
+                                    </a> 
                                 </div>
                             </div>
                             
                             <!-- Total Instructors Card -->
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-office shadow h-100 py-2">
+                                <a href="manage-teachers.php">
+
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
@@ -194,6 +199,7 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                     </div>
+                                     </a>
                                 </div>
                             </div>
 
@@ -232,7 +238,9 @@ include('includes/navbar.php');
 
                              <!-- Total Departments Card -->
                              <div class="col-xl-3 col-md-6 mb-4">
+
                                 <div class="card shadow h-100">
+                                    <a href="manage-departments.php">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
@@ -260,6 +268,7 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                             </div>
 <style>
