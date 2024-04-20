@@ -81,9 +81,7 @@
                 <tr>
                     <th>Book No.</th>
                     <th>Book Title</th>
-                    <th>Student No.</th>
-                    <th>Borrow Date</th>
-                    <th>Return Date</th>
+                    <th>Actions</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -139,51 +137,29 @@
 
                 }
                 
-
-                if(isset($_POST['submit'])) {
-
-                    //Get value of 'text' as value for $borrower variable
-                    $borrower = $_POST['text'];
-
-                    //Check if student number exists
-                    $row = $query->fetch_assoc();
-                    $sql ="SELECT * FROM student WHERE student_id='$borrower'";
-                    $query_run = mysqli_query($conn, $sql);
-
-                //If exist, perform insert query
-                if(mysqli_num_rows($query_run) > 0) {
-                    $status = "Borrowed";
-
-                    $sql ="INSERT INTO borrowed_books (book_id, book_title, student_id, borrowed_date, status, return_date)
-                    VALUES ($book_no, $book_title, $borrower, $date, $status, $return)";
-                    $query_run = mysqli_query($conn, $sql);
-                    
+                if(isset($_POST['book_id'])) {
                 
-
-                }
-
-                //header('location: book-issue.php');
-                
-
-                   /* while ($row = $query_run->fetch_assoc()) {
+                    while ($row = $query_run->fetch_assoc()) {
                         ?>
                             <tr>
                                 <td><?php echo $row['book_id']; ?></td>
                                 <td><?php echo $row['book_title']; ?></td>
-                                <td><?php echo $book_no; ?></td>
-                                <td><?php echo $date; ?></td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <button class="btn btn-primary" type="button" id="borrow" name="borrow">
+                                        <i class="fa-solid fa-hand"></i>
+                                    </button>
+                                    <button class="btn btn-info" type="button" id="view-deets" name="view-deets">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-success" type="button" id="return" name="return">
+                                        <i class="fa-solid fa-book"></i>
+                                    </button>
+                                </td>
+                                <td><?php echo $status; ?></td>
                             </tr>
                         
                         <?php
                     }
-                    }
-                    else {
-                        ?> 
-                        
-                        <?php
-                    }*/
                 }
                 
                 ?>
