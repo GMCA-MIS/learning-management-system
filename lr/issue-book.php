@@ -150,13 +150,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                 <td><?php echo $row['book_id']; ?></td>
                                 <td><?php echo $row['book_title']; ?></td>
                                 <td>
-                                    <button class="btn btn-warning" type="button" id="borrow" name="borrow">
+                                    <button class="btn btn-warning mr-3" type="button" id="borrow" name="borrow">
                                         <i class="fa-solid fa-hand"></i>
                                     </button>
-                                    <button class="btn btn-info mr-1" type="button" id="view-deets" name="view-deets">
+                                    <button class="btn btn-info mr-3" type="button" id="view-deets" name="view-deets">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-success" type="button" id="return" name="return">
+                                    <button class="btn btn-success mr-3" type="button" id="return" name="return">
                                         <i class="fa-solid fa-book"></i>
                                     </button>
                                 </td>
