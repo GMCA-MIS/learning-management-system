@@ -67,7 +67,7 @@ if ($class_row) { ?>
                         $query = "SELECT cq.*, q.quiz_description, q.quiz_title, q.date_added 
                         FROM class_quiz AS cq
                         JOIN quiz AS q ON cq.quiz_id = q.quiz_id
-                        WHERE cq.teacher_class_id = '$get_id' AND cq.stats = '0'";
+                        WHERE cq.teacher_class_id = '$get_id' AND cq.stats = '0'  ORDER BY q.date_added DESC " ;
                         $result = mysqli_query($conn, $query);
               
 
@@ -86,7 +86,32 @@ if ($class_row) { ?>
                                 <!-- Quiz Card -->
                                 <a href="quiz_content.php?quiz_id=<?php echo $quiz_id; ?>&id=<?php echo $get_id;?>" class="card mt-2">
                                     <div class="card-body">
-                                        <h6 class="card-title"><?php echo $quiz_title; ?></h6>
+
+                                    
+                                        <h6 class="card-title" style="">
+                                            <div class="d-flex flex-row-reverse">
+                                                    <?php 
+                                                        $rowquery = " SELECT taken FROM student_class_quiz WHERE quiz_id = $quiz_id AND student_id = $student_id ";
+                                                        $rowresult = mysqli_query($conn, $rowquery);
+                                                        $rowstats = mysqli_fetch_array($rowresult);
+                                                        if(empty($rowstats['taken'])){
+
+                                                            echo" <div class='p-2 border border-danger' style='color:red'>";
+                                                            echo "Take Quiz" ;
+                                                            echo "</div>";
+
+                                                            }elseif($rowstats['taken'] == "yes"){
+
+                                                            echo" <div class='p-2 border border-success' style='color:green'>";
+                                                            echo "Completed" ;
+                                                            echo "</div>";
+                                                        }
+                                                    
+                                                    ?>
+                                                
+                                            </div>
+                                        </h6>
+                                        <h6 class="card-title"><b><?php echo $quiz_title; ?></b></h6>
                                         <h6 class="card-title"><?php echo $quiz_description; ?></h6>
                                         <p class="card-text rem"><strong>Posted:</strong> <?php echo date('F j, Y \a\t g:i A', strtotime($date_added)); ?></p>
                                         <p class="card-text rem"><strong>Deadline:</strong> <?php echo date('F j, Y \a\t g:i A', strtotime($deadline)); ?></p>

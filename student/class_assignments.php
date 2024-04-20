@@ -98,8 +98,11 @@ include('initialize.php');
                             <?php
 
                             // Query to retrieve assignments
-                            $query = "SELECT * FROM assignment WHERE class_id = '$get_id' AND status = 'Available' AND type = '1' ORDER BY fdatein DESC";
-                            $result = mysqli_query($conn, $query);
+                           // $query = "SELECT * FROM assignment WHERE class_id = '$get_id' AND status = 'Available' AND type = '1' ORDER BY fdatein DESC";
+                           
+                           $query = "SELECT * FROM assignment WHERE class_id = '$get_id' AND status = 'Available'  ORDER BY fdatein DESC";
+
+                           $result = mysqli_query($conn, $query);
 
                             if (mysqli_num_rows($result) === 0) {
                                 echo '<center> <div class="alert alert-warning text-center">There are no assignments yet.</div></center>';
