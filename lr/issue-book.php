@@ -70,9 +70,6 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" id="qr-text" name="book_id">
                 </div>
-                <!--<div class="card">
-                    <input type="text" class="form-control" name="book_id" id="text" data-toggle="modal" data-target="#myModal"></input>
-                </div>-->
             </form>
         </div><!--End of Cam Scanner-->
 
@@ -110,9 +107,9 @@
                 $return = '';
                 
 
-                //if($conn->connect_error){
-                  //die("Connection failed" .$conn->connect_error);
-                //}
+                /*if($conn->connect_error){
+                  die("Connection failed" .$conn->connect_error);
+                }*/
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query_run = mysqli_query($conn, $sql);
@@ -126,9 +123,8 @@
                     echo '<script>                         
                             Swal.fire({
                                 title: "Book scanned successfully!",
-                                input: "text",
+                                html: "<input id="qr-text" placeholder="Enter">",
                                 icon: "success",
-                                inputPlaceholder:"Enter Student No. here",
                                 confirmButtonText: "Borrow",
                                 cancelButtonText: "Return",
                                 showCancelButton: "true",
@@ -139,7 +135,20 @@
                                     return "You need to write something!";
                                 }
                                 }
-                            });
+                            })
+                            
+                            if(formValues){
+                                var data = {
+                                    studno: $(value()),
+                                };
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                            ;
                           </script>';
                 
 
@@ -149,6 +158,7 @@
                     $borrower = $_POST['text'];
 
                     //Check if student number exists
+                    $row = $query->fetch_assoc();
                     $sql ="SELECT * FROM student WHERE student_id='$borrower'";
                     $query_run = mysqli_query($conn, $sql);
 
