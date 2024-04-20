@@ -172,9 +172,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!--Script for Modal-->
         <script>
-            $(document).on("click","#borrow",function(){
+            $("#borrow").on("click",function(){
                 
-                $("#borrow_book").modal("toggle");
+                $("#borrow_book").modal("show");
                 
                 })
         </script>
