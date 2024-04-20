@@ -76,38 +76,64 @@ if (isset($_POST['submit_quiz'])) {
     // Calculate the student's total score
     $studentTotalScore = $correctAnswersCount;
 
-// Print the results, including question text, correct answer, user's answer, and points
-echo '<div class="">'; // Start a container to separate the cards
+    // Print the results, including question text, correct answer, user's answer, and points
+    echo '<div class="">'; // Start a container to separate the cards
 
 
- // Display the student's total score
-//  echo "Total Score: $studentTotalScore/$totalPoints"; // Display the score as X/Y points, where Y is the total points for the quiz.
-foreach ($results as $quiz_question_id => $result) {
-    // echo '<div class="row">'; // Start a new row for each card
-    // echo '<div class="col-md-6 mx-auto">'; // Center the card horizontally using mx-auto
-    // echo '<div class="card">'; // Start card
-    // echo '<div class="card-body">'; // Start card-body
+    // Display the student's total score
+    //  echo "Total Score: $studentTotalScore/$totalPoints"; // Display the score as X/Y points, where Y is the total points for the quiz.
+    foreach ($results as $quiz_question_id => $result) {
+        // echo '<div class="row">'; // Start a new row for each card
+        // echo '<div class="col-md-6 mx-auto">'; // Center the card horizontally using mx-auto
+        // echo '<div class="card">'; // Start card
+        // echo '<div class="card-body">'; // Start card-body
 
-    // echo "Question $quiz_question_id: <br>";
-    // echo "Question: " . $result['question_text'] . "<br>";
-    // echo "Your Answer: " . $result['user_answer'] . "<br>";
-    // echo "Correct Answer: " . $result['correct_answer'] . "<br>";
-    // echo "Result: " . $result['result'] . "<br>";
-    // echo "Points: " . $result['points'] . "<br>";
+        // echo "Question $quiz_question_id: <br>";
+        // echo "Question: " . $result['question_text'] . "<br>";
+        // echo "Your Answer: " . $result['user_answer'] . "<br>";
+        // echo "Correct Answer: " . $result['correct_answer'] . "<br>";
+        // echo "Result: " . $result['result'] . "<br>";
+        // echo "Points: " . $result['points'] . "<br>";
 
-    // echo '</div>'; // Close card-body
-    // echo '</div>'; // Close card
-    // echo '</div>'; // Close column
-    // echo '</div>'; // Close row
-    // echo "<br>";
- 
-}
-echo '<div class="container d-flex justify-content-center align-items-center vh-100">';
-echo '<div class="alert alert-success text-center" role="alert">';
-echo '<p>Your response has been submitted!</p>';
-echo '<a href="index.php" class="btn btn-primary mt-3">Go Back</a>';
-echo '</div>';
-echo '</div>';
+        // echo '</div>'; // Close card-body
+        // echo '</div>'; // Close card
+        // echo '</div>'; // Close column
+        // echo '</div>'; // Close row
+        // echo "<br>";
+    
+    }
+    echo '<div class="container d-flex justify-content-center align-items-center vh-100">';
+    echo '<div class="alert alert-success text-center" role="alert">';
+    echo '<p>Your response has been submitted!</p>';
+    echo '<a href="index.php" class="btn btn-primary mt-3">Go Back</a>';
+    echo '</div>';
+    echo '</div>';
+                
+            // NOTIFICATION FUNCTION FOR QUIZ
+            $sqlzz = "SELECT q.quiz_title, q.quiz_id , cq.teacher_class_id FROM class_quiz cq INNER JOIN quiz q ON cq.quiz_id = q.quiz_id WHERE cq.class_quiz_id = $class_quiz_id ";
+            $resultzz = mysqli_query($conn, $sqlzz);
+            $rowzzz = mysqli_fetch_assoc($resultzz);
+            $quiz_id = $rowzzz['quiz_id'];
+            $quiz_title = $rowzzz['quiz_title'];
+            $teacher_class_id = $rowzzz['teacher_class_id'];
+            
+
+            $sqlzz = "SELECT teacher_id FROM teacher_class WHERE teacher_class_id = $teacher_class_id ";
+            $resultzz = mysqli_query($conn, $sqlzz);
+            $rowzzz = mysqli_fetch_assoc($resultzz);
+            $teacher_idz = $rowzzz['teacher_id'];
+
+
+            $notificationMessage = "Submitted Quiz on ";
+            $notificationMessage .= $quiz_title;
+
+            $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id)
+            VALUES ('$teacher_idz', '$notificationMessage', NOW(), '$student_id', '$classQuizId', '$teacher_idz')";
+            mysqli_query($conn, $insertNotificationQuery);
+            
+
+
+    
     // Store the total score in the student_class_quiz table
     if (isset($student_id) && isset($class_quiz_id)) {
         $studentId = $student_id;
@@ -117,37 +143,47 @@ echo '</div>';
         $checkSql = "SELECT * FROM student_class_quiz WHERE student_id = $studentId AND class_quiz_id = $classQuizId";
         $checkResult = mysqli_query($conn, $checkSql);
 
+
+
         if (mysqli_num_rows($checkResult) == 0) {
-            // If no record exists, insert a new record
-            $insertSql = "INSERT INTO student_class_quiz (student_id, class_quiz_id, grade, taken, max_score, quiz_id) VALUES ($studentId, $classQuizId, $studentTotalScore, 'yes', $totalPoints, $get_id)";
-            $insertResult = mysqli_query($conn, $insertSql);
-// Store the individual question-wise results in the quiz_results table
-foreach ($results as $quiz_question_id => $result) {
-    $question_text = mysqli_real_escape_string($conn, $result['question_text']);
-    $user_answer = mysqli_real_escape_string($conn, $result['user_answer']);
-    $is_correct = ($result['result'] === 'Correct') ? 1 : 0;
-    $points = $result['points'];
-    $correct_answer = mysqli_real_escape_string($conn, $result['correct_answer']);
+                // If no record exists, insert a new record
+                $insertSql = "INSERT INTO student_class_quiz (student_id, class_quiz_id, grade, taken, max_score, quiz_id) VALUES ($studentId, $classQuizId, $studentTotalScore, 'yes', $totalPoints, $get_id)";
+                $insertResult = mysqli_query($conn, $insertSql);
 
-    // Insert into quiz_results table
-    $insertSql = "INSERT INTO quiz_results (student_id, quiz_question_id, user_answer, is_correct, points, quiz_id, correct_answer) VALUES ($student_id, $quiz_question_id, '$user_answer', $is_correct, $points, $get_id, '$correct_answer')";
-    $insertResult = mysqli_query($conn, $insertSql);
+                
 
-    if (!$insertResult) {
-        echo "Error inserting quiz result into the database: " . mysqli_error($conn);
-        // Handle the error as needed
-    }
-}
-            if ($insertResult) {
-                echo "Score has been inserted into the database.";
+            // Store the individual question-wise results in the quiz_results table
+            foreach ($results as $quiz_question_id => $result) {
+                $question_text = mysqli_real_escape_string($conn, $result['question_text']);
+                $user_answer = mysqli_real_escape_string($conn, $result['user_answer']);
+                $is_correct = ($result['result'] === 'Correct') ? 1 : 0;
+                $points = $result['points'];
+                $correct_answer = mysqli_real_escape_string($conn, $result['correct_answer']);
+
+                // Insert into quiz_results table
+                $insertSql = "INSERT INTO quiz_results (student_id, quiz_question_id, user_answer, is_correct, points, quiz_id, correct_answer) VALUES ($student_id, $quiz_question_id, '$user_answer', $is_correct, $points, $get_id, '$correct_answer')";
+                $insertResult = mysqli_query($conn, $insertSql);
+
+                if (!$insertResult) {
+                    echo "Error inserting quiz result into the database: " . mysqli_error($conn);
+                    // Handle the error as needed
+                }
+            }
+                if ($insertResult) {
+                    echo "Score has been inserted into the database.";
+                    //teacher notification
+
+                        
+
+
+                } else {
+                    echo "Error inserting the score into the database.";
+                }
             } else {
-                echo "Error inserting the score into the database.";
+                // echo "A record already exists for this student and class quiz.";
             }
         } else {
-            // echo "A record already exists for this student and class quiz.";
-        }
-    } else {
-        echo "The form has not been submitted.";
+            echo "The form has not been submitted.";
     }
 }
 
@@ -270,45 +306,45 @@ echo '</div>'; // Close the container
         $studentId = $student_id;
         $classexamId = $class_exam_id;
 
-        // Check if a record already exists for the student and class_exam_id
-        $checkSql = "SELECT * FROM student_class_exam WHERE student_id = $studentId AND class_exam_id = $classexamId";
-        $checkResult = mysqli_query($conn, $checkSql);
+            // Check if a record already exists for the student and class_exam_id
+            $checkSql = "SELECT * FROM student_class_exam WHERE student_id = $studentId AND class_exam_id = $classexamId";
+            $checkResult = mysqli_query($conn, $checkSql);
 
-        if (mysqli_num_rows($checkResult) == 0) {
-            // If no record exists, insert a new record
-            $insertSql = "INSERT INTO student_class_exam (student_id, class_exam_id, grade, taken, max_score, exam_id) VALUES ($studentId, $classexamId, $studentTotalScore, 'yes', $totalPoints, $get_id)";
-            $insertResult = mysqli_query($conn, $insertSql);
-// Store the individual question-wise results in the exam_results table
-foreach ($results as $exam_question_id => $result) {
-    $question_text = mysqli_real_escape_string($conn, $result['question_text']);
-    $user_answer = mysqli_real_escape_string($conn, $result['user_answer']);
-    $is_correct = ($result['result'] === 'Correct') ? 1 : 0;
-    $points = $result['points'];
-    $correct_answer = mysqli_real_escape_string($conn, $result['correct_answer']);
+            if (mysqli_num_rows($checkResult) == 0) {
+                // If no record exists, insert a new record
+                $insertSql = "INSERT INTO student_class_exam (student_id, class_exam_id, grade, taken, max_score, exam_id) VALUES ($studentId, $classexamId, $studentTotalScore, 'yes', $totalPoints, $get_id)";
+                $insertResult = mysqli_query($conn, $insertSql);
+            // Store the individual question-wise results in the exam_results table
+            foreach ($results as $exam_question_id => $result) {
+                $question_text = mysqli_real_escape_string($conn, $result['question_text']);
+                $user_answer = mysqli_real_escape_string($conn, $result['user_answer']);
+                $is_correct = ($result['result'] === 'Correct') ? 1 : 0;
+                $points = $result['points'];
+                $correct_answer = mysqli_real_escape_string($conn, $result['correct_answer']);
 
-    // Insert into exam_results table
-    $insertSql = "INSERT INTO exam_results (student_id, exam_question_id, user_answer, is_correct, points, exam_id, correct_answer) VALUES ($student_id, $exam_question_id, '$user_answer', $is_correct, $points, $get_id, '$correct_answer')";
-    $insertResult = mysqli_query($conn, $insertSql);
+                // Insert into exam_results table
+                $insertSql = "INSERT INTO exam_results (student_id, exam_question_id, user_answer, is_correct, points, exam_id, correct_answer) VALUES ($student_id, $exam_question_id, '$user_answer', $is_correct, $points, $get_id, '$correct_answer')";
+                $insertResult = mysqli_query($conn, $insertSql);
 
-    if (!$insertResult) {
-        echo "Error inserting exam result into the database: " . mysqli_error($conn);
-        // Handle the error as needed
-    }
-}
-            if ($insertResult) {
-                echo "Score has been inserted into the database.";
+                if (!$insertResult) {
+                    echo "Error inserting exam result into the database: " . mysqli_error($conn);
+                    // Handle the error as needed
+                }
+            }
+                if ($insertResult) {
+                    echo "Score has been inserted into the database.";
+                } else {
+                    echo "Error inserting the score into the database.";
+                }
             } else {
-                echo "Error inserting the score into the database.";
+                
+                //sucess submitting exam
+            // echo "A record already exists for this student and class exam.";
             }
         } else {
-            
-            //sucess submitting exam
-           // echo "A record already exists for this student and class exam.";
+            echo "The form has not been submitted.";
         }
-    } else {
-        echo "The form has not been submitted.";
     }
-}
 
 
 ?>

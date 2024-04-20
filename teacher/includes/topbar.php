@@ -37,11 +37,11 @@ if ($query) {
     </div>
     <div class="user ml-auto">
         
-        <!-- notification ICON
+        
         <a href="#" class="mr-4" onclick="toggleNotifi()">
             <i class="fa fa-bell" aria-hidden="true"></i>
         </a>
-        -->
+        
         
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -81,7 +81,7 @@ if ($query) {
       <?php
        
 
-        $sql = "SELECT tn.*, s.location AS student_location
+        $sql = "SELECT tn.*, s.picture AS picture
         FROM teacher_notification tn
         JOIN student s ON tn.student_id = s.student_id
         WHERE tn.teacher_id = $teacher_id ORDER BY teacher_notification_id DESC;
@@ -91,15 +91,15 @@ if ($query) {
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             // Display each notification
-            echo "<a href='view_student_assignment_submissions.php?student_id=" . $row['student_id'] . "&post_id=" . $row['assignment_id'] . "&get_id=" . $row['teacher_class_id'] . "'>";
+            //echo "<a href='view_student_assignment_submissions.php?student_id=" . $row['student_id'] . "&post_id=" . $row['assignment_id'] . "&get_id=" . $row['teacher_class_id'] . "'>";
             echo "<div class='notifi-item'>";
-            echo "<img src='" . $row['student_location'] . "' alt='student-image'>";
+            echo "<img src='" . $row['picture'] . "' alt='student-image'>";
             echo "<div class='text'>";
             echo "<h4>" . $row['notification'] . "</h4>";
             echo "<p>Date: " . $row['date_of_notification'] . "</p>";
             echo "</div>";
             echo "</div>";
-            echo "</a>";
+            //echo "</a>";
           }
         } else {
           echo "<h6 class='text-center mt-4'>No notifications Yet</h6>";
