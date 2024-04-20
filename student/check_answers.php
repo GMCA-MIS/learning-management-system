@@ -128,7 +128,7 @@ if (isset($_POST['submit_quiz'])) {
             $notificationMessage .= $quiz_title;
 
             $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id)
-            VALUES ('$teacher_idz', '$notificationMessage', NOW(), '$student_id', '$classQuizId', '$teacher_idz')";
+            VALUES ('$teacher_idz', '$notificationMessage', NOW(), '$student_id', '$quiz_id', '$teacher_idz')";
             mysqli_query($conn, $insertNotificationQuery);
             
 
@@ -298,8 +298,32 @@ echo '<div class="col-md-12" >'; // Start a container to separate the cards
     echo '</div>'; // Close column
     echo '</div>'; // Close row
     echo "<br>";
-}
-echo '</div>'; // Close the container
+    }   
+    
+    echo '</div>'; // Close the container
+
+    
+    // NOTIFICATION FUNCTION FOR QUIZ
+    $sqlzz = "SELECT e.exam_title, e.exam_id , ce.teacher_class_id FROM class_exam ce INNER JOIN exam e ON ce.exam_id = e.exam_id WHERE ce.class_exam_id = $class_exam_id ";
+    $resultzz = mysqli_query($conn, $sqlzz);
+    $rowzzz = mysqli_fetch_assoc($resultzz);
+    $exam_id = $rowzzz['exam_id'];
+    $exam_title = $rowzzz['exam_title'];
+    $teacher_class_id = $rowzzz['teacher_class_id'];
+    
+
+    $sqlzz = "SELECT teacher_id FROM teacher_class WHERE teacher_class_id = $teacher_class_id ";
+    $resultzz = mysqli_query($conn, $sqlzz);
+    $rowzzz = mysqli_fetch_assoc($resultzz);
+    $teacher_idz = $rowzzz['teacher_id'];
+
+
+    $notificationMessage = "Submitted Quiz on ";
+    $notificationMessage .= $exam_title;
+
+    $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id)
+    VALUES ('$teacher_idz', '$notificationMessage', NOW(), '$student_id', '$exam_id', '$teacher_idz')";
+    mysqli_query($conn, $insertNotificationQuery);
 
     // Store the total score in the student_class_exam table
     if (isset($student_id) && isset($class_exam_id)) {
