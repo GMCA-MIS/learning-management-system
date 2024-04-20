@@ -297,7 +297,7 @@ include('dbcon.php');
                             <div class="modal-body">
 
                                 <div class="form-group">
-                                    <label for "exam_title">Exam Title</label>
+                                    <label for="exam_title">Exam Title</label>
                                     <input type="text" class="form-control" id="exam_title" name="exam_title" required
                                         placeholder="Enter Exam Title">
                                 </div>
@@ -368,13 +368,13 @@ include('dbcon.php');
                                 <div class="form-group">
                                     <label for="deadline">Deadline</label>
                                     <input type="datetime-local" id="deadline" name="deadline" required
-                                        placeholder="Enter Deadline">
+                                        placeholder="Enter Deadline"  min="<?=date('Y-m-d\Th:i')?>">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="limit">Time Limit (In Minutes)</label>
                                     <input type="number" id="limit" name="limit" required
-                                        placeholder="Enter Time Limit (In Minutes)">
+                                        placeholder="Enter Time Limit (In Minutes)" min="1">
                                 </div>
 
                             </div>
