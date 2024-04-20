@@ -92,7 +92,7 @@
             </thead>
             <tbody>
 
-                <!--Table value from 'attendance' and 'student'-->
+                <!--Table value from 'booklist' and 'student'-->
                 <?php
                 
                 $server = "srv1320.hstgr.io";
@@ -104,6 +104,10 @@
                 $conn = new mysqli($server,$username,$password,$dbname);
                 $date = date('Y-m-d');
                 $book_no = $_POST['book_id'];
+                $book_title = '';
+                $borrower = '';
+                $status = '';
+                $return = '';
                 
 
                 if($conn->connect_error){
@@ -112,8 +116,12 @@
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query_run = mysqli_query($conn, $sql);
+                $row = $query->fetch_assoc();
 
                 if(mysqli_num_rows($query_run) > 0) {
+                    
+                    //Get title of the book and set as value of a variable
+                    $book_title = $row['book_title'];
 
                     //Echo SweetAlert2
                     echo '<script>                         
@@ -134,6 +142,28 @@
                                 }
                             });
                           </script>';
+
+
+                if(isset($_POST['text'])) {
+
+                    //Get value of 'text' as value for $borrower variable
+                    $borrower = $_POST['text'];
+
+                    //Check if student number exists
+                    $sql ="SELECT * FROM student WHERE student_id='$borrower'";
+                    $query_run = mysqli_query($conn, $sql);
+
+                //If exist, perform insert query
+                if(mysqli_num_rows($query_run) > 0) {
+                    $status = "Borrowed";
+
+                    $sql ="INSERT INTO borrowed_books (book_id, book_title, student_id, borrowed_date, status, return_date)
+                    VALUES ($book_no, $book_title, $borrower, $date, $status, $return)";
+                    $query_run = mysqli_query($conn, $sql);
+                    
+
+
+                }
 
                 //header('location: book-issue.php');
                 
@@ -158,6 +188,7 @@
                         <?php
                     }*/
                 }
+            }
                 ?>
     
                 
