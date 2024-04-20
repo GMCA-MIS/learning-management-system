@@ -118,8 +118,8 @@
                     //Echo SweetAlert2
                     echo "<script type='text/javascript'>
                             Swal.fire({
-                                title: 'Good job!',
-                                text: 'You clicked the button!',
+                                title: 'Book scanned successfully!',
+                                text: 'You clicked the button!' +
                                 html:
                                 '<input>',
                                 icon: 'success'
