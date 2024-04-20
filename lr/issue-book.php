@@ -172,7 +172,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!--Script for Modal-->
         <script>
-            var modal = document.getElementById("borrow_book");
+            $(document).on("click","#borrow",function(){
+                
+                $("#borrow_book").modal("toggle");
+                
+                })
         </script>
 
         <!-- Modal for Borrow button-->
