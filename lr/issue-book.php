@@ -143,7 +143,7 @@
                           </script>';
                 
 
-                if(isset($_POST['text'])) {
+                if(isset($_POST['submit'])) {
 
                     //Get value of 'text' as value for $borrower variable
                     $borrower = $_POST['text'];
