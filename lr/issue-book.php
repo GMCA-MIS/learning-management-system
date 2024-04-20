@@ -138,7 +138,7 @@
                                 }
                             })
                             
-                            if(formValues){
+                            if(value){
                                 var data = {
                                     studno: value(),
                                 };
