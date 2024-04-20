@@ -120,6 +120,7 @@
                                 Swal.fire({
                                     title: "Good job!",
                                     text: "You clicked the button!",
+                                    html: "<input name="stud_no">",
                                     icon: "success"
                                 });
                           </script>';
