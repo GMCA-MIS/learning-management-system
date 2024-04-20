@@ -116,25 +116,37 @@
                 if(mysqli_num_rows($query_run) > 0) {
 
                     //Echo SweetAlert2
-                    echo '<script>
-                            const { value: formValues } = await Swal.fire({
-                                title: "Multiple inputs",
-                                html: `
-                                <input id="swal-input1" class="swal2-input">
-                                <input id="swal-input2" class="swal2-input">
-                                `,
-                                focusConfirm: false,
-                                preConfirm: () => {
-                                return [
-                                    document.getElementById("swal-input1").value,
-                                    document.getElementById("swal-input2").value
-                                ];
-                                }
-                            });
-                            if (formValues) {
-                                Swal.fire(JSON.stringify(formValues));
-                            }
-                          </script>';
+                    echo "<script>
+                            $(.borrower).onsubmit(function(){
+                                (async () => {
+                                    const {value:formValues} = await $wal.fire({
+                                        title: 'Book Scanned Successfully!',
+                                        html:
+                                        '<input class='swal2-input' id='stud_no' placeholder='Enter Stud No. here'>',
+                                        confirmButtonText = 'Borrow',
+                                        confirmButtonText = 'Return'
+                                    })
+                        
+                                    if(formValues){
+                                        var data = {
+                                            stud_no: $('#stud_no').val()
+                                    };
+                        
+                                    $.ajax({
+                                        url: 'issue-book.php',
+                                        type: 'post',
+                                        data: data,
+                                        success:function(){
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Borrowed Successfully'
+                                            })
+                                        }
+                                        })
+                                    } 
+                                })()
+                                })
+                                </script>";
 
                 //header('location: book-issue.php');
                 
