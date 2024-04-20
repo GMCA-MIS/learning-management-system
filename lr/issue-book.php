@@ -149,7 +149,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                             <tr>
                                 <td><?php echo $row['book_id']; ?></td>
                                 <td><?php echo $row['book_title']; ?></td>
-                                <td>
+                                <td class="justify-content-between mr-1">
                                     <button class="btn btn-danger" type="button" id="borrow" name="borrow">
                                         <i class="fa-solid fa-hand"></i>
                                     </button>
