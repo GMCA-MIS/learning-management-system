@@ -116,16 +116,23 @@
                 if(mysqli_num_rows($query_run) > 0) {
 
                     //Echo SweetAlert2
-                    echo '<script>
-                            const { value: text } = await Swal.fire({
+                    echo '<script>                         
+                            Swal.fire({
                                 title: "Book scanned successfully!",
                                 input: "text",
-                                inputLabel: "Type Student No here",
-                                inputPlaceholder: "Student No"
+                                icon: "success",
+                                inputPlaceholder:"Enter Student No. here",
+                                confirmButtonText: "Borrow",
+                                cancelButtonText: "Return",
+                                showCancelButton: "true",
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "green",
+                                inputValidator: (value) => {
+                                if (!value) {
+                                    return "You need to write something!";
+                                }
+                                }
                             });
-                            if (text) {
-                                Swal.fire(`Entered text: ${text}`);
-                            }
                           </script>';
 
                 //header('location: book-issue.php');
