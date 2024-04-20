@@ -117,7 +117,7 @@
 
                     //Echo SweetAlert2
                     echo "<script>
-                            $(.borrower).onsubmit(function(){
+                            $(.form-control).onsubmit(function(){
                                 (async () => {
                                     const {value:formValues} = await $wal.fire({
                                         title: 'Book Scanned Successfully!',
