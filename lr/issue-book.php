@@ -68,7 +68,7 @@
                     <video id="preview"></video>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="text" name="book_id">
+                    <input type="text" class="form-control" id="qr-text" name="book_id">
                 </div>
                 <!--<div class="card">
                     <input type="text" class="form-control" name="book_id" id="text" data-toggle="modal" data-target="#myModal"></input>
@@ -116,7 +116,6 @@
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query_run = mysqli_query($conn, $sql);
-                $row = $query->fetch_assoc();
 
                 if(mysqli_num_rows($query_run) > 0) {
                     
@@ -142,7 +141,7 @@
                                 }
                             });
                           </script>';
-                }
+                
 
                 if(isset($_POST['text'])) {
 
@@ -188,7 +187,7 @@
                         <?php
                     }*/
                 }
-            
+            }
                 ?>
     
                 
@@ -210,7 +209,7 @@
                 });
 
                 scanner.addListener('scan',function(c){
-                    document.getElementById('text').value=c;
+                    document.getElementById('qr-text').value=c;
                     document.forms[0].submit();
                 });
 
@@ -238,32 +237,6 @@
                     
                     </table>
                 </div>
-            </div>
-
-
-            <!-- The Modal -->
-            <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    Modal body..
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-
-                </div>
-            </div>
             </div>
 
 
