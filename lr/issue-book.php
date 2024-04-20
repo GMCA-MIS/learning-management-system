@@ -253,11 +253,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
-<?php
-    include('includes/scripts.php');
-?>
-
-
 
 
 
