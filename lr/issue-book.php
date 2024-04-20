@@ -123,7 +123,7 @@
                     echo '<script>                         
                             Swal.fire({
                                 title: "Book scanned successfully!",
-                                html: "<input id="qr-text" placeholder="Enter">",
+                                html: "<input id="qr-text" placeholder="Enter"/>",
                                 icon: "success",
                                 confirmButtonText: "Borrow",
                                 cancelButtonText: "Return",
