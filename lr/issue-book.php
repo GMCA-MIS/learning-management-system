@@ -71,20 +71,18 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- End of Topbar -->
 
         <!--QR Code Cam Scanner-->
-        <div class="row justify-content-center">
+        <center><div class="row">
             <form action="issue-book.php" method="post" class="form-group" id="divvideo">
-                <div class="col-3"></div>
+            
                 <div class="card col-6">
                     <video id="preview"></video>
                 </div>
-                <div class="col-3"></div>
-                <div class="col-3"></div>
-                <div class="input-group mb-3 col-6">
+                <div class="input-group mb-5 col-6">
                     <input type="text" class="form-control" id="qr-text" name="book_id">
                 </div>
-                <div class="col-3"></div>
             </form>
-        </div><!--End of Cam Scanner-->
+        </div></center><!--End of Cam Scanner-->
+
 
 
         <!--Data Table-->
