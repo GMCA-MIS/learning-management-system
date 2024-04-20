@@ -18,6 +18,10 @@
 integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<!--Bootstrap Bundle-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
     a {
         text-decoration: none;
@@ -69,10 +73,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--QR Code Cam Scanner-->
         <div class="row justify-content-center">
             <form action="issue-book.php" method="post" class="form-group" id="divvideo">
-                <div class="card">
+                <div class="card col-4">
                     <video id="preview"></video>
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group mb-3 col-4">
                     <input type="text" class="form-control" id="qr-text" name="book_id">
                 </div>
             </form>
@@ -169,8 +173,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 
                 ?>
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        
         <!--Script for Modal-->
         <script>
             $("#borrow").on("click",function(){
