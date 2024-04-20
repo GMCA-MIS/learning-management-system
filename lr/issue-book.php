@@ -116,7 +116,7 @@
                 if(mysqli_num_rows($query_run) > 0) {
 
                     //Echo SweetAlert2
-                    echo '<script type="text/javascript">
+                    echo '<script>
                             const { value: formValues } = await Swal.fire({
                                 title: "Multiple inputs",
                                 html: `
