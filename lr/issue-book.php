@@ -127,6 +127,17 @@
                                 showConfirmButton: "true"
                                 })
                           </script>';
+                }
+                else {
+                    echo '<script>                         
+                            Swal.fire({
+                                title: "Cannot find QR code.",
+                                icon: "question",
+                                showConfirmButton: "true"
+                                })
+                          </script>';
+
+                }
                 
 
                 if(isset($_POST['submit'])) {
@@ -147,7 +158,7 @@
                     VALUES ($book_no, $book_title, $borrower, $date, $status, $return)";
                     $query_run = mysqli_query($conn, $sql);
                     
-
+                
 
                 }
 
@@ -174,7 +185,7 @@
                         <?php
                     }*/
                 }
-            }
+                
                 ?>
     
                 
