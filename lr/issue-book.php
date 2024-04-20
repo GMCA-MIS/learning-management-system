@@ -116,16 +116,25 @@
                 if(mysqli_num_rows($query_run) > 0) {
 
                     //Echo SweetAlert2
-                    echo "<script type='text/javascript'>
-                            Swal.fire({
-                                title: 'Book scanned successfully!',
-                                text: 'You clicked the button!',
-                                html:
-                                '<input class='swal2-input' id='stud_no' placeholder='Enter Stud No. Here'>',
-                                icon: 'success'
+                    echo '<script>
+                            const { value: formValues } = await Swal.fire({
+                                title: "Multiple inputs",
+                                html: `
+                                <input id="swal-input1" class="swal2-input">
+                                <input id="swal-input2" class="swal2-input">
+                                `,
+                                focusConfirm: false,
+                                preConfirm: () => {
+                                return [
+                                    document.getElementById("swal-input1").value,
+                                    document.getElementById("swal-input2").value
+                                ];
+                                }
                             });
-                        
-                          </script>";
+                            if (formValues) {
+                                Swal.fire(JSON.stringify(formValues));
+                            }
+                          </script>';
 
                 //header('location: book-issue.php');
                 
