@@ -73,12 +73,16 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--QR Code Cam Scanner-->
         <div class="row justify-content-center">
             <form action="issue-book.php" method="post" class="form-group" id="divvideo">
-                <div class="card col-4">
+                <div class="col-3"></div>
+                <div class="card col-6">
                     <video id="preview"></video>
                 </div>
-                <div class="input-group mb-3 col-4">
+                <div class="col-3"></div>
+                <div class="col-3"></div>
+                <div class="input-group mb-3 col-6">
                     <input type="text" class="form-control" id="qr-text" name="book_id">
                 </div>
+                <div class="col-3"></div>
             </form>
         </div><!--End of Cam Scanner-->
 
