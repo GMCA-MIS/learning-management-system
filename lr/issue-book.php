@@ -75,7 +75,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <form action="issue-book.php" method="post" class="form-group" id="divvideo">
             
                 <div class="card col-6">
-                    <video id="preview"></video>
+                    <center><video id="preview"></video></center>
                 </div>
                 <div class="input-group mb-5 col-6">
                     <input type="text" class="form-control" id="qr-text" name="book_id">
