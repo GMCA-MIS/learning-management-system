@@ -123,8 +123,9 @@
                     echo '<script>                         
                             Swal.fire({
                                 title: "Book scanned successfully!",
-                                html: "<input id="qr-text" placeholder="Enter"/>",
+                                input: "text",
                                 icon: "success",
+                                inputPlaceholder:"Enter Student No. here",
                                 confirmButtonText: "Borrow",
                                 cancelButtonText: "Return",
                                 showCancelButton: "true",
@@ -139,16 +140,21 @@
                             
                             if(formValues){
                                 var data = {
-                                    studno: $(value()),
+                                    studno: value(),
                                 };
-                            }
-                            
-                            
-                            
-                            
-                            
-                            
-                            ;
+
+                            $.ajax({
+                                url: issue-book.php,
+                                type: post,
+                                data: data,
+                                success:function(){
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Borrowed successfully!"
+                                    })
+                                    }
+                                })
+                                }
                           </script>';
                 
 
