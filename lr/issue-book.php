@@ -169,7 +169,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 
                 ?>
 
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <!--Script for Modal-->
         <script>
             $("#borrow").on("click",function(){
@@ -180,8 +181,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         </script>
 
         <!-- Modal for Borrow button-->
-        <div class="modal fade" role="dialog" id="borrow_book" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal fade" role="dialog" id="borrow_book">
+        <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
