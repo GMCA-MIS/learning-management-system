@@ -111,7 +111,7 @@ if ($query) {
             echo "</div>";
           }
         } else {
-          echo "<h6 class='text-center mt-4'>No notifications Yet</h6>";
+          //echo "<h6 class='text-center mt-4'>No notifications Yet</h6>";
         }
 
           }
