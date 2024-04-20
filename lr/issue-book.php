@@ -121,7 +121,7 @@
                                 title: 'Book scanned successfully!',
                                 text: 'You clicked the button!',
                                 html:
-                                '<input>',
+                                '<input id='stud_no' placeholder='Enter Stud No. Here'>',
                                 icon: 'success'
                             });
                         
