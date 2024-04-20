@@ -99,7 +99,7 @@ if ($class_row) { ?>
                                         <div class="form-group">
                                             <label for="max_score">Maximum Score:</label>
                                             <input type="number" id="max_score" name="max_score"
-                                                placeholder="Enter Max Score" required>
+                                                placeholder="Enter Max Score" min="1" required>
                                         </div>
 
                                         <div class="form-group">
