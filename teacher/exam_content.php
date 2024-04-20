@@ -260,7 +260,7 @@ if ($result) {
                                 </div>
                                 <div class="form-group">
                                     <label for="points">Point(s)</label>
-                                    <input type="number" class="form-control" name="points" required>
+                                    <input type="number" class="form-control" name="points" min="1" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="photo_upload">Upload Photo (optional)</label>
@@ -295,7 +295,7 @@ if ($result) {
 
                                 <div class="form-group">
                                     <label for="points">Point(s)</label>
-                                    <input type="number" class="form-control" name="points" required>
+                                    <input type="number" class="form-control" name="points" min="1" required>
                                 </div>
 
                                 <div class="form-group">
@@ -341,7 +341,7 @@ if ($result) {
 
                                     <div class="form-group">
                                         <label for="points">Point(s)</label>
-                                        <input type="number" class="form-control" name="points" required>
+                                        <input type="number" class="form-control" name="points" min="1" required>
                                     </div>
 
                                     <div class="form-group">
