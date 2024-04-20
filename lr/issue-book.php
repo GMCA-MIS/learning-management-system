@@ -116,14 +116,14 @@
                 if(mysqli_num_rows($query_run) > 0) {
 
                     //Echo SweetAlert2
-                    echo '<script>
+                    echo "<script>
                                 Swal.fire({
-                                    title: "Good job!",
-                                    text: "You clicked the button!",
-                                    html: "<input name="stud_no">"
-                                    icon: "success"
+                                    title: 'Good job!',
+                                    text: 'You clicked the button!',
+                                    html: '<input name='stud_no'>',
+                                    icon: 'success'
                                 });
-                          </script>';
+                          </script>";
 
                 //header('location: book-issue.php');
                 
