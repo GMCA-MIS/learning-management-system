@@ -120,8 +120,8 @@
                             const { value: text } = await Swal.fire({
                                 title: "Book scanned successfully!",
                                 input: "text",
-                                inputLabel: "Type Student No. here",
-                                inputPlaceholder: "Student No."
+                                inputLabel: "Type Student No here",
+                                inputPlaceholder: "Student No"
                             });
                             if (text) {
                                 Swal.fire(`Entered text: ${text}`);
