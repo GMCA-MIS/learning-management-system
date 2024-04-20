@@ -116,37 +116,13 @@
                 if(mysqli_num_rows($query_run) > 0) {
 
                     //Echo SweetAlert2
-                    echo "<script>
-                            $(.form-control).onsubmit(function(){
-                                (async () => {
-                                    const {value:formValues} = await $wal.fire({
-                                        title: 'Book Scanned Successfully!',
-                                        html:
-                                        '<input class='swal2-input' id='stud_no' placeholder='Enter Stud No. here'>',
-                                        confirmButtonText = 'Borrow',
-                                        confirmButtonText = 'Return'
-                                    })
-                        
-                                    if(formValues){
-                                        var data = {
-                                            stud_no: $('#stud_no').val()
-                                    };
-                        
-                                    $.ajax({
-                                        url: 'issue-book.php',
-                                        type: 'post',
-                                        data: data,
-                                        success:function(){
-                                            Swal.fire({
-                                                icon: 'success',
-                                                title: 'Borrowed Successfully'
-                                            })
-                                        }
-                                        })
-                                    } 
-                                })()
-                                })
-                                </script>";
+                    echo '<script>
+                                Swal.fire({
+                                    title: "Good job!",
+                                    text: "You clicked the button!",
+                                    icon: "success"
+                                });
+                          </script>';
 
                 //header('location: book-issue.php');
                 
