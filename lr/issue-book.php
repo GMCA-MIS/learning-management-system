@@ -119,7 +119,7 @@
                     echo "<script type='text/javascript'>
                             Swal.fire({
                                 title: 'Book scanned successfully!',
-                                text: 'You clicked the button!' +
+                                text: 'You clicked the button!',
                                 html:
                                 '<input>',
                                 icon: 'success'
