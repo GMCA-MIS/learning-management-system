@@ -123,38 +123,9 @@
                     echo '<script>                         
                             Swal.fire({
                                 title: "Book scanned successfully!",
-                                input: "text",
                                 icon: "success",
-                                inputPlaceholder:"Enter Student No. here",
-                                confirmButtonText: "Borrow",
-                                cancelButtonText: "Return",
-                                showCancelButton: "true",
-                                confirmButtonColor: "#3085d6",
-                                cancelButtonColor: "green",
-                                inputValidator: (value) => {
-                                if (!value) {
-                                    return "You need to write something!";
-                                }
-                                }
-                            })
-                            
-                            if(value){
-                                var data = {
-                                    studno: value(),
-                                };
-
-                            $.ajax({
-                                url: issue-book.php,
-                                type: post,
-                                data: data,
-                                success:function(){
-                                    Swal.fire({
-                                        icon: "success",
-                                        title: "Borrowed successfully!"
-                                    })
-                                    }
+                                showConfirmButton: "true"
                                 })
-                                }
                           </script>';
                 
 
