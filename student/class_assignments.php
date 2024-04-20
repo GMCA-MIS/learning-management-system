@@ -133,7 +133,7 @@ include('initialize.php');
                                                                 echo "</div>";
                                                             }else{
                                                                 echo" <div class='p-2 border border-warning' style='color:#D4AF37'>";
-                                                                echo "Checking by Teacher" ;
+                                                                echo "Pending" ;
                                                                 echo "</div>";
                                                             }
                                                             
