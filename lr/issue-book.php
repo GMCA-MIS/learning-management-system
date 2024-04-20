@@ -150,7 +150,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                 <td><?php echo $row['book_id']; ?></td>
                                 <td><?php echo $row['book_title']; ?></td>
                                 <td>
-                                    <button class="btn btn-primary" type="button" id="borrow" name="borrow">
+                                    <button class="btn btn-danger" type="button" id="borrow" name="borrow">
                                         <i class="fa-solid fa-hand"></i>
                                     </button>
                                     <button class="btn btn-info" type="button" id="view-deets" name="view-deets">
