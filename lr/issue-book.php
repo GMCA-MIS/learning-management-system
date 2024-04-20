@@ -150,7 +150,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                 <td><?php echo $row['book_id']; ?></td>
                                 <td><?php echo $row['book_title']; ?></td>
                                 <td>
-                                    <button class="btn btn-warning mr-3" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow-book">
+                                    <button class="btn btn-warning mr-3" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
                                         <i class="fa-solid fa-hand"></i>
                                     </button>
                                     <button class="btn btn-info mr-3" type="button" id="view-deets" name="view-deets">
@@ -170,8 +170,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 ?>
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="borrow-book" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <!--Script for Modal-->
+        <script>
+            var modal = document.getElementById("borrow_book");
+        </script>
+
+        <!-- Modal for Borrow button-->
+        <div class="modal fade" id="borrow_book" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
