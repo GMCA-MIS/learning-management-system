@@ -1,8 +1,23 @@
+<style>
+    .printme {
+	display: none;
+}
+@media print {
+	.no-printme  {
+		display: none;
+	}
+	.printme  {
+		display: block;
+	}
+}
+</style>
 <?php
 include('includes/admin_session.php');
 include('dbcon.php');
 include('includes/header.php');
 include('includes/navbar.php');
+
+
 
 if (isset($_GET['student_id'])) {
     $class_id = $_GET['class_id'];
@@ -59,7 +74,6 @@ if (isset($_GET['student_id'])) {
 <div id="content-wrapper" class="d-flex flex-column">
     <!-- Main Content -->
     <div id="content">
-
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow newtopbar" style="margin-bottom:0;">
             <!-- Sidebar Toggle (Topbar) -->
@@ -82,6 +96,8 @@ if (isset($_GET['student_id'])) {
 
         <div class="d-sm-flex align-items-center justify-content-between" style="margin-top: 20px; margin-left: 10px;">
             <h1 class="h5 mb-0 text-gray-800 ml-4"><?php echo " NAME : ".  $firstname . " " . $lastname; ?></h1>
+            <input type="button" class="btn btn-primary" style="margin-right:20px" onclick={window.print()} value="PRINT" />
+
         </div>
 
         <?php
@@ -95,7 +111,7 @@ if (isset($_GET['student_id'])) {
 
         $query_run = mysqli_query($conn, $query);
         ?>
-    <div class="card-body">
+    <div class="card-body" id="printme" >
         <div class="table-responsive">
             <table id="dataTableID" class="table table-bordered table-striped" width="100%" cellspacing="0">
                 <thead>
@@ -105,6 +121,8 @@ if (isset($_GET['student_id'])) {
                         <th>Assignment Grade</th>
                         <th>Exam Grade</th>
                         <th>Quiz Grade</th>
+                        <th>Final Grade</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -118,6 +136,67 @@ if (isset($_GET['student_id'])) {
                                 <td><?php echo $row['assignment_grade']; ?></td>
                                 <td><?php echo $row['exam_grade']; ?></td>
                                 <td><?php echo $row['quiz_grade']; ?></td>
+                                <?php
+                                $track = $row['track'];
+                                $assignment_grade = $row['assignment_grade'];
+                                $task_grade = $row['task_grade'];
+                                $exam_grade = $row['exam_grade'];
+                                $quiz_grade = $row['quiz_grade'];
+                                $subject_type = $row['subject_type'];
+                                $total_percentage = 0;
+
+                                if ($subject_type == "Applied" && $track == "Academic") {
+                                    // Add the assignment_grade and task_grade, divide by 2, multiply by 0.4
+                                    $total_percentage += (($assignment_grade + $task_grade) / 2) * 0.6;
+
+                                    // Add the quotient of exam_grade plus quiz_grade divided by 2, multiply by 0.6
+                                    $total_percentage += (($exam_grade + $quiz_grade) / 2) * 0.4;
+                                }
+                                elseif($subject_type == "Applied" && $track == "TVL") {
+                                    // Add the assignment_grade and task_grade, divide by 2, multiply by 0.4
+                                    $total_percentage += (($assignment_grade + $task_grade) / 2) * 0.7;
+
+                                    // Add the quotient of exam_grade plus quiz_grade divided by 2, multiply by 0.6
+                                    $total_percentage += (($exam_grade + $quiz_grade) / 2) * 0.3;
+                                }
+                                elseif($subject_type == "Specialized" && $track == "Academic") {
+                                    // Add the assignment_grade and task_grade, divide by 2, multiply by 0.4
+                                    $total_percentage += (($assignment_grade + $task_grade) / 2) * 0.6;
+
+                                    // Add the quotient of exam_grade plus quiz_grade divided by 2, multiply by 0.6
+                                    $total_percentage += (($exam_grade + $quiz_grade) / 2) * 0.4;
+                                }
+                                elseif($subject_type == "Specialized" && $track == "TVL") {
+                                    // Add the assignment_grade and task_grade, divide by 2, multiply by 0.4
+                                    $total_percentage += (($assignment_grade + $task_grade) / 2) * 0.7;
+
+                                    // Add the quotient of exam_grade plus quiz_grade divided by 2, multiply by 0.6
+                                    $total_percentage += (($exam_grade + $quiz_grade) / 2) * 0.3;
+                                }
+
+                                elseif($subject_type == "Core" && $track == "Academic") {
+                                    // Add the assignment_grade and task_grade, divide by 2, multiply by 0.4
+                                    $total_percentage += (($assignment_grade + $task_grade) / 2) * 0.6;
+
+                                    // Add the quotient of exam_grade plus quiz_grade divided by 2, multiply by 0.6
+                                    $total_percentage += (($exam_grade + $quiz_grade) / 2) * 0.4;
+                                }
+
+                                elseif($subject_type == "Core" && $track == "TVL") {
+                                    // Add the assignment_grade and task_grade, divide by 2, multiply by 0.4
+                                    $total_percentage += (($assignment_grade + $task_grade) / 2) * 0.6;
+
+                                    // Add the quotient of exam_grade plus quiz_grade divided by 2, multiply by 0.6
+                                    $total_percentage += (($exam_grade + $quiz_grade) / 2) * 0.4;
+                                }
+
+                                // Display the calculated total percentage
+                                echo "<td>" . number_format($total_percentage, 2, '.', '') . "%</td>";
+
+                                ?>
+
+
+
                             </tr>
                         <?php
                         }
@@ -132,6 +211,12 @@ if (isset($_GET['student_id'])) {
 </div>
 
 <script>
+function printDiv(divId) {
+    w=window.open();
+    w.document.write($(divId).html());
+    w.print();
+    w.close();
+}
     function doapprovedModal(id) {
         document.getElementById("approvedinputid").value = id;
     }

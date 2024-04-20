@@ -230,7 +230,7 @@ while ($row = mysqli_fetch_array($query)) {
         $studentSubmissions[$studentId] = array(
             'firstname' => $row['firstname'],
             'lastname' => $row['lastname'],
-            'location' => $row['location'],
+            'picture' => $row['picture'],
             'grade' => $row['grade'],
             'max_score' => $row['max_score'],
             'submissions' => array()
@@ -243,7 +243,7 @@ while ($row = mysqli_fetch_array($query)) {
 
     $submission = array(
         'id' => $row['student_assignment_id'],
-        'location' => $row['location'],
+        'picture' => $row['picture'],
         'maxScore' => $row['max_score'],
         'submissionDate' => $submissionDate,
         'deadline' => $deadline,
@@ -266,7 +266,7 @@ if (empty($studentSubmissions)) {
 <?php foreach ($studentSubmissions as $studentId => $studentData): ?>
     <?php
     $studentName = $studentData['firstname'] . ' ' . $studentData['lastname'];
-    $studentImageLocation = $studentData['location']; // Get the image location from the data
+    $studentImageLocation = $studentData['picture']; // Get the image location from the data
     $grade = $studentData['grade']; // Assuming the grade is stored in the 'grade' column
     $maxScore = $studentData['max_score']; // Assuming the max score is stored in the 'maxScore' column
     ?>

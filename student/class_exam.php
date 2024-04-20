@@ -86,6 +86,30 @@ if ($class_row) { ?>
                                 <!-- exam Card -->
                                 <a href="exam_content.php?exam_id=<?php echo $exam_id; ?>&id=<?php echo $get_id;?>" class="card mt-2">
                                     <div class="card-body">
+                                        
+                                    <h6 class="card-title" style="">
+                                            <div class="d-flex flex-row-reverse">
+                                                    <?php 
+                                                        $rowquery = " SELECT taken FROM student_class_exam WHERE exam_id = $exam_id AND student_id = $student_id ";
+                                                        $rowresult = mysqli_query($conn, $rowquery);
+                                                        $rowstats = mysqli_fetch_array($rowresult);
+                                                        if(empty($rowstats['taken'])){
+
+                                                            echo" <div class='p-2 border border-danger' style='color:red'>";
+                                                            echo "Take Exam" ;
+                                                            echo "</div>";
+
+                                                            }elseif($rowstats['taken'] == "yes"){
+
+                                                            echo" <div class='p-2 border border-success' style='color:green'>";
+                                                            echo "Completed" ;
+                                                            echo "</div>";
+                                                        }
+                                                    
+                                                    ?>
+                                                
+                                            </div>
+                                        </h6>
                                         <h6 class="card-title"><?php echo $exam_title; ?></h6>
                                         <h6 class="card-title"><?php echo $exam_description; ?></h6>
                                         <p class="card-text rem"><strong>Posted:</strong> <?php echo date('F j, Y \a\t g:i A', strtotime($date_added)); ?></p>

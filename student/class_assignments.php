@@ -98,8 +98,11 @@ include('initialize.php');
                             <?php
 
                             // Query to retrieve assignments
-                            $query = "SELECT * FROM assignment WHERE class_id = '$get_id' AND status = 'Available' AND type = '1' ORDER BY fdatein DESC";
-                            $result = mysqli_query($conn, $query);
+                           // $query = "SELECT * FROM assignment WHERE class_id = '$get_id' AND status = 'Available' AND type = '1' ORDER BY fdatein DESC";
+                           
+                           $query = "SELECT * FROM assignment WHERE class_id = '$get_id' AND status = 'Available'  ORDER BY fdatein DESC";
+
+                           $result = mysqli_query($conn, $query);
 
                             if (mysqli_num_rows($result) === 0) {
                                 echo '<center> <div class="alert alert-warning text-center">There are no assignments yet.</div></center>';
@@ -115,6 +118,39 @@ include('initialize.php');
                                     <a href="view_class_assignment.php?id=<?php echo $get_id ?>&post_id=<?php echo $id ?>">
                                         <div class="card mt-3 position-relative">
                                             <div class="card-body">
+
+                                            <h6 class="card-title" style="">
+                                                 <div class="d-flex flex-row-reverse">
+                                                    <?php 
+                                                        $rowquery = " SELECT grade_status,student_assignment_id FROM student_assignment WHERE assignment_id = $id AND student_id = $student_id ";
+                                                        $rowresult = mysqli_query($conn, $rowquery);
+                                                        $rowstats = mysqli_fetch_array($rowresult);
+                                                        if(empty($rowstats['grade_status'])){
+
+                                                            if(empty($rowstats['student_assignment_id'])){
+                                                                echo" <div class='p-2 border border-danger' style='color:red'>";
+                                                                echo "Take Assignment" ;
+                                                                echo "</div>";
+                                                            }else{
+                                                                echo" <div class='p-2 border border-warning' style='color:#D4AF37'>";
+                                                                echo "Pending" ;
+                                                                echo "</div>";
+                                                            }
+                                                            
+
+
+                                                            }elseif($rowstats['grade_status'] == "1"){
+
+                                                            echo" <div class='p-2 border border-success' style='color:green'>";
+                                                            echo "Completed" ;
+                                                            echo "</div>";
+                                                        }
+                                                    
+                                                    ?>
+                                                
+                                                </div>
+                                            </h6>
+
                                                 <h6 class="card-title"><?php echo $row['fname']; ?></h6>
                                                 <p class="card-text rem"><strong>Due:</strong> <?php echo $deadline; ?></p>
                                             </div>

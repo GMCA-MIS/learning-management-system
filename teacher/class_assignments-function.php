@@ -219,7 +219,7 @@ function clean($str) {
 // mysqli_stmt_bind_param($stmt, 'ssis', $name_notification, $date_of_notification, $id_class, $link);
 // mysqli_stmt_execute($stmt);
 
-$qry = "INSERT INTO assignment (fname, fdatein, teacher_id, class_id, max_score, learning_objectives, status, type) VALUES ('$name', NOW(), '$teacher_id', '$id_class',  '$max_score', '$learning_objectives',  'Available', '1')";
+$qry = "INSERT INTO assignment (fname, fdatein, teacher_id, class_id, max_score, learning_objectives, status, type) VALUES ('$name', NOW(), '$teacher_id', '$id_class',  '$max_score', '$learning_objectives',  'Available', 1)";
 $query = mysqli_query($conn, $qry);
 
 if ($query) {
