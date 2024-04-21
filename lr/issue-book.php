@@ -157,13 +157,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         $book_title = $row['book_title'];
 
                         ?>
-                            <!--<form action="issue-book.php" method="POST">-->
+                            <form action="issue-book.php" method="POST">
                                 <tr>
                                     <td class="col-1"><?php echo $row['book_id']; ?></td>
                                     <td class="col-6"><?php echo $row['book_title']; ?></td>
-                                    <td class="col-2"><span class="badge bg-success text-dark ml-1 mt-1 px-5 py-2"><?php echo $status; ?></span></td>
+                                    <td class="col-2"><span class="badge bg-success text-light ml-1 mt-1 px-5 py-2"><?php echo $status; ?></span></td>
                                     <td class="col-3">
-                                        <button class="btn btn-warning mr-3 ml-4" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
+                                        <button class="btn btn-warning mr-3 ml-4" type="submit" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
                                             <i class="fa-solid fa-hand"></i>
                                         </button>
                                         <button class="btn btn-info mr-3 ml-4" type="button" id="view-deets" name="view-deets">
@@ -174,7 +174,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                         </button>
                                     </td>
                                 </tr>
-                            <!--</form>-->
+                            </form>
                         
                     <?php
 
@@ -211,7 +211,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         
         <!--Script for Modal-->
         <script>
-            $("#borrow").on("click",function(){
+            $("#borrow").on("submit",function(){
                 
                 $("#borrow_book").modal("show");
                 
@@ -219,8 +219,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         </script>
 
         <!-- Modal for Borrow button-->
-        <form action="issue-book.php" method="POST">
-        <div class="modal fade" role="dialog" id="borrow_book">
+        <form action="issue-book.php" method="POST"  role="dialog" id="borrow_book">
+        <div class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
