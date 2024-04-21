@@ -193,7 +193,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-check mr-5"></i>Borrow book?</h5>
+                <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-check fa-xl mr-3" style="color: #63E6BE;"></i>Borrow book?</h5>
                     <label for="stud_no">Student No.:</label>
                     <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
             </div>
