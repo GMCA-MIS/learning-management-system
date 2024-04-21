@@ -190,12 +190,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-check"></i>Scanned Successfully!</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <label for="stud_no">Student No.:</label>
-                <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
+                <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-check mr-5"></i>Borrow book?</h5>
+                    <label for="stud_no">Student No.:</label>
+                    <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success" type="button" id="issue" name="issue">Borrow</button>
