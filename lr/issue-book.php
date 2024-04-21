@@ -215,7 +215,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     if(isset($_POST['issue'])) {
                         $borrower = $_POST['stud_no'];
 
-                        $sql ="SELECT * FROM student WHERE student_id='$borrower'";
+                        $sql ="SELECT * FROM student WHERE student_id=$borrower";
                         $query_run = mysqli_query($conn, $sql);
                     }
                     if(mysqli_num_rows($query_run) > 0) {
