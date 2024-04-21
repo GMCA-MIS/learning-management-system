@@ -212,7 +212,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         
         <!--Script for Modal-->
         <script>
-            $("#borrow").on("submit",function(){
+            $("#borrow").on("click",function(){
                 
                 $("#borrow_book").modal("show");
                 
