@@ -86,7 +86,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
         <!--Data Table-->
-        <div class="table-striped">
+        <div class="table-striped mr-1 ml-1">
             <table id="example1" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
