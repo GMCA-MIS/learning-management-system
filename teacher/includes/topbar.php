@@ -81,7 +81,7 @@ if ($query) {
       <?php
        
 
-        $sql = "SELECT tn.*, s.picture AS picture
+        $sql = "SELECT *, s.picture AS picture
         FROM teacher_notification tn
         JOIN student s ON tn.student_id = s.student_id
         WHERE tn.teacher_id = $teacher_id ORDER BY teacher_notification_id DESC;
@@ -95,6 +95,7 @@ if ($query) {
             echo "<div class='notifi-item'>";
             echo "<img src='" . $row['picture'] . "' alt='student-image'>";
             echo "<div class='text'>";
+            echo "<h4><b>" . $row['firstname'] . " " . $row['lastname'] . "</b></h4>";
             echo "<h4>" . $row['notification'] . "</h4>";
             echo "<p>Date: " . $row['date_of_notification'] . "</p>";
             echo "</div>";

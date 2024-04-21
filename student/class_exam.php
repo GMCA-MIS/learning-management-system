@@ -67,7 +67,7 @@ if ($class_row) { ?>
                         $query = "SELECT cq.*, q.exam_description, q.exam_title, q.date_added 
                         FROM class_exam AS cq
                         JOIN exam AS q ON cq.exam_id = q.exam_id
-                        WHERE cq.teacher_class_id = '$get_id' AND cq.stats = '0'";
+                        WHERE cq.teacher_class_id = '$get_id' AND cq.stats = '0'  ORDER BY date_added DESC  ";
                         $result = mysqli_query($conn, $query);
               
 
