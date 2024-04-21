@@ -188,7 +188,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
                     <!-- Modal for Borrow button-->
-                    <form action="issue-book.php" method="POST">
+                    <form action="issue-book.php" method="POST" id="issue_book">
                     <div class="modal fade" role="dialog" id="borrow_book">
                         <div class="modal-dialog">
                             <div class="modal-content">
