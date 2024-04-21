@@ -13,6 +13,15 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css">
 
+<!--Font Awesome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!--Bootstrap Bundle-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
     a {
         text-decoration: none;
@@ -62,37 +71,34 @@
         <!-- End of Topbar -->
 
         <!--QR Code Cam Scanner-->
-        <div class="row justify-content-center">
+        <center><div class="row">
             <form action="issue-book.php" method="post" class="form-group" id="divvideo">
-                <div class="card">
-                    <video id="preview"></video>
+            
+                <div class="card col-6">
+                    <center><video id="preview"></video></center>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="text" name="book_id">
+                <div class="input-group mb-5 col-6">
+                    <input type="text" class="form-control" id="qr-text" name="book_id">
                 </div>
-                <!--<div class="card">
-                    <input type="text" class="form-control" name="book_id" id="text" data-toggle="modal" data-target="#myModal"></input>
-                </div>-->
             </form>
-        </div><!--End of Cam Scanner-->
+        </div></center><!--End of Cam Scanner-->
+
 
 
         <!--Data Table-->
-        <div class="table-striped">
+        <div class="table-striped mx-3">
             <table id="example1" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>Book No.</th>
                     <th>Book Title</th>
-                    <th>Student No.</th>
-                    <th>Borrow Date</th>
-                    <th>Return Date</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
 
-                <!--Table value from 'attendance' and 'student'-->
+                <!--Table value from 'booklist' and 'student'-->
                 <?php
                 
                 $server = "srv1320.hstgr.io";
@@ -104,62 +110,101 @@
                 $conn = new mysqli($server,$username,$password,$dbname);
                 $date = date('Y-m-d');
                 $book_no = $_POST['book_id'];
+                $book_title = '';
+                $borrower = '';
+                $status = '';
+                $return = '';
                 
 
-                if($conn->connect_error){
+                /*if($conn->connect_error){
                   die("Connection failed" .$conn->connect_error);
-                }
+                }*/
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query_run = mysqli_query($conn, $sql);
 
                 if(mysqli_num_rows($query_run) > 0) {
+                    
+                    //Get title of the book and set as value of a variable
+                    $book_title = $row['book_title'];
 
                     //Echo SweetAlert2
-                    echo '<script>
-                            const { value: formValues } = await Swal.fire({
-                                title: "Multiple inputs",
-                                html: `
-                                <input id="swal-input1" class="swal2-input">
-                                <input id="swal-input2" class="swal2-input">
-                                `,
-                                focusConfirm: false,
-                                preConfirm: () => {
-                                return [
-                                    document.getElementById("swal-input1").value,
-                                    document.getElementById("swal-input2").value
-                                ];
-                                }
-                            });
-                            if (formValues) {
-                                Swal.fire(JSON.stringify(formValues));
-                            }
+                    echo '<script>                         
+                            Swal.fire({
+                                title: "Book scanned successfully!",
+                                icon: "success",
+                                showConfirmButton: "true"
+                                })
+                          </script>';
+                }
+                else {
+                    echo '<script>                         
+                            Swal.fire({
+                                title: "Cannot find QR code.",
+                                icon: "question",
+                                showConfirmButton: "true"
+                                })
                           </script>';
 
-                //header('location: book-issue.php');
+                }
                 
+                if(isset($_POST['book_id'])) {
 
-                   /* while ($row = $query_run->fetch_assoc()) {
+                    $status = "Borrowed";
+                
+                    while ($row = $query_run->fetch_assoc()) {
                         ?>
                             <tr>
-                                <td><?php echo $row['book_id']; ?></td>
-                                <td><?php echo $row['book_title']; ?></td>
-                                <td><?php echo $book_no; ?></td>
-                                <td><?php echo $date; ?></td>
-                                <td></td>
-                                <td></td>
+                                <td class="col-1"><?php echo $row['book_id']; ?></td>
+                                <td class="col-6"><?php echo $row['book_title']; ?></td>
+                                <td class="col-2"><span class="badge bg-warning text-dark px-2 py-2"><?php echo $status; ?></span></td>
+                                <td class="col-3">
+                                    <button class="btn btn-warning mr-3 ml-4" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
+                                        <i class="fa-solid fa-hand"></i>
+                                    </button>
+                                    <button class="btn btn-info mr-3 ml-4" type="button" id="view-deets" name="view-deets">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-success mr-3 ml-4" type="button" id="return" name="return">
+                                        <i class="fa-solid fa-book"></i>
+                                    </button>
+                                </td>
                             </tr>
                         
                         <?php
                     }
-                    }
-                    else {
-                        ?> 
-                        
-                        <?php
-                    }*/
                 }
+                
                 ?>
+
+        
+        <!--Script for Modal-->
+        <script>
+            $("#borrow").on("click",function(){
+                
+                $("#borrow_book").modal("show");
+                
+                })
+        </script>
+
+        <!-- Modal for Borrow button-->
+        <div class="modal fade" role="dialog" id="borrow_book">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-question fa-2xl mr-3" style="color: #FFD43B;"></i>Borrow book?</h5>
+                    <label for="stud_no">Student No.:</label>
+                    <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-success" value="Borrow" id="issue" name="issue"></input>
+            </div>
+            </div>
+        </div>
+        </div>
     
                 
             
@@ -180,7 +225,7 @@
                 });
 
                 scanner.addListener('scan',function(c){
-                    document.getElementById('text').value=c;
+                    document.getElementById('qr-text').value=c;
                     document.forms[0].submit();
                 });
 
@@ -210,37 +255,6 @@
                 </div>
             </div>
 
-
-            <!-- The Modal -->
-            <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    Modal body..
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-
-                </div>
-            </div>
-            </div>
-
-
-
-<?php
-    include('includes/scripts.php');
-?>
 
 
 
