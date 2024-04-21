@@ -218,7 +218,20 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         
         if(isset($_POST['issue'])) {
             $borrower = $_POST['issue'];
+
+            $sql ="SELECT * FROM student WHERE student_id='$borrower'";
+            $query_run = mysqli_query($conn, $sql);
         }
+        else {
+            echo '<script>                         
+                    Swal.fire({
+                        title: "Cannot find QR code.",
+                        icon: "question",
+                        showConfirmButton: "true"
+                    })
+                  </script>';
+        }
+
         
         ?>
     
