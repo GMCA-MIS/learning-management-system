@@ -187,7 +187,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     }
                     if(mysqli_num_rows($query_run) > 0) {
 
-                        //$sql ="INSERT INTO borrowed_books (book_id, book_title, student_no, status, ) VALUES ()";
+                        $sql ="INSERT INTO borrowed_books (book_id, book_title, student_no, status, ) VALUES ()";
                         $query_run = mysqli_query($conn, $sql);
                     }
                     else {
