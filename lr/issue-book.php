@@ -216,7 +216,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--Check student number if exists in student table-->
         <?php 
         
-        if(isset($_POST['stud_No'])) {
+        if(isset($_POST['stud_no'])) {
             $borrower = $_POST['stud_no'];
 
             $sql ="SELECT * FROM student WHERE student_id='$borrower'";
