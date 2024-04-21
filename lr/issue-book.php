@@ -212,7 +212,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script>
             $("#borrow").on("click",function(){
                 
-                $("#borrow_book").modal("show");
+                $("#borrow_book").modal("toggle");
                 
                 })
         </script>
