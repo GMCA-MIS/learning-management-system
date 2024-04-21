@@ -179,7 +179,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     //Check student number if it exists in student table
 
 
-                    if(isset($_POST['stud_no'])) {
+                    if(isset($_POST['issue'])) {
                         $borrower = $_POST['stud_no'];
 
                         $sql ="SELECT * FROM student WHERE student_id='$borrower'";
@@ -212,7 +212,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script>
             $("#borrow").on("click",function(){
                 
-                $("#borrow_book").modal("toggle");
+                $("#borrow_book").modal("show");
                 
                 })
         </script>
@@ -232,7 +232,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
             </div>
             <div class="modal-footer">
-                <input class="btn btn-success" value="Verify" id="issue" name="issue"></input>
+                <input class="btn btn-success" value="Borrow" id="issue" name="issue"></input>
             </form>
             </div>
             </div>
