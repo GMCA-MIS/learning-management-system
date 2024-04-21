@@ -222,6 +222,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             $sql ="SELECT * FROM student WHERE student_id='$borrower'";
             $query_run = mysqli_query($conn, $sql);
         }
+        if(mysqli_num_rows($query_run) > 0) {
+
+            $sql ="INSERT INTO borrowed_books ";
+            $query_run = mysqli_query($conn, $sql);
+        }
         else {
             echo '<script>                         
                     Swal.fire({
