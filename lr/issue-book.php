@@ -174,7 +174,34 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                 </td>
                             </tr>
                         
-                        <?php
+                    <?php
+
+                    //Check student number if it exists in student table
+
+
+                    if(isset($_POST['stud_no'])) {
+                        $borrower = $_POST['stud_no'];
+
+                        $sql ="SELECT * FROM student WHERE student_id='$borrower'";
+                        $query_run = mysqli_query($conn, $sql);
+                    }
+                    if(mysqli_num_rows($query_run) > 0) {
+
+                        $sql ="INSERT INTO borrowed_books (book_id, book_title, student_no, status, ) VALUES ()";
+                        $query_run = mysqli_query($conn, $sql);
+                    }
+                    else {
+                        echo '<script>                         
+                                Swal.fire({
+                                    title: "Cannot find QR code.",
+                                    icon: "question",
+                                    showConfirmButton: "true"
+                                })
+                            </script>';
+                    }
+
+
+                    
                     }
                 }
                 
@@ -205,43 +232,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
             </div>
             <div class="modal-footer">
-                <input class="btn btn-success" value="Borrow" id="issue" name="issue"></input>
+                <input class="btn btn-success" type="submit" value="Verify" id="issue" name="issue"></input>
             </form>
             </div>
             </div>
         </div>
         </div>
-
-
-        <!--Check student number if exists in student table-->
-        <?php 
-        
-        if(isset($_POST['stud_no'])) {
-            $borrower = $_POST['stud_no'];
-
-            $sql ="SELECT * FROM student WHERE student_id='$borrower'";
-            $query_run = mysqli_query($conn, $sql);
-        }
-        if(mysqli_num_rows($query_run) > 0) {
-
-            $sql ="INSERT INTO borrowed_books ";
-            $query_run = mysqli_query($conn, $sql);
-        }
-        else {
-            echo '<script>                         
-                    Swal.fire({
-                        title: "Cannot find QR code.",
-                        icon: "question",
-                        showConfirmButton: "true"
-                    })
-                  </script>';
-        }
-
-        
-        ?>
-    
-                
-            
 
 
         <!--Camera Scanner Script-->
