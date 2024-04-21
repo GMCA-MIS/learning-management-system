@@ -157,13 +157,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                 <td class="col-5"><?php echo $row['book_title']; ?></td>
                                 <td class="col-3 justify-content-center"><?php echo $status; ?></td>
                                 <td class="col-3">
-                                    <button class="btn btn-warning mr-4 ml-3" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
+                                    <button class="btn btn-warning mr-4 ml-5" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
                                         <i class="fa-solid fa-hand"></i>
                                     </button>
-                                    <button class="btn btn-info mr-4 ml-3" type="button" id="view-deets" name="view-deets">
+                                    <button class="btn btn-info mr-4 ml-5" type="button" id="view-deets" name="view-deets">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-success mr-4 ml-3" type="button" id="return" name="return">
+                                    <button class="btn btn-success mr-4 ml-5" type="button" id="return" name="return">
                                         <i class="fa-solid fa-book"></i>
                                     </button>
                                 </td>
