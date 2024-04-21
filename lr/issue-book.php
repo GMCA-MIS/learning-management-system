@@ -198,7 +198,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success" type="button" id="issue" name="issue">Borrow</button>
+                <input class="btn btn-success" type="submit" id="issue" name="issue">Borrow</input>
             </div>
             </div>
         </div>
