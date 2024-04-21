@@ -151,8 +151,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 if(isset($_POST['book_id'])) {
 
                     $status = "Borrowed";
-                
+                    
                     while ($row = $query_run->fetch_assoc()) {
+                        
+                        $book_title = $row['book_title'];
+
                         ?>
                             <tr>
                                 <td class="col-1"><?php echo $row['book_id']; ?></td>
@@ -197,14 +200,27 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <div class="modal-body">
                 <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-question fa-2xl mr-3" style="color: #FFD43B;"></i>Borrow book?</h5>
                     <label for="stud_no">Student No.:</label>
-                    <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
+
+                    <form action="issue-book.php" method="post">
+                        <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
             </div>
             <div class="modal-footer">
                 <input class="btn btn-success" value="Borrow" id="issue" name="issue"></input>
+            </form>
             </div>
             </div>
         </div>
         </div>
+
+
+        <!--Check student number if exists in student table-->
+        <?php 
+        
+        if(isset($_POST['issue'])) {
+            $borrower = $_POST['issue'];
+        }
+        
+        ?>
     
                 
             
