@@ -155,7 +155,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                             <tr>
                                 <td class="col-1"><?php echo $row['book_id']; ?></td>
                                 <td class="col-5"><?php echo $row['book_title']; ?></td>
-                                <td class="col-3"><?php echo $status; ?></td>
+                                <td class="col-3 justify-content-center"><?php echo $status; ?></td>
                                 <td class="col-3">
                                     <button class="btn btn-warning mr-3" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
                                         <i class="fa-solid fa-hand"></i>
