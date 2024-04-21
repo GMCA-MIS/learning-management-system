@@ -181,7 +181,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     //Check student number if it exists in student table
 
 
-                    if(isset($_POST['issue'])) {
+                    if(isset($_POST['stud_no'])) {
                         $borrower = $_POST['stud_no'];
 
                         $sql ="SELECT * FROM student WHERE student_id='$borrower'";
