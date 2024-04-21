@@ -92,8 +92,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <tr>
                     <th>Book No.</th>
                     <th>Book Title</th>
-                    <th>Actions</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -155,6 +155,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                             <tr>
                                 <td><?php echo $row['book_id']; ?></td>
                                 <td><?php echo $row['book_title']; ?></td>
+                                <th>Status</th>
                                 <td>
                                     <button class="btn btn-warning mr-3" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
                                         <i class="fa-solid fa-hand"></i>
@@ -166,7 +167,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                         <i class="fa-solid fa-book"></i>
                                     </button>
                                 </td>
-                                <td><?php echo $status; ?></td>
                             </tr>
                         
                         <?php
