@@ -157,22 +157,24 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         $book_title = $row['book_title'];
 
                         ?>
-                            <tr>
-                                <td class="col-1"><?php echo $row['book_id']; ?></td>
-                                <td class="col-6"><?php echo $row['book_title']; ?></td>
-                                <td class="col-2"><span class="badge bg-warning text-dark ml-1 mt-1 px-5 py-2"><?php echo $status; ?></span></td>
-                                <td class="col-3">
-                                    <button class="btn btn-warning mr-3 ml-4" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
-                                        <i class="fa-solid fa-hand"></i>
-                                    </button>
-                                    <button class="btn btn-info mr-3 ml-4" type="button" id="view-deets" name="view-deets">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-success mr-3 ml-4" type="button" id="return" name="return">
-                                        <i class="fa-solid fa-book"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <form action="issue-book.php" method="POST">
+                                <tr>
+                                    <td class="col-1"><?php echo $row['book_id']; ?></td>
+                                    <td class="col-6"><?php echo $row['book_title']; ?></td>
+                                    <td class="col-2"><span class="badge bg-warning text-dark ml-1 mt-1 px-5 py-2"><?php echo $status; ?></span></td>
+                                    <td class="col-3">
+                                        <button class="btn btn-warning mr-3 ml-4" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
+                                            <i class="fa-solid fa-hand"></i>
+                                        </button>
+                                        <button class="btn btn-info mr-3 ml-4" type="button" id="view-deets" name="view-deets">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-success mr-3 ml-4" type="button" id="return" name="return">
+                                            <i class="fa-solid fa-book"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
                         
                     <?php
 
