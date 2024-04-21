@@ -140,7 +140,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 else {
                     echo '<script>                         
                             Swal.fire({
-                                title: "Cannot find QR code.",
+                                title: "Cannot find the book.",
                                 icon: "question",
                                 showConfirmButton: "true"
                                 })
@@ -157,7 +157,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         $book_title = $row['book_title'];
 
                         ?>
-                            <form action="issue-book.php" method="POST">
+                            <!--<form action="issue-book.php" method="POST">-->
                                 <tr>
                                     <td class="col-1"><?php echo $row['book_id']; ?></td>
                                     <td class="col-6"><?php echo $row['book_title']; ?></td>
@@ -174,13 +174,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                         </button>
                                     </td>
                                 </tr>
-                            </form>
+                            <!--</form>-->
                         
                     <?php
 
                     //Check student number if it exists in student table
-
-
                     if(isset($_POST['stud_no'])) {
                         $borrower = $_POST['stud_no'];
 
@@ -196,7 +194,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     else {
                         echo '<script>                         
                                 Swal.fire({
-                                    title: "Cannot find QR code.",
+                                    title: "Cannot find Student No.",
                                     icon: "question",
                                     showConfirmButton: "true"
                                 })
@@ -221,26 +219,26 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         </script>
 
         <!-- Modal for Borrow button-->
+        <form action="issue-book.php" method="POST">
         <div class="modal fade" role="dialog" id="borrow_book">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-question fa-2xl mr-3" style="color: #FFD43B;"></i>Borrow book?</h5>
-                    <label for="stud_no">Student No.:</label>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-question fa-2xl mr-3" style="color: #FFD43B;"></i>Borrow book?</h5>
+                            <label for="stud_no">Student No.:</label>
 
-                    <form action="issue-book.php" method="post">
-                        <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
-            </div>
-            <div class="modal-footer">
-                <input class="btn btn-success" value="Borrow" id="issue" name="issue"></input>
-            </form>
-            </div>
+                                <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-success" value="Borrow" id="issue" name="issue"></input>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
+        </form>
 
 
         <!--Camera Scanner Script-->
