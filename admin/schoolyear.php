@@ -122,6 +122,7 @@ include ('dbcon.php');
                         <th style="display:none;">End Date</th>
                         <th>Semester</th>
                         <th>Duration</th>
+                        <th>Status</th>
                         <th>Edit</th>
                         <th>Delete</th>                             
                     </tr>
@@ -139,7 +140,8 @@ include ('dbcon.php');
                         <td style="display:none;"><?php echo date("F j, Y", strtotime($row['end_date'])); ?> </td>
                         <td><?php echo $row['semester']; ?></td>
                         <td><?php echo date("F j, Y", strtotime($row['start_date'])) . ' - ' . date("F j, Y", strtotime($row['end_date'])); ?></td>
-                        </td>
+                        <td><?php  if($row['status'] == 0 ) {  echo "<b style='color:gray'>Inactive</b>";  }else{ echo "<b style='color:green'>Active</b>"; } ?></td>
+                         </td>
 
 
                    
