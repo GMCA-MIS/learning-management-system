@@ -220,19 +220,20 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     }
                     if(mysqli_num_rows($query_run) > 0) {
 
-                        //Echo SweetAlert2 if student number exists
-                        echo '<script>                         
-                            Swal.fire({
-                                title: "Student No. verified.",
-                                icon: "success",
-                                showConfirmButton: "true"
-                                })
-                          </script>';
-
                         //Insert values into database
                         $sql ="INSERT INTO borrowed_books (book_id, book_title, student_no, borrowed_date, status, returned_date) 
                         VALUES ($book_no, $book_title, $borrower, $date, $status, '')";
                         $query_run = mysqli_query($conn, $sql);
+
+
+                        //Echo SweetAlert2 if student number exists
+                        echo '<script>                         
+                        Swal.fire({
+                            title: "Student No. Verified.",
+                            icon: "success",
+                            showConfirmButton: "true"
+                            })
+                       </script>';
                     }
                     else {
                         //Echo SweetAlert2 if student number does not exists
