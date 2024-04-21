@@ -202,7 +202,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                             <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
                                 </div>
                                 <div class="modal-footer">
-                                    <input class="btn btn-success" value="Verify" id="issue" name="issue"></input>
+                                    <input class="btn btn-success" type="submit" value="Verify" id="issue" name="issue"></input>
                                 </div>
                             </div>
                         </div>
@@ -220,11 +220,22 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     }
                     if(mysqli_num_rows($query_run) > 0) {
 
+                        //Echo SweetAlert2 if student number exists
+                        echo '<script>                         
+                            Swal.fire({
+                                title: "Student No. verified.",
+                                icon: "success",
+                                showConfirmButton: "true"
+                                })
+                          </script>';
+
+                        //Insert values into database
                         $sql ="INSERT INTO borrowed_books (book_id, book_title, student_no, borrowed_date, status, returned_date) 
                         VALUES ($book_no, $book_title, $borrower, $date, $status, '')";
                         $query_run = mysqli_query($conn, $sql);
                     }
                     else {
+                        //Echo SweetAlert2 if student number does not exists
                         echo '<script>                         
                                 Swal.fire({
                                     title: "Cannot find Student No.",
