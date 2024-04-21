@@ -153,10 +153,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     while ($row = $query_run->fetch_assoc()) {
                         ?>
                             <tr>
-                                <td><?php echo $row['book_id']; ?></td>
-                                <td><?php echo $row['book_title']; ?></td>
-                                <td class="col-4"><?php echo $status; ?></td>
-                                <td>
+                                <td class="col"><?php echo $row['book_id']; ?></td>
+                                <td class="col-6"><?php echo $row['book_title']; ?></td>
+                                <td class="col-3"><?php echo $status; ?></td>
+                                <td class="col-3">
                                     <button class="btn btn-warning mr-3" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
                                         <i class="fa-solid fa-hand"></i>
                                     </button>
