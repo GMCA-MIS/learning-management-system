@@ -47,24 +47,6 @@
   </div>
 </div>
 
-<script>
-$(document).ready(function(){
-  $('#insertForm').submit(function(e){
-    e.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: "checkmate.php",
-      data: $(this).serialize(),
-      success: function(response){
-        alert(response);
-        $('#myModal').modal('hide');
-      }
-    });
-  });
-});
-</script>
-
-
 <?php
 
 $server = "srv1320.hstgr.io";
@@ -92,6 +74,26 @@ if($mysqli->query($sql) === true){
 // Close connection
 $mysqli->close();
 ?>
+
+
+<script>
+$(document).ready(function(){
+  $('#insertForm').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "checkmate.php",
+      data: $(this).serialize(),
+      success: function(response){
+        alert(response);
+        $('#myModal').modal('hide');
+      }
+    });
+  });
+});
+</script>
+
+
 
 
 </body>
