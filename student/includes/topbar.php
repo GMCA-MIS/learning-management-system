@@ -88,7 +88,7 @@ if ($query) {
 
 
         //$sql = "SELECT * FROM notification";
-        $sql = "SELECT n.notification, n.date_of_notification, n.link, te.location, CONCAT(te.firstname, ' ', te.lastname) AS teacher_name
+        $sql = "SELECT n.notification,n.teacher_class_id, n.students_read , n.date_of_notification, n.link, te.location, CONCAT(te.firstname, ' ', te.lastname) AS teacher_name
                           FROM notification n
                           JOIN teacher_class tc ON n.teacher_class_id = tc.teacher_class_id
                           JOIN teacher te ON tc.teacher_id = te.teacher_id
@@ -96,10 +96,15 @@ if ($query) {
                           ORDER BY n.date_of_notification DESC";
         $result = $conn->query($sql);
 
+        
+
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             // Display each notification
-            echo "<div class='notifi-item'>";
+
+            echo "<a href='" . $row['link'] ."'>";
+            echo "<div class='notifi-item' >";
+
             echo "<img src='" . $row['location'] . "' alt='student-image'>";
 
             echo "<div class='text'>";
@@ -108,7 +113,45 @@ if ($query) {
             echo "<h4>" . $row['notification'] . "</h4>";
             echo "<p>Date: " . $row['date_of_notification'] . "</p>";
             echo "</div>";
+
+            if(!empty($row['students_read'])){
+              $student_read = explode(",",$row['students_read']);
+              if (array_search($student_id, $student_read) == false){
+                // student haven't read the notification
+                echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:35px;'></b>";
+              }
+            }else{
+               echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:35px;'></b>";
+            }
+
+
+            /*
+            echo "
+            <script> 
+                var notifvalue;                
+                if (localStorage.getItem(".$row['notification_id'].") === null) {
+                  localStorage.setItem('" . $row['notification_id'] . "' , 'notread');  
+                  //console.log(localStorage.getItem(' " . $row['notification_id']. "')); 
+                }else{
+                  notifvalue = localStorage.getItem(".$row['notification_id'].");
+
+                  if(notifvalue == 'notread' )
+                  {
+                    document.write('<b style=\"background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:35px;   \"></b>');
+                  }else{
+                    document.write('<b style=\"background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:10px;   \"></b>');
+                  }
+                  
+                }
+
+            </script>";
+            */
+            
+            
             echo "</div>";
+            echo "</a>";
+
+          
           }
         } else {
           //echo "<h6 class='text-center mt-4'>No notifications Yet</h6>";

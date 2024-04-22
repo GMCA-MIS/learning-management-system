@@ -289,8 +289,10 @@ if (isset($_POST['assign_exam'])) {
         $insert_query = "INSERT INTO class_exam (teacher_class_id, exam_time, exam_id, deadline, stats) VALUES ('$class_id', '$limit', '$exam_id', '$deadline', '0')";
         if (mysqli_query($conn, $insert_query)) {
             $name_notification = 'Add Exam file';
-            $notification_query = "INSERT INTO notification (teacher_class_id, notification, date_of_notification, link) VALUES ('$class_id', '$name_notification', NOW(), 'class_exam.php')";
+
+            $notification_query = "INSERT INTO notification (teacher_class_id, notification, date_of_notification, link) VALUES ('$class_id', '$name_notification', NOW(), 'exam_content.php?exam_id=".$exam_id."&id=".$class_id." ')";
             if (mysqli_query($conn, $notification_query)) {
+                
                 // Insertion successful, show a success alert
                 echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
                 echo '<script>Swal.fire({
