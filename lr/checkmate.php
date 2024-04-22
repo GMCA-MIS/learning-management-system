@@ -67,7 +67,7 @@ if(isset($_POST['submit'])) {
 	$data = $_POST['issue'];
 
 // Attempt insert query execution
-$sql = "INSERT INTO borrowed_books (student_id) VALUES ('$data')";
+$sql = "INSERT INTO `borrowed_books` (`student_id`) VALUES ('$data')";
 if($mysqli->query($sql) === true){
     echo "Records inserted successfully.";
 } else{
