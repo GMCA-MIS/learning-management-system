@@ -33,7 +33,7 @@
       </div>
 
       <!-- Modal Body -->
-      <div class="modal-body">
+      <div class="modal-body" action="checkmate.php" method="POST">
         <form id="insertForm">
           <div class="form-group">
             <label for="data">Data:</label>
