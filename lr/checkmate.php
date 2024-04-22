@@ -13,7 +13,7 @@
     }
 
     // Escape user inputs for security
-	$data = $mysqli->real_escape_string($_POST['data']);
+	$data = $mysqli->real_escape_string($_POST['stud_no']);
 
 	// Attempt insert query execution
 	$sql ="INSERT INTO `borrowed_books` (`book_id`, `book_title`, `student_no`, `borrowed_date`, `status`, `returned_date`) 
