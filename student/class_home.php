@@ -117,7 +117,7 @@ $class_row = mysqli_fetch_array($class_query);
                                 echo '<div class="text">';
                                 echo '<h4>' . $row['teacher_name'] . ' - ' . $row['notification'] . '</h4>';
                                 echo '<p>Date: ' . $row['date_of_notification'] . '</p>';
-                                echo '<a href="' . $row['link'] . '?id=' . $get_id . '" class="btn btn-success">View</a>';
+                                echo '<a href="' . $row['link'] . '" class="btn btn-success">View</a>';
                                 echo '</div>';
                                 echo '</div>'; // End of the notifi-item
                                 echo '</div>';

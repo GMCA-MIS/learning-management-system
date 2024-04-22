@@ -295,7 +295,7 @@ if (isset($_POST['assign_exam'])) {
         if (mysqli_query($conn, $insert_query)) {
             $name_notification = 'Add Exam file' . ' <b>'.$exam12_row['exam_title']."</b>";
 
-            $notification_query = "INSERT INTO notification (teacher_class_id, notification, date_of_notification, link) VALUES ('$class_id', '$name_notification', NOW(), 'exam_content.php?exam_id=".$exam_id."&id=".$class_id." ')";
+            $notification_query = "INSERT INTO notification (teacher_class_id, notification, date_of_notification, link) VALUES ('$class_id', '$name_notification', NOW(), 'exam_content.php?exam_id=".$exam_id."&id=".$class_id."')";
             if (mysqli_query($conn, $notification_query)) {
                 
                 // Insertion successful, show a success alert
