@@ -25,6 +25,7 @@
 		echo "ERROR: Could not execute $sql. " . $mysqli->error;
 	}
 
+	header("location: issue-book.php");
 	// Close connection
 	$mysqli->close();
 	
