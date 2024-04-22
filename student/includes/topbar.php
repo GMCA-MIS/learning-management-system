@@ -17,6 +17,92 @@ if ($query) {
     $lastname = $row['lastname'];
 
 }
+
+
+if(isset($_GET['exam_id']) && isset($_GET['id'])){
+      
+  $examlink = "exam_content.php?exam_id=" . $_GET['exam_id'] . "&id=" . $_GET['id'] ; 
+
+  $sql = "SELECT `notification_id`,`students_read` FROM `notification` WHERE link='". $examlink ."';";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+  $notification_id = $row['notification_id'];
+  $examstudent_read = $row['students_read'];
+  $examstudent_read_string = $row['students_read'];
+  
+  if(!empty($examstudent_read)){
+    $examstudent_read = explode(",",$row['students_read']);
+    $arraysearch  = array_search($student_id, $examstudent_read) ;
+    if ($arraysearch == ""){
+      // haven't clicked the notify 
+      $examstudent_read_string .= "," . $student_id;
+      $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+      $result = $conn->query($sql);
+    }
+   
+  }else{
+    $examstudent_read_string =  $student_id;
+    $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+    $result = $conn->query($sql);
+  }
+}
+
+if(isset($_GET['quiz_id']) && isset($_GET['id'])){
+      
+  $examlink = "quiz_content.php?quiz_id=" . $_GET['quiz_id'] . "&id=" . $_GET['id']; 
+
+  $sql = "SELECT `notification_id`,`students_read` FROM `notification` WHERE link='". $examlink ."';";
+  $result = $conn->query($sql);
+  $notifrow = $result->fetch_assoc();
+  $notification_id = $notifrow['notification_id'];
+  $examstudent_read = $notifrow['students_read'];
+  $examstudent_read_string = $notifrow['students_read'];
+  
+  if(!empty($examstudent_read)){
+    $examstudent_read = explode(",",$notifrow['students_read']);
+    $arraysearch  = array_search($student_id, $examstudent_read) ;
+    if ($arraysearch == ""){
+      // haven't clicked the notify 
+      $examstudent_read_string .= "," . $student_id;
+      $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+      $result = $conn->query($sql);
+    }
+   
+  }else{
+    $examstudent_read_string =  $student_id;
+    $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+    $result = $conn->query($sql);
+  }
+}
+
+if(isset($_GET['post_id']) && isset($_GET['id'])){
+      
+  $examlink = "view_class_assignment.php?id=" . $_GET['id'] . "&post_id=" . $_GET['post_id']; 
+
+  $sql = "SELECT `notification_id`,`students_read` FROM `notification` WHERE link='". $examlink ."';";
+  $result = $conn->query($sql);
+  $notifrow = $result->fetch_assoc();
+  $notification_id = $notifrow['notification_id'];
+  $examstudent_read = $notifrow['students_read'];
+  $examstudent_read_string = $notifrow['students_read'];
+  
+  if(!empty($examstudent_read)){
+    $examstudent_read = explode(",",$notifrow['students_read']);
+    $arraysearch  = array_search($student_id, $examstudent_read) ;
+    if ($arraysearch == ""){
+      // haven't clicked the notify 
+      $examstudent_read_string .= "," . $student_id;
+      $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+      $result = $conn->query($sql);
+    }
+   
+  }else{
+    $examstudent_read_string =  $student_id;
+    $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+    $result = $conn->query($sql);
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -116,12 +202,13 @@ if ($query) {
 
             if(!empty($row['students_read'])){
               $student_read = explode(",",$row['students_read']);
-              if (array_search($student_id, $student_read) == false){
+              $arraysearch = array_search($student_id, $student_read);
+              if ($arraysearch == ""){
                 // student haven't read the notification
-                echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:35px;'></b>";
+                echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:35px;margin-right:5px;'></b>";
               }
             }else{
-               echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:35px;'></b>";
+               echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:35px;margin-right:5px;'></b>";
             }
 
 

@@ -273,6 +273,11 @@ if (isset($_POST['assign_exam'])) {
     $check_query = "SELECT * FROM class_exam WHERE teacher_class_id = '$class_id' AND exam_id = '$exam_id'";
     $check_result = mysqli_query($conn, $check_query);
 
+    $exam12_check_query = "SELECT * FROM exam WHERE exam_id = '$exam_id'";
+    $exam12_check_result = mysqli_query($conn, $exam12_check_query);
+    $exam12_row = $exam12_check_result->fetch_assoc();
+    
+
     if (mysqli_num_rows($check_result) > 0) {
         // exam is already assigned to the class, show an error alert
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
@@ -288,7 +293,7 @@ if (isset($_POST['assign_exam'])) {
         // Insert data into your database
         $insert_query = "INSERT INTO class_exam (teacher_class_id, exam_time, exam_id, deadline, stats) VALUES ('$class_id', '$limit', '$exam_id', '$deadline', '0')";
         if (mysqli_query($conn, $insert_query)) {
-            $name_notification = 'Add Exam file';
+            $name_notification = 'Add Exam file' . ' <b>'.$exam12_row['exam_title']."</b>";
 
             $notification_query = "INSERT INTO notification (teacher_class_id, notification, date_of_notification, link) VALUES ('$class_id', '$name_notification', NOW(), 'exam_content.php?exam_id=".$exam_id."&id=".$class_id." ')";
             if (mysqli_query($conn, $notification_query)) {

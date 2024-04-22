@@ -73,18 +73,22 @@ if (!$atLeastOneFileUploaded) {
 $fileLocationsJson = json_encode($fileLocations);
 $name_notification = 'Add Assignment file name titled:' . ' <b>' . $name . '</b>';
 $date_of_notification = date('Y-m-d H:i:s'); // Get the current date and time
-$link = 'class_assignments.php';
 
-// Prepare the SQL statement
-$query = "INSERT INTO notification (notification, date_of_notification, teacher_class_id, link) VALUES (?, ?, ?, ?)";
-$stmt = mysqli_prepare($conn, $query);
 
-// Bind parameters and execute the statement
-mysqli_stmt_bind_param($stmt, 'ssis', $name_notification, $date_of_notification, $id_class, $link);
-mysqli_stmt_execute($stmt);
 
 $qry = "INSERT INTO assignment (fdesc, fdatein, teacher_id, class_id, fname, max_score, deadline,learning_objectives, floc, status) VALUES ('$filedesc', NOW(), '$teacher_id', '$id_class', '$name', '$max_score', '$deadline', '$learning_objectives', '$fileLocationsJson', 'Available')";
 $query = mysqli_query($conn, $qry);
+
+// Prepare the SQL statement
+$queryz = "INSERT INTO notification (notification, date_of_notification, teacher_class_id, link) VALUES (?, ?, ?, ?)";
+$stmt = mysqli_prepare($conn, $queryz);
+$last_id12 = $conn->insert_id;
+
+// Bind parameters and execute the statement
+$link = 'view_class_assignment.php?id=' . $id_class . '&post_id=' . $last_id12;
+
+mysqli_stmt_bind_param($stmt, 'ssis', $name_notification, $date_of_notification, $id_class, $link);
+mysqli_stmt_execute($stmt);
 
 if ($query) {
     ?>
