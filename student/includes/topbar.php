@@ -124,7 +124,49 @@ if(isset($_GET['post_id']) && isset($_GET['id'])){
     </div>
     <div class="user ml-auto">
         <a href="#" class="mr-4" onclick="toggleNotifi()">
-            <i class="fa fa-bell" aria-hidden="true"></i>
+      <?php
+       $newnotif = 0;
+       $sql2 = "SELECT class_id FROM student_class WHERE student_id = '$session_id'";
+       $result2 = $conn->query($sql2);
+       if ($result2->num_rows > 0) {
+            while ($row2 = $result2->fetch_assoc()) {
+
+            //$sql = "SELECT * FROM notification";
+            $sql = "SELECT n.notification,n.teacher_class_id, n.students_read , n.date_of_notification, n.link, te.location, CONCAT(te.firstname, ' ', te.lastname) AS teacher_name
+                              FROM notification n
+                              JOIN teacher_class tc ON n.teacher_class_id = tc.teacher_class_id
+                              JOIN teacher te ON tc.teacher_id = te.teacher_id
+                              WHERE tc.class_id = ".$row2['class_id']."
+                              ORDER BY n.date_of_notification DESC";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+
+                if(!empty($row['students_read'])){
+                  $student_read = explode(",",$row['students_read']);
+                  $arraysearch = array_search($student_id, $student_read);
+                  if ($arraysearch == ""){
+                    // student haven't read the notification
+                    $newnotif = $newnotif + 1;
+                  }
+                }else{
+                  $newnotif = $newnotif + 1;
+                }
+
+              }
+            }
+
+            }
+        }
+
+        if ($newnotif > 0 ){
+            echo ' <i class="fa fa-bell" style="color:#FFD700" aria-hidden="true"></i>';
+        }else{
+          echo ' <i class="fa fa-bell" aria-hidden="true"></i>';
+        }
+      ?>
+
         </a>
       
         <li class="nav-item dropdown">
@@ -182,6 +224,7 @@ if(isset($_GET['post_id']) && isset($_GET['id'])){
                           ORDER BY n.date_of_notification DESC";
         $result = $conn->query($sql);
 
+
         
 
         if ($result->num_rows > 0) {
@@ -205,10 +248,10 @@ if(isset($_GET['post_id']) && isset($_GET['id'])){
               $arraysearch = array_search($student_id, $student_read);
               if ($arraysearch == ""){
                 // student haven't read the notification
-                echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
+                echo "<b style='background-color:#FFD700; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
               }
             }else{
-               echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
+               echo "<b style='background-color:#FFD700; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
             }
 
 
