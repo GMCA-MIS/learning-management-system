@@ -39,7 +39,7 @@
             <label for="data">Data:</label>
             <input type="text" class="form-control" id="data" name="data">
           </div>
-          <input type="submit" class="btn btn-primary">Submit</input>
+          <input type="submit" class="btn btn-primary"></input>
         </form>
       </div>
 
