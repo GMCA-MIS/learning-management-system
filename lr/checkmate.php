@@ -61,7 +61,7 @@ if($conn->connect_error){
 }
 
 // Escape user inputs for security
-$data = $_POST['data'];
+$data = $mysqli->real_escape_string($_POST['data']);
 
 // Attempt insert query execution
 $sql = "INSERT INTO `borrowed_books` (`student_id`) VALUES ('$data')";
