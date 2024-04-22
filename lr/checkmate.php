@@ -59,7 +59,7 @@ $(document).ready(function(){
     e.preventDefault();
     $.ajax({
       type: "POST",
-      url: "checkmate.php",
+      //url: "checkmate.php",
       data: $(this).serialize(),
       success: function(response){
         alert(response);
