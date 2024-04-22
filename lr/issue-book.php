@@ -116,9 +116,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 $return = '';
                 
 
-                /*if($conn->connect_error){
+                if($conn->connect_error){
                   die("Connection failed" .$conn->connect_error);
-                }*/
+                }
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query_run = mysqli_query($conn, $sql);
@@ -179,11 +179,25 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
                     <!--Script for Modal-->
                     <script>
-                        $("#borrow").on("click",function(){
+                        /*$("#borrow").on("click",function(){
                             
                             $("#borrow_book").modal("show");
                             
-                        })
+                        })*/
+                        $(document).ready(function(){
+                        $('#issue-book').submit(function(e){
+                            e.preventDefault();
+                            $.ajax({
+                            type: "POST",
+                            url: "issue-book.php",
+                            data: $(this).serialize(),
+                            success: function(response){
+                                alert(response);
+                                $('#borrow_book').modal('hide');
+                            }
+                            });
+                        });
+                        });
                     </script>
 
 
