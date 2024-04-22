@@ -6,6 +6,14 @@
     $password="Capstone@2024.";
     $dbname="u944705315_capstone2024";
 
+	$date = date('Y-m-d');
+	$book_no = $_POST['book_id'];
+	$book_title = '';
+	$borrower = '';
+	$status = '';
+	$return = '';
+                
+
     $conn = new mysqli($server,$username,$password,$dbname);
 
     if($conn->connect_error){
@@ -13,7 +21,7 @@
     }
 
     // Escape user inputs for security
-	$data = $mysqli->real_escape_string($_POST['stud_no']);
+	if(isset($_POST['data']));
 
 	// Attempt insert query execution
 	$sql ="INSERT INTO `borrowed_books` (`book_id`, `book_title`, `student_no`, `borrowed_date`, `status`, `returned_date`) 
