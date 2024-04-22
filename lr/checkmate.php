@@ -1,12 +1,6 @@
 <?php
     session_start();
 
-    $server = "srv1320.hstgr.io";
-    $username="u944705315_capstone2024";
-    $password="Capstone@2024.";
-    $dbname="u944705315_capstone2024";
-	$conn = new mysqli($server,$username,$password,$dbname);
-
 ?>            
 
 <!DOCTYPE html>
@@ -45,7 +39,7 @@
             <label for="data">Data:</label>
             <input type="text" class="form-control" id="data" name="data">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <input type="submit" class="btn btn-primary"></input>
         </form>
       </div>
 
@@ -53,25 +47,13 @@
   </div>
 </div>
 
-<script>
-$(document).ready(function(){
-  $('#insertForm').submit(function(e){
-    e.preventDefault();
-    $.ajax({
-      type: "POST",
-      //url: "checkmate.php",
-      data: $(this).serialize(),
-      success: function(response){
-        alert(response);
-        $('#myModal').modal('hide');
-      }
-    });
-  });
-});
-</script>
-
-
 <?php
+
+$server = "srv1320.hstgr.io";
+$username="u944705315_capstone2024";
+$password="Capstone@2024.";
+$dbname="u944705315_capstone2024";
+$conn = new mysqli($server,$username,$password,$dbname);
 
 // Check connection
 if($conn->connect_error){
@@ -79,7 +61,7 @@ if($conn->connect_error){
 }
 
 // Escape user inputs for security
-$data = $_POST['data'];
+$data = $mysqli->real_escape_string($_POST['data']);
 
 // Attempt insert query execution
 $sql = "INSERT INTO `borrowed_books` (`student_id`) VALUES ('$data')";
@@ -92,6 +74,26 @@ if($mysqli->query($sql) === true){
 // Close connection
 $mysqli->close();
 ?>
+
+
+<script>
+$(document).ready(function(){
+  $('#insertForm').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "checkmate.php",
+      data: $(this).serialize(),
+      success: function(response){
+        alert(response);
+        $('#myModal').modal('hide');
+      }
+    });
+  });
+});
+</script>
+
+
 
 
 </body>
