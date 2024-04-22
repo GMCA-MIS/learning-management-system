@@ -205,10 +205,10 @@ if(isset($_GET['post_id']) && isset($_GET['id'])){
               $arraysearch = array_search($student_id, $student_read);
               if ($arraysearch == ""){
                 // student haven't read the notification
-                echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:35px;margin-right:5px;'></b>";
+                echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
               }
             }else{
-               echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:10px;margin-top:35px;margin-right:5px;'></b>";
+               echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
             }
 
 
