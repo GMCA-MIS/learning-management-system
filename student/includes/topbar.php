@@ -124,7 +124,7 @@ if(isset($_GET['post_id']) && isset($_GET['id'])){
     </div>
     <div class="user ml-auto">
         <a href="#" class="mr-4" onclick="toggleNotifi()">
-            <i class="fa fa-bell" aria-hidden="true"></i>
+            <i class="fa fa-bell" style="color:#FFD700" aria-hidden="true"></i>
         </a>
       
         <li class="nav-item dropdown">
@@ -205,10 +205,10 @@ if(isset($_GET['post_id']) && isset($_GET['id'])){
               $arraysearch = array_search($student_id, $student_read);
               if ($arraysearch == ""){
                 // student haven't read the notification
-                echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
+                echo "<b style='background-color:#FFD700; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
               }
             }else{
-               echo "<b style='background-color:blue; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
+               echo "<b style='background-color:#FFD700; border-radius: 50%; height:10px;width:15px;margin-top:35px;margin-right:5px;'></b>";
             }
 
 
