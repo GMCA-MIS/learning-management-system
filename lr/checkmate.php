@@ -12,42 +12,19 @@
         die("Connection failed" .$conn->connect_error);
     }
 
-    if(isset($_POST['book_id'])){
-        
-        $book_no =$_POST['book_id'];
-		$date = date('Y-m-d');
-        $status = "Borrowed";
-		//date_default_timezone_set('Asia/Manila');
-		//$time = date('h:i:sa');
+    // Escape user inputs for security
+	$data = $mysqli->real_escape_string($_POST['data']);
 
-		$sql = "SELECT * FROM booklist WHERE book_id = '$book_no'";
-		$query = $conn->query($sql);
+	// Attempt insert query execution
+	$sql ="INSERT INTO `borrowed_books` (`book_id`, `book_title`, `student_no`, `borrowed_date`, `status`, `returned_date`) 
+           VALUES ('$book_no', '$book_title', '$borrower', '$date', '$status', '')";
 
-		if($query->num_rows < 1){
-			$_SESSION['error'] = 'Cannot find QR Code number '.$book_no;
-		}else{
-				$row = $query->fetch_assoc();
-				$id = $row['book_id'];
-				$sql ="SELECT * FROM student WHERE student_id='$id'";
-				$query=$conn->query($sql);
-				if($query->num_rows>0){
-				$status = "Returned";
-				$query=$conn->query($sql);
-				$_SESSION['success'] = 'Successfully Returned Book: '.$row['book_id'].' '.$row['book_title'];
-			}else{
-					$sql = "INSERT INTO borrowed_books(book_id, book_title, student_id,borrowed_date, status, returned_date) VALUES ('$book_no','','$date','0')";
-					if($conn->query($sql) ===TRUE){
-					 $_SESSION['success'] = 'Successfully Borrowed Book: '.$row['book_id'].' '.$row['book_title'];
-			 }else{
-			  $_SESSION['error'] = $conn->error;
-		   }	
-		}
+	if($mysqli->query($sql) === true){
+		echo "Records inserted successfully.";
+	} else{
+		echo "ERROR: Could not execute $sql. " . $mysqli->error;
 	}
 
-	}else{
-		$_SESSION['error'] = 'Please scan your QR Code number';
-} 
-header("location: issue-book.php");
+	// Close connection
+	$mysqli->close();
 	
-
-$conn->close();
