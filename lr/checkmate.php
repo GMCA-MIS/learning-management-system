@@ -77,13 +77,6 @@ $(document).ready(function(){
 
 
 <?php
-$server = "srv1320.hstgr.io";
-$username="u944705315_capstone2024";
-$password="Capstone@2024.";
-$dbname="u944705315_capstone2024";
-
-
-$conn = new mysqli($server,$username,$password,$dbname);
 
 // Check connection
 if($conn->connect_error){
@@ -94,7 +87,7 @@ if($conn->connect_error){
 $data = $mysqli->real_escape_string($_POST['data']);
 
 // Attempt insert query execution
-$sql = "INSERT INTO borrowed_book (student_id) VALUES ('$data')";
+$sql = "INSERT INTO borrowed_books (student_id) VALUES ('$data')";
 if($mysqli->query($sql) === true){
     echo "Records inserted successfully.";
 } else{
