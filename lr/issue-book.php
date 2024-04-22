@@ -140,7 +140,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 else {
                     echo '<script>                         
                             Swal.fire({
-                                title: "Cannot find QR code.",
+                                title: "Cannot find the book.",
                                 icon: "question",
                                 showConfirmButton: "true"
                                 })
@@ -150,98 +150,109 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 
                 if(isset($_POST['book_id'])) {
 
-                    $status = "Borrowed";
+                    $status = "Available";
                     
                     while ($row = $query_run->fetch_assoc()) {
                         
                         $book_title = $row['book_title'];
 
                         ?>
-                            <tr>
-                                <td class="col-1"><?php echo $row['book_id']; ?></td>
-                                <td class="col-6"><?php echo $row['book_title']; ?></td>
-                                <td class="col-2"><span class="badge bg-warning text-dark ml-1 mt-1 px-5 py-2"><?php echo $status; ?></span></td>
-                                <td class="col-3">
-                                    <button class="btn btn-warning mr-3 ml-4" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
-                                        <i class="fa-solid fa-hand"></i>
-                                    </button>
-                                    <button class="btn btn-info mr-3 ml-4" type="button" id="view-deets" name="view-deets">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-success mr-3 ml-4" type="button" id="return" name="return">
-                                        <i class="fa-solid fa-book"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <form action="issue-book.php" method="POST">
+                                <tr>
+                                    <td class="col-1"><?php echo $row['book_id']; ?></td>
+                                    <td class="col-6"><?php echo $row['book_title']; ?></td>
+                                    <td class="col-2"><span class="badge bg-success text-light ml-1 mt-1 px-5 py-2"><?php echo $status; ?></span></td>
+                                    <td class="col-3">
+                                        <button class="btn btn-warning mr-3 ml-4" type="button" id="borrow" name="borrow" data-bs-toggle="modal" data-bs-target="#borrow_book">
+                                            <i class="fa-solid fa-hand"></i>
+                                        </button>
+                                        <button class="btn btn-info mr-3 ml-4" type="button" id="view-deets" name="view-deets">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-success mr-3 ml-4" type="button" id="return" name="return">
+                                            <i class="fa-solid fa-book"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
+
+
+                    <!--Script for Modal-->
+                    <script>
+                        $("#borrow").on("click",function(){
+                            
+                            $("#borrow_book").modal("show");
+                            
+                        })
+                    </script>
+
+
+                    <!-- Modal for Borrow button-->
+                    <form action="issue-book.php" method="POST" id="issue_book">
+                    <div class="modal fade" role="dialog" id="borrow_book">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-question fa-2xl mr-3" style="color: #FFD43B;"></i>Borrow book?</h5>
+                                        <label for="stud_num">Student No.:</label>
+
+                                            <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
+                                </div>
+                                <div class="modal-footer">
+                                    <input class="btn btn-success" type="submit" value="Verify" id="issue" name="issue"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
                         
-                        <?php
+                    <?php
+
+                    //Check student number if it exists in student table
+                    if(isset($_POST['stud_no'])) {
+                        $borrower = $_POST['stud_no'];
+
+                        $sql ="SELECT * FROM `student` WHERE `student_id`='$borrower'";
+                        $query_run = mysqli_query($conn, $sql);
+                        while ($row = $query_run->fetch_assoc());
+                    }
+                    if(mysqli_num_rows($query_run) > 0) {
+
+                        //Insert values into database
+                        $sql ="INSERT INTO `borrowed_books` (`book_id`, `book_title`, `student_no`, `borrowed_date`, `status`, `returned_date`) 
+                        VALUES ('$book_no', '$book_title', '$borrower', '$date', '$status', '')";
+                        $query_run = mysqli_query($conn, $sql);
+
+
+                        //Echo SweetAlert2 if student number exists
+                        echo '<script>                         
+                                Swal.fire({
+                                    title: "Student No. Verified.",
+                                    icon: "success",
+                                    showConfirmButton: "true"
+                                    })
+                              </script>';
+                    }
+                    else {
+                        //Echo SweetAlert2 if student number does not exists
+                        echo '<script>                         
+                                Swal.fire({
+                                    title: "Cannot find Student No.",
+                                    icon: "question",
+                                    showConfirmButton: "true"
+                                })
+                              </script>';
+                    }
+
+
+                    
                     }
                 }
                 
                 ?>
-
-        
-        <!--Script for Modal-->
-        <script>
-            $("#borrow").on("click",function(){
-                
-                $("#borrow_book").modal("show");
-                
-                })
-        </script>
-
-        <!-- Modal for Borrow button-->
-        <div class="modal fade" role="dialog" id="borrow_book">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5 class="modal-title" id="staticBackdropLabel"><i class="fa-solid fa-circle-question fa-2xl mr-3" style="color: #FFD43B;"></i>Borrow book?</h5>
-                    <label for="stud_no">Student No.:</label>
-
-                    <form action="issue-book.php" method="post">
-                        <input type="text" class="form-control" placeholder="Enter Student No. here" name="stud_no">
-            </div>
-            <div class="modal-footer">
-                <input class="btn btn-success" value="Borrow" id="issue" name="issue"></input>
-            </form>
-            </div>
-            </div>
-        </div>
-        </div>
-
-
-        <!--Check student number if exists in student table-->
-        <?php 
-        
-        if(isset($_POST['stud_no'])) {
-            $borrower = $_POST['stud_no'];
-
-            $sql ="SELECT * FROM student WHERE student_id='$borrower'";
-            $query_run = mysqli_query($conn, $sql);
-        }
-        if(mysqli_num_rows($query_run) > 0) {
-
-            $sql ="INSERT INTO borrowed_books ";
-            $query_run = mysqli_query($conn, $sql);
-        }
-        else {
-            echo '<script>                         
-                    Swal.fire({
-                        title: "Cannot find QR code.",
-                        icon: "question",
-                        showConfirmButton: "true"
-                    })
-                  </script>';
-        }
-
-        
-        ?>
-    
-                
-            
 
 
         <!--Camera Scanner Script-->
