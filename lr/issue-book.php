@@ -148,13 +148,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
                 }
                 
-                if(isset($_POST['book_id'])) {
+                /*if(isset($_POST['book_id'])) {
 
                     $status = "Available";
                     
                     while ($row = $query_run->fetch_assoc()) {
                         
-                        $book_title = $row['book_title'];
+                        $book_title = $row['book_title'];*/
 
                         ?>
                             <form action="issue-book.php" method="POST">
@@ -183,7 +183,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                             
                             $("#borrow_book").modal("show");
                             
-                        })*/
+                        })
                         $(document).ready(function(){
                         $('#issue-book').submit(function(e){
                             e.preventDefault();
@@ -197,7 +197,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                             }
                             });
                         });
-                        });
+                        });*/
                     </script>
 
 
@@ -267,8 +267,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     }
 
                     
-                    }
-                }
+                    //}
+                //}
                 
                 ?>
 
