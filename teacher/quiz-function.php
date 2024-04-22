@@ -274,6 +274,8 @@ if (isset($_POST['assign_quiz'])) {
     $check_query = "SELECT * FROM class_quiz WHERE teacher_class_id = '$class_id' AND quiz_id = '$quiz_id'";
     $check_result = mysqli_query($conn, $check_query);
 
+    
+
     if (mysqli_num_rows($check_result) > 0) {
         // Quiz is already assigned to the class, show an error alert
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
@@ -300,7 +302,7 @@ if (isset($_POST['assign_quiz'])) {
                 $quiz_title = $row['quiz_title'];
                 
                 $name_notification = 'Uploaded a Quiz with title: <b>' . $quiz_title . '</b>';
-                $notification_query = "INSERT INTO notification (teacher_class_id, notification, date_of_notification, link) VALUES ('$class_id', '$name_notification', NOW(), 'class_quiz.php')";
+                $notification_query = "INSERT INTO notification (teacher_class_id, notification, date_of_notification, link) VALUES ('$class_id', '$name_notification', NOW(), 'quiz_content.php?quiz_id=".$quiz_id."&id=".$class_id."')";
                 
                 if (mysqli_query($conn, $notification_query)) {
                     // Insertion successful, show a success alert
