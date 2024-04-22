@@ -5,6 +5,7 @@
     $username="u944705315_capstone2024";
     $password="Capstone@2024.";
     $dbname="u944705315_capstone2024";
+	$conn = new mysqli($server,$username,$password,$dbname);
 
 ?>            
 
