@@ -6,12 +6,6 @@
     $password="Capstone@2024.";
     $dbname="u944705315_capstone2024";
 
-	$date = date('Y-m-d');
-	$book_no = $_POST['book_id'];
-	$book_title = '';
-	$borrower = '';
-	$status = '';
-	$return = '';
 ?>            
 
 <!DOCTYPE html>
@@ -60,7 +54,7 @@
 
 <script>
 $(document).ready(function(){
-  $('#issue').submit(function(e){
+  $('#insertForm').submit(function(e){
     e.preventDefault();
     $.ajax({
       type: "POST",
@@ -68,7 +62,7 @@ $(document).ready(function(){
       data: $(this).serialize(),
       success: function(response){
         alert(response);
-        $('#issue-book').modal('hide');
+        $('#myModal').modal('hide');
       }
     });
   });
