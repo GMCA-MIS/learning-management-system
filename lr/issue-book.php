@@ -212,7 +212,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     <?php
 
                     //Check student number if it exists in student table
-                    if(isset($_POST['stud_no'])) {
+                    if(isset($_POST['issue'])) {
 
                         $borrower = $_POST['stud_no'];
                         
