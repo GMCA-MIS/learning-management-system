@@ -39,7 +39,7 @@
             <label for="data">Data:</label>
             <input type="text" class="form-control" id="data" name="data">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <input type="submit" class="btn btn-primary">Submit</input>
         </form>
       </div>
 
@@ -53,7 +53,7 @@ $(document).ready(function(){
     e.preventDefault();
     $.ajax({
       type: "POST",
-      //url: "checkmate.php",
+      url: "checkmate.php",
       data: $(this).serialize(),
       success: function(response){
         alert(response);
