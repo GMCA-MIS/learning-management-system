@@ -161,16 +161,15 @@ if(isset($_GET['addstudent'])){
                                                 //WHERE s.class_id = " . $classid . " and tc.subject_id = " . $subjid . ";");
 
                                                 //students under strand
-                                                $querys1 = mysqli_query($conn, "SELECT *,s.student_id as studno  FROM student s 
-                                                LEFT JOIN teacher_class tc ON s.class_id = tc.class_id ; ");
+                                                $querys1 = mysqli_query($conn, "SELECT *, s.student_id as studno  FROM student s ; ");
 
 
                                                 while ($rows1 = mysqli_fetch_array($querys1)) {
 
 
-                                                    $querys2 = "SELECT *   FROM  teacher_class_student WHERE student_id = " . $rows1['studno'] .";";
-                                                    $results2 = mysqli_query($conn, $querys2);
-                                                    if ($results2->num_rows <= 0) {
+                                                    //$querys2 = "SELECT *   FROM  teacher_class_student WHERE student_id = " . $rows1['studno'] .";";
+                                                   // $results2 = mysqli_query($conn, $querys2);
+                                                   // if ($results2->num_rows <= 0) {
                                                 ?>
                                                     <tr>
                                                     <td> <?php echo $rows1['username']; ?> </td>
@@ -190,7 +189,7 @@ if(isset($_GET['addstudent'])){
                                                     </td>
                                                 
                                                     </tr>
-                                                <?php } 
+                                                <?php //} 
                                                 }
                                                 ?>
                                                 </tbody>  
