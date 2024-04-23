@@ -299,6 +299,9 @@ mysqli_close($conn);
                                     <option value="2">
                                         Transferee
                                     </option>
+                                    <option value="3">
+                                        Irregular
+                                    </option>
                                 </select>
                             </div>
                         </div>

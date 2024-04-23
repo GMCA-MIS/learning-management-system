@@ -73,7 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tor_uploaded = handleFileUpload($_FILES["tor"], $tor_uploadOk, $tor_imageFileType, "tor");
     $others_uploaded = handleFileUpload($_FILES["others"], $others_uploadOk, $others_imageFileType, "others");
 
-    if ($grade_slip_uploaded && $cor_uploaded && $good_moral_uploaded) {
+    //if ($grade_slip_uploaded && $cor_uploaded && $good_moral_uploaded) {
+    if ($grade_slip_uploaded) {
+
         // Extract POST data
         $lastname = $_POST["lastname"];
         $firstname = $_POST["firstname"];
