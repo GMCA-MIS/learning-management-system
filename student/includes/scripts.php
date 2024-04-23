@@ -1243,6 +1243,7 @@ wrapper.addEventListener("mouseleave", autoPlay);
 
     function doThis() {
         if (document.getElementById("countdown")) {
+            quizTime = <?php echo json_encode($quiz_time); ?>;
             startQuizTimer(quizTime);
         } else {
         }
