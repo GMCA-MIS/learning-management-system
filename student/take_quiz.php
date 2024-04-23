@@ -456,8 +456,8 @@ document.getElementById('review-button').addEventListener('click', function() {
 
 </script>
 
-            <?php
-            include('includes/scripts.php');
+        <?php
+            include('includes/scriptsquiztimer.php');
             ?>
             <!-- End Content Row -->
 

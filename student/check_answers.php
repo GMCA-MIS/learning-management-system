@@ -125,11 +125,13 @@ if (isset($_POST['submit_quiz'])) {
 
 
 
-            $notificationMessage = "Submitted ";
+            $notificationMessage = "Submitted Quiz : ";
             $notificationMessage .= "<b>" . $quiz_title . "</b>";
-        
-            $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id)
-            VALUES ('$teacher_idz', '$notificationMessage', NOW(), '$student_id', '$quiz_id', '$teacher_idz')";
+            $quizlink = "view_class_quiz.php?quiz_id=".$quiz_id."&id="$teacher_class_id;
+
+
+            $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id,link)
+            VALUES ('$teacher_idz', '$notificationMessage', NOW(), '$student_id', '$quiz_id', '$teacher_idz','$quizlink')";
             mysqli_query($conn, $insertNotificationQuery);
             
 
@@ -319,7 +321,7 @@ echo '<div class="col-md-12" >'; // Start a container to separate the cards
     $teacher_idz = $rowzzz['teacher_id'];
 
 
-    $notificationMessage = "Submitted ";
+    $notificationMessage = "Submitted Exam : ";
     $notificationMessage .= "<b>" . $exam_title . "</b>";
 
     $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id)
