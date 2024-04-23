@@ -1238,6 +1238,15 @@ wrapper.addEventListener("mouseleave", autoPlay);
     var quizTime = <?php echo json_encode($quiz_time); ?>;
 
     window.onload = function () {
-        startQuizTimer(quizTime);
+        window.document.body.onload = doThis(); // note removed parentheses
     };
+
+    function doThis() {
+        if (document.getElementById("countdown")) {
+            startQuizTimer(quizTime);
+        } else {
+        }
+    }
+
+    
 </script> 
