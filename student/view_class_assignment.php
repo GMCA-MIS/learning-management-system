@@ -158,7 +158,7 @@ $class_row = mysqli_fetch_array($class_query);
                             // Make sure to connect to the database before executing this code
                             // Assuming you already have a valid database connection
                             
-                            $query = mysqli_query($conn, "SELECT sa.*, s.firstname, s.lastname, s.location, a.max_score, a.deadline FROM student_assignment sa
+                            $query = mysqli_query($conn, "SELECT sa.*, s.firstname, s.lastname, s.picture, a.max_score, a.deadline FROM student_assignment sa
                                     LEFT JOIN student s ON s.student_id = sa.student_id
                                     LEFT JOIN assignment a ON a.assignment_id = sa.assignment_id
                                     WHERE sa.assignment_id = '$post_id' AND sa.student_id = '$student_id'
@@ -167,7 +167,7 @@ $class_row = mysqli_fetch_array($class_query);
                             if (mysqli_num_rows($query) > 0) {
                                 while ($row = mysqli_fetch_array($query)) {
                                     $id = $row['student_assignment_id'];
-                                    $location = $row['location'];
+                                    $location = $row['picture'];
                                     $floc = $row['floc'];
                                     $firstname = $row['firstname'];
                                     $lastname = $row['lastname'];

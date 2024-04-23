@@ -82,7 +82,7 @@ if ($resultFname) {
 
         // Insert a notification for the teacher
         $notificationMessage = "Submitted assignment on $fname";
-        $link = "view_submit_assignment.php";
+        $link = "view_student_assignment_submissions.php?student_id=".$student_id."&post_id=".$post_id."&get_id=".$get_id;
 
         $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, link, student_id, assignment_id, teacher_id)
                                     VALUES ('$get_id', '$notificationMessage', NOW(), '$link', '$student_id', '$post_id', '$teacher_id')";

@@ -238,12 +238,14 @@ if (isset($_POST['grade_assignment'])) {
     // Add validation and sanitization for $grade and $comments if needed
 
     // Fetch the assignment details, including max_score
-    $assignmentQuery = "SELECT max_score FROM assignment WHERE assignment_id = '$post_id'";
+    $assignmentQuery = "SELECT max_score,fname FROM assignment WHERE assignment_id = '$post_id'";
     $assignmentResult = mysqli_query($conn, $assignmentQuery);
 
     if ($assignmentResult) {
         $assignmentData = mysqli_fetch_assoc($assignmentResult);
         $maxScore = $assignmentData['max_score'];
+        $fname = $assignmentData['fname'];
+
 
  // Check if the grade exceeds the max_score
  if ($grade > $maxScore) {
@@ -265,6 +267,14 @@ if (isset($_POST['grade_assignment'])) {
     // Execute the query
     if (mysqli_query($conn, $updateQuery)) {
         // Display a success message using SweetAlert
+        $notificationMessage = "<b>$fname</b> has been Graded";
+        $link = "view_student_assignment_submissions.php?student_id=".$studentId."&post_id=".$post_id."&get_id=".$get_id;
+
+        $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, link, student_id, assignment_id, teacher_id)
+                                    VALUES ('$get_id', '$notificationMessage', NOW(), '$link', '$studentId', '$post_id', '$teacher_id')";
+        mysqli_query($conn, $insertNotificationQuery);
+
+
         echo "<script>
           Swal.fire({
             title: 'Success',

@@ -167,7 +167,7 @@ if ($result) {
                                                 <?php
                                             }
                                         } else {
-                                            echo "<tr><td colspan='5'>No Questions yet</td></tr>";
+                                            echo "<tr>No Questions yet</tr>";
                                         }
                                         ?>
                                     </tbody>
@@ -177,8 +177,6 @@ if ($result) {
                                 echo "Error: " . mysqli_error($conn);
                             }
                             ?>
-                            </tbody>
-                            </table>
                         </div>
                     </div>
 
@@ -239,12 +237,13 @@ if ($result) {
                                                     <?php echo $row['grade'] . ' ' . '/' . ' ' . $row['max_score']; ?>
                                                 </td>
                                                 <td><a href="view_quiz_result.php?quiz_id=<?php echo $get_id ?>&id=<?php echo $row['student_id']; ?>&post_id=<?php echo $id?>"
-                                                        class="btn btn-secondary"> View Performance </a> </td>
+                                                        class="btn btn-secondary"> View Performance </a> 
+                                                </td>
                                             </tr>
                                             <?php
                                         }
                                     } else {
-                                        echo '<div class = "alert alert-warning">"No Results yet" </div>';
+                                        echo '<tr><div class = "alert alert-warning">"No Results yet" </div></tr>';
                                     }
                                     ?>
                                 </tbody>
