@@ -220,7 +220,8 @@ if(isset($_GET['post_id']) && isset($_GET['id'])){
                           FROM notification n
                           JOIN teacher_class tc ON n.teacher_class_id = tc.teacher_class_id
                           JOIN teacher te ON tc.teacher_id = te.teacher_id
-                          WHERE tc.class_id = ".$row2['class_id']."
+                          JOIN teacher_class_student tcs ON  te.teacher_id = tcs.teacher_id
+                          WHERE tc.class_id = ".$row2['class_id']." AND tcs.student_id = $session_id
                           ORDER BY n.date_of_notification DESC";
         $result = $conn->query($sql);
 

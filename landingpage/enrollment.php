@@ -414,11 +414,11 @@ mysqli_close($conn);
                                 <input type="file" id="creds_submitted1" name="grade_slip" accept=".pdf, .jpg, .jpeg" required />
                             </div>
                             <div class="col-4">
-                                <input type="file" id="creds_submitted2" name="cor" accept=".pdf, .jpg, .jpeg" required />
+                                <input type="file" id="creds_submitted2" name="cor" accept=".pdf, .jpg, .jpeg"  />
                             </div>
 
                             <div class="col-4">
-                                <input type="file" id="creds_submitted3" name="good_moral" accept=".pdf, .jpg, .jpeg" required />
+                                <input type="file" id="creds_submitted3" name="good_moral" accept=".pdf, .jpg, .jpeg"  />
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">

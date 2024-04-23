@@ -16,17 +16,12 @@ if(isset($_GET['addstudent'])){
     $querys3 = mysqli_query($conn, "SELECT * FROM teacher_class WHERE teacher_class_id = ". $get_id);
     $rows3 = mysqli_fetch_array($querys3);
 
-
     
     $teacher_id = $_SESSION['teacher_id'];
     $student_id1 = $_GET['studentid'];
     $teacher_class_id =  $get_id;    
     $idclaz =  $rows3['class_id'];
     $subjid =  $rows3['subject_id'];
-
-
-
-    
 
     
    $sql= "INSERT INTO teacher_class_student (teacher_class_id, student_id, teacher_id) VALUES ('$teacher_class_id', '$student_id1', $teacher_id)";
@@ -152,18 +147,24 @@ if(isset($_GET['addstudent'])){
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $querys3 = mysqli_query($conn, "SELECT * FROM teacher_class WHERE teacher_class_id = ". $get_id);
-                                                $rows3 = mysqli_fetch_array($querys3);
+                                                //$querys3 = mysqli_query($conn, "SELECT * FROM teacher_class WHERE teacher_class_id = ". $get_id);
+                                                //$rows3 = mysqli_fetch_array($querys3);
 
 
                                                 
-                                                $classid = $rows3['class_id'];
-                                                $subjid = $rows3['subject_id'];
-                                                $querys1 = mysqli_query($conn, "SELECT *,s.student_id as studno  FROM student s 
-                                                LEFT JOIN teacher_class tc ON s.class_id = tc.class_id
-                                                WHERE s.class_id = " . $classid . " and tc.subject_id = " . $subjid . "
+                                                //$classid = $rows3['class_id'];
+                                                //$subjid = $rows3['subject_id'];
 
-                                                 ;");
+                                                // teacher class filter
+                                                //$querys1 = mysqli_query($conn, "SELECT *,s.student_id as studno  FROM student s 
+                                               // LEFT JOIN teacher_class tc ON s.class_id = tc.class_id
+                                                //WHERE s.class_id = " . $classid . " and tc.subject_id = " . $subjid . ";");
+
+                                                //students under strand
+                                                $querys1 = mysqli_query($conn, "SELECT *,s.student_id as studno  FROM student s 
+                                                LEFT JOIN teacher_class tc ON s.class_id = tc.class_id ; ");
+
+
                                                 while ($rows1 = mysqli_fetch_array($querys1)) {
 
 

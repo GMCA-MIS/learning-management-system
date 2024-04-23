@@ -24,6 +24,22 @@ if(isset($_GET['student_id']) && isset($_GET['post_id']) && isset($_GET['get_id'
   $result = $conn->query($sql);
   
 }
+if(isset($_GET['exam_id']) && isset($_GET['id'])){
+
+  $linkid = "view_class_exam.php?id=" . $_GET['id'] . "&exam_id=" . $_GET['exam_id'] ;
+ $sql = "UPDATE `teacher_notification` SET read_status = 'alreadyread' WHERE link='". $linkid ."';";
+ $result = $conn->query($sql);
+ 
+}
+
+if(isset($_GET['quiz_id']) && isset($_GET['id'])){
+
+  $linkid = "view_class_quiz.php?quiz_id=" . $_GET['quiz_id'] . "&id=" . $_GET['id'] ;
+ $sql = "UPDATE `teacher_notification` SET read_status = 'alreadyread' WHERE link='". $linkid ."';";
+ $result = $conn->query($sql);
+ 
+}
+
 
 ?>
 
@@ -65,16 +81,16 @@ if(isset($_GET['student_id']) && isset($_GET['post_id']) && isset($_GET['get_id'
                   $unreadcounter = $unreadcounter + 1;
                 }
               }
-              if($unreadcounter > 0 ){
-                echo ' <i class="fa fa-bell" style="color:#FFD700" aria-hidden="true"></i>';
-
-              }else{
-                echo ' <i class="fa fa-bell" aria-hidden="true"></i>';
-
-              }
+             
 
             }
+            if($unreadcounter > 0 ){
+              echo ' <i class="fa fa-bell" style="color:#FFD700" aria-hidden="true"></i>';
 
+            }else{
+              echo ' <i class="fa fa-bell" aria-hidden="true"></i>';
+
+            }
 
 
             ?>

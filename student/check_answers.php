@@ -127,7 +127,7 @@ if (isset($_POST['submit_quiz'])) {
 
             $notificationMessage = "Submitted Quiz : ";
             $notificationMessage .= "<b>" . $quiz_title . "</b>";
-            $quizlink = "view_class_quiz.php?quiz_id=".$quiz_id."&id="$teacher_class_id;
+            $quizlink = "view_class_quiz.php?quiz_id=".$quiz_id."&id=".$teacher_class_id;
 
 
             $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id,link)
@@ -323,6 +323,7 @@ echo '<div class="col-md-12" >'; // Start a container to separate the cards
 
     $notificationMessage = "Submitted Exam : ";
     $notificationMessage .= "<b>" . $exam_title . "</b>";
+    $examlink = "view_class_exam.php?id=".$teacher_class_id."&exam_id=".$exam_id;
 
     $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id)
     VALUES ('$teacher_idz', '$notificationMessage', NOW(), '$student_id', '$exam_id', '$teacher_idz')";

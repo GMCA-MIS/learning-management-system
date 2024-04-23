@@ -79,14 +79,14 @@ $qry = "INSERT INTO assignment (fdesc, fdatein, teacher_id, class_id, fname, max
 $query = mysqli_query($conn, $qry);
 
 // Prepare the SQL statement
-$queryz = "INSERT INTO notification (notification, date_of_notification, teacher_class_id, link) VALUES (?, NOW() ?, ?)";
+$queryz = "INSERT INTO notification (notification, date_of_notification, teacher_class_id, link) VALUES (?, NOW(), ?, ?)";
 $stmt = mysqli_prepare($conn, $queryz);
 $last_id12 = $conn->insert_id;
 
 // Bind parameters and execute the statement
 $link = 'view_class_assignment.php?id=' . $id_class . '&post_id=' . $last_id12;
 
-mysqli_stmt_bind_param($stmt, 'ssis', $name_notification, $date_of_notification, $id_class, $link);
+mysqli_stmt_bind_param($stmt, 'sis', $name_notification, $id_class, $link);
 mysqli_stmt_execute($stmt);
 
 if ($query) {
