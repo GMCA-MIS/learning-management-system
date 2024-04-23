@@ -270,8 +270,8 @@ if (isset($_POST['grade_assignment'])) {
         $notificationMessage = "<b>$fname</b> has been Graded";
         $link = "view_student_assignment_submissions.php?student_id=".$studentId."&post_id=".$post_id."&get_id=".$get_id;
 
-        $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, link, student_id, assignment_id, teacher_id)
-                                    VALUES ('$get_id', '$notificationMessage', NOW(), '$link', '$studentId', '$post_id', '$teacher_id')";
+        $insertNotificationQuery = "INSERT INTO `notification` (teacher_class_id, notification, date_of_notification, link)
+                                    VALUES ('$get_id', '$notificationMessage', NOW(), '$link')";
         mysqli_query($conn, $insertNotificationQuery);
 
 

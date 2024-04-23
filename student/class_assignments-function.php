@@ -87,6 +87,8 @@ if ($resultFname) {
         $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, link, student_id, assignment_id, teacher_id)
                                     VALUES ('$get_id', '$notificationMessage', NOW(), '$link', '$student_id', '$post_id', '$teacher_id')";
         mysqli_query($conn, $insertNotificationQuery);
+
+        
     } else {
         // Handle the case where fetching teacher_id fails
         echo "Error fetching teacher_id: " . mysqli_error($conn);
