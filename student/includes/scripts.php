@@ -1235,19 +1235,20 @@ wrapper.addEventListener("mouseleave", autoPlay);
         });
     }
 
-    var quizTime = <?php echo json_encode($quiz_time); ?>;
+    var quizTime ;
 
     window.onload = function () {
-        window.document.body.onload = doThis(); // note removed parentheses
+        quizTime = <?php echo json_encode($quiz_time); ?>;
+        startQuizTimer(quizTime);
     };
-
-    function doThis() {
-        if (document.getElementById("countdown")) {
+    
+    document.onreadystatechange = function(e)
+    {
+        if (document.readyState === 'complete')
+        {
             quizTime = <?php echo json_encode($quiz_time); ?>;
-            startQuizTimer(quizTime);
-        } else {
+             startQuizTimer(quizTime);
         }
-    }
-
+    };
     
 </script> 
