@@ -59,9 +59,16 @@ if (isset($_POST['upload_assignment'])) {
     // Insert the assignment into the database with file locations as a JSON array
     $fileLocationsJson = json_encode($fileLocations);
 
+
+    // get student name
+    $nameQueryz = "SELECT firstname,lastname FROM student WHERE student_id = $student_id";
+    $nameResultz = mysqli_query($conn, $nameQueryz);
+    $rowz = mysqli_fetch_assoc($nameResultz);
+    $fnamez = $rowz['firstname'] . " " . $rowz['lastname'];
+
     // Insert or update the assignment with grade information
-    $insertOrUpdateQuery = "INSERT INTO student_assignment (assignment_id, fdesc, assignment_fdatein, student_id, floc, grade)
-                            VALUES ('$post_id', '$filedesc', NOW(), '$student_id', '$fileLocationsJson', $previousGrade)
+    $insertOrUpdateQuery = "INSERT INTO student_assignment (assignment_id, fdesc, assignment_fdatein, student_id, floc, grade, fname)
+                            VALUES ('$post_id', '$filedesc', NOW(), '$student_id', '$fileLocationsJson', $previousGrade, '$fnamez')
                             ON DUPLICATE KEY UPDATE fdesc = '$filedesc', floc = '$fileLocationsJson'";
     $query = mysqli_query($conn, $insertOrUpdateQuery);
 // Fetch fname from assignment table based on assignment_id
@@ -70,7 +77,7 @@ $resultFname = mysqli_query($conn, $fetchFnameQuery);
 
 if ($resultFname) {
     $rowFname = mysqli_fetch_assoc($resultFname);
-    $fname = $rowFname['fname'];
+    $notificationtitlez = $rowFname['fname'];
 
     // Fetch teacher_id based on teacher_class_id
     $fetchTeacherIdQuery = "SELECT teacher_id FROM teacher_class WHERE teacher_class_id = '$get_id'";
@@ -81,7 +88,7 @@ if ($resultFname) {
         $teacher_id = $rowTeacherId['teacher_id'];
 
         // Insert a notification for the teacher
-        $notificationMessage = "Submitted assignment on $fname";
+        $notificationMessage = "Submitted assignment on $notificationtitlez";
         $link = "view_student_assignment_submissions.php?student_id=".$student_id."&post_id=".$post_id."&get_id=".$get_id;
 
         $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, link, student_id, assignment_id, teacher_id)
