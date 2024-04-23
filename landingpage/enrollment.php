@@ -300,7 +300,7 @@ mysqli_close($conn);
                                         Transferee
                                     </option>
                                     <option value="3">
-                                        Irregular
+                                        Irregular Student
                                     </option>
                                 </select>
                             </div>
