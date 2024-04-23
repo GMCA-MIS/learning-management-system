@@ -124,9 +124,10 @@ if (isset($_POST['submit_quiz'])) {
             $teacher_idz = $rowzzz['teacher_id'];
 
 
-            $notificationMessage = "Submitted Quiz on ";
-            $notificationMessage .= $quiz_title;
 
+            $notificationMessage = "Submitted ";
+            $notificationMessage .= "<b>" . $quiz_title . "</b>";
+        
             $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id)
             VALUES ('$teacher_idz', '$notificationMessage', NOW(), '$student_id', '$quiz_id', '$teacher_idz')";
             mysqli_query($conn, $insertNotificationQuery);
@@ -303,7 +304,7 @@ echo '<div class="col-md-12" >'; // Start a container to separate the cards
     echo '</div>'; // Close the container
 
     
-    // NOTIFICATION FUNCTION FOR QUIZ
+    // NOTIFICATION FUNCTION FOR EXAM
     $sqlzz = "SELECT e.exam_title, e.exam_id , ce.teacher_class_id FROM class_exam ce INNER JOIN exam e ON ce.exam_id = e.exam_id WHERE ce.class_exam_id = $class_exam_id ";
     $resultzz = mysqli_query($conn, $sqlzz);
     $rowzzz = mysqli_fetch_assoc($resultzz);
@@ -318,8 +319,8 @@ echo '<div class="col-md-12" >'; // Start a container to separate the cards
     $teacher_idz = $rowzzz['teacher_id'];
 
 
-    $notificationMessage = "Submitted Quiz on ";
-    $notificationMessage .= $exam_title;
+    $notificationMessage = "Submitted ";
+    $notificationMessage .= "<b>" . $exam_title . "</b>";
 
     $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, student_id, assignment_id, teacher_id)
     VALUES ('$teacher_idz', '$notificationMessage', NOW(), '$student_id', '$exam_id', '$teacher_idz')";
