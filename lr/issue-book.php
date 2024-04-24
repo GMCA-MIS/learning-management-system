@@ -101,24 +101,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <!--Table value from 'booklist' and 'student'-->
                 <?php
                 
-                $server = "srv1320.hstgr.io";
-                $username="u944705315_capstone2024";
-                $password="Capstone@2024.";
-                $dbname="u944705315_capstone2024";
-                
-
-                $conn = new mysqli($server,$username,$password,$dbname);
                 $date = date('Y-m-d');
                 $book_no = $_POST['book_id'];
                 $book_title = '';
                 $borrower = '';
                 $status = '';
                 $return = '';
-                
-
-                if($conn->connect_error){
-                  die("Connection failed" .$conn->connect_error);
-                }
 
                 $sql ="SELECT * FROM booklist WHERE book_id='$book_no'";
                 $query_run = mysqli_query($conn, $sql);
@@ -155,6 +143,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     while ($row = $query_run->fetch_assoc()) {
                         
                         $book_title = $row['book_title'];*/
+                    
+                    
 
                         ?>
                             <form action="issue-book.php" method="POST">
@@ -175,6 +165,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                                     </td>
                                 </tr>
                             </form>
+
+                    
 
 
                     <!--Script for Modal-->
@@ -222,6 +214,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </div>
                     </div>
                     </form>
+                    
                         
                     <?php
 
