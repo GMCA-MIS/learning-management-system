@@ -136,13 +136,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
                 }
                 
-                /*if(isset($_POST['book_id'])) {
+                if(isset($_POST['book_id'])) {
 
                     $status = "Available";
                     
                     while ($row = $query_run->fetch_assoc()) {
                         
-                        $book_title = $row['book_title'];*/
+                        $book_title = $row['book_title'];
                     
                     
 
@@ -260,8 +260,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     }
 
                     
-                    //}
-                //}
+                    }
+                }
                 
                 ?>
 
