@@ -193,9 +193,9 @@ include('includes/navbar.php');
                                     if(empty($row['class_name']) && $row['is_regular'] == 1 ){
                                         echo "Need Approval";
                                     }elseif(empty($row['class_name']) && $row['is_regular'] == 3 ){
-                                        echo "IRREGULAR[N.A]";
+                                        echo "IRREGULAR";
                                     }elseif(empty($row['class_name']) && $row['is_regular'] == 2 ){
-                                        echo "TRANSFERRE[N.A]";
+                                        echo "TRANSFEREE";
                                     }else{
                                         echo $row['class_name'];
                                     }
@@ -216,7 +216,7 @@ include('includes/navbar.php');
                                     <td>
                                         <?php
 
-                                        if (empty($row['class_name'])) {
+                                        if (empty($row['password'])) {
 
                                         ?>
 
