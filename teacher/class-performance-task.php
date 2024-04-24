@@ -71,11 +71,11 @@ if (!$atLeastOneFileUploaded) {
 
 // Insert the assignment into the database with file locations as a JSON array
 $fileLocationsJson = json_encode($fileLocations);
-$name_notification = 'Add Assignment titled:' . ' <b>' . $name . '</b>';
+$name_notification = 'Add Task titled:' . ' <b>' . $name . '</b>';
 $date_of_notification = date('Y-m-d H:i:s'); // Get the current date and time
 
 
-$qry = "INSERT INTO assignment (fdesc, fdatein, teacher_id, class_id, fname, max_score, deadline,learning_objectives, floc, status) VALUES ('$filedesc', NOW(), '$teacher_id', '$id_class', '$name', '$max_score', '$deadline', '$learning_objectives', '$fileLocationsJson', 'Available')";
+$qry = "INSERT INTO task (fdesc, date_added, teacher_id, class_id, task_title, max_score, deadline,task_objective, floc, status) VALUES ('$filedesc', NOW(), '$teacher_id', '$id_class', '$name', '$max_score', '$deadline', '$learning_objectives', '$fileLocationsJson', 'Available')";
 $query = mysqli_query($conn, $qry);
 $last_id12 = $conn->insert_id;
 
@@ -86,7 +86,7 @@ $stmt = mysqli_prepare($conn, $queryz);
 
 
 // Bind parameters and execute the statement
-$link = 'view_class_assignment.php?id=' . $id_class . '&post_id=' . $last_id12;
+$link = 'view_class_performancetask.php?id=' . $id_class . '&task_id=' . $last_id12;
 
 mysqli_stmt_bind_param($stmt, 'sis', $name_notification, $id_class, $link);
 mysqli_stmt_execute($stmt);
@@ -97,12 +97,12 @@ if ($query) {
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Assignment Created!',
-            text: 'The assignment has been successfully created.',
+            title: 'Performance Task Created!',
+            text: 'The Performance Task has been successfully created.',
             confirmButtonText: 'OK'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location = 'class_assignments.php<?php echo '?id=' . $get_id; ?>';
+                window.location = 'class_peta.php<?php echo '?id=' . $get_id; ?>';
             }
         });
     </script>
@@ -156,7 +156,7 @@ if(isset($_POST['edit_assignment'])) { // Button Name
         $fileLocationsJson = json_encode([]); // Empty JSON array
     }
     // Update the assignment in the database
-    $query = "UPDATE assignment SET fname='$name', fdesc='$filedesc', max_score='$max_score', deadline='$deadline', learning_objectives='$learning_objectives', floc='$fileLocationsJson' WHERE assignment_id = '$assignment_id'";
+    $query = "UPDATE task SET task_title='$name', fdesc='$filedesc', max_score='$max_score', deadline='$deadline', task_objective='$learning_objectives', floc='$fileLocationsJson' WHERE task_id = '$assignment_id'";
     $query_run = mysqli_query($conn, $query);
 
     if ($query_run) {
@@ -164,11 +164,11 @@ if(isset($_POST['edit_assignment'])) { // Button Name
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo '<script>Swal.fire({
             title: "Success",
-            text: "Assignment has been updated successfully!",
+            text: "Performance Task has been updated successfully!",
             icon: "success",
             confirmButtonText: "OK"
         }).then(function() {
-            window.location.href = "view_class_assignment.php?id=' . $get_id . '&post_id=' . $post_id . '";
+            window.location.href = "view_class_grade.php?id=' . $get_id . '&post_id=' . $post_id . '";
             // Redirect to the assignment management page
         });</script>';
     } else {
@@ -176,7 +176,7 @@ if(isset($_POST['edit_assignment'])) { // Button Name
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo '<script>Swal.fire({
             title: "Error",
-            text: "Failed to update Assignment!",
+            text: "Failed to update Performance Task!",
             icon: "error",
             confirmButtonText: "OK"
         });</script>';
@@ -330,20 +330,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET
     $get_id = $_GET['get_id'];
 
     // Update the assignment status to "Archived"
-    $updateQuery = "UPDATE assignment SET status = 'Archived' WHERE assignment_id = '$assignmentId'";
+    $updateQuery = "UPDATE task SET status = 'Archived' WHERE task_id = '$assignmentId'";
     $updateResult = mysqli_query($conn, $updateQuery);
 
     if ($updateResult) {
         // Display success message using SweetAlert
         echo '<script>
             Swal.fire({
-                title: "Assignment archived successfully!",
+                title: "Performance Task archived successfully!",
                 icon: "success",
                 confirmButtonColor: "rgba(23, 24, 32, 0.95)",
                 showCancelButton: false,
                 allowOutsideClick: false,
             }).then(() => {
-                window.location.href = "class_assignments.php?id=' . $get_id . '";
+                window.location.href = "class_peta.php?id=' . $get_id . '";
             });
         </script>';
        
@@ -373,20 +373,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET
     $get_id = $_GET['get_id'];
 
     // Update the assignment status to "Available"
-    $updateQuery = "UPDATE assignment SET status = 'Available' WHERE assignment_id = '$assignmentId'";
+    $updateQuery = "UPDATE task SET status = 'Available' WHERE task_id = '$assignmentId'";
     $updateResult = mysqli_query($conn, $updateQuery);
 
     if ($updateResult) {
         // Display success message using SweetAlert
         echo '<script>
             Swal.fire({
-                title: "Assignment restored successfully!",
+                title: "Performance Task restored successfully!",
                 icon: "success",
                 confirmButtonColor: "rgba(23, 24, 32, 0.95)",
                 showCancelButton: false,
                 allowOutsideClick: false,
             }).then(() => {
-                window.location.href = "class_assignments.php?id=' . $get_id . '";
+                window.location.href = "class_peta.php?id=' . $get_id . '";
             });
         </script>';
        

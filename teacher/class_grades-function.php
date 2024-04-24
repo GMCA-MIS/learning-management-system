@@ -21,6 +21,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_task"])) {
     $max_score = $_POST["max_score"];
     $get_id = $_POST["get_id"];
     $task_objective = $_POST["task_objective"];
+    $fdesc = $_POST["desc"];
+    $deadline = $_POST['deadline'];
+    $id_class = $_POST['id_class'];
+
+
+// Function to sanitize values received from the form. Prevents SQL injection
+function clean($str) {
+    global $conn;
+    $str = trim($str);
+    if (get_magic_quotes_gpc()) {
+        $str = stripslashes($str);
+    }
+    return mysqli_real_escape_string($conn, $str);
+}
+
+// Initialize an array to store file locations
+$fileLocations = [];
+
+// Process each uploaded file
+$uploadDirectory = "../uploads/"; // Directory where files will be uploaded
+$atLeastOneFileUploaded = false; // Flag to track whether any file was uploaded successfully
+
+if (!empty($_FILES['uploaded_files']['name'][0])) {
+
+    foreach ($_FILES['uploaded_files']['name'] as $key => $value) {
+        $input_name = $_FILES['uploaded_files']['name'][$key];
+        $rd2 = mt_rand(1000, 9999) . "_File";
+        $filename = basename($input_name);
+        $ext = substr($filename, strrpos($filename, '.') + 1);
+        $newname = $uploadDirectory . $rd2 . "_" . $filename;
+
+        // Attempt to move the uploaded file to its new place
+        if (move_uploaded_file($_FILES['uploaded_files']['tmp_name'][$key], $newname)) {
+            $fileLocations[] = $newname;
+            $atLeastOneFileUploaded = true;
+        }
+    }
+}
+
+// If no files were uploaded, set an empty array for file locations
+if (!$atLeastOneFileUploaded) {
+    $fileLocations[] = ''; // You can also set it as null or any other suitable value
+
+}
+
+// Insert the assignment into the database with file locations as a JSON array
+$fileLocationsJson = json_encode($fileLocations);
+
+
+
+
 
     // Validate inputs (you can add more validation)
     if (empty($task_title) || empty($max_score)) {
@@ -34,12 +85,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_task"])) {
               </script>";
     } else {
         // Insert data into the task table
-        $sql = "INSERT INTO task (task_title, max_score, teacher_class_id, status, task_objective, date_added) VALUES (?, ?, ?, 'Available', ?, NOW())";
+        $sql = "INSERT INTO task (task_title, max_score, class_id, status, task_objective, date_added,floc,fdesc,deadline) VALUES (?, ?, ?, 'Available', ?, NOW(),?,?,'$deadline')";
         $stmt = $conn->prepare($sql);
 
+       
+        
         if ($stmt) {
-            $stmt->bind_param("siis", $task_title,  $max_score, $get_id, $task_objective );
+            $stmt->bind_param("siisss", $task_title,  $max_score, $get_id, $task_objective, $fileLocationsJson,$fdesc );
             $stmt->execute();
+            $last_id12 = $conn->insert_id;
+
+            // Prepare the SQL statement FOR NOTIFICATION to student
+            $queryz = "INSERT INTO notification (notification, date_of_notification, class_id, link) VALUES (?, NOW(), ?, ?)";
+            $stmt = mysqli_prepare($conn, $queryz);
+            
+            $link = 'view_class_performancetask.php?id=' . $get_id . '&task_id=' . $last_id12;
+            $name_notification = 'Add Performance TASK titled:' . ' <b>' . $task_title . '</b>';
+
+            mysqli_stmt_bind_param($stmt, 'sis', $name_notification, $get_id, $link);
+            mysqli_stmt_execute($stmt);
 
             // Check if the insertion was successful
             if ($stmt->affected_rows > 0) {
@@ -380,7 +444,7 @@ include("dbcon.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_scoreExam"])) {
     // Get the values from the form
     $get_id = $_POST["get_id"];
-    $exam_id = $_POST["exam_id"];
+    $exam_id = $_POST["task_id"];
     $grades = $_POST["grades"];
 
     // Flag to check if any update or insertion fails
@@ -535,7 +599,7 @@ if (isset($_POST['scores']) && is_array($_POST['scores'])) {
     // Use SweetAlert for a confirmation message
     echo '<script>
             Swal.fire({
-                title: "Quiz Scores submitted!",
+                title: "Performance Task Scores submitted!",
                 icon: "success",
                 confirmButtonColor: "rgba(23, 24, 32, 0.95)",
                 showCancelButton: false,
@@ -590,7 +654,7 @@ if (isset($_POST['scores']) && is_array($_POST['scores'])) {
     // Use SweetAlert for a confirmation message
     echo '<script>
             Swal.fire({
-                title: "Exam Scores submitted!",
+                title: "Performance Task Scores submitted!",
                 icon: "success",
                 confirmButtonColor: "rgba(23, 24, 32, 0.95)",
                 showCancelButton: false,
@@ -617,10 +681,10 @@ if (isset($_POST['archive_assignment'])) {
     // Add any validation or sanitation as needed
 
     // Perform the deletion operation on assignment table
-    $delete_assignment_query = "UPDATE assignment SET status = 'Archived' WHERE assignment_id = $assignment_id";
+    $delete_assignment_query = "UPDATE task SET status = 'Archived' WHERE task_id = $assignment_id";
 
     // Perform the deletion operation on student_assignment table
-    $delete_student_assignment_query = "UPDATE student_assignment SET status = 'Archived' WHERE assignment_id = $assignment_id";
+    $delete_student_assignment_query = "UPDATE task_result SET status = 'Archived' WHERE task_id = $assignment_id";
 
     // Start a transaction for atomicity
     mysqli_autocommit($conn, FALSE);
@@ -644,7 +708,7 @@ if (isset($_POST['archive_assignment'])) {
         // Redirect or display a success message as needed
         echo'<script>
         Swal.fire({
-            title: "Assignment archived successfully!",
+            title: "Performance Task archived successfully!",
             icon: "success",
             confirmButtonColor: "rgba(23, 24, 32, 0.95)",
             showCancelButton: false,

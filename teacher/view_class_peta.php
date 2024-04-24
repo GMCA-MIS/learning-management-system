@@ -122,7 +122,7 @@ if ($result) {
                             // Assuming you want to fetch all rows related to the teacher_class_id
                             while ($row = mysqli_fetch_assoc($query_run)) {
                                 $task_title = $row['task_title'];
-                                $task_description = $row['task_description'];
+                                $task_description = $row['fdesc'];
                                 $task_objective = $row['task_objective'];
                                 $date_added = $row['date_added'];
                                 $max_score = $row['max_score'];
@@ -165,9 +165,9 @@ if ($result) {
                                 // SQL query to fetch data from the exam table
                                 $query = "SELECT s.firstname, s.lastname, IFNULL(tr.score, '-') as score, IFNULL(t.max_score, '-') as max_score
                                 FROM student s
-                                LEFT JOIN task_result tr ON s.student_id = tr.student_id AND tr.task_id = '$task_id'
+                                LEFT JOIN task_result tr ON s.student_id = tr.student_id 
                                 LEFT JOIN task t ON tr.task_id = t.task_id
-                                WHERE t.teacher_class_id = '$get_id'";
+                                WHERE t.teacher_class_id = '$get_id' AND tr.task_id = '$task_id' ";
                       
 
                                 $query_run = mysqli_query($conn, $query);
@@ -202,9 +202,12 @@ if ($result) {
                                             } else {
                                                 ?>
                                                 <tr>
-                                                    <td colspan="2" style="text-align: center;">
+                                                    <td colspan="1" style="text-align: center;">
                                                         <div class="alert alert-warning">No Results yet</div>
                                                     </td>
+                                                    <td>                                                        
+                                                        <div class="alert alert-warning">No Results yet</div>
+                                                     </td>
                                                 </tr>
                                                 <?php
                                             }
