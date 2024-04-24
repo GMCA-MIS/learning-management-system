@@ -100,7 +100,7 @@ include('initialize.php');
                             // Query to retrieve assignments
                            // $query = "SELECT * FROM assignment WHERE class_id = '$get_id' AND status = 'Available' AND type = '1' ORDER BY fdatein DESC";
                            
-                           $query = "SELECT * FROM task WHERE teacher_class_id = $get_id AND status = 'Available'  ORDER BY date_added DESC";
+                           $query = "SELECT * FROM task WHERE class_id = $get_id AND status = 'Available'  ORDER BY date_added DESC";
 
                            $result = mysqli_query($conn, $query);
 

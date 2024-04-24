@@ -89,13 +89,13 @@ if ($resultFname) {
         
 
         // NEED
-        // Insert a notification for the teacher
-       // $notificationMessage = "Submitted assignment on $notificationtitlez";
-       // $link = "view_student_assignment_submissions.php?student_id=".$student_id."&post_id=".$post_id."&get_id=".$get_id;
+        //Insert a notification for the teacher
+      $notificationMessage = "Submitted Performance Task on <b>$notificationtitlez</b>";
+       $link = "view_stud_performance_sub.php?student_id=".$student_id."&post_id=".$post_id."&get_id=".$get_id;
 
-       // $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, link, student_id, assignment_id, teacher_id)
-       //                             VALUES ('$get_id', '$notificationMessage', NOW(), '$link', '$student_id', '$post_id', '$teacher_id')";
-       // mysqli_query($conn, $insertNotificationQuery);
+       $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, link, student_id, assignment_id, teacher_id)
+                                    VALUES ('$get_id', '$notificationMessage', NOW(), '$link', '$student_id', '$post_id', '$teacher_id')";
+        mysqli_query($conn, $insertNotificationQuery);
 
         
     } else {
@@ -112,7 +112,7 @@ if ($resultFname) {
         echo '<script>
             Swal.fire({
                 icon: "success",
-                title: "Assignment Created!",
+                title: "Performance Task Submitted!",
                 text: "The assignment has been successfully submitted.",
                 confirmButtonText: "OK"
             }).then((result) => {
@@ -127,7 +127,7 @@ if ($resultFname) {
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: "Error creating the assignment. Please try again.",
+                text: "Error creating the Performance Task. Please try again.",
                 confirmButtonText: "OK"
             });
         </script>';

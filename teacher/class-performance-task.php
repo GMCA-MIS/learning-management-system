@@ -71,7 +71,7 @@ if (!$atLeastOneFileUploaded) {
 
 // Insert the assignment into the database with file locations as a JSON array
 $fileLocationsJson = json_encode($fileLocations);
-$name_notification = 'Add Assignment titled:' . ' <b>' . $name . '</b>';
+$name_notification = 'Add Task titled:' . ' <b>' . $name . '</b>';
 $date_of_notification = date('Y-m-d H:i:s'); // Get the current date and time
 
 
@@ -97,7 +97,7 @@ if ($query) {
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Assignment Created!',
+            title: 'Performance Task Created!',
             text: 'The Performance Task has been successfully created.',
             confirmButtonText: 'OK'
         }).then((result) => {

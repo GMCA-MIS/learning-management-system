@@ -231,18 +231,18 @@ while ($row = mysqli_fetch_array($query)) {
             'firstname' => $row['firstname'],
             'lastname' => $row['lastname'],
             'picture' => $row['picture'],
-            'grade' => $row['grade'],
+            'grade' => $row['score'],
             'max_score' => $row['max_score'],
             'submissions' => array()
         );
     }
 
-    $submissionDate = strtotime($row['assignment_fdatein']);
+    $submissionDate = strtotime($row['submitted_date']);
     $deadline = strtotime($row['deadline']);
     $submissionStatus = ($submissionDate <= $deadline) ? 'Submitted on time' : 'Submitted late';
 
     $submission = array(
-        'id' => $row['student_assignment_id'],
+        'id' => $row['task_result_id'],
         'picture' => $row['picture'],
         'maxScore' => $row['max_score'],
         'submissionDate' => $submissionDate,
@@ -271,7 +271,7 @@ if (empty($studentSubmissions)) {
     $maxScore = $studentData['max_score']; // Assuming the max score is stored in the 'maxScore' column
     ?>
 
-    <a href="view_student_assignment_submissions.php?student_id=<?= $studentId ?>&post_id=<?= $post_id ?>&get_id=<?= $get_id ?>" class="card-link">
+    <a href="view_stud_performance_sub.php?student_id=<?= $studentId ?>&post_id=<?= $post_id ?>&get_id=<?= $get_id ?>" class="card-link">
         <div class="card mt-3">
             <div class="card-body">
                 <div class="d-flex align-items-center">

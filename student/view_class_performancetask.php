@@ -87,7 +87,7 @@ $class_row = mysqli_fetch_array($class_query);
                                     return [];
                                 }
                                 // Query to retrieve the assignment details and check authorization
-                                $query = "SELECT * FROM task WHERE task_id = $task_id AND teacher_class_id = $get_id";
+                                $query = "SELECT * FROM task WHERE task_id = $task_id AND class_id = $get_id";
                                 $result = mysqli_query($conn, $query);
                                 if (mysqli_num_rows($result) === 0) {
                                     echo '<center> <div class="no-assignments-message">Assignment not found.</div></center>';
