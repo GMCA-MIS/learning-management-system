@@ -43,6 +43,7 @@ $uploadDirectory = "../uploads/"; // Directory where files will be uploaded
 $atLeastOneFileUploaded = false; // Flag to track whether any file was uploaded successfully
 
 if (!empty($_FILES['uploaded_files']['name'][0])) {
+
     foreach ($_FILES['uploaded_files']['name'] as $key => $value) {
         $input_name = $_FILES['uploaded_files']['name'][$key];
         $rd2 = mt_rand(1000, 9999) . "_File";
@@ -68,7 +69,7 @@ if (!$atLeastOneFileUploaded) {
 $fileLocationsJson = json_encode($fileLocations);
 
 
-echo "$fileLocationsJson";
+
 
 
     // Validate inputs (you can add more validation)

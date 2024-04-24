@@ -229,7 +229,7 @@ if ($class_row) { ?>
                         </button>
                     </div>
 
-                    <form class="" action="class_grades-function.php" method="post">
+                    <form class="" action="class_grades-function.php" method="post" enctype="multipart/form-data" >
                         <div class="modal-body">
                             <input type="hidden" name="get_id" value="<?php echo $get_id ?>">
                             <div class="form-group">
