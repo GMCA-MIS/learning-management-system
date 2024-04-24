@@ -614,10 +614,8 @@
 
                     $hashed_password = md5($password);
                     
-                    $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$class_id'";
-                    mysqli_query($conn, $queryaw1);
+                    $query = "UPDATE student SET  password='$hashed_password' WHERE student_id='$id'";
 
-                    $query = "UPDATE student SET password='$hashed_password' WHERE student_id='$id'";
                     //$query = "UPDATE student SET class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
                     mysqli_query($conn, $query);
 
@@ -654,7 +652,6 @@
                         }).then(function() {
                             window.location.href = "manage-students.php";
                         });</script>';
-                        break;
                     }
                 }
             }
