@@ -122,7 +122,7 @@ if ($result) {
                             // Assuming you want to fetch all rows related to the teacher_class_id
                             while ($row = mysqli_fetch_assoc($query_run)) {
                                 $task_title = $row['task_title'];
-                                $task_description = $row['task_description'];
+                                $task_description = $row['fdesc'];
                                 $task_objective = $row['task_objective'];
                                 $date_added = $row['date_added'];
                                 $max_score = $row['max_score'];
