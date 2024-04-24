@@ -598,7 +598,7 @@ if (isset($_POST['scores']) && is_array($_POST['scores'])) {
     // Use SweetAlert for a confirmation message
     echo '<script>
             Swal.fire({
-                title: "Quiz Scores submitted!",
+                title: "Performance Task Scores submitted!",
                 icon: "success",
                 confirmButtonColor: "rgba(23, 24, 32, 0.95)",
                 showCancelButton: false,
@@ -653,7 +653,7 @@ if (isset($_POST['scores']) && is_array($_POST['scores'])) {
     // Use SweetAlert for a confirmation message
     echo '<script>
             Swal.fire({
-                title: "Exam Scores submitted!",
+                title: "Performance Task Scores submitted!",
                 icon: "success",
                 confirmButtonColor: "rgba(23, 24, 32, 0.95)",
                 showCancelButton: false,
@@ -680,10 +680,10 @@ if (isset($_POST['archive_assignment'])) {
     // Add any validation or sanitation as needed
 
     // Perform the deletion operation on assignment table
-    $delete_assignment_query = "UPDATE assignment SET status = 'Archived' WHERE assignment_id = $assignment_id";
+    $delete_assignment_query = "UPDATE task SET status = 'Archived' WHERE task_id = $assignment_id";
 
     // Perform the deletion operation on student_assignment table
-    $delete_student_assignment_query = "UPDATE student_assignment SET status = 'Archived' WHERE assignment_id = $assignment_id";
+    $delete_student_assignment_query = "UPDATE task_result SET status = 'Archived' WHERE task_id = $assignment_id";
 
     // Start a transaction for atomicity
     mysqli_autocommit($conn, FALSE);
@@ -707,7 +707,7 @@ if (isset($_POST['archive_assignment'])) {
         // Redirect or display a success message as needed
         echo'<script>
         Swal.fire({
-            title: "Assignment archived successfully!",
+            title: "Performance Task archived successfully!",
             icon: "success",
             confirmButtonColor: "rgba(23, 24, 32, 0.95)",
             showCancelButton: false,
