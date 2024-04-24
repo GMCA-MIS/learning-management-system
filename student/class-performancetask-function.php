@@ -90,7 +90,7 @@ if ($resultFname) {
 
         // NEED
         //Insert a notification for the teacher
-      $notificationMessage = "Submitted Performance Task on <b>$notificationtitlez</b>";
+        $notificationMessage = "Submitted Performance Task on <b>$notificationtitlez</b>";
        $link = "view_stud_performance_sub.php?student_id=".$student_id."&post_id=".$post_id."&get_id=".$get_id;
 
        $insertNotificationQuery = "INSERT INTO teacher_notification (teacher_class_id, notification, date_of_notification, link, student_id, assignment_id, teacher_id)

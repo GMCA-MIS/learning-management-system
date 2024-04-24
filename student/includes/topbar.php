@@ -103,6 +103,39 @@ if(isset($_GET['post_id']) && isset($_GET['id'])){
   }
 }
 
+
+if(isset($_GET['task_id']) && isset($_GET['id'])){
+  
+  $examlink = "view_class_performancetask.php?id=" . $_GET['id'] . "&task_id=" . $_GET['task_id']; 
+
+  $sql = "SELECT `notification_id`,`students_read` FROM `notification` WHERE link='". $examlink ."';";
+  $result = $conn->query($sql);
+  while ($notifrow = mysqli_fetch_array($result)) {
+
+    
+      $notification_id = $notifrow['notification_id'];
+      $examstudent_read = $notifrow['students_read'];
+      $examstudent_read_string = $notifrow['students_read'];
+      
+      if(!empty($examstudent_read)){
+        $examstudent_read = explode(",",$notifrow['students_read']);
+        $arraysearch  = array_search($student_id, $examstudent_read) ;
+        if ($arraysearch == ""){
+          // haven't clicked the notify 
+          $examstudent_read_string .= "," . $student_id;
+          $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+          $result = $conn->query($sql);
+        }
+      
+      }else{
+        $examstudent_read_string =  $student_id;
+        $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+        $result = $conn->query($sql);
+      }
+
+  }
+
+}
 ?>
 
 <!DOCTYPE html>
