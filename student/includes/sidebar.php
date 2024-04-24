@@ -26,7 +26,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 <?php if (basename($_SERVER['PHP_SELF']) == 'class_assignments.php') echo 'active'; ?>" href="class_assignments.php<?php echo '?id='.$get_id; ?>">Assignments</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 <?php if (basename($_SERVER['PHP_SELF']) == 'class_quiz.php') echo 'active'; ?>" href="class_quiz.php<?php echo '?id='.$get_id; ?>">Quiz</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 <?php if (basename($_SERVER['PHP_SELF']) == 'class_exam.php') echo 'active'; ?>" href="class_exam.php<?php echo '?id='.$get_id; ?>">Exam</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 <?php if (basename($_SERVER['PHP_SELF']) == 'class_grades.php') echo 'active'; ?>" href="class_grades.php<?php echo '?id='.$get_id; ?>">Performance Task</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 <?php if (basename($_SERVER['PHP_SELF']) == 'class_performance_task.php') echo 'active'; ?>" href="class_performance_task.php<?php echo '?id='.$get_id; ?>">Performance Task</a>
 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 <?php if (basename($_SERVER['PHP_SELF']) == 'class_grades.php') echo 'active'; ?>" href="class_grades.php<?php echo '?id='.$get_id; ?>">Grades</a>
                 
