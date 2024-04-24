@@ -188,7 +188,20 @@ include('includes/navbar.php');
                                     <td style="display:none;"><?php echo $row['firstname']; ?></td>
                                     <td style="display:none;"><?php echo $row['lastname']; ?></td>
                                     <td><?php echo $row['strand_name']; ?></td>
-                                    <td><?php echo $row['class_name']; ?></td>
+                                    <td><?php
+                                    
+                                    if(empty($row['class_name']) && $row['is_regular'] == 1 ){
+                                        echo "Need Approval";
+                                    }elseif(empty($row['class_name']) && $row['is_regular'] == 3 ){
+                                        echo "IRREGULAR[N.A]";
+                                    }elseif(empty($row['class_name']) && $row['is_regular'] == 2 ){
+                                        echo "TRANSFERRE[N.A]";
+                                    }else{
+                                        echo $row['class_name'];
+                                    }
+                                    
+                                    ?></td>
+
                                     <td><?php if ($row['is_regular'] == 1) { ?>
                                             <p>Regular</p>
                                         <?php } else {

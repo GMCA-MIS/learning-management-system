@@ -175,7 +175,7 @@ if(isset($_GET['addstudent'])){
                                                     <td> <?php echo $rows1['username']; ?> </td>
                                                     <td> <?php echo $rows1['firstname'] . " " . $rows1['lastname']; ?> </td>
                                                     <td> 
-                                                        <form action="" method="get" onsubmit="<?php echo "return confirm('Do you really want to add ".$rows1['firstname'] . " " . $row['lastname']." to this Class?');"  ?>"> 
+                                                        <form action="" method="get" onsubmit="<?php echo "return confirm('Do you really want to add this Student to this Class?');"  ?>"> 
                                                             <input type="hidden" name="addstudent" value="set" />
                                                             <input type="hidden" name="classid" value="<?php echo $classid ?>" />
                                                             <input type="hidden" name="id" value="<?php echo $get_id ?>" />
