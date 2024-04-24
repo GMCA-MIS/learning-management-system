@@ -98,7 +98,7 @@ if ($query) {
         Swal.fire({
             icon: 'success',
             title: 'Assignment Created!',
-            text: 'The assignment has been successfully created.',
+            text: 'The Performance Task has been successfully created.',
             confirmButtonText: 'OK'
         }).then((result) => {
             if (result.isConfirmed) {
@@ -156,7 +156,7 @@ if(isset($_POST['edit_assignment'])) { // Button Name
         $fileLocationsJson = json_encode([]); // Empty JSON array
     }
     // Update the assignment in the database
-    $query = "UPDATE assignment SET fname='$name', fdesc='$filedesc', max_score='$max_score', deadline='$deadline', learning_objectives='$learning_objectives', floc='$fileLocationsJson' WHERE assignment_id = '$assignment_id'";
+    $query = "UPDATE task SET task_title='$name', fdesc='$filedesc', max_score='$max_score', deadline='$deadline', task_objective='$learning_objectives', floc='$fileLocationsJson' WHERE task_id = '$assignment_id'";
     $query_run = mysqli_query($conn, $query);
 
     if ($query_run) {
@@ -164,11 +164,11 @@ if(isset($_POST['edit_assignment'])) { // Button Name
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo '<script>Swal.fire({
             title: "Success",
-            text: "Assignment has been updated successfully!",
+            text: "Performance Task has been updated successfully!",
             icon: "success",
             confirmButtonText: "OK"
         }).then(function() {
-            window.location.href = "view_class_assignment.php?id=' . $get_id . '&post_id=' . $post_id . '";
+            window.location.href = "view_class_grade.php?id=' . $get_id . '&post_id=' . $post_id . '";
             // Redirect to the assignment management page
         });</script>';
     } else {
@@ -176,7 +176,7 @@ if(isset($_POST['edit_assignment'])) { // Button Name
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo '<script>Swal.fire({
             title: "Error",
-            text: "Failed to update Assignment!",
+            text: "Failed to update Performance Task!",
             icon: "error",
             confirmButtonText: "OK"
         });</script>';
@@ -330,20 +330,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET
     $get_id = $_GET['get_id'];
 
     // Update the assignment status to "Archived"
-    $updateQuery = "UPDATE assignment SET status = 'Archived' WHERE assignment_id = '$assignmentId'";
+    $updateQuery = "UPDATE task SET status = 'Archived' WHERE task_id = '$assignmentId'";
     $updateResult = mysqli_query($conn, $updateQuery);
 
     if ($updateResult) {
         // Display success message using SweetAlert
         echo '<script>
             Swal.fire({
-                title: "Assignment archived successfully!",
+                title: "Performance Task archived successfully!",
                 icon: "success",
                 confirmButtonColor: "rgba(23, 24, 32, 0.95)",
                 showCancelButton: false,
                 allowOutsideClick: false,
             }).then(() => {
-                window.location.href = "class_assignments.php?id=' . $get_id . '";
+                window.location.href = "class_peta.php?id=' . $get_id . '";
             });
         </script>';
        
@@ -373,20 +373,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET
     $get_id = $_GET['get_id'];
 
     // Update the assignment status to "Available"
-    $updateQuery = "UPDATE assignment SET status = 'Available' WHERE assignment_id = '$assignmentId'";
+    $updateQuery = "UPDATE task SET status = 'Available' WHERE task_id = '$assignmentId'";
     $updateResult = mysqli_query($conn, $updateQuery);
 
     if ($updateResult) {
         // Display success message using SweetAlert
         echo '<script>
             Swal.fire({
-                title: "Assignment restored successfully!",
+                title: "Performance Task restored successfully!",
                 icon: "success",
                 confirmButtonColor: "rgba(23, 24, 32, 0.95)",
                 showCancelButton: false,
                 allowOutsideClick: false,
             }).then(() => {
-                window.location.href = "class_assignments.php?id=' . $get_id . '";
+                window.location.href = "class_peta.php?id=' . $get_id . '";
             });
         </script>';
        

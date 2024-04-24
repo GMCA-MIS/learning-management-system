@@ -66,7 +66,7 @@ if ($class_row) { ?>
                                     </button>
                                 </div>
 
-                                <form class="" action="class-performance-function.php<?php echo '?id=' . $get_id; ?>"
+                                <form class="" action="class-performance-task.php<?php echo '?id=' . $get_id; ?>"
                                     method="post" enctype="multipart/form-data" name="upload">
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -230,7 +230,7 @@ if ($class_row) { ?>
                                                 ?>
                                                 <!-- Assignment Card -->
                                                 <a
-                                                    href="view_class_assignment.php?id=<?php echo $get_id ?>&post_id=<?php echo $id ?>">
+                                                    href="view_class_grade.php?id=<?php echo $get_id ?>&post_id=<?php echo $id ?>">
                                                     <div class="card mt-3 position-relative">
                                                         <div class="card-body">
                                                             <h6 class="card-title" style="color:black;">
@@ -238,7 +238,7 @@ if ($class_row) { ?>
                                                             </h6>
                                                             <div class="d-flex justify-content-end">
                                                                 <!-- Delete Icon -->
-                                                                <a href="class-performance-function.php?action=archive&id=<?php echo $id; ?>&get_id=<?php echo $get_id ?>" class="btn btn-danger btn-sm position-absolute top-0 end-100">
+                                                                <a href="class-performance-task.php?action=archive&id=<?php echo $id; ?>&get_id=<?php echo $get_id ?>" class="btn btn-danger btn-sm position-absolute top-0 end-100">
                                                                     <i class="fa fa-times-circle" aria-hidden="true"></i> Archive
                                                                 </a>
 
@@ -284,9 +284,9 @@ if ($class_row) { ?>
                                             echo '<center> <div class="alert alert-warning text-center">You have not posted an assignment yet.</div></center>';
                                         } else {
                                             while ($row = mysqli_fetch_array($result)) {
-                                                $id = $row['assignment_id'];
+                                                $id = $row['task_id'];
                                                 $floc = $row['floc'];
-                                                $learning_objectives = $row['learning_objectives'];
+                                                $learning_objectives = $row['task_objective'];
 
 
                                                 // Format the deadline
@@ -346,24 +346,24 @@ if ($class_row) { ?>
                                             echo '<center> <div class="alert alert-warning text-center">No Archived Assignments yet.</div></center>';
                                         } else {
                                             while ($row = mysqli_fetch_array($result)) {
-                                                $id = $row['assignment_id'];
+                                                $id = $row['task_id'];
                                                 $floc = $row['floc'];
-                                                $learning_objectives = $row['learning_objectives'];
+                                                $learning_objectives = $row['task_objective'];
 
 
                                                 // Format the deadline
-                                                $fdatein = date("l, F d, Y  h:i A", strtotime($row['fdatein']));
+                                                $fdatein = date("l, F d, Y  h:i A", strtotime($row['date_added']));
                                                 ?>
                                                 <!-- Assignment Card -->
                                                
                                                     <div class="card mt-3 position-relative">
                                                         <div class="card-body">
                                                             <h6 class="card-title" style="color:black;">
-                                                                <?php echo $row['fname']; ?>
+                                                                <?php echo $row['task_title']; ?>
                                                             </h6>
                                                             <div class="d-flex justify-content-end">
                                                                 <!-- Delete Icon -->
-                                                                <a href="class_assignments-function.php?action=available&id=<?php echo $id; ?>&get_id=<?php echo $get_id; ?>" class="btn btn-success btn-sm position-absolute top-0 end-100">
+                                                                <a href="class-performance-task.php?action=available&id=<?php echo $id; ?>&get_id=<?php echo $get_id; ?>" class="btn btn-success btn-sm position-absolute top-0 end-100">
                                                                     <i class="fa fa-check-circle" aria-hidden="true"></i> Restore
                                                                 </a>
                                                             </div>

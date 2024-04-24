@@ -14,7 +14,7 @@ include('initialize.php');
 ?>
 
 <?php 
-$post_id = $_GET['task_id'];
+$post_id = $_GET['post_id'];
 if ($post_id == '') {
     ?>
     <?php
@@ -26,7 +26,7 @@ if ($post_id == '') {
 $class_query = mysqli_query($conn, "SELECT * FROM teacher_class
     LEFT JOIN class ON class.class_id = teacher_class.class_id
     LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
-    WHERE class_id = '$get_id' AND teacher_id = '$teacher_id'") or die(mysqli_error());
+    WHERE teacher_class_id = '$get_id' AND teacher_id = '$teacher_id'") or die(mysqli_error());
 
 $class_row = mysqli_fetch_array($class_query);
 
@@ -50,7 +50,7 @@ if ($class_row) { ?>
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top: 27px; margin-left: 10px;">
                 <h3 class="h4 mb-0 text-gray-800">
-                    <span style="font-weight: lighter;"><?php echo $class_row['class_name']; ?></span> > Assignments
+                    <span style="font-weight: lighter;"><?php echo $class_row['class_name']; ?></span> > Performance Task
                 </h3>
             </div>
         </nav>
@@ -64,7 +64,7 @@ if ($class_row) { ?>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Assignment</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Performance Task</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -73,7 +73,7 @@ if ($class_row) { ?>
                             <form class="" action="class_assignments-function.php<?php echo '?id=' . $get_id; ?>" method="post" enctype="multipart/form-data" name="upload">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="name">Assignment Title</label>
+                                        <label for="name">Performance Task Title</label>
                                         <input type="text" class="form-control" id="edit_name" name="name" required placeholder="Enter Assignment Title">
                                     </div>
 
@@ -121,8 +121,8 @@ if ($class_row) { ?>
                         <div class="custom-container">
                             <div class="header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h4>Assignment Details</h4>
-                                    <a href="class_edit_assignment.php?post_id=<?php echo $post_id; ?>&id=<?php echo $get_id; ?>" class="btn btn-success edit_btn">
+                                    <h4>Performance Task Details</h4>
+                                    <a href="class_edit_performance.php?post_id=<?php echo $post_id; ?>&id=<?php echo $get_id; ?>" class="btn btn-success edit_btn">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </div>
@@ -130,12 +130,12 @@ if ($class_row) { ?>
                             <hr>
                             <?php
 $teacher_id = $_SESSION['teacher_id'];
-$assignment_id = $_GET['task_id'];
+$assignment_id = $_GET['post_id'];
 require("opener_db.php");
 $conn = $connector->DbConnector();
 
 function getAssignmentFileLocations($assignment_id, $conn) {
-    $query = "SELECT floc FROM assignment WHERE assignment_id = ?";
+    $query = "SELECT floc FROM task WHERE task_id = ?";
     $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {
@@ -154,7 +154,7 @@ function getAssignmentFileLocations($assignment_id, $conn) {
     return [];
 }
 
-$query = "SELECT task_id, floc, task_title, deadline, fdesc, task_objective FROM task WHERE task_id = ? AND teacher_ = ?";
+$query = "SELECT task_id, floc, task_title, deadline, fdesc, task_objective FROM task WHERE task_id = ? AND teacher_id = ?";
 $stmt = mysqli_prepare($conn, $query);
 
 if ($stmt) {
