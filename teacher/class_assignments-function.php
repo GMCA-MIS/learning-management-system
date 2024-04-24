@@ -77,11 +77,13 @@ $date_of_notification = date('Y-m-d H:i:s'); // Get the current date and time
 
 $qry = "INSERT INTO assignment (fdesc, fdatein, teacher_id, class_id, fname, max_score, deadline,learning_objectives, floc, status) VALUES ('$filedesc', NOW(), '$teacher_id', '$id_class', '$name', '$max_score', '$deadline', '$learning_objectives', '$fileLocationsJson', 'Available')";
 $query = mysqli_query($conn, $qry);
+$last_id12 = $conn->insert_id;
+
 
 // Prepare the SQL statement
 $queryz = "INSERT INTO notification (notification, date_of_notification, teacher_class_id, link) VALUES (?, NOW(), ?, ?)";
 $stmt = mysqli_prepare($conn, $queryz);
-$last_id12 = $conn->insert_id;
+
 
 // Bind parameters and execute the statement
 $link = 'view_class_assignment.php?id=' . $id_class . '&post_id=' . $last_id12;

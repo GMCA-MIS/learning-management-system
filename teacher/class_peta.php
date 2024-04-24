@@ -96,7 +96,7 @@ if ($class_row) { ?>
                                         $task_id = $row['task_id'];
                                         $date_added = $row['date_added'];
                                         $task_title = $row['task_title'];
-                                        $task_description = $row['task_description'];
+                                        $task_description = $row['fdesc'];
                                         $task_objective = $row['task_objective'];
                                         ?>
                                         
@@ -108,7 +108,7 @@ if ($class_row) { ?>
                                                                 <?php echo $row['task_title']; ?>
                                                             </h6>
                                                             <h6 class="card-title">
-                                                                <?php echo $row['task_description']; ?>
+                                                                <?php echo $row['fdesc']; ?>
                                                             </h6>
                                                             <div class="d-flex justify-content-end">
                                                                 <!-- Delete Icon -->
@@ -238,6 +238,19 @@ if ($class_row) { ?>
                                     placeholder="Enter Task Title">
                             </div>
                             <div class="form-group">
+                            <input name="uploaded_files[]" class="input-file uniform_on" id="fileInput"
+                                    type="file" multiple>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                                <input type="hidden" name="id" value="<?php echo $session_id ?>" />
+                                <input type="hidden" name="id_class" value="<?php echo $get_id; ?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="desc">Description</label>
+                                <textarea class="form-control" id="description" name="desc" rows="4"
+                                    max-length="5000" required placeholder="Enter Description"></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="task_objective">Learning Objective</label>
                                 <textarea class="form-control" id="description" name="task_objective" required
                                     placeholder="Enter Task Objective(s)"> </textarea>
@@ -247,8 +260,14 @@ if ($class_row) { ?>
                                 <input type="number" class="form-control" id="max_score" name="max_score" required
                                     placeholder="Enter Max Score">
                             </div>
-                            <hr>
-                            <br>
+
+                            
+                            <div class="form-group">
+                                            <label for="deadline">Deadline:</label>
+                                            <input type="datetime-local" class="form-control flatpickr" id="deadline"
+                                                name="deadline" placeholder="Enter Deadline" required>
+                            </div>
+                            
 
                         </div>
 

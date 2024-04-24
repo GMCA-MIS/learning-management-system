@@ -286,7 +286,7 @@ $class_row = mysqli_fetch_array($class_query);
                                 <div class="tab-content" id="assignmentTabsContent">
                                     <div class="tab-pane fade" id="uploadAssignment" role="tabpanel"
                                         aria-labelledby="uploadTab">
-                                        <form action="class_assignments-function.php" method="post"
+                                        <form action="class-performancetask-function.php" method="post"
                                             enctype="multipart/form-data">
                                             <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
                                             <input type="hidden" name="get_id" value="<?php echo $get_id; ?>">
@@ -313,7 +313,7 @@ $class_row = mysqli_fetch_array($class_query);
                                     </div>
                                     <div class="tab-pane fade show active" id="createAssignment" role="tabpanel"
                                         aria-labelledby="createTab">
-                                        <form action="class_assignments-function.php" method="post"
+                                        <form action="class-performancetask-function.php" method="post"
                                             enctype="multipart/form-data">
                                             <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
                                             <input type="hidden" name="get_id" value="<?php echo $get_id; ?>">

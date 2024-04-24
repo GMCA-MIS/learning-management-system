@@ -122,12 +122,12 @@ include('initialize.php');
                                             <h6 class="card-title" style="">
                                                  <div class="d-flex flex-row-reverse">
                                                     <?php 
-                                                        $rowquery = " SELECT `status`,task_result_id FROM task_result WHERE task_result_id = $id AND student_id = $student_id ";
+                                                        $rowquery = " SELECT `grade_status`,task_result_id FROM task_result WHERE task_id = $id AND student_id = $student_id ";
                                                         $rowresult = mysqli_query($conn, $rowquery);
                                                         $rowstats = mysqli_fetch_array($rowresult);
-                                                        if(empty($rowstats['status'])){
+                                                        if(empty($rowstats['grade_status'])){
 
-                                                            if(empty($rowstats['student_assignment_id'])){
+                                                            if(empty($rowstats['task_result_id'])){
                                                                 echo" <div class='p-2 border border-danger' style='color:red'>";
                                                                 echo "Take Assignment" ;
                                                                 echo "</div>";
@@ -137,7 +137,7 @@ include('initialize.php');
                                                                 echo "</div>";
                                                             }
 
-                                                        }elseif($rowstats['status'] == "1"){
+                                                        }elseif($rowstats['grade_status'] == "1"){
 
                                                             echo" <div class='p-2 border border-success' style='color:green'>";
                                                             echo "Completed" ;
