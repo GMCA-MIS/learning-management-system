@@ -311,6 +311,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 </div>
             </div>
 
+                
+    <?php
+        $conn->close();  
+    ?>
 
 
 
