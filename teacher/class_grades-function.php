@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_task"])) {
     $task_objective = $_POST["task_objective"];
     $fdesc = $_POST["desc"];
     $deadline = $_POST['deadline'];
+    $id_class = $_POST['id_class'];
 
 
 // Function to sanitize values received from the form. Prevents SQL injection
@@ -84,7 +85,7 @@ $fileLocationsJson = json_encode($fileLocations);
               </script>";
     } else {
         // Insert data into the task table
-        $sql = "INSERT INTO task (task_title, max_score, teacher_class_id, status, task_objective, date_added,floc,fdesc,deadline) VALUES (?, ?, ?, 'Available', ?, NOW(),?,?,'$deadline')";
+        $sql = "INSERT INTO task (task_title, max_score, class_id, status, task_objective, date_added,floc,fdesc,deadline) VALUES (?, ?, ?, 'Available', ?, NOW(),?,?,'$deadline')";
         $stmt = $conn->prepare($sql);
 
        
@@ -95,7 +96,7 @@ $fileLocationsJson = json_encode($fileLocations);
             $last_id12 = $conn->insert_id;
 
             // Prepare the SQL statement FOR NOTIFICATION to student
-            $queryz = "INSERT INTO notification (notification, date_of_notification, teacher_class_id, link) VALUES (?, NOW(), ?, ?)";
+            $queryz = "INSERT INTO notification (notification, date_of_notification, class_id, link) VALUES (?, NOW(), ?, ?)";
             $stmt = mysqli_prepare($conn, $queryz);
             
             $link = 'view_class_performancetask.php?id=' . $get_id . '&task_id=' . $last_id12;
@@ -443,7 +444,7 @@ include("dbcon.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_scoreExam"])) {
     // Get the values from the form
     $get_id = $_POST["get_id"];
-    $exam_id = $_POST["exam_id"];
+    $exam_id = $_POST["task_id"];
     $grades = $_POST["grades"];
 
     // Flag to check if any update or insertion fails
