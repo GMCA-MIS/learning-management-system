@@ -1,4 +1,4 @@
 <?php
 
-header("Location: newlogin.php");
+header("Location: landingpage/index.html");
 ?>
