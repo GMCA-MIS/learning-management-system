@@ -374,12 +374,6 @@ mysqli_close($conn);
 
                         <!--  -->
                         <div class="row gtr-uniform gtr-50">
-
-                            <div class="col-4">
-                                <p style="color: red;">* For Transferee Only</p>
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
                             <div class="col-6">
                                 <input type="text" name="highschool" id="highschool" value="" autocomplete="off" placeholder="Highschool" required />
                             </div>
@@ -397,13 +391,6 @@ mysqli_close($conn);
                         </div>
                         <br />
 
-                        <div class="row gtr-uniform gtr-50">
-
-                            <div class="col-4">
-                                <p style="color: red;">* For New Student Only</p>
-                            </div>
-                        </div>
-                        <br />
                         <!--  -->
 
                         <!-- hs address -->
