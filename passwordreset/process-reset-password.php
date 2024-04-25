@@ -94,7 +94,12 @@ if (!preg_match("/[A-Z]/", $_POST["password"])) {
 }
 
 
-if (preg_match('/[^a-zA-Z\d]/', $_POST["password"])) {
+
+function specialChars($str) {
+    return preg_match('/[^a-zA-Z0-9]/', $str) > 0;
+}
+
+if (specialChars($_POST["password"])) {
    
     echo "<script>
     Swal.fire({
@@ -105,8 +110,12 @@ if (preg_match('/[^a-zA-Z\d]/', $_POST["password"])) {
         window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
     });
     </script>";
-    die("Password must contain at least one letter");
+    die("Password must contain at least one symbol");
+} else {
+   // echo "String does not contain special characters.";
 }
+
+
 
 
 
