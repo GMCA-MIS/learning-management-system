@@ -62,6 +62,7 @@ if (strtotime($userTeacher["reset_token_expires_at"] ?? "") <= time() && strtoti
     die("Token has expired");
 }
 
+
 if (strlen($_POST["password"]) < 8) {
 
     echo "<script>
@@ -84,6 +85,20 @@ if (!preg_match("/[A-Z]/", $_POST["password"])) {
     Swal.fire({
         icon: 'error',
         title: 'Password must contain at least one capital letter!',
+        showConfirmButton: false
+    }).then(function() {
+        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
+    });
+    </script>";
+    die("Password must contain at least one letter");
+}
+
+if (preg_match('/[^a-zA-Z0-9]/', $_POST["password"]) > 0) {
+
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Password must contain at least one symbol!',
         showConfirmButton: false
     }).then(function() {
         window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
