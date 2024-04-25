@@ -149,7 +149,7 @@ $class_row = mysqli_fetch_array($class_query);
                                 <h6>Submissions</h6>
                                 <button type="button" class="btn btn-success add_btn" data-toggle="modal"
                                     data-target="#upload_assignmentModal">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> Submit Assignment
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Submit Performance Task
                                 </button>
                             </div>
                             <hr>

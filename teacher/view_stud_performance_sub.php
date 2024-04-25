@@ -266,9 +266,10 @@ if (isset($_POST['grade_assignment'])) {
     
     // Execute the query
     if (mysqli_query($conn, $updateQuery)) {
+
         // Display a success message using SweetAlert
         $notificationMessage = "Task : <b>$fname</b> has been Graded";
-        $link = "view_class_performancetask.php?student_id=".$studentId."&task_id=".$post_id."&id=".$get_id;
+        $link = "view_class_performancetask.php?id=".$get_id."&task_id=".$post_id;
 
         $insertNotificationQuery = "INSERT INTO `notification` (teacher_class_id, notification, date_of_notification, link)
                                     VALUES ('$get_id', '$notificationMessage', NOW(), '$link')";

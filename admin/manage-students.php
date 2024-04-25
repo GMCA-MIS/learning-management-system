@@ -189,7 +189,7 @@ include('includes/navbar.php');
                                     <td style="display:none;"><?php echo $row['lastname']; ?></td>
                                     <td><?php echo $row['strand_name']; ?></td>
                                     <td><?php
-                                    
+                                    /*
                                     if(empty($row['class_name']) && $row['is_regular'] == 1 ){
                                         echo "Need Approval";
                                     }elseif(empty($row['class_name']) && $row['is_regular'] == 3 ){
@@ -199,6 +199,13 @@ include('includes/navbar.php');
                                     }else{
                                         echo $row['class_name'];
                                     }
+                                    */
+                                    if(!empty($row['class_name'])){
+                                        echo $row['class_name'];
+                                    }else{
+                                        echo "<b style='color:red'>For Approval</b>";
+                                    }
+                                    
                                     
                                     ?></td>
 

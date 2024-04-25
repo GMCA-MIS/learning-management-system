@@ -224,7 +224,7 @@ mysqli_close($conn);
                         <!-- Requester's Name -->
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-12">
-                                <input type="text" name="username" id="email" value="" autocomplete="off" placeholder="LRN No." required />
+                                <input type="text" name="username" id="email" value="" autocomplete="off" placeholder="LRN No." maxlength="12" required />
                             </div>
                         </div>
 
@@ -299,9 +299,11 @@ mysqli_close($conn);
                                     <option value="2">
                                         Transferee
                                     </option>
+                                    <!--
                                     <option value="3">
                                         Irregular Student
                                     </option>
+                                    -->
                                 </select>
                             </div>
                         </div>
@@ -403,6 +405,13 @@ mysqli_close($conn);
                             <div class="col-12">
                                 <label for="highschool_address">Address of Highschool</label>
                             </div>
+                        </div>
+                        <br />
+                        <div class="row gtr-uniform gtr-50">
+
+                        <div class="col-4">
+                            <p style="color: red;">* For New Student Only</p>
+                        </div>
                         </div>
                         <br />
 

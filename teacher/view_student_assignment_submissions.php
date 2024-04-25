@@ -177,7 +177,7 @@ if (isset($_GET['student_id'])) {
 // Assuming you have a database connection established
 
 
-$query = "SELECT MAX(max_score) AS max_score FROM assignment WHERE class_id = $get_id";
+$query = "SELECT max_score FROM assignment WHERE assignment_id = $post_id";
 
 // Execute the query and fetch the result
 $result = mysqli_query($conn, $query);
@@ -213,7 +213,7 @@ if ($result) {
                                         <form action="" method="POST">
                                             <div class="form-group">
                                                 <label for="grade">Score:</label>
-                                                <input type="number" id="grade" name="grade" placeholder="Max score is <?php echo $maxScore?>" required place>
+                                                <input type="number" id="grade" name="grade" min="0" max="<?php echo $maxScore?>" placeholder="Max score is <?php echo $maxScore?>" required place>
                                             </div>
                                             <div class="form-group">
                                                 <label for="comments">Comments</label>
@@ -268,7 +268,7 @@ if (isset($_POST['grade_assignment'])) {
     if (mysqli_query($conn, $updateQuery)) {
         // Display a success message using SweetAlert
         $notificationMessage = "<b>$fname</b> has been Graded";
-        $link = "view_class_assignment.php?id=".$studentId."&post_id=".$post_id."&get_id=".$get_id;
+        $link = "view_class_assignment.php?id=".$get_id."&post_id=".$post_id;
 
         $insertNotificationQuery = "INSERT INTO `notification` (teacher_class_id, notification, date_of_notification, link)
                                     VALUES ('$get_id', '$notificationMessage', NOW(), '$link')";
@@ -281,7 +281,7 @@ if (isset($_POST['grade_assignment'])) {
             icon: 'success',
             confirmButtonText: 'OK'
           }).then(function() {
-            window.location.href = 'view_student_assignment_submissions.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
+            window.location.href = 'view_class_assignment.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
           });
          </script>";
     } else {
@@ -294,7 +294,7 @@ if (isset($_POST['grade_assignment'])) {
             icon: 'error',
             confirmButtonText: 'OK'
           }).then(function() {
-            window.location.href = 'view_student_assignment_submissions.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
+            window.location.href = 'view_class_assignment.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
           });
          </script>";
     }
@@ -308,7 +308,7 @@ echo "<script>
             icon: 'error',
             confirmButtonText: 'OK'
           }).then(function() {
-            window.location.href = 'view_student_assignment_submissions.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
+            window.location.href = 'view_class_assignment.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
           });
          </script>";
 }

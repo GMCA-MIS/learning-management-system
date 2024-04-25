@@ -93,7 +93,7 @@ if (
 							<div class="form-outline">
                                 <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
 								<input type="password" id="password" name="password" class="form-control my-3" placeholder="Enter New Password" required>
-                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control my-3" placeholder="Confirm New Password" required>
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control my-3" placeholder="Confirm New Password" required >
 							</div>
 							<button class="btn btn-primary w-100" style="background: #361e12 !important;">
 							  <span id="btnText" onclick="showLoadingSpinner()">Save Changes</span>
