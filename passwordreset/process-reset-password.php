@@ -93,8 +93,9 @@ if (!preg_match("/[A-Z]/", $_POST["password"])) {
     die("Password must contain at least one letter");
 }
 
-if (preg_match('/[^a-zA-Z0-9]/', $_POST["password"]) > 0) {
 
+if (preg_match('/[^a-zA-Z\d]/', $_POST["password"])) {
+   
     echo "<script>
     Swal.fire({
         icon: 'error',
@@ -106,6 +107,8 @@ if (preg_match('/[^a-zA-Z0-9]/', $_POST["password"]) > 0) {
     </script>";
     die("Password must contain at least one letter");
 }
+
+
 
 if (!preg_match("/[a-z]/i", $_POST["password"])) {
 
