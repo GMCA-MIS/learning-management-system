@@ -129,12 +129,6 @@
     </div>
   </li>
 
-  <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-coordinators.php') echo 'active'; ?>">
-    <a class="nav-link" href="manage-coordinators.php?id=<?php echo $school_year ?>">
-      <i class='fas fa-user-alt'></i>
-      <span>Manage Other Users</span>
-    </a>
-  </li>
   <!-- tor req -->
 
   <!--  -->
@@ -153,23 +147,6 @@
   </li>
 
 
-  <!--  -->
-
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['sectors.php', 'offices.php', 'process.php'])) echo 'active'; ?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class='fas fa-school'></i>
-      <span>School</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Select Classification</h6>
-        <a class="collapse-item" href="calendar.php?id=<?php echo $school_year ?>"><i class='far fa-calendar'></i> School Calendar</a>
-        <a class="collapse-item" href="schoolyear.php?id=<?php echo $school_year ?>"><i class='fas fa-graduation-cap'></i> School Year</a>
-        <a class="collapse-item" href="content.php?id=<?php echo $school_year ?>"><i class="fa fa-edit"></i> Website Content</a>
-      </div>
-    </div>
-  </li>
 
 
 
