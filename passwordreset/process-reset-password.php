@@ -77,7 +77,7 @@ if (strlen($_POST["password"]) < 8) {
     die("Password must be at least 8 characters");
 }
 
-if (!preg_match("/[A-Z]/i", $_POST["password"])) {
+if (!preg_match("/[A-Z]/", $_POST["password"])) {
 
     
     echo "<script>
