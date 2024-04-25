@@ -41,6 +41,15 @@ if(isset($_GET['quiz_id']) && isset($_GET['id'])){
 }
 
 
+if(isset($_GET['task']) && isset($_GET['post_id']) && isset($_GET['get_id']) ){
+
+  $linkid = "view_stud_performance_sub.php?student_id=" . $_GET['student_id'] . "&post_id=" . $_GET['post_id'] ."&get_id=". $_GET['get_id']."&task=1";
+ $sql = "UPDATE `teacher_notification` SET read_status = 'alreadyread' WHERE link='". $linkid ."';";
+ $result = $conn->query($sql);
+ 
+}
+
+
 ?>
 
 <!DOCTYPE html>
