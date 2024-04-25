@@ -68,6 +68,8 @@ function specialChars($str) {
     return preg_match('/[^a-zA-Z0-9]/', $str) > 0;
 }
 
+echo $_POST["password"];
+
 if (specialChars($_POST["password"])) {
    
     echo "<script>
