@@ -94,6 +94,8 @@ include('includes/navbar.php');
                                                 <option value="LR" selected disabled>Select User Type</option>
                                                 <option value="LR">Learning Resource Coordinator</option>
                                                 <option value="LIS">Learning Information System Coordinator</option>
+                                                <!--<option value="REGISTRAR">Registrar</option>-->
+
                                             </select>
                                         </div>
 
