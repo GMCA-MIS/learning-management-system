@@ -68,16 +68,22 @@ function specialChars($str) {
     return preg_match('/[^a-zA-Z0-9]/', $str) > 0;
 }
 
-echo $_POST["password"];
 
 if (specialChars($_POST["password"])) {
-    echo "String does contain.";
-
+ 
 } else {
-   echo "String does not contain special characters.";
-   
+     
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Password must contain at least one symbol!',
+        showConfirmButton: false
+    }).then(function() {
+        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
+    });
+    </script>";
+    die("Password must contain at least one symbol");
 }
-die("Password must contain at least one symbol");
 
 if (strlen($_POST["password"]) < 8) {
 
