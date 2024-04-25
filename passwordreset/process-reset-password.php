@@ -71,20 +71,13 @@ function specialChars($str) {
 echo $_POST["password"];
 
 if (specialChars($_POST["password"])) {
-   
-    echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Password must contain at least one symbol!',
-        showConfirmButton: false
-    }).then(function() {
-        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
-    });
-    </script>";
-    die("Password must contain at least one symbol");
+    echo "String does contain.";
+
 } else {
-   // echo "String does not contain special characters.";
+   echo "String does not contain special characters.";
+   
 }
+die("Password must contain at least one symbol");
 
 if (strlen($_POST["password"]) < 8) {
 
