@@ -8,6 +8,8 @@ $comment = "";
 <?php
 $get_id = $_GET['quiz_id']; // Get the quiz_id from the URL
 $id = $_GET['id'];
+$post_id = $_GET['post_id']
+
 ?>
 
 <style>
@@ -98,6 +100,31 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
 
 }
 
+
+
+if (isset($_GET['comment']) && isset($_GET['id']) && isset($_GET['quiz_id']) ){
+
+    $updateQuery = "UPDATE quiz_results SET comment ='". $_GET['comment']."' WHERE quiz_id = " . $_GET['quiz_id'];
+    
+    // Execute the query
+    if (mysqli_query($conn, $updateQuery)) {
+        echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Comment Updated',
+            showConfirmButton: false
+        }).then(function() {
+            window.location = 'view_quiz_result.php?quiz_id=". $quiz_id. "&id=".$id."&post_id=".$post_id."'; // Redirect to profile.php
+    
+        });
+        </script>";
+    }
+    
+
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -179,14 +206,16 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
         
     </div>
     
-    <form class="col-md-8 mx-auto " action="#">
+    <form class="col-md-8 mx-auto " action="" method="get">
             <div class="d-flex justify-content-end mb-1 mt-2">        
-                <button type="button" name=""  class="btn btn-success">Comment</button>
+                <button type="submit" name="commentsubmit"  class="btn btn-primary">Comment</button>
             </div>
             <input type="hidden" value="<?php echo $_GET['quiz_id']; ?>" name="quiz_id"/>
             <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id"/>
+                                    <input type="hidden" id="post_id" name="post_id" value="<?php echo $post_id ?>">
+
             <textarea class="form-control " name="comment" style=""><?php echo $result['comment'];?></textarea>
-        </form>
+    </form>
 </div>
 
 <!-- Modal -->
@@ -202,7 +231,9 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
                 <div class="modal-body">
                     <form id="confirmationForm" action="view_quiz_result-function.php" method="post">
                         <input type="hidden" id="studentIdInput" name="student_id" value="<?php echo $id ?>">
-                        <input type="hidden" id="quizIdInput" name="quiz_id" value="<?php echo $quiz_id ?>">
+                        <input type="hidden" id="quizIdInput" name="quiz_id" value="<?php echo $quiz_id ?>">                        
+                        <input type="hidden" id="post_id" name="post_id" value="<?php echo $post_id ?>">
+
                         <input type="hidden" id="quizResultIdInput" name="quiz_result_id" value="">
                         <!-- Uncomment the above line to include quiz_result_id in the form -->
                         Are you sure you want to change the result?
