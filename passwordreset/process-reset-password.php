@@ -88,7 +88,6 @@ function specialChars($str) {
 if (specialChars($_POST["password"])) {
  
 } else {
-     
     echo "<script>
     Swal.fire({
         icon: 'error',
