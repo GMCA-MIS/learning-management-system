@@ -387,6 +387,8 @@ function getQuizTheme($conn, $quiz_id)
                     style="display: none;">Submit</button>
                 <button type="button" name="submit_quiz" id="submit_button_quiz" class="btn btn-success">Submit</button>
                 
+                <button style="margin-left:5px" type="button" name="" id="" onclick="forcecomplete();" class="btn btn-success">Complete Now</button>
+
             </div>
 <!-- Modal -->
 <div class="modal fade" id="unansweredModal" tabindex="-1" role="dialog" aria-labelledby="unansweredModalLabel"
@@ -408,8 +410,30 @@ function getQuizTheme($conn, $quiz_id)
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+
+function forcecomplete(){
+
+Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, Confirm!"
+    }).then((result) => {
+    if (result.isConfirmed) {
+        
+        startQuizTimer(5);
+
+    }
+});
+}
+
+
 function showUnansweredModal() {
     let unansweredQuestions = [];
 

@@ -2,6 +2,8 @@
 include('teacher_session.php');  
 include('includes/topbar.php');
 include('includes/header.php'); 
+
+$comment = "";
 ?>
 <?php
 $get_id = $_GET['quiz_id']; // Get the quiz_id from the URL
@@ -131,6 +133,7 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
         <h5 class="mb-3 text"><?php echo $quiz_title; ?></h5>
         <p class="mb-4 text-muted"><?php echo $quiz_description; ?></p>
         <p class="mb-4 text-success" style="font-size: 24px; ">Total Score: <?php echo $grade; ?> / <?php echo $max_score; ?></p>
+        
     </div>
         <?php if ($quizResults) : ?>
             <div class="container">
@@ -173,7 +176,17 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
                 ?>
             </div>
         </div>
+        
     </div>
+    
+    <form class="col-md-8 mx-auto " action="#">
+            <div class="d-flex justify-content-end mb-1 mt-2">        
+                <button type="button" name=""  class="btn btn-success">Comment</button>
+            </div>
+            <input type="hidden" value="<?php echo $_GET['quiz_id']; ?>" name="quiz_id"/>
+            <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id"/>
+            <textarea class="form-control " name="comment" style=""><?php echo $result['comment'];?></textarea>
+        </form>
 </div>
 
 <!-- Modal -->

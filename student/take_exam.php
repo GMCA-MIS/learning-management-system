@@ -467,7 +467,7 @@ if ($questionData['question_type_id'] == 1 || $questionData['question_type_id'] 
             confirmButtonText: "Yes, Confirm!"
             }).then((result) => {
             if (result.isConfirmed) {
-                
+                sessionStorage.setItem("quizStartTime","5");
                 startexamTimer(5);
 
             }

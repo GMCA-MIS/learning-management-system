@@ -77,6 +77,21 @@ if (strlen($_POST["password"]) < 8) {
     die("Password must be at least 8 characters");
 }
 
+if (!preg_match("/[A-Z]/i", $_POST["password"])) {
+
+    
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Password must contain at least one capital letter!',
+        showConfirmButton: false
+    }).then(function() {
+        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
+    });
+    </script>";
+    die("Password must contain at least one letter");
+}
+
 if (!preg_match("/[a-z]/i", $_POST["password"])) {
 
     
