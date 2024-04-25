@@ -396,13 +396,6 @@ mysqli_close($conn);
                             </div>
                         </div>
                         <br />
-
-                        <div class="row gtr-uniform gtr-50">
-
-                            <div class="col-4">
-                                <p style="color: red;">* For New Student Only</p>
-                            </div>
-                        </div>
                         <br />
                         <!--  -->
 
@@ -420,10 +413,6 @@ mysqli_close($conn);
                         <br />
                         <div class="row gtr-uniform gtr-50">
 
-                        <div class="col-4">
-                            <p style="color: red;">* For New Student Only</p>
-                        </div>
-                        </div>
                         <br />
 
                         <!-- GMC Admission, Requirements, and Purpose of Request -->
