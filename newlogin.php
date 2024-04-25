@@ -20,7 +20,10 @@ if (isset($_SESSION['username'])) {
     } elseif ($_SESSION['user_type'] === 'LR') { // Add support for 'admin' user type
       header('Location: lr/index.php');
       exit();
-  }
+    } elseif ($_SESSION['user_type'] === 'registrar') { // Add support for 'admin' user type
+      header('Location: registrar/index.php');
+      exit();
+    } 
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -155,14 +158,25 @@ if ($result->num_rows > 0) {
 
         $query2 = "UPDATE user_attempt_login SET trytime = 0 , attemptcount = 0 WHERE username = '$username'";
         $result2 = mysqli_query($conn, $query2);
+       $row = $result->fetch_assoc();
+    
+      
 
-
-    $row = $result->fetch_assoc();
-    $_SESSION['user_type'] = 'admin';
-    $_SESSION['username'] = $username;
-    $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
-    header('Location: admin/index.php');
-    exit();
+        if($row['user_type']=="admin"){
+          $_SESSION['user_type'] = 'admin';
+          $_SESSION['username'] = $username;
+          $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
+          header('Location: admin/index.php');
+          exit();
+        }elseif($row['user_type']=="registrar"){
+          $_SESSION['user_type'] = 'registrar';
+          $_SESSION['username'] = $username;
+          $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
+          header('Location: registrar/index.php');
+          exit();
+        }
+          
+        
 
 
       }else{
