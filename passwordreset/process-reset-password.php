@@ -64,6 +64,22 @@ if (strtotime($userTeacher["reset_token_expires_at"] ?? "") <= time() && strtoti
 
 
 
+if (strlen($_POST["password"]) < 8) {
+
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Password must be at least 8 characters',
+        showConfirmButton: false
+    }).then(function() {
+        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
+    });
+    </script>";
+
+    die("Password must be at least 8 characters");
+}
+
+
 function specialChars($str) {
     return preg_match('/[^a-zA-Z0-9]/', $str) > 0;
 }
@@ -85,20 +101,6 @@ if (specialChars($_POST["password"])) {
     die("Password must contain at least one symbol");
 }
 
-if (strlen($_POST["password"]) < 8) {
-
-    echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Password must be at least 8 characters',
-        showConfirmButton: false
-    }).then(function() {
-        window.location = 'reset-password.php?token=". $_POST['token'] . "'; // Redirect to profile.php
-    });
-    </script>";
-
-    die("Password must be at least 8 characters");
-}
 
 if (!preg_match("/[A-Z]/", $_POST["password"])) {
 
