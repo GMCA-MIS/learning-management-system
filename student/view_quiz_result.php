@@ -90,6 +90,9 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
 <div class="container mt-4">
     <?php if ($quizDetails) : ?>
         <div class="container mt-4 text-center">
+        
+        <h2 class="mb-4 col-5" ><button onclick="history.back()" class="btn btn-primary">Back</button></h2>
+
         <h2 class="mb-4">Quiz Result Details</h2>
         <h5 class="mb-3 text"><?php echo $quiz_title; ?></h5>
         <p class="mb-4 text-muted"><?php echo $quiz_description; ?></p>
@@ -97,6 +100,7 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
     </div>
         <?php if ($quizResults) : ?>
             <div class="container">
+                
                 <?php
                 $questionNumber = 1; // Initialize the question number
                 while ($result = mysqli_fetch_assoc($quizResults)) :
@@ -123,6 +127,10 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
                                     echo 'Your Answer: ' . $result['user_answer'] . '<br>';
                                     echo 'Correct Answer: ' . $result['correct_answer'] . '<br>';
                                     echo 'Points: ' . $result['points'] . '<br>';
+                                    
+                                    if(!empty($result['comment'])){
+                                        $comment = $result['comment'];
+                                    } 
                                     ?>
                                 </div>
                             </div>
@@ -131,7 +139,23 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
                 <?php
                     $questionNumber++; // Increment the question number
                 endwhile;
+                           
                 ?>
+                <div class="row mt-4">
+                <div class="col-md-8 mx-auto">
+                    <div class="card border-dark">
+                        <div class="card-body">
+                        <b>Comment:</b><br>
+                         <?php  
+                           
+                            if(!empty($comment)){
+                                echo $comment ;
+                            } 
+                        ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         <?php else : ?>
             <div class="alert alert-warning" role="alert">
