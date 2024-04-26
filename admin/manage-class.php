@@ -4,7 +4,7 @@ include('dbcon.php');
 include('includes/header.php');
 include('includes/navbar.php');
 ?>
-
+<link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
     <!-- Main Content -->
@@ -20,6 +20,7 @@ include('includes/navbar.php');
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top: 27px; margin-left: 10px;">
                 <h1 class="h3 mb-0 text-gray-800">Sections</h1>
+                
             </div>
 
             <!-- Topbar Navbar -->
@@ -45,40 +46,31 @@ include('includes/navbar.php');
                                     </button>
                                 </div>
 
-                                <form action="manage-class-function.php" method="POST">
+                                <form action="" method="POST">
                                     <div class="modal-body">
-                                        <input type="hidden" name="add_ID" id="add_ID">
 
                                         <div class="form-group">
-                                            <label for="strand">Track / Strand</label>
-                                            <select type="text" class="form-control" id="strand" name="strand" required placeholder="Enter Strand Type">
-                                                <option class="form-control" disabled selected> Select Track / Strand </Option>
-                                                <option class="form-control" value="Academic-ABM"> Academic-ABM </Option>
-                                                <option class="form-control" value="Academic-HUMSS"> Academic-HUMSS </Option>
-                                                <option class="form-control" value="TVL-ICT"> TVL-ICT </Option>
-                                                <option class="form-control" value="TVL-HE"> TVL-HE </Option>
-                                                <option class="form-control" value="TVL-CSS"> TVL-CSS </Option>
-                                                <option class="form-control" value="TVL-ANIMATION"> TVL-Animation </Option>
+                                            <label for="strand">Grade</label>
+                                            <select type="text" class="form-control" id="grade_level" name="grade_level" required placeholder="Enter Strand Type">
+                                                <option class="form-control" disabled selected> Select Grade </Option>
+                                                <option class="form-control" value="11">11</Option>
+                                                <option class="form-control" value="12">12</Option>
                                             </select>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="class_name">Section Name</label>
-                                            <input type="text" class="form-control" id="class_name" name="class_name" required placeholder="Enter Class Name">
-                                        </div>
                                     </div>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" name="add_class" class="btn btn-primary">Create</button>
+                                        <button type="button" onclick="addsection();" name="add_class" class="btn btn-primary">Create</button>
                                     </div>
                                 </form>
                             </div> <!--modal content -->
                         </div> <!--modal dialog -->
                     </div> <!--modal fade -->
 
-                    <!-- <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_class" 
-                            style="margin-bottom: 20px;"><i class="fa fa-plus" aria-hidden="true"></i> Add Section</button> -->
+                     <button type="button" class="btn btn-success add_btn"   data-toggle="modal" data-target="#add_class"
+                            style="margin-bottom: 20px;"><i class="fa fa-plus"></i> Add Section</button> 
                 </td>
 
 
@@ -172,7 +164,7 @@ include('includes/navbar.php');
                             </div>
                         </div>
 
-                        <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_classModal ">Edit</button>
+                        <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_classModal">Edit</button>
                     </td>
 
                     <td>
@@ -235,8 +227,64 @@ include('includes/navbar.php');
 
 
 
-
+    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
     <script>
+        
+        function addsection(){
+            var classname = "<?php  echo $_GET['class_name'] ?>";
+            var dropdown = document.getElementById("grade_level");
+            var value = dropdown.options[dropdown.selectedIndex].value;
+            
+           
+            Swal.fire({
+                title: "Please confirm to Generate New Class",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Confirm"
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+                        // PHP get paramater
+                        // send ajax
+                        $.ajax({
+                            url: 'manage-class-generateclass.php?classname=' + classname +"&grade_level=" + value,
+                            method: 'GET',
+                            success: function(response) {
+                                //alert(response);
+                                if(response == "New Class"){
+                                    Swal.fire({
+                                            title: "Success",
+                                            text: "New Class Added!",
+                                            icon: "success",
+                                            confirmButtonText: "OK",
+                                        }).then(function() {
+                                            window.location.reload();
+                                        });
+                                }else if(response == "Found a Class with below 50 students" ){
+                                    Swal.fire({
+                                            title: "Warning",
+                                            text: "Cannot Create, Found a Class with below 50 students",
+                                            icon: "warning",
+                                            confirmButtonText: "OK"
+                                        }).then(function() {
+                                            window.location.reload();
+                                        });
+                                }
+                                
+                            }
+                        });
+                        
+
+                    }
+            });
+        }
+
+
+
+
         $(document).ready(function() {
 
             $('.edit_btn').on('click', function() {

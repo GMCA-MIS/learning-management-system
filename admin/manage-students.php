@@ -200,42 +200,29 @@ include('includes/navbar.php');
                                         echo $row['class_name'];
                                     }
                                     */
-                                    if(!empty($row['class_name'])){
-                                        echo $row['class_name'];
-                                    }else{
-                                        echo "<b style='color:red'>For Approval</b>";
-                                    }
-                                    
-                                    
-                                    ?></td>
+                                        if(!empty($row['class_name'])){
+                                            echo $row['class_name'];
+                                        }else{
+                                            echo "<b style='color:red'>For Approval</b>";
+                                        }
+                                    ?>
+                                    </td>
 
                                     <td><?php if ($row['is_regular'] == 1) { ?>
                                             <p>Regular</p>
-                                        <?php } else {
-                                        ?>
+                                        <?php } else {                        ?>
                                             <p>Irregular</p>
-                                        <?php
-                                        } ?>
+                                        <?php }                               ?>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-secondary attachment-btn" data-student-id="<?php echo $row['student_id']; ?>" style="color:white">Attachment</button>
                                     </td>
                                     <td>
-                                        <?php
-
-                                        if (empty($row['password'])) {
-
-                                        ?>
-
+                                        <?php if (empty($row['password'])) {  ?>
                                             <button type="submit" name="approval" class="btn btn-primary" style="background-color:green;color:white" data-toggle="modal" data-target="#approveModal" onclick="doapprovedModal(<?php echo $row['student_id']; ?>)">Approve</button>
-                                        <?php
-                                        } else {
-
-                                        ?>
+                                        <?php } else {                        ?>
                                             <p>Approved</p>
-                                        <?php
-                                        }
-                                        ?>
+                                        <?php  }                               ?>
                                     </td>
                                     <td>
                                         <?php
