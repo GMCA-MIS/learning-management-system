@@ -279,7 +279,7 @@ include('includes/navbar.php');
                                                 icon: "warning",
                                                 confirmButtonText: "OK"
                                             }).then(function() {
-                                                window.location.reload();
+                                                // response
                                             });
                                     }
                                     
