@@ -2,7 +2,7 @@
     include('includes/lr_session.php');
     include('includes/header.php');
     include('includes/navbar.php');
-    include('dbcon.php');
+    
 
 ?>
 
@@ -100,6 +100,22 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
                 <!--Table value from 'booklist' and 'student'-->
                 <?php
+
+                $servername = "localhost";
+                $username = '';
+                $password = '';
+                $dbname = 'borrowed_books';
+
+
+                // Create connection
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                
+
                 
                 $date = date('Y-m-d');
                 $book_no = $_POST['book_id'];
