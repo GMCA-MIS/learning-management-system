@@ -52,7 +52,7 @@ include('includes/navbar.php');
                                         <div class="form-group">
                                             <label for="strand">Grade</label>
                                             <select type="text" class="form-control" id="grade_level" name="grade_level" required placeholder="Enter Strand Type">
-                                                <option class="form-control" disabled selected> Select Grade </Option>
+                                                <option class="form-control" disabled value="" selected> Select Grade </Option>
                                                 <option class="form-control" value="11">11</Option>
                                                 <option class="form-control" value="12">12</Option>
                                             </select>
@@ -234,52 +234,60 @@ include('includes/navbar.php');
             var classname = "<?php  echo $_GET['class_name'] ?>";
             var dropdown = document.getElementById("grade_level");
             var value = dropdown.options[dropdown.selectedIndex].value;
-            
+            if(value == ""){
+                Swal.fire({
+                    title: "Error",
+                    text: "Select Grade",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                }).then(function() {
+                    window.location.reload();
+                });
+            }else{
            
-            Swal.fire({
-                title: "Please confirm to Generate New Class",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Confirm"
-                }).then((result) => {
+                Swal.fire({
+                    title: "Please confirm to Generate New Class",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Confirm"
+                    }).then((result) => {
 
-                    if (result.isConfirmed) {
-                        // PHP get paramater
-                        // send ajax
-                        $.ajax({
-                            url: 'manage-class-generateclass.php?classname=' + classname +"&grade_level=" + value,
-                            method: 'GET',
-                            success: function(response) {
-                                //alert(response);
-                                if(response == "New Class"){
-                                    Swal.fire({
-                                            title: "Success",
-                                            text: "New Class Added!",
-                                            icon: "success",
-                                            confirmButtonText: "OK",
-                                        }).then(function() {
-                                            window.location.reload();
-                                        });
-                                }else if(response == "Found a Class with below 50 students" ){
-                                    Swal.fire({
-                                            title: "Warning",
-                                            text: "Cannot Create, Found a Class with below 50 students",
-                                            icon: "warning",
-                                            confirmButtonText: "OK"
-                                        }).then(function() {
-                                            window.location.reload();
-                                        });
+                        if (result.isConfirmed) {
+                            // PHP get paramater
+                            // send ajax
+                            $.ajax({
+                                url: 'manage-class-generateclass.php?classname=' + classname +"&grade_level=" + value,
+                                method: 'GET',
+                                success: function(response) {
+                                    //alert(response);
+                                    if(response == "New Class"){
+                                        Swal.fire({
+                                                title: "Success",
+                                                text: "New Class Added!",
+                                                icon: "success",
+                                                confirmButtonText: "OK",
+                                            }).then(function() {
+                                                window.location.reload();
+                                            });
+                                    }else if(response == "Found a Class with below 50 students" ){
+                                        Swal.fire({
+                                                title: "Warning",
+                                                text: "Cannot Create, Found a Class with below 50 students",
+                                                icon: "warning",
+                                                confirmButtonText: "OK"
+                                            }).then(function() {
+                                                window.location.reload();
+                                            });
+                                    }
+                                    
                                 }
-                                
-                            }
-                        });
-                        
-
-                    }
-            });
+                            });
+                        }
+                });
+            }
         }
 
 
