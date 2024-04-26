@@ -91,7 +91,7 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
     <?php if ($quizDetails) : ?>
         <div class="container mt-4 text-center">
         
-        <h2 class="mb-4 col-5" ><button onclick="history.back()" class="btn btn-primary">Back</button></h2>
+        <h2 class="mb-4 col-5" ><button onclick="history.back()" class="btn btn-primary" style="background-color:#361E12">Back</button></h2>
 
         <h2 class="mb-4">Quiz Result Details</h2>
         <h5 class="mb-3 text"><?php echo $quiz_title; ?></h5>
@@ -145,7 +145,7 @@ if (isset($_GET['quiz_id']) && isset($_GET['id']) &&
                 <div class="col-md-8 mx-auto">
                     <div class="card border-dark">
                         <div class="card-body">
-                        <b>Comment:</b><br>
+                        <b>Comment:</b>
                          <?php  
                            
                             if(!empty($comment)){

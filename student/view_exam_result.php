@@ -90,6 +90,8 @@ if (isset($_GET['exam_id']) && isset($_GET['id']) &&
 <div class="container pt-2" style="padding-bottom: 20px; background-color: white;">
     <?php if ($examDetails) : ?>
         <div class="container pt-4 text-center">
+        <h2 class="mb-4 col-5" ><button onclick="history.back()" class="btn btn-primary" style="background-color:#361E12">Back</button></h2>
+
         <h2><?php echo $exam_title; ?></h2>
         <p class="mb-4 text-muted"><?php echo $exam_description; ?></p>
         <p class="mb-4 text-success" style="font-size: 24px; ">Total Score: <?php echo $grade; ?> / <?php echo $max_score; ?></p>
@@ -122,16 +124,39 @@ if (isset($_GET['exam_id']) && isset($_GET['id']) &&
                                     echo 'Your Answer: ' . $result['user_answer'] . '<br>';
                                     echo 'Correct Answer: ' . $result['correct_answer'] . '<br>';
                                     echo 'Points: ' . $result['points'] . '<br>';
+
+                                    if(!empty($result['comment'])){
+                                        $comment = $result['comment'];
+                                    } 
+
                                     ?>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
+
+                    
                 <?php
                     $questionNumber++; // Increment the question number
                 endwhile;
                 ?>
+                 <div class="row mt-4">
+                <div class="col-md-8 mx-auto">
+                    <div class="card border-dark">
+                        <div class="card-body">
+                        <b>Comment:</b>
+                         <?php  
+                           
+                            if(!empty($comment)){
+                                echo $comment ;
+                            } 
+                        ?>
+                        </div>
+                </div>
             </div>
+
+            
         <?php else : ?>
             <div class="alert alert-warning" role="alert">
                 No results found for this exam.
