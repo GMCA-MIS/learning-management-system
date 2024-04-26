@@ -101,10 +101,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <!--Table value from 'booklist' and 'student'-->
                 <?php
 
-                $servername = "localhost";
-                $username = '';
+                $servername = "localhost:3308";
+                $username = 'root';
                 $password = '';
-                $dbname = 'borrowed_books';
+                $dbname = 'u944705315_capstone2024';
 
 
                 // Create connection
