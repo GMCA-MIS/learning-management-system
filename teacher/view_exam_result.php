@@ -6,6 +6,7 @@ include('includes/header.php');
 <?php
 $get_id = $_GET['exam_id']; // Get the exam_id from the URL
 $id = $_GET['id'];
+$post_id = $_GET['post_id'];
 ?>
 
 <!-- Content Wrapper -->
@@ -91,6 +92,27 @@ if (isset($_GET['exam_id']) && isset($_GET['id']) &&
 
 }
 
+if (isset($_GET['comment']) && isset($_GET['id']) && isset($_GET['exam_id']) ){
+
+    $updateQuery = "UPDATE exam_results SET comment ='". $_GET['comment']."' WHERE exam_id = " . $_GET['exam_id'];
+    
+    // Execute the query
+    if (mysqli_query($conn, $updateQuery)) {
+        echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Comment Updated',
+            showConfirmButton: false
+        }).then(function() {
+            window.location = 'view_exam_result.php?exam_id=". $get_id. "&id=".$id."&post_id=".$post_id."'; // Redirect to profile.php
+    
+        });
+        </script>";
+    }
+    
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -171,7 +193,17 @@ if (isset($_GET['exam_id']) && isset($_GET['id']) &&
                             </div>
                         </div>
                     </div>
+    
+            <form class="col-md-8 mx-auto " action="" method="get">
+            <div class="d-flex justify-content-end mb-1 mt-2">        
+                    <button type="submit" name="commentsubmit"  class="btn btn-primary">Comment</button>
+                </div>
+                <input type="hidden" value="<?php echo $_GET['exam_id']; ?>" name="exam_id"/>
+                <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id"/>
+                <input type="hidden" id="post_id" name="post_id" value="<?php echo $post_id ?>">
 
+                <textarea class="form-control " name="comment" style=""><?php echo $result['comment'];?></textarea>
+            </form>
 <!-- Modal -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

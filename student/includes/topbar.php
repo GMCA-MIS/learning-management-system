@@ -26,24 +26,27 @@ if(isset($_GET['exam_id']) && isset($_GET['id'])){
   $sql = "SELECT `notification_id`,`students_read` FROM `notification` WHERE link='". $examlink ."';";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
-  $notification_id = $row['notification_id'];
-  $examstudent_read = $row['students_read'];
-  $examstudent_read_string = $row['students_read'];
-  
-  if(!empty($examstudent_read)){
-    $examstudent_read = explode(",",$row['students_read']);
-    $arraysearch  = array_search($student_id, $examstudent_read) ;
-    if ($arraysearch == ""){
-      // haven't clicked the notify 
-      $examstudent_read_string .= "," . $student_id;
-      $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
-      $result = $conn->query($sql);
-    }
-   
-  }else{
-    $examstudent_read_string =  $student_id;
-    $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
-    $result = $conn->query($sql);
+
+  if($row > 0){
+      $notification_id = $row['notification_id'];
+      $examstudent_read = $row['students_read'];
+      $examstudent_read_string = $row['students_read'];
+      
+      if(!empty($examstudent_read)){
+        $examstudent_read = explode(",",$row['students_read']);
+        $arraysearch  = array_search($student_id, $examstudent_read) ;
+        if ($arraysearch == ""){
+          // haven't clicked the notify 
+          $examstudent_read_string .= "," . $student_id;
+          $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+          $result = $conn->query($sql);
+        }
+      
+      }else{
+        $examstudent_read_string =  $student_id;
+        $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+        $result = $conn->query($sql);
+      }
   }
 }
 
@@ -54,25 +57,31 @@ if(isset($_GET['quiz_id']) && isset($_GET['id'])){
   $sql = "SELECT `notification_id`,`students_read` FROM `notification` WHERE link='". $examlink ."';";
   $result = $conn->query($sql);
   $notifrow = $result->fetch_assoc();
-  $notification_id = $notifrow['notification_id'];
-  $examstudent_read = $notifrow['students_read'];
-  $examstudent_read_string = $notifrow['students_read'];
-  
-  if(!empty($examstudent_read)){
-    $examstudent_read = explode(",",$notifrow['students_read']);
-    $arraysearch  = array_search($student_id, $examstudent_read) ;
-    if ($arraysearch == ""){
-      // haven't clicked the notify 
-      $examstudent_read_string .= "," . $student_id;
+
+  if($notifrow > 0){
+    $notification_id = $notifrow['notification_id'];
+    $examstudent_read = $notifrow['students_read'];
+    $examstudent_read_string = $notifrow['students_read'];
+    if(!empty($examstudent_read)){
+      $examstudent_read = explode(",",$notifrow['students_read']);
+      $arraysearch  = array_search($student_id, $examstudent_read) ;
+      if ($arraysearch == ""){
+        // haven't clicked the notify 
+        $examstudent_read_string .= "," . $student_id;
+        $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+        $result = $conn->query($sql);
+      }
+     
+    }else{
+      $examstudent_read_string =  $student_id;
       $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
       $result = $conn->query($sql);
     }
-   
-  }else{
-    $examstudent_read_string =  $student_id;
-    $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
-    $result = $conn->query($sql);
   }
+
+
+
+
 }
 
 if(isset($_GET['post_id']) && isset($_GET['id'])){

@@ -173,7 +173,14 @@ $showButton = ($taken === 'yes') ? false : true;
             <div class = "mt-4">
                 <div class = "mt-4"style="font-size: 20px;">SCORE: <?php echo $grade ?> out of <?php echo $max_score ?></div>
                 <div class = "mt-4"style="font-size: 20px;">
-                    <?php echo round(($grade / $max_score) * 100, 2) ?>%
+                    <?php 
+                    if(empty($grade)){
+                        $grade = 0;
+                    }
+                    echo round(($grade / $max_score) * 100, 2) 
+                    ?>%
+
+
                 </div>
                     <div class = "card-body">
                         <div><a href="view_quiz_result.php?quiz_id=<?php echo $get_id ?>&id=<?php echo $student_id?>" class="quiz-button">View Details</a></div>
