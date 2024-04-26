@@ -241,7 +241,7 @@ include('includes/navbar.php');
                     icon: "error",
                     confirmButtonText: "OK"
                 }).then(function() {
-                    window.location.reload();
+                    // response
                 });
             }else{
            
@@ -262,7 +262,7 @@ include('includes/navbar.php');
                                 url: 'manage-class-generateclass.php?classname=' + classname +"&grade_level=" + value,
                                 method: 'GET',
                                 success: function(response) {
-                                    //alert(response);
+                                    
                                     if(response == "New Class"){
                                         Swal.fire({
                                                 title: "Success",
@@ -281,6 +281,8 @@ include('includes/navbar.php');
                                             }).then(function() {
                                                 // response
                                             });
+                                    }else{
+                                        alert(response);
                                     }
                                     
                                 }
