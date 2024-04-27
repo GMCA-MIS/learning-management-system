@@ -411,7 +411,7 @@
                                 $row_strand_sta = mysqli_fetch_assoc($check_result_strand_student_st);
                                 $counts_of_students = $row_strand_sta['id'];
 
-                                if ($counts_of_students < 50 && $existing_classes_not_full == false ) {
+                                if ($counts_of_students < 1 && $existing_classes_not_full == false ) {
 
 
                                     $password = bin2hex(random_bytes(8));
@@ -425,14 +425,14 @@
                                     mysqli_query($conn, $query);
 
                                     // GET Subjects & Teachers assigned UNDER THIS CLASS
-                                    $querygetteachers = "SELECT * teacher_class WHERE class_id='$class_id' ";
+                                    $querygetteachers = "SELECT * FROM teacher_class WHERE class_id = '$class_id' ";
                                     $resultteachers = mysqli_query($conn, $querygetteachers);
                                     if (mysqli_num_rows($resultteachers) > 0) {
                                         while ($rowgetteachers = mysqli_fetch_assoc($resultteachers)) {
                                             $teacher_class_id_get = $rowgetteachers['teacher_class_id'];
                                             $teacher_id_get = $rowgetteachers['teacher_id'];
                                             
-                                            $queryteacherclasstudent = "INSERT teacher_class_student INTO (teacher_class_id,student_id,teacher_id) VALUES ($teacher_class_id_get,$student_id,$teacher_id_get)";
+                                            $queryteacherclasstudent = "INSERT INTO teacher_class_student  (teacher_class_id,student_id,teacher_id) VALUES ($teacher_class_id_get,$id,$teacher_id_get)";
                                             mysqli_query($conn, $queryteacherclasstudent);
                                         }
                                     }
@@ -514,14 +514,27 @@
                         
                         // Check if mail sent successfully
                         if ($mail->send()) {
-                            echo '<script>Swal.fire({
+                            echo '<script>
+                            Swal.fire({
                                 title: "Success",
                                 text: "Student has been approved successfully!",
                                 icon: "success",
-                                confirmButtonText: "OK"
+                                confirmButtonText: "OK",
+                                timer: 1500
                             }).then(function() {
-                                window.location.href = "manage-students.php";
-                            });</script>';
+                                Swal.fire({
+                                    title: "Warning",
+                                    text: "Generated a New Class Please Assigned Teacher immediately!",
+                                    icon: "warning",
+                                    confirmButtonText: "OK",
+                                    timer: 1500
+                                }).then(function() {
+                                    window.location.href = "manage-students.php";
+                                });
+                            });
+                           
+                            
+                            </script>';
                             exit;
                         } else {
                             echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
@@ -594,7 +607,15 @@
                                     icon: "success",
                                     confirmButtonText: "OK"
                                 }).then(function() {
-                                    window.location.href = "manage-students.php";
+                                    Swal.fire({
+                                        title: "Warning",
+                                        text: "Generated a New Class Please Assigned Teacher immediately!",
+                                        icon: "warning",
+                                        confirmButtonText: "OK",
+                                        timer: 1500
+                                    }).then(function() {
+                                        window.location.href = "manage-students.php";
+                                    });
                                 });</script>';
                                 exit;
                             } else {
