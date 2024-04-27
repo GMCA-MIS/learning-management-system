@@ -146,7 +146,7 @@ include('includes/navbar.php');
                 $query_run = mysqli_query($conn, $query);
                 ?>
 
-                <table id="dataTableID" class="table table-bordered table table-striped "  width="100%" cellspacing="0">
+                <table id="dataTableIDs" class="table table-bordered table table-striped "  width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th style="display:none;">Student ID</th>
@@ -164,7 +164,8 @@ include('includes/navbar.php');
                             <th>Approval</th>
                             <th>Status</th>
                             <!-- <th>Edit</th> -->
-                            <th>Archive</th>
+                            <th>Action</th>
+                            <th>Action</th>
 
 
                             <!--<th colspan ="2">Action</th> Hindi pwedeng may colspan para sa dataTables-->
@@ -218,11 +219,14 @@ include('includes/navbar.php');
                                         <button type="button" class="btn btn-secondary attachment-btn" data-student-id="<?php echo $row['student_id']; ?>" style="color:white">Attachment</button>
                                     </td>
                                     <td>
-                                        <?php if (empty($row['password'])) {  ?>
-                                            <button type="submit" name="approval" class="btn btn-primary" style="background-color:green;color:white" data-toggle="modal" data-target="#approveModal" onclick="doapprovedModal(<?php echo $row['student_id']; ?>)">Approve</button>
-                                        <?php } else {                        ?>
+                                    <?php if (empty($row['password'])) {    ?>
+                                            <button type="submit" name="approval" class="btn btn-success" style="background-color:#22DD22;color:white;border:none" data-toggle="modal" data-target="#approveModal" onclick="doapprovedModal(<?php echo $row['student_id']; ?>)">Approve</button>
+                                    <?php } else {                           ?>
                                             <p>Approved</p>
-                                        <?php  }                               ?>
+
+                                    <?php  }                                ?>
+                                    
+
                                     </td>
                                     <td>
                                         <?php
@@ -266,11 +270,14 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                         <button type="submit" name="delete_btn" class="btn btn-danger delete_btn">Archive</button>
-                                        <?php
+
+                                       <?php
                                         }
                                         ?>
                                     </td>
-
+                                    <td>
+                                        <button  type="submit" name="" class="btn btn-success" style="background-color:#22DD22;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
+                                    </td>
                                 </tr>
                         <?php
                             }
@@ -442,3 +449,9 @@ include('includes/navbar.php');
 
         <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_studentModal">Edit</button>
     </td>-->
+
+    <script>
+        $('#dataTableIDs').DataTable( {
+            responsive: true
+        } );
+    </script>
