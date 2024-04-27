@@ -28,7 +28,7 @@ include('includes/navbar.php');
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4"
                 style="margin-top: 27px; margin-left: 10px;">
-                <h1 class="h3 mb-0 text-gray-800">Manage Accounts</h1>
+                <h1 class="h3 mb-0 text-gray-800">Manage Registrar Accounts</h1>
             </div>
 
             <!-- Topbar Navbar -->
@@ -61,14 +61,14 @@ include('includes/navbar.php');
                                     </button>
                                 </div>
 
-                                <form action="manage-coordinators-function.php" method="POST">
+                                <form action="manage-accounts-function.php" method="POST" oninput='pwd_rpt.setCustomValidity(pwd_rpt.value != pwd.value ? "Passwords do not match." : "")'>
 
 
                                     <div class="modal-body">
 
                                         <input type="hidden" name="add_ID" id="add_ID">
                                         <input type="hidden" name="user_type" id="user_type">
-
+                                        <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
                                         <div class="form-group">
                                             <label for="firstname">First Name </label>
                                             <input type="text" class="form-control" id="firstname" name="firstname"
@@ -82,21 +82,24 @@ include('includes/navbar.php');
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email" required
-                                                placeholder="Enter Email Address">
+                                            <label for="email">Username</label>
+                                            <input type="text" class="form-control" id="" name="username" required
+                                                placeholder="Enter Username">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="user_type">User Type</label>
-                                            <select class="form-control" id="user_type" name="user_type" required>
-                                                <option value="LR" selected disabled>Select User Type</option>
-                                                <option value="LR">Learning Resource Coordinator</option>
-                                                <option value="LIS">Learning Information System Coordinator</option>
-                                                <!--<option value="REGISTRAR">Registrar</option>-->
+                                            <label for="email">Password</label>
+                                            <input type="password" class="form-control" id="password1" name="pwd" required
+                                                placeholder="Enter Password" pattern="(?=.*[~!@#$.,:<>=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, atleast 1 symbol ( ~!@#$.,:<>= ) and at least 8 or more characters">
 
-                                            </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="email">Repeat Password</label>
+                                            <input type="password" class="form-control" id="password1" name="pwd_rpt" required
+                                                placeholder="Enter Password" pattern="(?=.*[~!@#$.,:<>=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, atleast 1 symbol ( ~!@#$.,:<>= ) and at least 8 or more characters">
+
+                                        </div>
+                                        
 
                                     </div>
 
@@ -126,7 +129,7 @@ include('includes/navbar.php');
                     <?php
                     // Displaying data into tables
                     $query = "SELECT *
-                            FROM users order by user_id DESC";
+                            FROM users where user_type = 'registrar' order by user_id DESC";
                     $query_run = mysqli_query($conn, $query);
                     ?>
 
@@ -167,7 +170,7 @@ include('includes/navbar.php');
                                         </td>
                                         <td>
                                             <!--Edit Pop Up Modal -->
-                                            <div class="modal fade" id="editManageCoordinatorsModal" tabindex="-1" role="dialog"
+                                            <div class="modal fade" id="editManageCoordinatorsModal<?php echo $row['user_id']; ?>" tabindex="-1" role="dialog"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -180,45 +183,43 @@ include('includes/navbar.php');
                                                             </button>
                                                         </div>
 
-                                                        <form action="manage-coordinators-function.php" method="POST">
+                                                        <form action="manage-accounts-function.php" method="POST"  oninput='editpwd_rpt.setCustomValidity(editpwd_rpt.value != editpwd.value ? "Passwords do not match." : "")'>
 
 
                                                             <div class="modal-body">
 
-                                                                <input type="hidden" name="edit_ID" id="edit_ID">
-                                                                <div class="form-group">
-                                                                    <label for="firstname">First Name </label>
-                                                                    <input type="text" class="form-control" id="edit_firstname"
-                                                                        name="firstname" required
-                                                                        placeholder="Enter First Name">
-                                                                </div>
+                                                                    <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
+                                                                    <div class="form-group">
+                                                                        <label for="firstname">First Name </label>
+                                                                        <input type="text" class="form-control" id="firstname" name="firstname"
+                                                                            required placeholder="Enter First Name" value="<?php echo $row['firstname'];?>">
+                                                                    </div>
 
-                                                                <div class="form-group">
-                                                                    <label for="lastname">Last Name </label>
-                                                                    <input type="text" class="form-control" id="edit_lastname"
-                                                                        name="lastname" required placeholder="Enter Last Name">
-                                                                </div>
+                                                                    <div class="form-group">
+                                                                        <label for="lastname">Last Name </label>
+                                                                        <input type="text" class="form-control" id="lastname" name="lastname"
+                                                                            required placeholder="Enter Last Name" value="<?php echo $row['lastname'];?>">
+                                                                    </div>
 
-                                                                <div class="form-group">
-                                                                    <label for="email">Email</label>
-                                                                    <input type="email" class="form-control" id="edit_email"
-                                                                        name="email" required placeholder="Enter Email Address">
-                                                                </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">Username</label>
+                                                                        <input type="text" class="form-control" id="" name="" disabled required
+                                                                            placeholder="Enter Username" value="<?php echo $row['username'];?>">
+                                                                            
+                                                                        <input type="hidden" class="form-control" id="" name="username" required
+                                                                            placeholder="Enter Username" value="<?php echo $row['username'];?>">
+                                                                    </div>
 
-                                                                <div class="form-group">
-                                                                    <label for="user_type">User Type</label>
-                                                                    <select class="form-control" id="edit_user_type" name="user_type"
-                                                                        required>
-                                                                        <option value="LR" selected disabled>Select User Type
-                                                                        </option>
-                                                                        <option value="LR">Learning Resource Coordinator
-                                                                        </option>
-                                                                        <option value="LIS">Learning Information System
-                                                                            Coordinator</option>
-                                                                    </select>
-                                                                </div>
-
-
+                                                                    <div class="form-group">
+                                                                        <label for="email">Password</label>
+                                                                        <input type="password" class="form-control" id="password1" name="editpwd" required value="<?php echo $row['password'];?>"
+                                                                            placeholder="Enter Password" pattern="(?=.*[~!@#$.,:<>=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, atleast 1 symbol ( ~!@#$.,:<>= ) and at least 8 or more characters">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">Repeat Password</label>
+                                                                        <input type="password" class="form-control" id="password1" name="editpwd_rpt" required value="<?php echo $row['password'];?>"
+                                                                            placeholder="Enter Password" pattern="(?=.*[~!@#$.,:<>=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, atleast 1 symbol ( ~!@#$.,:<>= ) and at least 8 or more characters">
+                                                                    </div>
                                                             </div>
 
                                                             <div class="modal-footer">
@@ -233,12 +234,12 @@ include('includes/navbar.php');
                                             </div>
 
                                             <button type="button" class="btn btn-success edit_btn" data-toggle="modal"
-                                                data-target="#editManageCoordinatorsModal"
+                                                data-target="#editManageCoordinatorsModal<?php echo $row['user_id']; ?>"
                                                 >Edit</button>
                                         
                         </div>
                         <!--Delete Pop Up Modal -->
-                        <div class="modal fade" id="delete_instructors" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="delete_instructors<?php echo $row['user_id']; ?>" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -249,16 +250,14 @@ include('includes/navbar.php');
                                         </button>
                                     </div>
 
-                                    <form action="manage-coordinators-function.php" method="POST">
+                                    <form action="manage-accounts-function.php" method="POST">
 
 
                                         <div class="modal-body">
 
-                                            <input type="hidden" name="delete_ID" id="delete_ID">
-
+                                            <input type="hidden" name="delete_ID" id="delete_ID" value="<?php echo $row['user_id']; ?>">
+                                            <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
                                             <h5>Do you want to delete this User?</h5>
-
-
 
                                         </div>
 
@@ -274,7 +273,8 @@ include('includes/navbar.php');
 
                         <!--  <form action="manage-users-function.php" method = "post"> -->
                         <!--  <input type = "hidden" name = "delete_id" value="<?php echo $row['teacher_id']; ?>"> -->
-                        <button type="submit" name="delete_btn" class="btn btn-danger delete_btn"
+                        <button type="submit" name="delete_btn" class="btn btn-danger delete_btn" data-toggle="modal"
+                                                data-target="#delete_instructors<?php echo $row['user_id']; ?>"
                             >Delete</button>
                         <!-- </form> -->
                         </td>
@@ -289,7 +289,6 @@ include('includes/navbar.php');
                 </table>
             </div>
         </div>
-
 
 
         <?php

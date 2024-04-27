@@ -113,6 +113,7 @@ if ($result) {
             <div class="card-body">
 
 <div class="table-responsive">
+<a href="quiz.php" class="btn btn-success">Back</a><br><br>
 
 <td>
         <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_questionModal"><i class="fa fa-plus" aria-hidden="true"></i> Add Question</button>
