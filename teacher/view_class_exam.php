@@ -100,10 +100,11 @@ if ($result) {
                             <a class="nav-link" id="createTab" data-toggle="tab" href="#exam_results" role="tab"
                                 aria-controls="exam_results" aria-selected="true">Results</a>
                         </li>
+                        <!--
                         <li class="nav-item">
                             <a class="nav-link" id="createTab" data-toggle="tab" href="#exam_feedback" role="tab"
                                 aria-controls="exam_feedback" aria-selected="true">Feedback</a>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
 
@@ -232,7 +233,7 @@ if ($result) {
                             </table>
                         </div>
                     </div>
-
+                    <!--
                     <div class="tab-pane fade " id="exam_feedback" role="tabpanel" aria-labelledby="createTab">
                         <div class="table-responsive">
 
@@ -295,6 +296,7 @@ if ($result) {
                             </table>
                         </div>
                     </div>
+                    -->
                 </div>
 
                 <!-- Content Row -->

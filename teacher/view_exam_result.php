@@ -188,22 +188,13 @@ if (isset($_GET['comment']) && isset($_GET['id']) && isset($_GET['exam_id']) ){
                                     echo '<p class="rem"> Your Answer: ' . $result['user_answer'] . '</p>';
                                     echo '<p class="rem"> Correct Answer: ' . $result['correct_answer'] . '</p>';
                                     echo '<p class="rem"> Points: ' . $result['points'] . '</p>';
+                                    echo $comments = $result['comment'];
                                     ?>
                                 </div>
                             </div>
                         </div>
                     </div>
     
-            <form class="col-md-8 mx-auto " action="" method="get">
-            <div class="d-flex justify-content-end mb-1 mt-2">        
-                    <button type="submit" name="commentsubmit"  class="btn btn-primary">Comment</button>
-                </div>
-                <input type="hidden" value="<?php echo $_GET['exam_id']; ?>" name="exam_id"/>
-                <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id"/>
-                <input type="hidden" id="post_id" name="post_id" value="<?php echo $post_id ?>">
-
-                <textarea class="form-control " name="comment" style=""><?php echo $result['comment'];?></textarea>
-            </form>
 <!-- Modal -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -254,6 +245,7 @@ $(document).ready(function () {
                     $questionNumber++; // Increment the question number
                 endwhile;
                 ?>
+                
             </div>
         <?php else : ?>
             <div class="alert alert-warning" role="alert">
@@ -264,7 +256,20 @@ $(document).ready(function () {
         <div class="alert alert-warning" role="alert">
             exam details not found.
         </div>
-    <?php endif; ?>
+    <?php endif; 
+            
+    ?>
+    
+    <form class="col-md-8 mx-auto " action="" method="get">
+            <div class="d-flex justify-content-end mb-1 mt-2">        
+                    <button type="submit" name="commentsubmit"  class="btn btn-primary">Comment</button>
+                </div>
+                <input type="hidden" value="<?php echo $_GET['exam_id']; ?>" name="exam_id"/>
+                <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id"/>
+                <input type="hidden" id="post_id" name="post_id" value="<?php echo $post_id ?>">
+
+                <textarea class="form-control " name="comment" style=""><?php echo $comments;?></textarea>
+    </form>
 </div>
 <?php 
 include ('includes/footer.php');
