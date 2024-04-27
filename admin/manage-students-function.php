@@ -411,7 +411,7 @@
                                 $row_strand_sta = mysqli_fetch_assoc($check_result_strand_student_st);
                                 $counts_of_students = $row_strand_sta['id'];
 
-                                if ($counts_of_students < 1 && $existing_classes_not_full == false ) {
+                                if ($counts_of_students < 50 && $existing_classes_not_full == false ) {
 
 
                                     $password = bin2hex(random_bytes(8));
@@ -520,14 +520,15 @@
                                 text: "Student has been approved successfully!",
                                 icon: "success",
                                 confirmButtonText: "OK",
-                                timer: 1500
+                                timer: 3000
                             }).then(function() {
                                 Swal.fire({
                                     title: "Warning",
                                     text: "Generated a New Class Please Assigned Teacher immediately!",
                                     icon: "warning",
                                     confirmButtonText: "OK",
-                                    timer: 1500
+                                    timer: 3000,
+                                    allowOutsideClick: false
                                 }).then(function() {
                                     window.location.href = "manage-students.php";
                                 });
@@ -601,22 +602,29 @@
                             
                             // Check if mail sent successfully
                             if ($mail->send()) {
-                                echo '<script>Swal.fire({
+                                echo '<script>
+                                
+                                Swal.fire({
                                     title: "Success",
                                     text: "Student has been approved successfully!",
                                     icon: "success",
-                                    confirmButtonText: "OK"
+                                    confirmButtonText: "OK",
+                                    timer: 3000
                                 }).then(function() {
                                     Swal.fire({
                                         title: "Warning",
                                         text: "Generated a New Class Please Assigned Teacher immediately!",
                                         icon: "warning",
                                         confirmButtonText: "OK",
-                                        timer: 1500
+                                        timer: 3000,
+                                        allowOutsideClick: false
                                     }).then(function() {
                                         window.location.href = "manage-students.php";
                                     });
-                                });</script>';
+                                });
+                               
+                                
+                                </script>';
                                 exit;
                             } else {
                                 echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
