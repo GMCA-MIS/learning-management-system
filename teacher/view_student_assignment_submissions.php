@@ -281,7 +281,7 @@ if (isset($_POST['grade_assignment'])) {
             icon: 'success',
             confirmButtonText: 'OK'
           }).then(function() {
-            window.location.href = 'view_class_assignment.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
+            window.location.href = 'view_student_assignment_submissions.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
           });
          </script>";
     } else {
@@ -294,7 +294,7 @@ if (isset($_POST['grade_assignment'])) {
             icon: 'error',
             confirmButtonText: 'OK'
           }).then(function() {
-            window.location.href = 'view_class_assignment.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
+            window.location.href = 'view_student_assignment_submissions.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
           });
          </script>";
     }
@@ -308,7 +308,7 @@ echo "<script>
             icon: 'error',
             confirmButtonText: 'OK'
           }).then(function() {
-            window.location.href = 'view_class_assignment.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
+            window.location.href = 'view_student_assignment_submissions.php?student_id=$studentId&post_id=$post_id&get_id=$get_id';
           });
          </script>";
 }

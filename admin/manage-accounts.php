@@ -28,9 +28,8 @@ include('includes/navbar.php');
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4"
                 style="margin-top: 27px; margin-left: 10px;">
-                <h1 class="h3 mb-0 text-gray-800">Manage Coordinators</h1>
+                <h1 class="h3 mb-0 text-gray-800">Manage Accounts</h1>
             </div>
-
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
@@ -127,7 +126,7 @@ include('includes/navbar.php');
                     <?php
                     // Displaying data into tables
                     $query = "SELECT *
-                            FROM coordinators order by coordinator_id DESC";
+                            FROM users order by user_id DESC";
                     $query_run = mysqli_query($conn, $query);
                     ?>
 
@@ -136,12 +135,11 @@ include('includes/navbar.php');
                         <thead>
                             <tr>
                                 <th style="display:none;">coordinator_id </th>
+                                <th>User Name</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Email</th>
                                 <th>User Type</th>
-                                <th>Edit</th>
-                                <th>Action</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -153,17 +151,16 @@ include('includes/navbar.php');
                                     <tr>
 
                                         <td style="display: none;">
-                                            <?php echo $row['coordinator_id']; ?>
+                                            <?php echo $row['user_id']; ?>
                                         </td>
-                                        <!-- <td style="display:none;"><?php echo $row['firstname']; ?></td> -->
+                                        <td>
+                                            <?php echo $row['username']; ?>
+                                        </td>
                                         <td>
                                             <?php echo $row['firstname']; ?>
                                         </td>
                                         <td>
                                             <?php echo $row['lastname']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['email']; ?>
                                         </td>
                                         <td>
                                             <?php echo $row['user_type']; ?>
@@ -238,9 +235,7 @@ include('includes/navbar.php');
                                             <button type="button" class="btn btn-success edit_btn" data-toggle="modal"
                                                 data-target="#editManageCoordinatorsModal"
                                                 >Edit</button>
-                                        </td>
-
-                                        <td>
+                                        
                         </div>
                         <!--Delete Pop Up Modal -->
                         <div class="modal fade" id="delete_instructors" tabindex="-1" role="dialog"

@@ -24,7 +24,7 @@ if (mysqli_num_rows($check_result_strand) > 0) {
     $check_result_school_year = mysqli_query($conn,  $check_query_school_year);
     $row_school_year = mysqli_fetch_assoc($check_result_school_year);
     $current_school_year = $row_school_year['school_year_id'];
-
+    /*
     //get classes with similar strand and grade
     $check_query_strand_student = "SELECT * FROM class WHERE strand = '$strand_fname' and school_year_id = '$current_school_year' and SUBSTRING_INDEX(SUBSTRING_INDEX(class_name, '-', 2), ' ', -1) = '$strand_name-$gradelevel'";
     $check_result_strand_student = mysqli_query($conn, $check_query_strand_student);
@@ -59,6 +59,7 @@ if (mysqli_num_rows($check_result_strand) > 0) {
         
         echo "New Class";
     }
+    */
 
 
     // execute IF all existing classes are FULL 

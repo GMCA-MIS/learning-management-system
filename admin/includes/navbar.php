@@ -146,7 +146,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Manage Other Users</h6>
         <a class="collapse-item" href="manage-coordinators.php?id=<?php echo $school_year ?>"> <i class='fas fa-book-open'></i> Manage Librarian</a>
-        <a class="collapse-item" href="manage-accounts.php?id=<?php echo $school_year ?>"> <i class="fas fa-user-alt" aria-hidden="true"></i> Assign Subject</a>
+        <a class="collapse-item" href="manage-accounts.php?id=<?php echo $school_year ?>"> <i class="fas fa-user-alt" aria-hidden="true"></i> Manage Registrar</a>
       </div>
     </div>
   </li>
