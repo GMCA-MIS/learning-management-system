@@ -200,22 +200,13 @@ if (isset($_GET['comment']) && isset($_GET['id']) && isset($_GET['quiz_id']) ){
                 echo 'Points: ' . $result['points'] . '<br>';
                 echo 'Is correct: ' . $result['is_correct'] . '<br>';
                 echo 'Is correct: ' . $result['quiz_result_id'] . '<br>';
+                $comments = $result['comment'];
                 ?>
             </div>
         </div>
         
     </div>
     
-    <form class="col-md-8 mx-auto " action="" method="get">
-            <div class="d-flex justify-content-end mb-1 mt-2">        
-                <button type="submit" name="commentsubmit"  class="btn btn-primary">Comment</button>
-            </div>
-            <input type="hidden" value="<?php echo $_GET['quiz_id']; ?>" name="quiz_id"/>
-            <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id"/>
-                                    <input type="hidden" id="post_id" name="post_id" value="<?php echo $post_id ?>">
-
-            <textarea class="form-control " name="comment" style=""><?php echo $result['comment'];?></textarea>
-    </form>
 </div>
 
 <!-- Modal -->
@@ -281,6 +272,18 @@ $(document).ready(function () {
             Quiz details not found.
         </div>
     <?php endif; ?>
+
+    
+    <form class="col-md-8 mx-auto pb-5" action="" method="get">
+            <div class="d-flex justify-content-end mb-1 mt-2">        
+                <button type="submit" name="commentsubmit"  class="btn btn-primary">Comment</button>
+            </div>
+            <input type="hidden" value="<?php echo $_GET['quiz_id']; ?>" name="quiz_id"/>
+            <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id"/>
+                <input type="hidden" id="post_id" name="post_id" value="<?php echo $post_id ?>">
+
+    <textarea class="form-control " name="comment" style=""><?php echo $comments?></textarea>
+    </form>
 </div>
 
 </div>

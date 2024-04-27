@@ -188,7 +188,7 @@ if (isset($_GET['comment']) && isset($_GET['id']) && isset($_GET['exam_id']) ){
                                     echo '<p class="rem"> Your Answer: ' . $result['user_answer'] . '</p>';
                                     echo '<p class="rem"> Correct Answer: ' . $result['correct_answer'] . '</p>';
                                     echo '<p class="rem"> Points: ' . $result['points'] . '</p>';
-                                    echo $comments = $result['comment'];
+                                     $comments = $result['comment'];
                                     ?>
                                 </div>
                             </div>
@@ -260,7 +260,7 @@ $(document).ready(function () {
             
     ?>
     
-    <form class="col-md-8 mx-auto " action="" method="get">
+    <form class="col-md-8 mx-auto pb-5" action="" method="get">
             <div class="d-flex justify-content-end mb-1 mt-2">        
                     <button type="submit" name="commentsubmit"  class="btn btn-primary">Comment</button>
                 </div>
