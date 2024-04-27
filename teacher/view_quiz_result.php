@@ -198,8 +198,8 @@ if (isset($_GET['comment']) && isset($_GET['id']) && isset($_GET['quiz_id']) ){
                 echo 'Your Answer: ' . $result['user_answer'] . '<br>';
                 echo 'Correct Answer: ' . $result['correct_answer'] . '<br>';
                 echo 'Points: ' . $result['points'] . '<br>';
-                echo 'Is correct: ' . $result['is_correct'] . '<br>';
-                echo 'Is correct: ' . $result['quiz_result_id'] . '<br>';
+                //echo 'Is correct: ' . $result['is_correct'] . '<br>';
+                //echo 'Is correct: ' . $result['quiz_result_id'] . '<br>';
                 $comments = $result['comment'];
                 ?>
             </div>
