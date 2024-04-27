@@ -387,6 +387,7 @@
                 
                     // Check if there are any existing classes with less than 2 regular students
                     $existing_classes_not_full = false;
+
                     //select active school year 
                     $check_query_school_year = "SELECT * FROM school_year where status = 1 ORDER BY school_year_id DESC LIMIT 1 ";
                     $check_result_school_year = mysqli_query($conn,  $check_query_school_year);
@@ -410,7 +411,9 @@
                                 $row_strand_sta = mysqli_fetch_assoc($check_result_strand_student_st);
                                 $counts_of_students = $row_strand_sta['id'];
 
-                                if ($counts_of_students < 50) {
+                                if ($counts_of_students < 50 && $existing_classes_not_full == false ) {
+
+
                                     $password = bin2hex(random_bytes(8));
 
                                     $hashed_password = md5($password);
