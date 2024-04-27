@@ -753,7 +753,7 @@ if ($class_row) { ?>
                             </div>
 
                             <?php
-                            $query_task_titles = "SELECT * FROM task WHERE teacher_class_id = $get_id AND status = 'Available'";
+                            $query_task_titles = "SELECT * FROM task WHERE class_id = $get_id AND status = 'Available'";
 
                             $result_task_titles = mysqli_query($conn, $query_task_titles);
 
@@ -778,7 +778,7 @@ if ($class_row) { ?>
                             JOIN teacher_class_student tcs ON s.student_id = tcs.student_id
                             LEFT JOIN task_result tr ON s.student_id = tr.student_id
                             LEFT JOIN task t ON tr.task_id = t.task_id
-                            WHERE tcs.teacher_class_id = '$get_id' AND t.teacher_class_id = '$get_id' AND t.status = 'Available'";
+                            WHERE tcs.teacher_class_id = '$get_id' AND t.class_id = '$get_id' AND t.status = 'Available'";
 
 
                             $result_students = mysqli_query($conn, $query_students);
