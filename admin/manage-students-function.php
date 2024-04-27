@@ -421,7 +421,7 @@
                                     $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$class_id'";
                                     mysqli_query($conn, $queryaw1);
 
-                                    $query = "UPDATE student SET picture='../uploads/student.jpg',class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
+                                    $query = "UPDATE student SET picture='../uploads/student.jpg', class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
                                     mysqli_query($conn, $query);
 
                                     // GET Subjects & Teachers assigned UNDER THIS CLASS
@@ -490,7 +490,7 @@
                         $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
                         mysqli_query($conn, $queryaw1);
 
-                        $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
+                        $queryaw = "UPDATE student SET picture='../uploads/student.jpg', class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                         mysqli_query($conn, $queryaw);
                         
                         $email_body = "Dear $firstname $lastname,\n\n";
@@ -578,7 +578,7 @@
                             $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
                             mysqli_query($conn, $queryaw1);
                             
-                            $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
+                            $queryaw = "UPDATE student SET picture='../uploads/student.jpg', class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                             mysqli_query($conn, $queryaw);
                              
                             $email_body = "Dear $firstname $lastname,\n\n";
