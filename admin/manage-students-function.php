@@ -417,12 +417,26 @@
                                     $password = bin2hex(random_bytes(8));
 
                                     $hashed_password = md5($password);
-                                
+                                    
                                     $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$class_id'";
                                     mysqli_query($conn, $queryaw1);
 
                                     $query = "UPDATE student SET picture='../uploads/student.jpg',class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
                                     mysqli_query($conn, $query);
+
+                                    // GET Subjects & Teachers assigned UNDER THIS CLASS
+                                    $querygetteachers = "SELECT * teacher_class WHERE class_id='$class_id' ";
+                                    $resultteachers = mysqli_query($conn, $querygetteachers);
+                                    if (mysqli_num_rows($resultteachers) > 0) {
+                                        while ($rowgetteachers = mysqli_fetch_assoc($resultteachers)) {
+                                            $teacher_class_id_get = $rowgetteachers['teacher_class_id'];
+                                            $teacher_id_get = $rowgetteachers['teacher_id'];
+                                            
+                                            $queryteacherclasstudent = "INSERT teacher_class_student INTO (teacher_class_id,student_id,teacher_id) VALUES ($teacher_class_id_get,$student_id,$teacher_id_get)";
+                                            mysqli_query($conn, $queryteacherclasstudent);
+                                        }
+                                    }
+
                                 
                                     // Email content
                                     $email_body = "Dear $firstname $lastname,\n\n";
