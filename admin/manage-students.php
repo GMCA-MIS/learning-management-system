@@ -146,7 +146,7 @@ include('includes/navbar.php');
                 $query_run = mysqli_query($conn, $query);
                 ?>
 
-                <table id="dataTableIDs" class="table table-bordered table table-striped "  width="100%" cellspacing="0">
+                <table id="dataTableID" class="table table-bordered table table-striped "  width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th style="display:none;">Student ID</th>
@@ -378,11 +378,12 @@ include('includes/navbar.php');
             function doapprovedModal(id) {
                 document.getElementById("approvedinputid").value = id;
             }
+            
 
             $(document).ready(function() {
                 $('.attachment-btn').click(function() {
                     var studentId = $(this).data('student-id');
-
+                    
                     $.ajax({
                         url: 'fetch_attachments.php',
                         type: 'POST',
@@ -482,9 +483,3 @@ include('includes/navbar.php');
 
         <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_studentModal">Edit</button>
     </td>-->
-
-    <script>
-        $('#dataTableIDs').DataTable( {
-            responsive: true
-        } );
-    </script>
