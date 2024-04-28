@@ -743,7 +743,7 @@
                 $queryaw1 = "INSERT student_class SET student_id='$student_id', class_id ='$class_id12'";
                 mysqli_query($conn, $queryaw1);
                     
-                $queryaw = "UPDATE student SET class_id ='$class_id12' WHERE student_id='$student_id'";
+                $queryaw = "UPDATE student SET class_id ='$class_id12', grade_level = '12' WHERE student_id='$student_id'";
                 if(mysqli_query($conn, $queryaw)){
                     echo '<script>
                     

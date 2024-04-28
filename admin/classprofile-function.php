@@ -101,7 +101,7 @@
                             $queryaw1 = "INSERT student_class SET student_id='$student_id', class_id ='$class_id12'";
                             mysqli_query($conn, $queryaw1);
                                 
-                            $queryaw = "UPDATE student SET class_id ='$class_id12' WHERE student_id='$student_id'";
+                            $queryaw = "UPDATE student SET class_id ='$class_id12' , grade_level = '12' WHERE student_id='$student_id'";
                             if(mysqli_query($conn, $queryaw)){
 
                                  $success_notif = "generate_class_insert_student_only";
@@ -119,8 +119,25 @@
             
 
             
-            if($success_notif == "exist_class_insert_student_only"){
-                echo '<script>Swal.fire({
+            
+
+            
+        }
+        if($success_notif == "exist_class_insert_student_only"){
+            echo '<script>Swal.fire({
+                title: "Success",
+                text: "Student has been promoted successfully!",
+                icon: "success",
+                confirmButtonText: "OK",
+                timer: 3000,
+                allowOutsideClick: false
+            }).then(function() {
+                window.location.href = "manage-class.php?class_name='.$strand.'";
+            });</script>';
+        }elseif($success_notif =="generate_class_insert_student_only"){
+            echo '<script>
+                            
+                Swal.fire({
                     title: "Success",
                     text: "Student has been promoted successfully!",
                     icon: "success",
@@ -128,74 +145,37 @@
                     timer: 3000,
                     allowOutsideClick: false
                 }).then(function() {
-                    window.location.href = "manage-class.php?class_name="'.$strand.';
-                });</script>';
-            }elseif($success_notif=="generate_class_insert_student_only"){
-                echo '<script>
-                                
                     Swal.fire({
-                        title: "Success",
-                        text: "Student has been promoted successfully!",
-                        icon: "success",
+                        title: "Warning",
+                        text: "New Class is generated, Please assigned Teachers!",
+                        icon: "warning",
                         confirmButtonText: "OK",
                         timer: 3000,
                         allowOutsideClick: false
                     }).then(function() {
-                        Swal.fire({
-                            title: "Warning",
-                            text: "New Class is generated, Please assigned Teachers!",
-                            icon: "warning",
-                            confirmButtonText: "OK",
-                            timer: 3000,
-                            allowOutsideClick: false
-                        }).then(function() {
-                            window.location.href = "manage-class.php?class_name="'.$strand.';
-                        });
-
+                        window.location.href = "manage-class.php?class_name='.$strand.'";
                     });
-                    
-                    </script>';
-            }else{
-                echo '<script>Swal.fire({
-                    title: "error",
-                    text: "Something went wrong!",
-                    icon: "error",
-                    confirmButtonText: "OK",
-                    timer: 3000,
-                    allowOutsideClick: false
-                }).then(function() {
-                    window.location.href = "manage-class.php?class_name="'.$strand.';
-                });</script>';
-            }
+
+                });
+                
+                </script>';
+        }else{
+            echo '<script>Swal.fire({
+                title: "error",
+                text: "Something went wrong!",
+                icon: "error",
+                confirmButtonText: "OK",
+                timer: 3000,
+                allowOutsideClick: false
+            }).then(function() {
+                window.location.href = "manage-class.php?class_name='.$strand.'";
+            });</script>';
         }
         
         
         
-        
 
 
-        //$query = "UPDATE student SET username='$lrn', firstname='$firstname', lastname='$lastname', email='$email', class_id='$class_id', dob ='$dob' WHERE student_id='$id'  ";
-       // $query_run = mysqli_query($conn, $query);
-        /*
-        if ($query_run) {
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-            echo '<script>Swal.fire({
-                title: "Success",
-                text: "User has been updated successfully!",
-                icon: "success",
-                confirmButtonText: "OK"
-            }).then(function() {
-                window.location.href = "manage-students.php";
-            });</script>';
-        } else {
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-            echo '<script>Swal.fire({
-                title: "Error",
-                text: "Failed to update user!",
-                icon: "error",
-                confirmButtonText: "OK"
-            });</script>';
-        } */
     }
     ?>
 </body>
