@@ -207,8 +207,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if(!$good_moral_uploaded){                
                     $email_body .= "- Good Moral Character Certificate <br>";
                 }
-                $email_body .= "Please submit a hard copy of the aforementioned documents on or before <br>";
-                $email_body .= "[Schedule]. Thank you! <br>";
+                $email_body .= "Please submit a hard copy of the aforementioned documents on or before 30 Days<br>";
+                $email_body .= "Thank you! <br>";
 
             }
 
