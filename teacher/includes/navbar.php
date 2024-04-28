@@ -37,7 +37,7 @@
 
 <!-- Heading -->
 <div class="sidebar-heading">
-     Menu
+     Create
 </div>
 
 <!-- <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'materials.php') echo 'active'; ?>">
