@@ -384,10 +384,10 @@
                 $row_strand = mysqli_fetch_assoc($check_result_strand);
                 $strand_name = $row_strand['name'];
                 $strand_fname = $row_strand['full_name_strand'];
-                
+                //checking if the student is regular or not
+                if ($regular_irregular == 1) {
                     // Check if there are any existing classes with less than 2 regular students
                     $existing_classes_not_full = false;
-
                     //select active school year 
                     $check_query_school_year = "SELECT * FROM school_year where status = 1 ORDER BY school_year_id DESC LIMIT 1 ";
                     $check_result_school_year = mysqli_query($conn,  $check_query_school_year);
@@ -411,32 +411,16 @@
                                 $row_strand_sta = mysqli_fetch_assoc($check_result_strand_student_st);
                                 $counts_of_students = $row_strand_sta['id'];
 
-                                if ($counts_of_students < 50 && $existing_classes_not_full == false ) {
-
-
+                                if ($counts_of_students < 40) {
                                     $password = bin2hex(random_bytes(8));
 
                                     $hashed_password = md5($password);
-                                    
+                                
                                     $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$class_id'";
                                     mysqli_query($conn, $queryaw1);
 
-                                    $query = "UPDATE student SET picture='../uploads/student.jpg', class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
+                                    $query = "UPDATE student SET picture='../uploads/student.jpg',class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
                                     mysqli_query($conn, $query);
-
-                                    // GET Subjects & Teachers assigned UNDER THIS CLASS
-                                    $querygetteachers = "SELECT * FROM teacher_class WHERE class_id = '$class_id' ";
-                                    $resultteachers = mysqli_query($conn, $querygetteachers);
-                                    if (mysqli_num_rows($resultteachers) > 0) {
-                                        while ($rowgetteachers = mysqli_fetch_assoc($resultteachers)) {
-                                            $teacher_class_id_get = $rowgetteachers['teacher_class_id'];
-                                            $teacher_id_get = $rowgetteachers['teacher_id'];
-                                            
-                                            $queryteacherclasstudent = "INSERT INTO teacher_class_student  (teacher_class_id,student_id,teacher_id) VALUES ($teacher_class_id_get,$id,$teacher_id_get)";
-                                            mysqli_query($conn, $queryteacherclasstudent);
-                                        }
-                                    }
-
                                 
                                     // Email content
                                     $email_body = "Dear $firstname $lastname,\n\n";
@@ -490,7 +474,7 @@
                         $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
                         mysqli_query($conn, $queryaw1);
 
-                        $queryaw = "UPDATE student SET picture='../uploads/student.jpg', class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
+                        $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                         mysqli_query($conn, $queryaw);
                         
                         $email_body = "Dear $firstname $lastname,\n\n";
@@ -514,28 +498,14 @@
                         
                         // Check if mail sent successfully
                         if ($mail->send()) {
-                            echo '<script>
-                            Swal.fire({
+                            echo '<script>Swal.fire({
                                 title: "Success",
                                 text: "Student has been approved successfully!",
                                 icon: "success",
-                                confirmButtonText: "OK",
-                                timer: 3000
+                                confirmButtonText: "OK"
                             }).then(function() {
-                                Swal.fire({
-                                    title: "Warning",
-                                    text: "Generated a New Class Please Assigned Teacher immediately!",
-                                    icon: "warning",
-                                    confirmButtonText: "OK",
-                                    timer: 3000,
-                                    allowOutsideClick: false
-                                }).then(function() {
-                                    window.location.href = "manage-students.php";
-                                });
-                            });
-                           
-                            
-                            </script>';
+                                window.location.href = "manage-students.php";
+                            });</script>';
                             exit;
                         } else {
                             echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
@@ -578,7 +548,7 @@
                             $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
                             mysqli_query($conn, $queryaw1);
                             
-                            $queryaw = "UPDATE student SET picture='../uploads/student.jpg', class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
+                            $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
                             mysqli_query($conn, $queryaw);
                              
                             $email_body = "Dear $firstname $lastname,\n\n";
@@ -602,29 +572,14 @@
                             
                             // Check if mail sent successfully
                             if ($mail->send()) {
-                                echo '<script>
-                                
-                                Swal.fire({
+                                echo '<script>Swal.fire({
                                     title: "Success",
                                     text: "Student has been approved successfully!",
                                     icon: "success",
-                                    confirmButtonText: "OK",
-                                    timer: 3000
+                                    confirmButtonText: "OK"
                                 }).then(function() {
-                                    Swal.fire({
-                                        title: "Warning",
-                                        text: "Generated a New Class Please Assigned Teacher immediately!",
-                                        icon: "warning",
-                                        confirmButtonText: "OK",
-                                        timer: 3000,
-                                        allowOutsideClick: false
-                                    }).then(function() {
-                                        window.location.href = "manage-students.php";
-                                    });
-                                });
-                               
-                                
-                                </script>';
+                                    window.location.href = "manage-students.php";
+                                });</script>';
                                 exit;
                             } else {
                                 echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
@@ -643,167 +598,218 @@
                     //     if ($query_run_class) {
                     //     }
                     // }
-                 
+                } else {
+                    //if the student is irreg
+
+                    // Check if there are any existing classes with less than 2 regular students
+                    $existing_classes_not_full = false;
+                    //select active school year 
+                    $check_query_school_year = "SELECT * FROM school_year where status = 1 ORDER BY school_year_id DESC LIMIT 1 ";
+                    $check_result_school_year = mysqli_query($conn,  $check_query_school_year);
+                    $row_school_year = mysqli_fetch_assoc($check_result_school_year);
+                    $current_school_year = $row_school_year['school_year_id'];
+                    // echo $current_school_year;
+                    //check strand that has a same school year
+                    $check_query_strand_student = "SELECT * FROM class WHERE strand = '$strand_fname' and school_year_id = '$current_school_year' and SUBSTRING_INDEX(SUBSTRING_INDEX(class_name, '-', 2), ' ', -1) = '$strand_name-$gradelevel'";
+                    $check_result_strand_student = mysqli_query($conn, $check_query_strand_student);
+                    $class_ids = [];
+
+                    if (mysqli_num_rows($check_result_strand_student) > 0) {
+                        while ($row_strand_student = mysqli_fetch_assoc($check_result_strand_student)) {
+                            $class_id = $row_strand_student['class_id'];
+                            $class_ids[] = $class_id;
+
+                            $check_query_strand_student_st = "SELECT COUNT(*) as id FROM student WHERE class_id = '$class_id' AND is_regular = 2";
+                            $check_result_strand_student_st = mysqli_query($conn, $check_query_strand_student_st);
+
+                            if ($check_result_strand_student_st && mysqli_num_rows($check_result_strand_student_st) > 0) {
+                                $row_strand_sta = mysqli_fetch_assoc($check_result_strand_student_st);
+                                $counts_of_students = $row_strand_sta['id'];
+
+                                // Check if the count of regular students is less than 2
+                                if ($counts_of_students < 10) {
+                                    $password = bin2hex(random_bytes(8));
+
+                                    $hashed_password = md5($password);
+                                    
+                                    $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$class_id'";
+                                    mysqli_query($conn, $queryaw1);
+
+                                    $query = "UPDATE student SET class_id ='$class_id', password='$hashed_password' WHERE student_id='$id'";
+                                    mysqli_query($conn, $query);
+
+                                    // Email content
+                                    $email_body = "Dear $firstname $lastname,\n\n";
+                                    $email_body .= "Your account has been created successfully.\n";
+                                    $email_body .= "Here are your login credentials:\n";
+                                    $email_body .= "Username: $lrn\n";
+                                    $email_body .= "Password: $password\n"; 
+                                
+                                    $mail = new PHPMailer();
+                                    $mail->isSMTP();
+                                    $mail->Host = "smtp.gmail.com";
+                                    $mail->SMTPAuth = true;
+                                    $mail->SMTPSecure = "tls";
+                                    $mail->Port = 587;
+                                    $mail->Username = "crustandrolls@gmail.com";
+                                    $mail->Password = "dqriavmkaochvtod";
+                                    $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+                                    $mail->addAddress($email);
+                                    $mail->Subject = "LMS Credentials";
+                                    $mail->Body = $email_body;
+                                
+                                    // Check if mail sent successfully
+                                    if (!$mail->send()) {
+                                        echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+                                    } else {
+                                        $existing_classes_not_full = true; // Set flag to indicate existing class not full
+                                        echo '<script>Swal.fire({
+                                            title: "Success",
+                                            text: "Student has been approved successfully!",
+                                            icon: "success",
+                                            confirmButtonText: "OK"
+                                        }).then(function() {
+                                            window.location.href = "manage-students.php";
+                                        });</script>';
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        $newsection = $strand_name . '-' . $gradelevel . '-A';
+                        $query_class_name = "INSERT INTO class (class_name,strand,school_year_id) VALUES ('$newsection','$strand_fname','$current_school_year')";
+                        mysqli_query($conn, $query_class_name);
+                        // Retrieve the ID of the inserted data
+                        $inserted_class_id = mysqli_insert_id($conn);
+
+                        $password = bin2hex(random_bytes(8));
+
+                        $hashed_password = md5($password);
+
+                       $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
+                        mysqli_query($conn, $queryaw1);
+
+                        $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
+                        mysqli_query($conn, $queryaw);
+                      
+                        $email_body = "Dear $firstname $lastname,\n\n";
+                        $email_body .= "Your account has been created successfully.\n";
+                        $email_body .= "Here are your login credentials:\n";
+                        $email_body .= "Username: $lrn\n";
+                        $email_body .= "Password: $password\n"; 
+                        
+                        $mail = new PHPMailer();
+                        $mail->isSMTP();
+                        $mail->Host = "smtp.gmail.com";
+                        $mail->SMTPAuth = true;
+                        $mail->SMTPSecure = "tls";
+                        $mail->Port = 587;
+                        $mail->Username = "crustandrolls@gmail.com";
+                        $mail->Password = "dqriavmkaochvtod";
+                        $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+                        $mail->addAddress($email);
+                        $mail->Subject = "LMS Credentials";
+                        $mail->Body = $email_body;
+                        
+                        // Check if mail sent successfully
+                        if ($mail->send()) {
+                            echo '<script>Swal.fire({
+                                title: "Success",
+                                text: "Student has been approved successfully!",
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            }).then(function() {
+                                window.location.href = "manage-students.php";
+                            });</script>';
+                            exit;
+                        } else {
+                            echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+                        }                        
+                    }
+
+                    // If all existing classes have 2 regular students, create a new class
+                    if (!$existing_classes_not_full) {
+
+                        $check_query_strand_studentqwe = "SELECT * FROM class WHERE strand = '$strand_fname' AND SUBSTRING_INDEX(SUBSTRING_INDEX(class_name, '-', 2), ' ', -1) = '$strand_name-$gradelevel' ORDER BY class_id DESC LIMIT 1";
+                        $check_result_strand_studentqwe = mysqli_query($conn, $check_query_strand_studentqwe);
+
+                        if (mysqli_num_rows($check_result_strand_studentqwe) > 0) {
+
+                            $row_row = mysqli_fetch_assoc($check_result_strand_studentqwe);
+                            $class_name = $row_row['class_name'];
+
+                            // Extract the middle part of the class name
+                            $parts = explode('-', $class_name);
+                            $middle_part = $parts[1]; // Extract the middle part
+
+                            // Replace the middle part with the new grade level
+                            $new_class_name = $parts[0] . "-" . $gradelevel . "-" . $parts[2];
+
+                            // Increment the last character to get the next section
+                            $last_character = substr($new_class_name, -1); // Get the last character
+                            $next_section = chr(ord($last_character) + 1); // Increment the last character
+
+                            $class_nameu = substr($new_class_name, 0, -1) . $next_section;
+
+                            $query_class_name = "INSERT INTO class (class_name,strand,school_year_id) VALUES ('$class_nameu','$strand_fname','$current_school_year')";
+                            mysqli_query($conn, $query_class_name);
+
+                            // Retrieve the ID of the inserted data
+                            $inserted_class_id = mysqli_insert_id($conn);
+                            
+                            $password = bin2hex(random_bytes(8));
+
+                            $hashed_password = md5($password);
+
+                            // Update the student's class_id with the newly inserted class_id
+                            $queryaw1 = "INSERT student_class SET student_id='$id', class_id ='$inserted_class_id'";
+                            mysqli_query($conn, $queryaw1);
+
+                            $queryaw = "UPDATE student SET class_id ='$inserted_class_id', password='$hashed_password' WHERE student_id='$id'";
+                            mysqli_query($conn, $queryaw);
+                            
+                            $email_body = "Dear $firstname $lastname,\n\n";
+                            $email_body .= "Your account has been created successfully.\n";
+                            $email_body .= "Here are your login credentials:\n";
+                            $email_body .= "Username: $lrn\n";
+                            $email_body .= "Password: $password\n"; 
+                            
+                            $mail = new PHPMailer();
+                            $mail->isSMTP();
+                            $mail->Host = "smtp.gmail.com";
+                            $mail->SMTPAuth = true;
+                            $mail->SMTPSecure = "tls";
+                            $mail->Port = 587;
+                            $mail->Username = "crustandrolls@gmail.com";
+                            $mail->Password = "dqriavmkaochvtod";
+                            $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+                            $mail->addAddress($email);
+                            $mail->Subject = "LMS Credentials";
+                            $mail->Body = $email_body;
+                            
+                            // Check if mail sent successfully
+                            if ($mail->send()) {
+                                echo '<script>Swal.fire({
+                                    title: "Success",
+                                    text: "Student has been approved successfully!",
+                                    icon: "success",
+                                    confirmButtonText: "OK"
+                                }).then(function() {
+                                    window.location.href = "manage-students.php";
+                                });</script>';
+                                exit;
+                            } else {
+                                echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+                            }                        
+                        }
+                    }
+                }
             }
         }
     }
     ?>
-<?php
-    //PROMOTE / MOVE to GRADE 12
-    if (isset($_POST['movetograde12'])) //Button Name
-    {   
-        //declare parameters
-        $student_id = $_POST['student_id'];
-        $class_id = "";
-        $class_name  = "";
-        $strand = "";
 
-        // get active school year
-        $query = "SELECT school_year_id FROM school_year WHERE status = 1";
-        $result = mysqli_query($conn, $query);
-        if (mysqli_num_rows($result) != 0) {
-            while ($rowsclass = mysqli_fetch_array($result)) {
-                $school_year_id = $rowsclass['school_year_id'];
-            }
-        }
-
-        // get student information and class info
-        $query = "SELECT student_id,s.class_id,grade_level,class_name,strand 
-                    FROM student s 
-                    INNER JOIN class c 
-                    ON s.class_id = c.class_id 
-                    WHERE student_id = $student_id ";
-        $result = mysqli_query($conn, $query);
-        if (mysqli_num_rows($result) != 0)
-        {
-            while ($rowstudent = mysqli_fetch_array($result)) {
-                $student_id = $rowstudent['student_id'];
-                $class_id = $rowstudent['class_id'];
-                $grade_level = $rowstudent['grade_level'];
-                $class_name = $rowstudent['class_name'];
-                $strand = $rowstudent['strand'];
-            }
-        }
-        
-        // divide the section
-        $classname_exploded = explode("-",$class_name);
-        $class_shortname = $classname_exploded[0];
-        $class_grade = $classname_exploded[1];
-        $class_section = $classname_exploded[2];
-
-        // check if student section is still grade 11
-        if($class_grade == "11" ){
-            $query = "SELECT class_id FROM class WHERE class_name = '$class_shortname-12-$class_section' ";
-            $result = mysqli_query($conn, $query);
-            if (mysqli_num_rows($result) != 0) {
-                // found existing class
-                while ($rowsclass12 = mysqli_fetch_array($result)) {
-                   
-                   echo $class_id12 = $rowsclass12['class_id'];
-
-                    // Check if the class_id exists in teacher_class table
-                    $check_class_query = "SELECT teacher_class_id, teacher_id FROM teacher_class WHERE class_id = '$class_id12'";
-                    $result = mysqli_query($conn, $check_class_query);
-
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        // If the class_id exists in teacher_class table
-                        $row = mysqli_fetch_assoc($result);
-                        $teacher_class_id = $row['teacher_class_id'];
-                        $teacher_id = $row['teacher_id'];
-
-                        // Insert data into teacher_class_student table
-                        $insert_student_class_query = "INSERT INTO teacher_class_student (teacher_class_id, student_id, teacher_id)   VALUES ('$teacher_class_id', '$student_id', '$teacher_id')";
-                        $insert_student_class_result = mysqli_query($conn, $insert_student_class_query);
-                    }
-                    // insert student to class
-                    $queryaw1 = "INSERT student_class SET student_id='$student_id', class_id ='$class_id12'";
-                    mysqli_query($conn, $queryaw1);
-                    // insert student
-                    $queryaw = "UPDATE student SET class_id = '$class_id12' , grade_level = '12' WHERE student_id='$student_id' ";
-                    if(mysqli_query($conn, $queryaw)){
-                        echo '<script>Swal.fire({
-                            title: "Success",
-                            text: "Student has been promoted successfully!",
-                            icon: "success",
-                            confirmButtonText: "OK",
-                            timer: 3000,
-                            allowOutsideClick: false
-                        }).then(function() {
-                            window.location.href = "manage-students.php";
-                        });</script>';
-                    }
-
-                }
-            }else{ 
-                // no existing class NEED TO generate new class
-                $query = "INSERT INTO  class (class_name,strand,school_year_id,status) VALUES('$class_shortname-12-$class_section','$strand',$school_year_id,1) ";
-                $result = mysqli_query($conn, $query);
-                $class_id12 = $conn->insert_id;
-
-                $queryaw1 = "INSERT student_class SET student_id='$student_id', class_id ='$class_id12'";
-                mysqli_query($conn, $queryaw1);
-                    
-                $queryaw = "UPDATE student SET class_id ='$class_id12', grade_level = '12' WHERE student_id='$student_id'";
-                if(mysqli_query($conn, $queryaw)){
-                    echo '<script>
-                    
-                    Swal.fire({
-                        title: "Success",
-                        text: "Student has been promoted successfully!",
-                        icon: "success",
-                        confirmButtonText: "OK",
-                        timer: 3000,
-                        allowOutsideClick: false
-                    }).then(function() {
-                        Swal.fire({
-                            title: "Warning",
-                            text: "New Class is generated, Please assigned Teachers!",
-                            icon: "warning",
-                            confirmButtonText: "OK",
-                            timer: 3000,
-                            allowOutsideClick: false
-                        }).then(function() {
-                            window.location.href = "manage-students.php";
-                        });
-
-                    });
-                    
-                    </script>';
-                }
-
-                
-
-            }
-        }
-
-        
-        
-
-
-        //$query = "UPDATE student SET username='$lrn', firstname='$firstname', lastname='$lastname', email='$email', class_id='$class_id', dob ='$dob' WHERE student_id='$id'  ";
-       // $query_run = mysqli_query($conn, $query);
-        /*
-        if ($query_run) {
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-            echo '<script>Swal.fire({
-                title: "Success",
-                text: "User has been updated successfully!",
-                icon: "success",
-                confirmButtonText: "OK"
-            }).then(function() {
-                window.location.href = "manage-students.php";
-            });</script>';
-        } else {
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-            echo '<script>Swal.fire({
-                title: "Error",
-                text: "Failed to update user!",
-                icon: "error",
-                confirmButtonText: "OK"
-            });</script>';
-        } */
-    }
-    ?>
 </body>
 
 </html>

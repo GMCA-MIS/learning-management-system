@@ -160,11 +160,13 @@ include('includes/navbar.php');
                             <th>Strand</th>
                             <th>Section</th>
                             <th>Enrollment</th>
+                            <th>Enrollment Date</th>
                             <th>Attachment</th>
                             <th>Approval</th>
                             <th>Status</th>
                             <!-- <th>Edit</th> -->
-                            <th>Archive</th>
+                            <th>Action</th>
+                            <th>Action</th>
 
 
                             <!--<th colspan ="2">Action</th> Hindi pwedeng may colspan para sa dataTables-->
@@ -189,7 +191,7 @@ include('includes/navbar.php');
                                     <td style="display:none;"><?php echo $row['lastname']; ?></td>
                                     <td><?php echo $row['strand_name']; ?></td>
                                     <td><?php
-                                    
+                                    /*
                                     if(empty($row['class_name']) && $row['is_regular'] == 1 ){
                                         echo "Need Approval";
                                     }elseif(empty($row['class_name']) && $row['is_regular'] == 3 ){
@@ -199,36 +201,37 @@ include('includes/navbar.php');
                                     }else{
                                         echo $row['class_name'];
                                     }
-                                    
-                                    ?></td>
+                                    */
+                                        if(!empty($row['class_name'])){
+                                            echo $row['class_name'];
+                                        }else{
+                                            echo "<b style='color:red'>For Approval</b>";
+                                        }
+                                    ?>
+                                    </td>
 
-                                    <td><?php if ($row['is_regular'] == 1) { ?>
+                                    <td>
+                                        <?php if ($row['is_regular'] == 1) { ?>
                                             <p>Regular</p>
-                                        <?php } else {
-                                        ?>
+                                        <?php } else {                        ?>
                                             <p>Irregular</p>
-                                        <?php
-                                        } ?>
+                                        <?php }                               ?>
+                                    </td>
+                                    <td>
+                                        <?php $row['enrollment_date'] ?>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-secondary attachment-btn" data-student-id="<?php echo $row['student_id']; ?>" style="color:white">Attachment</button>
                                     </td>
                                     <td>
-                                        <?php
-
-                                        if (empty($row['password'])) {
-
-                                        ?>
-
-                                            <button type="submit" name="approval" class="btn btn-primary" style="background-color:green;color:white" data-toggle="modal" data-target="#approveModal" onclick="doapprovedModal(<?php echo $row['student_id']; ?>)">Approve</button>
-                                        <?php
-                                        } else {
-
-                                        ?>
+                                    <?php if (empty($row['password'])) {    ?>
+                                            <button type="submit" name="approval" class="btn btn-success" style="background-color:#22DD22;color:white;border:none" data-toggle="modal" data-target="#approveModal" onclick="doapprovedModal(<?php echo $row['student_id']; ?>)">Approve</button>
+                                    <?php } else {                           ?>
                                             <p>Approved</p>
-                                        <?php
-                                        }
-                                        ?>
+
+                                    <?php  }                                ?>
+                                    
+
                                     </td>
                                     <td>
                                         <?php
@@ -272,11 +275,42 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                         <button type="submit" name="delete_btn" class="btn btn-danger delete_btn">Archive</button>
-                                        <?php
+
+                                       <?php
                                         }
                                         ?>
                                     </td>
+                                    <td>
+                                        <?php if($row['grade_level']=="11" && empty($row['password'])) { ?>
+                                            <button  type="submit" name="" data-toggle="modal" data-target="#modalg12<?php echo $row['student_id']; ?>" class="btn btn-success" style="background-color:#22DD22;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
+                                        <?php }else{ ?>
+                                            <button  type="submit" name="" data-toggle="modal"  class="btn " style="background-color:gray;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
+                                        <?php } ?>
 
+                                        <div class="modal fade" id="modalg12<?php echo $row['student_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel"><b>PROMOTE</b></h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="manage-students-function.php" method="POST">
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="student_id" id="student_id" value="<?php echo $row['student_id']  ?>">
+                                                            
+                                                            <h5>Promote <b><?php echo $row['firstname'] . " " . $row['lastname']?></b> to Grade 12</h5>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" name="movetograde12" class="btn btn-primary">Confirm</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                         <?php
                             }
@@ -344,11 +378,12 @@ include('includes/navbar.php');
             function doapprovedModal(id) {
                 document.getElementById("approvedinputid").value = id;
             }
+            
 
             $(document).ready(function() {
                 $('.attachment-btn').click(function() {
                     var studentId = $(this).data('student-id');
-
+                    
                     $.ajax({
                         url: 'fetch_attachments.php',
                         type: 'POST',

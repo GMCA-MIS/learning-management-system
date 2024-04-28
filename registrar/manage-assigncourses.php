@@ -317,7 +317,7 @@ $query_run = mysqli_query($conn, $query);
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Assigned Subject</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
@@ -348,7 +348,7 @@ $query_run = mysqli_query($conn, $query);
 
                         <!--  <form action="manage-users-function.php" method = "post"> -->
                             <!--  <input type = "hidden" name = "delete_id" value="<?php echo $row['Reg_ID']; ?>"> -->
-                                <button type ="submit" name = "delete_btn" class = "btn btn-danger delete_btn" >Archive</button>
+                                <button type ="submit" name = "delete_btn" class = "btn btn-danger delete_btn" >Delete</button>
                         <!-- </form> -->
                         </td>
                     </tr>
