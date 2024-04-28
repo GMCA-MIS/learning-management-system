@@ -186,6 +186,7 @@ if ($result->num_rows > 0) {
       }
     }
 }
+    $wrongpasswordattempt = false;
 
     // check how many attempt made
     $query1 = "SELECT * FROM user_attempt_login WHERE username = '$username'";
@@ -197,22 +198,27 @@ if ($result->num_rows > 0) {
 
 
       if($row1['trytime'] > $timenow ){
-        echo "<script>alert('Account locked for 3 minutes due to wrong login attempt for 5 times.');</script>";
+        echo "<script>alert('Account locked for 5 minutes due to wrong login attempt for 5 times.');</script>";
       }elseif($row1['trytime'] < $timenow && $row1['attemptcount'] < 1 ){
 
         $query2 = "UPDATE user_attempt_login SET attemptcount = 1 WHERE username = '$username'";
         $result = mysqli_query($conn, $query2);
+        $wrongpasswordattempt = true;
 
       }elseif($row1['attemptcount'] >= 5 && $row1['trytime'] == 0){
 
         $trytime = time()+300;
         $query2 = "UPDATE user_attempt_login SET trytime = $trytime  WHERE username = '$username'";
         $result = mysqli_query($conn, $query2);
+        $wrongpasswordattempt = true;
+
 
       }elseif($row1['attemptcount'] <= 4){
         // Add failed attempt data if username not existing
         $query2 = "UPDATE user_attempt_login SET attemptcount = $newcount  WHERE username = '$username'";
         $result = mysqli_query($conn, $query2);
+        $wrongpasswordattempt = true;
+
       }
 
 
@@ -220,7 +226,12 @@ if ($result->num_rows > 0) {
       $query3 = "INSERT INTO user_attempt_login (attemptcount,username) VALUES (1,'$username')";
       $result = mysqli_query($conn, $query3);
     }
-    $login_error = "Login failed. Please try again.";
+
+    if($wrongpasswordattempt == true){
+      $login_error = "Login failed. Attempt count : " . $newcount;
+    }else{
+      $login_error = "Login failed. Please try again.";
+    }
 }
 
 // End output buffering if needed

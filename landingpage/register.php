@@ -7,6 +7,8 @@ use PHPMailer\PHPMailer\Exception;
 include('dbcon.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    
     // Handle file uploads for grade_slip
     $grade_slip_target_dir = "../attachment/";
     $grade_slip_target_file = $grade_slip_target_dir . basename($_FILES["grade_slip"]["name"]);
@@ -139,6 +141,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email_body .= '<a href="https://gmca.online/landingpage/uploadpayment.php?uppstdid=' . $inserted_id . '">Upload Payment Confirmation</a><br>';
             $email_body .= "You can check your enrollment form by following the link: <br>";
             $email_body .= '<a href="https://gmca.online/landingpage/enrollment_form.php?id=' . $inserted_id . '">Enrollment Form</a>';
+            $email_body .= "To complete the enrollment process, we kindly ask you to upload your payment confirmation using the following link: <br>";
+            $email_body .= "<br>";
+
+            if(!$cor_uploaded || !$good_moral_uploaded ){
+
+
+                $email_body .= "Your admission form is successfully submitted. You lack the following documents: <br>";
+                if(!$cor_uploaded){
+                    $email_body .= "• Certificate of Recognition <br>";
+
+                }elseif($good_moral_uploaded){                
+                    $email_body .= "• Good Moral Character Certificate <br>";
+                }
+                $email_body .= "Please submit a hard copy of the aforementioned documents on or before <br>";
+                $email_body .= "[Schedule]. Thank you! <br>";
+
+            }
+
 
             $mail = new PHPMailer();
             $mail->isSMTP();
@@ -159,6 +179,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Display success message
                 echo "<div></div>";
                 echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+
+                
                 echo "<script>
                         Swal.fire({
                             title: 'Success',
