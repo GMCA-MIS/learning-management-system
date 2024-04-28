@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>
                         Swal.fire({
                             title: 'Success',
-                            text: 'Proof of payment sent successfully. We will email your credentials once we have verified all your requirements.',
+                            text: 'Successfully submitted an enrollment form. Please check your email for the next step.',
                             icon: 'success',
                             confirmButtonText: 'OK'
                         }).then((result) => {
