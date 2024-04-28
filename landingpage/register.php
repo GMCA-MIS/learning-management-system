@@ -14,6 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $query);
 
     if ($result->num_rows > 0) {
+        echo "<div></div>";
+
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+
         echo "<script>
         Swal.fire({
             title: 'Error',
@@ -34,11 +38,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $query);
 
     if ($result->num_rows > 0) {
+        echo "<div></div>";
+
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+
         echo "<script>
         Swal.fire({
-            title: 'Success',
+            title: 'Error',
             text: 'Email already registered in System.',
-            icon: 'success',
+            icon: 'error',
             confirmButtonText: 'OK'
         }).then((result) => {
             if (result.isConfirmed) {
