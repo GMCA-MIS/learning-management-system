@@ -653,8 +653,7 @@
     if (isset($_POST['movetograde12'])) //Button Name
     {
         //Name attributes ang kinukuha dito pero dapat kapangalan ng nasa database
-        
-
+       
         $student_id = $_POST['student_id'];
 
         //$query = "UPDATE student SET username='$lrn', firstname='$firstname', lastname='$lastname', email='$email', class_id='$class_id', dob ='$dob' WHERE student_id='$id'  ";
