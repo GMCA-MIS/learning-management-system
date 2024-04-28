@@ -9,6 +9,8 @@ include('dbcon.php');
 // Retrieve the image path from the database based on the session_id
 $session_id = $_SESSION['student_id']; // Make sure you have this session variable set
 
+$curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);  
+
 $query = mysqli_query($conn, "SELECT * FROM student WHERE student_id = '$student_id'");
 if ($query) {
     $row = mysqli_fetch_assoc($query);
@@ -16,6 +18,37 @@ if ($query) {
     $firstname = $row['firstname'];
     $lastname = $row['lastname'];
 
+}
+
+if($curPageName == "class_announcements.php" && isset($_GET['id'])){
+  
+  $link = "class_announcements.php?id=" . $_GET['id'] ; 
+
+  $sql = "SELECT `notification_id`,`students_read` FROM `notification` WHERE link='". $link ."';";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+
+  if($row > 0){
+      $notification_id = $row['notification_id'];
+      $examstudent_read = $row['students_read'];
+      $examstudent_read_string = $row['students_read'];
+      
+      if(!empty($examstudent_read)){
+        $examstudent_read = explode(",",$row['students_read']);
+        $arraysearch  = array_search($student_id, $examstudent_read) ;
+        if ($arraysearch == ""){
+          // haven't clicked the notify 
+          $examstudent_read_string .= "," . $student_id;
+          $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+          $result = $conn->query($sql);
+        }
+      
+      }else{
+        $examstudent_read_string =  $student_id;
+        $sql = "UPDATE `notification` SET students_read = '$examstudent_read_string' WHERE notification_id='". $notification_id ."';";
+        $result = $conn->query($sql);
+      }
+  }
 }
 
 

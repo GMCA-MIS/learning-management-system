@@ -62,9 +62,9 @@ if (isset($_POST['add_announcement'])) {
     
     if (mysqli_query($conn, $insert_announcement_query)) {
         // Insertion into teacher_class_announcements was successful
-
+        $link = "class_announcements.php?id=".$teacher_class_id;
         // Insert a notification, assuming you have a notifications table
-        $notification_query = "INSERT INTO notification (teacher_class_id, notification, date_of_notification, link) VALUES ('$teacher_class_id', 'Add Announcements', NOW(), 'class_announcements.php')";
+        $notification_query = "INSERT INTO notification (teacher_class_id, notification, date_of_notification, link) VALUES ('$teacher_class_id', 'Add Announcements', NOW(), '$link')";
 
         if (mysqli_query($conn, $notification_query)) {
             // Notification insertion was successful
