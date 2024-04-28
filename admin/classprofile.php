@@ -62,37 +62,60 @@ if (isset($_GET['class_id'])) {
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add Section</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Promote Section</b></h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
 
-                                <form action="" method="POST">
+                                <form action="classprofile-function.php" method="GET">
                                     <div class="modal-body">
 
-                                        <div class="form-group">
-                                            <label for="strand">Grade</label>
-                                            <select type="text" class="form-control" id="grade_level" name="grade_level" required placeholder="Enter Strand Type">
-                                                <option class="form-control" disabled value="" selected> Select Grade </Option>
-                                                <option class="form-control" value="11">11</Option>
-                                                <option class="form-control" value="12">12</Option>
-                                            </select>
-                                        </div>
-
+                                        <input type="hidden" name="class_id" value="<?php echo $_GET['class_id']?>">
+                                        <label>Promoting Students under <b><?php echo $class_name; ?> </b> to Grade 12.</label>
                                     </div>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" onclick="addsection();" name="add_class" class="btn btn-primary">Create</button>
+                                        <button type="submit" name="add_class" class="btn btn-primary">Confirm</button>
                                     </div>
                                 </form>
                             </div> <!--modal content -->
                         </div> <!--modal dialog -->
                     </div> <!--modal fade -->
 
-                     <button type="button" class="btn btn-success add_btn"   data-toggle="modal" data-target="#add_class"
-                            style="margin-bottom: 20px;"><i class="fa fa-arrow-up"></i> Promote Class to Grade 12</button> 
+
+                    <?php
+                    
+                    if(!empty($class_name)){
+                    // divide the section
+
+                    $query = "SELECT COUNT(*) studentscounter FROM student s INNER JOIN class c ON s.class_id=c.class_id WHERE s.class_id = $class_id";
+                    $result = mysqli_query($conn, $query);
+                    if ($result) {
+                        // Fetch user data
+                        $row = mysqli_fetch_assoc($result);
+                         $studentcount = $row['studentscounter'];
+
+                    }
+
+                    $classname_exploded = explode("-",$class_name);
+                    $class_shortname = $classname_exploded[0];
+                    $class_grade = $classname_exploded[1];
+                    $class_section = $classname_exploded[2];
+
+                            if( ($class_grade == "11") && ($studentcount != 0)){
+                                echo '<button type="button" class="btn btn-success add_btn"   data-toggle="modal" data-target="#add_class"
+                                style="margin-bottom: 20px;"><i class="fa fa-arrow-up"></i> Promote Class to Grade 12</button>';
+                                
+                            }
+                     }
+                    
+                    ?>
+                      
+
+
+
         </div>
         <div class="d-sm-flex align-items-center justify-content-between" style="margin-top: 20px; margin-left: 10px;">
 
