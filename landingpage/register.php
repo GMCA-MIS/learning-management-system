@@ -7,6 +7,50 @@ use PHPMailer\PHPMailer\Exception;
 include('dbcon.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+
+    $lrn = $_POST["username"];
+    $query = "SELECT * FROM student WHERE username = '$lrn'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result->num_rows > 0) {
+        echo "<script>
+        Swal.fire({
+            title: 'Error',
+            text: 'LRN already registered in System.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'index.html';
+            }
+        });
+        </script>";
+        die();
+    }
+
+    $email = $_POST["email"];
+    $query = "SELECT * FROM student WHERE email = '$email'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result->num_rows > 0) {
+        echo "<script>
+        Swal.fire({
+            title: 'Success',
+            text: 'Email already registered in System.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'index.html';
+            }
+        });
+        </script>";
+        die();
+    }
+
+   
+
 
     
     // Handle file uploads for grade_slip
