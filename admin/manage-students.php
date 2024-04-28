@@ -276,7 +276,7 @@ include('includes/navbar.php');
                                         ?>
                                     </td>
                                     <td>
-                                        <?php if($row['grade_level']=="11"  && $row['password'] != "") { ?>
+                                        <?php if($row['grade_level']=="11" && empty($row['password'])) { ?>
                                             <button  type="submit" name="" data-toggle="modal" data-target="#modalg12<?php echo $row['student_id']; ?>" class="btn btn-success" style="background-color:#22DD22;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
                                         <?php }else{ ?>
                                             <button  type="submit" name="" data-toggle="modal"  class="btn " style="background-color:gray;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
