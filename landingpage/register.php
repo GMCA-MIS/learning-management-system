@@ -195,7 +195,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if(!$cor_uploaded){
                     $email_body .= "• Certificate of Recognition <br>";
 
-                }elseif($good_moral_uploaded){                
+                }
+                if($good_moral_uploaded){                
                     $email_body .= "• Good Moral Character Certificate <br>";
                 }
                 $email_body .= "Please submit a hard copy of the aforementioned documents on or before <br>";
