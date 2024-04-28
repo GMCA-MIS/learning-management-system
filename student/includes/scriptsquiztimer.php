@@ -1191,6 +1191,9 @@ wrapper.addEventListener("mouseleave", autoPlay);
             if (timeRemaining <= 0) {
                 countdownElement.textContent = "Time's up!";
                 formElement.submit(); // Use form submission instead of button click
+                //loading spinner for waiting time
+                Swal.fire('Please wait');
+                Swal.showLoading();
                 sessionStorage.removeItem("quizStartTime");
                 return;
             }
@@ -1211,6 +1214,7 @@ wrapper.addEventListener("mouseleave", autoPlay);
             countdownElement.textContent = "Time's up!";
             formElement.submit();
             sessionStorage.removeItem("quizStartTime");
+            
             return;
         }
 

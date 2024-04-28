@@ -422,8 +422,8 @@ mysqli_close($conn);
                         <!-- Request Info -->
 
                         <div class="row gtr-uniform gtr-50">
-                            <div class="col-4">
-                                <input type="file" id="creds_submitted1" name="grade_slip" accept=".pdf, .jpg, .jpeg" required />
+                            <div class="col-4">asd
+                                <input type="file" class="form-control" id="creds_submitted1" name="grade_slip" accept="application/pdf" required />
                             </div>
                             <div class="col-4">
                                 <input type="file" id="creds_submitted2" name="cor" accept=".pdf, .jpg, .jpeg"  />
