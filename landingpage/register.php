@@ -193,11 +193,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $email_body .= "Your admission form is successfully submitted. You lack the following documents: <br>";
                 if(!$cor_uploaded){
-                    $email_body .= "• Certificate of Recognition <br>";
+                    $email_body .= "- Certificate of Recognition <br>";
 
                 }
-                if($good_moral_uploaded){                
-                    $email_body .= "• Good Moral Character Certificate <br>";
+                if(!$good_moral_uploaded){                
+                    $email_body .= "- Good Moral Character Certificate <br>";
                 }
                 $email_body .= "Please submit a hard copy of the aforementioned documents on or before <br>";
                 $email_body .= "[Schedule]. Thank you! <br>";
