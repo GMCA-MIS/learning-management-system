@@ -151,6 +151,9 @@ include('initialize.php');
         .event-actions button:hover {
             background-color: #003366;
         }
+        .mainPage {
+            z-index:-1; /* <!-- push its contents under the Masthead --> */
+            }
     </style>
 </head>
 
@@ -159,7 +162,7 @@ include('initialize.php');
 
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column mainPage">
 
         <!-- Main Content -->
         <div id="content">
@@ -196,7 +199,7 @@ include('initialize.php');
 
             <!-- End of Page Content -->
 
-            <div class="container py-5" id="page-container">
+            <div class="container py-5 " id="page-container">
                 <div class="row">
                     <div class="col-md-8">
                         <div id="calendar"></div>
