@@ -422,27 +422,27 @@ mysqli_close($conn);
                         <!-- Request Info -->
 
                         <div class="row gtr-uniform gtr-50">
-                            <div class="col-4">asd
-                                <input type="file" class="form-control" id="creds_submitted1" name="grade_slip" accept="application/pdf" required />
+                            <div class="col-4" for="creds_submitted1">
+                                <input type="file" class="form-control" id="creds_submitted1" name="grade_slip" accept="application/pdf,  image/jpeg, image/jpg" required />
                             </div>
-                            <div class="col-4">
-                                <input type="file" id="creds_submitted2" name="cor" accept=".pdf, .jpg, .jpeg"  />
+                            <div class="col-4" for="creds_submitted2">
+                                <input type="file" id="creds_submitted2" name="cor" accept="application/pdf,  image/jpeg, image/jpg" />
                             </div>
 
-                            <div class="col-4">
-                                <input type="file" id="creds_submitted3" name="good_moral" accept=".pdf, .jpg, .jpeg"  />
+                            <div class="col-4" for="creds_submitted3">
+                                <input type="file" id="creds_submitted3" name="good_moral" accept="application/pdf,  image/jpeg, image/jpg" />
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
 
                             <div class="col-4">
-                                <label for="creds_submitted">Upload Gradeslip (PDF, JPG, JPEG)</label>
+                                <label for="creds_submitted1">Upload Gradeslip (PDF, JPG, JPEG)</label>
                             </div>
                             <div class="col-4">
-                                <label for="creds_submitted">Upload Certificate of Recognition (PDF, JPG, JPEG)</label>
+                                <label for="creds_submitted2">Upload Certificate of Recognition (PDF, JPG, JPEG)</label>
                             </div>
                             <div class="col-4">
-                                <label for="creds_submitted">Upload Good Moral (PDF, JPG, JPEG)</label>
+                                <label for="creds_submitted3">Upload Good Moral (PDF, JPG, JPEG)</label>
                             </div>
                         </div>
                         <br>
@@ -454,22 +454,22 @@ mysqli_close($conn);
                         </div>
                         <br>
                         <div class="row gtr-uniform gtr-50">
-                            <div class="col-4">
-                                <input type="file" id="creds_submitted4" name="tor" accept=".pdf, .jpg, .jpeg" />
+                            <div class="col-4" for="creds_submitted4">
+                                <input type="file" id="creds_submitted4" name="tor" accept="application/pdf,  image/jpeg, image/jpg" />
                             </div>
 
-                            <div class="col-4">
-                                <input type="file" id="creds_submitted5" name="others" accept=".pdf, .jpg, .jpeg" />
+                            <div class="col-4" for="creds_submitted5">
+                                <input type="file" id="creds_submitted5" name="others" accept="application/pdf,  image/jpeg, image/jpg" />
                             </div>
 
                         </div>
-                        <div class="row gtr-uniform gtr-50">
+                        <div class="row gtr-uniform gtr-50" >
 
-                            <div class="col-4">
-                                <label for="creds_submitted">TOR (PDF, JPG, JPEG)</label>
+                            <div class="col-4" >
+                                <label for="creds_submitted4">TOR (PDF, JPG, JPEG)</label>
                             </div>
-                            <div class="col-4">
-                                <label for="creds_submitted">Other (PDF, JPG, JPEG)</label>
+                            <div class="col-4" >
+                                <label for="creds_submitted5">Other (PDF, JPG, JPEG)</label>
                             </div>
                         </div>
 
