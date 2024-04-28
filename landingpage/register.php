@@ -91,7 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $lrn = $_POST["username"];
         $grade_level = $_POST["grade_level"];
         $is_regular = $_POST["is_regular"];
-        $datesubmmited = date_default_timezone_set('Asia/Manila');
+        date_default_timezone_set('Asia/Manila');
+        $datesubmmited = date('Y-m-d');
 
         // Insert student data into the database
         $sql = "INSERT INTO student ( 	enrollment_date , username, lastname, firstname, middle_initial, email, location, strand_id, dob, pob, highschool, other_colleges, highschool_address, grade_level, is_regular) 
