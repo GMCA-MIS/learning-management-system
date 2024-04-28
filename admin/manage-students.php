@@ -218,11 +218,7 @@ include('includes/navbar.php');
                                         <?php }                               ?>
                                     </td>
                                     <td>
-                                        <?php if ($row['is_regular'] == 1) { ?>
-                                            <p>Regular</p>
-                                        <?php } else {                        ?>
-                                            <p>Irregular</p>
-                                        <?php }                               ?>
+                                        <?php $row['enrollment_date'] ?>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-secondary attachment-btn" data-student-id="<?php echo $row['student_id']; ?>" style="color:white">Attachment</button>
