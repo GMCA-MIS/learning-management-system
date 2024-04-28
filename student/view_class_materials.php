@@ -128,10 +128,7 @@ if ($fileDetails) {
             <h6>Preview</h6>
             <hr>
             <iframe id="pdfViewer" style="width: 100%; height: 90vh;" frameborder="0"></iframe> <hr>
-            <br>
-            <br>
-            hi
-
+            <iframe src="http://docs.google.com/gview?url=https://gmca.online/uploads/662df611dfcf0_SAM101-Week-2-SYSTEM-ADMINISTRATION-OPERATING-SYSTEM.pptx&embedded=true" style="width:550px; height:450px;" frameborder="0"></iframe>
                         <button id="closePdfViewer" class="btn btn-success" style="display: none;">Close</button>
         </div>
     </div>
