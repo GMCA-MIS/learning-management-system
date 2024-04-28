@@ -276,10 +276,12 @@ include('includes/navbar.php');
                                         ?>
                                     </td>
                                     <td>
+                                        <?php if($row['grade_level']=="11"  && $row['password'] != "") { ?>
+                                            <button  type="submit" name="" data-toggle="modal" data-target="#modalg12<?php echo $row['student_id']; ?>" class="btn btn-success" style="background-color:#22DD22;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
+                                        <?php }else{ ?>
+                                            <button  type="submit" name="" data-toggle="modal"  class="btn " style="background-color:gray;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
+                                        <?php } ?>
 
-                                        <button  type="submit" name="" data-toggle="modal" data-target="#modalg12<?php echo $row['student_id']; ?>" class="btn btn-success" style="background-color:#22DD22;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
-                                        
-                                        
                                         <div class="modal fade" id="modalg12<?php echo $row['student_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -291,7 +293,7 @@ include('includes/navbar.php');
                                                     </div>
                                                     <form action="manage-students-function.php" method="POST">
                                                         <div class="modal-body">
-                                                            <input type="hidden" name="student_id" id="student_id">
+                                                            <input type="hidden" name="student_id" id="student_id" value="<?php echo $row['student_id']  ?>">
                                                             
                                                             <h5>Promote <b><?php echo $row['firstname'] . " " . $row['lastname']?></b> to Grade 12</h5>
                                                         </div>
