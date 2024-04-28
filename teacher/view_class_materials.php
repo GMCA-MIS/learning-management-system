@@ -107,7 +107,7 @@ if (isset($_GET['post_id']) && is_numeric($_GET['post_id'])) {
                     <!-- Downloadable File -->
                     <div class="mt-3 position-relative">
                         <div class="card-body">
-                          <a href="<?php echo $file; ?>" download="<?php echo $filename; ?>" class="pdf-link">Downloadable File: <?php echo $filename; ?></a>
+                          <a href="//docs.google.com/gview?url=https://gmca.online/uploads/<?php echo $file; ?>&embedded=true" download="<?php echo $filename; ?>" class="pdf-link">Downloadable File: <?php echo $filename; ?></a>
                         </div>
                     </div>
                     <?php
@@ -137,6 +137,8 @@ if (isset($_GET['post_id']) && is_numeric($_GET['post_id'])) {
             <h6>Preview</h6>
             <hr>
             <iframe id="pdfViewer" style="width: 100%; height: 90vh;" frameborder="0"></iframe> <hr>
+            <!-- <iframe src="//docs.google.com/gview?url=https://gmca.online/uploads/662df611dfcf0_SAM101-Week-2-SYSTEM-ADMINISTRATION-OPERATING-SYSTEM.pptx&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe> -->
+
                         <button id="closePdfViewer" class="btn btn-success" style="display: none;">Close</button>
         </div>
     </div>
