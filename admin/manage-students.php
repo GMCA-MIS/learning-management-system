@@ -160,6 +160,7 @@ include('includes/navbar.php');
                             <th>Strand</th>
                             <th>Section</th>
                             <th>Enrollment</th>
+                            <th>Enrollment Date</th>
                             <th>Attachment</th>
                             <th>Approval</th>
                             <th>Status</th>
@@ -209,7 +210,15 @@ include('includes/navbar.php');
                                     ?>
                                     </td>
 
-                                    <td><?php if ($row['is_regular'] == 1) { ?>
+                                    <td>
+                                        <?php if ($row['is_regular'] == 1) { ?>
+                                            <p>Regular</p>
+                                        <?php } else {                        ?>
+                                            <p>Irregular</p>
+                                        <?php }                               ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($row['is_regular'] == 1) { ?>
                                             <p>Regular</p>
                                         <?php } else {                        ?>
                                             <p>Irregular</p>

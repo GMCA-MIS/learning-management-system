@@ -56,7 +56,48 @@ if (isset($_GET['class_id'])) {
         <!-- End of Topbar -->
 
         <div class="d-sm-flex align-items-center justify-content-between" style="margin-top: 20px; margin-left: 10px;">
-            <h1 class="h5 mb-0 text-gray-800 ml-4"><?php echo  $class_name; ?></h1>
+
+            <!--Add Pop Up Modal -->
+            <div class="modal fade" id="add_class" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Section</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <form action="" method="POST">
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label for="strand">Grade</label>
+                                            <select type="text" class="form-control" id="grade_level" name="grade_level" required placeholder="Enter Strand Type">
+                                                <option class="form-control" disabled value="" selected> Select Grade </Option>
+                                                <option class="form-control" value="11">11</Option>
+                                                <option class="form-control" value="12">12</Option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" onclick="addsection();" name="add_class" class="btn btn-primary">Create</button>
+                                    </div>
+                                </form>
+                            </div> <!--modal content -->
+                        </div> <!--modal dialog -->
+                    </div> <!--modal fade -->
+
+                     <button type="button" class="btn btn-success add_btn"   data-toggle="modal" data-target="#add_class"
+                            style="margin-bottom: 20px;"><i class="fa fa-arrow-up"></i> Promote Class to Grade 12</button> 
+        </div>
+        <div class="d-sm-flex align-items-center justify-content-between" style="margin-top: 20px; margin-left: 10px;">
+
+                    
+        <h1 class="h5 mb-0 text-gray-800 ml-4"><?php echo  $class_name; ?></h1>
         </div>
 
         <?php
