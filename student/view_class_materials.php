@@ -128,6 +128,11 @@ if ($fileDetails) {
             <h6>Preview</h6>
             <hr>
             <iframe id="pdfViewer" style="width: 100%; height: 90vh;" frameborder="0"></iframe> <hr>
+            <br>
+            <br>
+            hi
+            <iframe src="<?php echo $filename; ?>" style="width:600px; height:500px;" frameborder="0"></iframe>
+
                         <button id="closePdfViewer" class="btn btn-success" style="display: none;">Close</button>
         </div>
     </div>
