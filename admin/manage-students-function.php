@@ -758,7 +758,7 @@
                         Swal.fire({
                             title: "Warning",
                             text: "New Class is generated, Please assigned Teachers!",
-                            icon: "success",
+                            icon: "warning",
                             confirmButtonText: "OK",
                             timer: 3000,
                             allowOutsideClick: false
