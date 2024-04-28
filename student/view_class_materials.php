@@ -131,7 +131,7 @@ if ($fileDetails) {
             <br>
             <br>
             hi
-            <iframe src="<?php echo $filename; ?>" style="width:600px; height:500px;" frameborder="0"></iframe>
+            <iframe src="<?php echo $file; ?>" style="width:600px; height:500px;" frameborder="0"></iframe>
 
                         <button id="closePdfViewer" class="btn btn-success" style="display: none;">Close</button>
         </div>
