@@ -103,10 +103,23 @@ if (isset($_POST['submit_quiz'])) {
     
     }
     echo '<div class="container d-flex justify-content-center align-items-center vh-100">';
-    echo '<div class="alert alert-success text-center" role="alert">';
-    echo '<p>Your response has been submitted!</p>';
-    echo '<a href="index.php" class="btn btn-primary mt-3">Go Back</a>';
-    echo '</div>';
+    //echo '<div class="alert alert-success text-center" role="alert">';
+    //echo '<p>Your response has been submitted!</p>';
+    //echo '<a href="index.php" class="btn btn-primary mt-3">Go Back</a>';
+    echo "<script>
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'Your answers and score has been submitted!.',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'index.php';
+                            }
+                        });
+                    </script>";
+    //echo '</div>';
     echo '</div>';
                 
             // NOTIFICATION FUNCTION FOR QUIZ
