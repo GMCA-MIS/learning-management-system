@@ -91,10 +91,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $lrn = $_POST["username"];
         $grade_level = $_POST["grade_level"];
         $is_regular = $_POST["is_regular"];
+        $datesubmmited = date_default_timezone_set('Asia/Manila');
 
         // Insert student data into the database
-        $sql = "INSERT INTO student (username, lastname, firstname, middle_initial, email, location, strand_id, dob, pob, highschool, other_colleges, highschool_address, grade_level, is_regular) 
-                VALUES ('$lrn','$lastname', '$firstname', '$middle_initial', '$email', '$address', '$course', '$dob', '$pob', '$highschool', '$other_colleges', '$highschool_address','$grade_level','$is_regular')";
+        $sql = "INSERT INTO student ( 	enrollment_date , username, lastname, firstname, middle_initial, email, location, strand_id, dob, pob, highschool, other_colleges, highschool_address, grade_level, is_regular) 
+                VALUES ( '$datesubmmited', '$lrn','$lastname', '$firstname', '$middle_initial', '$email', '$address', '$course', '$dob', '$pob', '$highschool', '$other_colleges', '$highschool_address','$grade_level','$is_regular')";
         if (mysqli_query($conn, $sql)) {
             // Get the ID of the inserted student record
             $inserted_id = mysqli_insert_id($conn);
