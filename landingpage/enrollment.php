@@ -253,7 +253,7 @@ mysqli_close($conn);
                                 <label for="firstname">First Name</label>
                             </div>
                             <div class="col-4 col-12-xsmall">
-                                <label for="middle_initial">Middle Initial - input N/A if not applicable</label>
+                                <label for="middle_initial">Middle Name - input N/A if not applicable</label>
                             </div>
                         </div>
 
