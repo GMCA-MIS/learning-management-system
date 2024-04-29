@@ -96,6 +96,7 @@ include('includes/navbar.php');
                 <thead>
                     <tr>
                         <th style="display:none;">Department ID</th>
+                        <tht>Department ID</th>
                         <th>Department Name</th>
                         <th>Person In-charge</th>
                         <th>Edit</th>
@@ -110,6 +111,7 @@ include('includes/navbar.php');
                                 ?>
                     <tr>
                         <td style="display:none;"><?php echo $row['department_id']; ?></td>      
+                        <td><?php echo $row['department_id']; ?></td>   
                         <td><?php echo $row['department_name']; ?></td>
                         <td><?php echo $row['dean']; ?></td>
 
@@ -251,5 +253,3 @@ include('includes/footer.php');
         });
     });
 </script>
-
-
