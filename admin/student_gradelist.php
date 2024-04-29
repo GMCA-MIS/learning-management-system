@@ -32,8 +32,8 @@ if (isset($_GET['student_id'])) {
         $row = mysqli_fetch_assoc($result);
 
         if ($row) {
-            $firstname = $row['firstname'];
-            $lastname = $row['lastname'];
+            $firstnamestudent = $row['firstname'];
+            $lastnamestudent = $row['lastname'];
             
         } else {
             echo "Student not Found.";
@@ -95,7 +95,7 @@ if (isset($_GET['student_id'])) {
         <!-- End of Topbar -->
 
         <div class="d-sm-flex align-items-center justify-content-between" style="margin-top: 20px; margin-left: 10px;">
-            <h1 class="h5 mb-0 text-gray-800 ml-4"><?php echo " NAME : ".  $firstname . " " . $lastname; ?></h1>
+            <h1 class="h5 mb-0 text-gray-800 ml-4"><?php echo " NAME : ".  $firstnamestudent . " " . $lastnamestudent; ?></h1>
             <input type="button" class="btn btn-primary" style="margin-right:20px" onclick={window.print()} value="PRINT" />
 
         </div>
