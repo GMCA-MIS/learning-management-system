@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 include('dbcon.php');
+echo $datesubmmited = date('Y-m-d');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -146,13 +147,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $grade_level = $_POST["grade_level"];
         $is_regular = $_POST["is_regular"];
         date_default_timezone_set('Asia/Manila');
-        //$datesubmmited = date('Y-m-d');
+        $datesubmmited = date('Y-m-d');
         
-        echo $contact = $_POST["contact"];
+         $contact = $_POST["contact"];
 
         // Insert student data into the database
         $sql = "INSERT INTO student (contact,enrollment_date , username, lastname, firstname, middle_initial, email, location, strand_id, dob, pob, highschool, other_colleges, highschool_address, grade_level, is_regular) 
-                VALUES ('$contact', 'date()', '$lrn','$lastname', '$firstname', '$middle_initial', '$email', '$address', '$course', '$dob', '$pob', '$highschool', '$other_colleges', '$highschool_address','$grade_level','$is_regular')";
+                VALUES ('$contact', '$datesubmmited' , '$lrn','$lastname', '$firstname', '$middle_initial', '$email', '$address', '$course', '$dob', '$pob', '$highschool', '$other_colleges', '$highschool_address','$grade_level','$is_regular')";
         if (mysqli_query($conn, $sql)) {
             // Get the ID of the inserted student record
             $inserted_id = mysqli_insert_id($conn);
