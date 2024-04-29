@@ -226,7 +226,7 @@ mysqli_close($conn);
                         <!-- Requester's Name -->
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-12">
-                                <input type="text" name="username" id="email" value="" autocomplete="off" placeholder="LRN No." maxlength="12" required />
+                                <input type="text" name="username" id="email" value="" autocomplete="off"  placeholder="LRN No." maxlength="12" pattern= "[0-9]" title="Only numbers allowed" required />
                             </div>
                         </div>
 
