@@ -473,6 +473,8 @@
                                         });</script>';
                                         break;
                                     }
+                                    $existing_classes_not_full = true; 
+
                                 }     
                             }                           
                         }
