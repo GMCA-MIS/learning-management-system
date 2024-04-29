@@ -157,6 +157,7 @@ include('includes/navbar.php');
                             <th style="display:none;">Firstname</th>
                             <th style="display:none;">Lastname</th>
                             <th>Name</th>
+                            <th>Grade</th>
                             <th>Strand</th>
                             <th>Section</th>
                             <th>Enrollment</th>
@@ -189,6 +190,7 @@ include('includes/navbar.php');
                                     <td><a href="profile.php?student_id=<?php echo $row['student_id']; ?>"><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></a></td>
                                     <td style="display:none;"><?php echo $row['firstname']; ?></td>
                                     <td style="display:none;"><?php echo $row['lastname']; ?></td>
+                                    <td><?php echo $row['grade_level']; ?></td>
                                     <td><?php echo $row['strand_name']; ?></td>
                                     <td><?php
                                     /*
@@ -218,7 +220,7 @@ include('includes/navbar.php');
                                         <?php }                               ?>
                                     </td>
                                     <td>
-                                        <?php $row['enrollment_date'] ?>
+                                        <?php echo $row['enrollment_date'] ?>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-secondary attachment-btn" data-student-id="<?php echo $row['student_id']; ?>" style="color:white">Attachment</button>
@@ -281,9 +283,9 @@ include('includes/navbar.php');
                                         ?>
                                     </td>
                                     <td>
-                                        <?php if($row['grade_level']=="11" && empty($row['password'])) { ?>
+                                        <?php if($row['grade_level']=="11" && !empty($row['password'])) { ?>
                                             <button  type="submit" name="" data-toggle="modal" data-target="#modalg12<?php echo $row['student_id']; ?>" class="btn btn-success" style="background-color:#22DD22;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
-                                        <?php }else{ ?>
+                                       <?php }else{ ?>
                                             <button  type="submit" name="" data-toggle="modal"  class="btn " style="background-color:gray;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
                                         <?php } ?>
 
