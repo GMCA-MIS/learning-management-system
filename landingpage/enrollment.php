@@ -238,7 +238,7 @@ mysqli_close($conn);
                         <br />
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-4 col-12-xsmall">
-                                <input type="text"  name="lastname" id="lastname" value="" autocomplete="off" placeholder="Lastname" required title="Must contain Letters and Numbers only"/>
+                                <input type="text"  name="lastname" id="lastname" value="" autocomplete="off" placeholder="Lastname" required />
                             </div>
                             <div class="col-4 col-12-xsmall">
                                 <input type="text" name="firstname" id="firstname" value="" autocomplete="off" placeholder="Firstname" required />
