@@ -142,10 +142,10 @@ if (isset($_GET['class_id'])) {
                     <tr>
                         <th style="display:none;">Student ID</th>
                         <th>Learner Reference Number</th>
-                        <th>Email</th>
+                        <th>Name</th>
                         <th style="display:none;">Firstname</th>
                         <th style="display:none;">Lastname</th>
-                        <th>Name</th>
+                        <th>Email</th>
                         <th>Strand</th>
                         <th>Enrollment</th>
                         <th>Status</th>
@@ -174,10 +174,10 @@ if (isset($_GET['class_id'])) {
                                     } ?>
                                 </td>
                                 <td><?php if ($row['status'] == 1) { ?>
-                                        <p>Archive</p>
+                                        <p>Active</p>
                                     <?php } else {
                                     ?>
-                                        <p>ReArchive</p>
+                                        <p>Archive</p>
                                     <?php
                                     } ?>
                                 </td>
