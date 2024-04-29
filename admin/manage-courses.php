@@ -128,7 +128,7 @@ include('includes/navbar.php');
                     <tr>
                         <th style="display:none;">Subject ID</th>
                         <th>Subject Code</th>
-                        <th>Subject Photo</th>
+                        <th>Subject Photo</th>  
                         <th>Subject Title</th>
                        
                         <th>Type</th>
