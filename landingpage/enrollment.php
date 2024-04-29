@@ -2,6 +2,7 @@
 include('dbcon.php');
 $sql = "SELECT * FROM strand";
 
+
 $result = mysqli_query($conn, $sql);
 
 $options = "";
