@@ -168,6 +168,7 @@ mysqli_close($conn);
 </style>
 
 <body class="is-preload">
+    
     <div id="page-wrapper">
         <!-- Header -->
         <header id="header" class="hdr">
