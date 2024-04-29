@@ -218,7 +218,7 @@ include('includes/navbar.php');
                                         <?php }                               ?>
                                     </td>
                                     <td>
-                                        <?php $row['enrollment_date'] ?>
+                                        <b style='color:red'><?php echo $row['enrollment_date'] ?></b>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-secondary attachment-btn" data-student-id="<?php echo $row['student_id']; ?>" style="color:white">Attachment</button>
