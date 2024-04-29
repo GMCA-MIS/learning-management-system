@@ -455,7 +455,7 @@ $(document).ready(function () {
 <script>
 $(document).ready(function () {
     $('#dataTableID').DataTable( {
-                "aaSorting": []
+        "aaSorting": []
     });
 
 });
