@@ -56,6 +56,7 @@ mysqli_close($conn);
     }
 
     /* Target specific input types */
+    input[type="email"],
     input[type="text"],
     input[type="date"],
     input[type="number"] {
@@ -85,6 +86,7 @@ mysqli_close($conn);
     }
 
     /* Change border color and width of input fields when they are focused */
+    input[type="email"]:focus,
     input[type="text"]:focus,
     input[type="date"]:focus,
     input[type="number"]:focus {
@@ -98,6 +100,7 @@ mysqli_close($conn);
     }
 
     /* Change the color of placeholder text */
+    input[type="email"]::placeholder,
     input[type="text"]::placeholder,
     input[type="date"]::placeholder,
     input[type="number"]::placeholder {
@@ -264,7 +267,7 @@ mysqli_close($conn);
                         <!-- user email -->
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-8">
-                                <input type="text" name="email" id="email" value="" autocomplete="off" placeholder="Email ( request status will be sent to this email )" required />
+                                <input type="email" style="width:100%;height:100%;padding:10px;border: 1px solid black;border-radius: 3px;" name="email" id="email" value="" autocomplete="off" placeholder="Email ( request status will be sent to this email )"  title="Not an email format" required />
                             </div>
                             <div class="col-4">
                                 <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="09XXXXXXX" required />
