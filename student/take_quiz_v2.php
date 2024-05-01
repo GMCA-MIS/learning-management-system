@@ -284,21 +284,25 @@ function getQuizTheme($conn, $quiz_id)
                             $result = mysqli_query($conn, $sql);
 
                             while ($row = mysqli_fetch_assoc($result)) {
-                                
-                                
+                                echo "<div style='padding-top:20px;'>";
+                                $question_text= $row['question_text'];
                                 if($quiz_question_id == ""){
                                     $question_cntr = $question_cntr + 1;
                                     $quiz_question_id = $row['quiz_question_id'];
 
-                                    echo "<div>$question_cntr.)<b>".ucfirst($row['question_text'])."</b></div>";
-
+                                    echo "<div class='row' style='margin-top:20px;margin-bottom:10px;'>";
+                                    echo "<div >$question_cntr. ) </div>";
+                                    echo "<div  class='col-lg-11'><b>$question_text</b></div>";
+                                    echo  "</div>";
                                 }elseif($quiz_question_id != $row['quiz_question_id']){
                                     $question_cntr = $question_cntr + 1;
                                     $quiz_question_id = $row['quiz_question_id'];
 
-
-                                    echo "<div>$question_cntr.)<b>".ucfirst($row['question_text'])."</b></div>";
-
+                                    
+                                    echo "<div class='row' style='margin-top:20px;margin-bottom:10px;'>";
+                                    echo "<div >$question_cntr. ) </div>";
+                                    echo "<div  class='col-lg-11'><b>$question_text</b></div>";
+                                    echo  "</div>";
                                 }
 
                                 if($row['question_type_id'] == 3){
@@ -319,6 +323,8 @@ function getQuizTheme($conn, $quiz_id)
                                                         '" style="margin:10px" class="">'.$row['choice_text'].'</input>';
                                     echo "</div>";
                                 }
+                                echo "</div>";
+
                             }       
                                 echo "<input type='text' name='question_cntr' value=".$question_cntr.">";
                                 
