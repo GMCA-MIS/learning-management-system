@@ -167,7 +167,7 @@ $showButton = ($taken === 'yes') ? false : true;
         <p class="card-text mx-auto clr"><?php echo $quiz_description ?></p>
         <?php if ($showButton) { ?>
             <!-- If the quiz is not taken, show the "Take quiz" button -->
-            <div><a href="take_quiz.php?quiz_id=<?php echo $get_id ?>" class="quiz-button">Take quiz</a></div>
+            <div><a href="take_quiz_v2.php?quiz_id=<?php echo $get_id ?>" class="quiz-button">Take quiz</a></div>
         <?php } else { ?>
             <!-- If the quiz is already taken, show the grade from student_class_quiz -->
             <div class = "mt-4">
