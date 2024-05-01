@@ -23,7 +23,7 @@ mysqli_close($conn);
     <title>Enrollment</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main_enroll.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" />
     </noscript>
@@ -168,8 +168,6 @@ mysqli_close($conn);
         color: black !important;
         font-weight: bold;
     }
-
-    
 </style>
 
 <body class="is-preload">
@@ -228,228 +226,76 @@ mysqli_close($conn);
                 </header>
                 <section>
                     <form action="register.php" method="post" enctype="multipart/form-data">
-                       
-                        <!-- Personal Information -->
-
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-3">
-                                <label for="" style="background:#341C14;padding: 10px 20px 10px 10px;margin: 0px 0px 20px 0px; border-radius: 0 20px 20px 0
-                                    "><b style="color:white;font-weight:bold;font-size:25px;">Personal Information</b></label>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text"  name="lastname" id="lastname" value="" autocomplete="off" placeholder="Lastname" required />
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" name="firstname" id="firstname" value="" autocomplete="off" placeholder="Firstname" required />
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-6 col-12-xsmall">
-                                <label for="lastname">Last Name <b style="color:red;font-weight:bold;">*</b></label>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <label for="firstname">First Name <b style="color:red;font-weight:bold;">*</b></label>
-                            </div>
-                        </div>
-
-                        <br />
-                        <div class="row gtr-uniform gtr-50" >
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" name="middle_initial" id="middle_initial" value="" autocomplete="off" placeholder="Middle Name"  />
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text"  name="extended_name" id="extended_name" value="" autocomplete="off" placeholder="Extended Name"  />
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-6 col-12-xsmall">
-                                <label for="">Middle Name [ optional ]</label>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <label for="">Extended Name [ optional ]</label>
-                            </div>
-                        </div>
-
-                        <br />
-
-                        <div class="row gtr-uniform gtr-50" >
-                            <div class="col-6 col-12-xsmall" >
-                                <input type="radio" id="gender1" name="gender" value="male" checked>
-                                <label for="gender1" style="margin-right:30px;  ">Male</label>
-                                <input type="radio" id="gender2" name="gender" value="female" >
-                                <label for="gender2">Female</label>    
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text"  name="nationality" id="nationality" value="" autocomplete="off" placeholder="Nationality" required />
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-6 col-12-xsmall">
-                                <label for="middle_initial">Gender <b style="color:red;font-weight:bold;">*</b></label>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <label for="extended_name">Nationality <b style="color:red;font-weight:bold;">*</b></label>
-                            </div>
-                        </div>
-                        <br />
-
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-4 col-12-xmall">
-                                <input type="date" name="dob" id="dob" value="" autocomplete="off"  placeholder="Date of Birth" title="Please enter correct Birth date Range" required />
-                            </div>
-                            <div class="col-8 col-12-xsmall">
-                                <input type="text" name="pob" id="pob" value="" autocomplete="off"  placeholder="Place of Birth" required />
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-4 col-12-xsmall">
-                                <label for="dob">Date of Birth <b style="color:red;font-weight:bold;">*</b></label>
-                            </div>
-                            <div class="col-8 col-12-xsmall">
-                                <label for="pob">Place of Birth <b style="color:red;font-weight:bold;">*</b></label>
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-
-                        <!-- Contact Details  -->
-
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-3">
-                                <label for="" style="background:#341C14;padding: 10px 20px 10px 10px;margin: 0px 0px 20px 0px; border-radius: 0 20px 20px 0
-                                    "><b style="color:white;font-weight:bold;font-size:25px;">Contact Information</b></label>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-3">
-                                <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="House No. & Street" required />
-                            </div>
-                            <div class="col-3">
-                                <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="Province/Region" required />
-                            </div>
-                            <div class="col-3">
-                                <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="City" required />
-                            </div>
-                            <div class="col-3">
-                                <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="Barangay" required />
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-3">
-                                <label for="address">House No. & Street</label>
-                            </div>
-                            <div class="col-3">
-                                <label for="address">Province/Region</label>
-                            </div>
-                            <div class="col-3">
-                                <label for="address">City</label>
-                            </div>
-                            <div class="col-3">
-                                <label for="address">Barangay</label>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row gtr-uniform gtr-50">
-                            
-                            <div class="col-4">
-                                <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="09XXXXXXX" required />
-                            </div>
-                            <div class="col-8">
-                                <input type="email" style="width:100%;height:100%;padding:10px;border: 1px solid black;border-radius: 3px;" name="email" id="email" value="" autocomplete="off" placeholder="Email ( request status will be sent to this email )"  title="Not an email format" required />
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
-                            
-                            <div class="col-4">
-                                <label for="address">Contact</label>
-                            </div>
-                            <div class="col-8">
-                                <label for="address">Email</label>
-                            </div> 
-                        </div>
-                        <br />
-                        <div class="row gtr-uniform gtr-50">
-                            
-                            <div class="col-6   ">
-                                <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="Guardian Name" required />
-                            </div>
-                            <div class="col-3">
-                                <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="Relationship" required />
-                            </div>
-                            <div class="col-3">
-                                <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="09XXXXXXX" required />
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
-                            
-                            <div class="col-6">
-                                <label for="address">Guardian Name</label>
-                            </div> 
-                            <div class="col-3">
-                                <label for="address">Relationship</label>
-                            </div> 
-                            <div class="col-3">
-                                <label for="address">Contact</label>
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-
-                        <!-- Contact Details  -->
-
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-3">
-                                <label for="" style="background:#341C14;padding: 10px 20px 10px 10px;margin: 0px 0px 20px 0px; border-radius: 0 20px 20px 0
-                                    "><b style="color:white;font-weight:bold;font-size:25px;">Application For</b></label>
-                            </div>
-                        </div>
-                        <br />
-
-                        <div class="row gtr-uniform gtr-50" >
-                            <div class="col-6 col-12-xsmall" >
-                                <input type="radio" id="grade11" name="grade" value="11" checked>
-                                <label for="grade11" style="margin-right:30px;">Grade 11</label>
-                                <input type="radio" id="grade12" name="grade" value="12" >
-                                <label for="grade12">Grade 12</label>    
-                            </div>
-                            <div class="col-6 col-12-xsmall" >
-                                <input type="radio" id="semester1" name="gender" value="1st semester" checked>
-                                <label for="semester1" style="margin-right:30px;  ">1st Semester</label>
-                                <input type="radio" id="semester2" name="gender" value="2nd semester" >
-                                <label for="semester2">2nd Semester</label>    
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-6 col-12-xsmall">
-                                <label for="middle_initial">Grade Level <b style="color:red;font-weight:bold;">*</b></label>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <label for="middle_initial">Semester <b style="color:red;font-weight:bold;">*</b></label>
-                            </div>
-                        </div>
-                        <br />
-
+                        <!-- Requester's Name -->
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-12">
                                 <input type="text" name="username" id="email" value="" autocomplete="off"  placeholder="LRN No." maxlength="12" pattern= "[0-9]+" title="Only numbers allowed" required />
                             </div>
                         </div>
+
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-12">
                                 <label for="address">LRN No.</label>
                             </div>
                         </div>
-                        
+                        <br />
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-4 col-12-xsmall">
+                                <input type="text"  name="lastname" id="lastname" value="" autocomplete="off" placeholder="Lastname" required />
+                            </div>
+                            <div class="col-4 col-12-xsmall">
+                                <input type="text" name="firstname" id="firstname" value="" autocomplete="off" placeholder="Firstname" required />
+                            </div>
+                            <div class="col-4 col-12-xsmall">
+                                <input type="text" name="middle_initial" id="middle_initial" value="" autocomplete="off" placeholder="Middle Name" required />
+                            </div>
+                        </div>
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-4 col-12-xsmall">
+                                <label for="lastname">Last Name</label>
+                            </div>
+                            <div class="col-4 col-12-xsmall">
+                                <label for="firstname">First Name</label>
+                            </div>
+                            <div class="col-4 col-12-xsmall">
+                                <label for="middle_initial">Middle Name - input N/A if not applicable</label>
+                            </div>
+                        </div>
 
-                        
+                        <br />
+
+                        <!-- user email -->
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-8">
+                                <input type="email" style="width:100%;height:100%;padding:10px;border: 1px solid black;border-radius: 3px;" name="email" id="email" value="" autocomplete="off" placeholder="Email ( request status will be sent to this email )"  title="Not an email format" required />
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="09XXXXXXX" required />
+                            </div>
+                        </div>
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-8">
+                                <label for="address">Email</label>
+                            </div> 
+                            <div class="col-4">
+                                <label for="address">Contact</label>
+                            </div>
+                        </div>
+                        <br />
+
+                        <!-- Requester's Address -->
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-12">
+                                <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="Address" required />
+                            </div>
+                        </div>
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-12">
+                                <label for="address">Address</label>
+                            </div>
+                        </div>
+
+                        <br />
 
                         <!-- Requester's Course/Program -->
                         <div class="row gtr-uniform gtr-50">
@@ -519,7 +365,25 @@ mysqli_close($conn);
                         </div>
                         <br />
 
-                        
+                        <!-- Requester's Birth Info -->
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-4 col-12-xmall">
+                                <input type="date" name="dob" id="dob" value="" autocomplete="off"  placeholder="Date of Birth" title="Please enter correct Birth date Range" required />
+                            </div>
+                            <div class="col-8 col-12-xsmall">
+                                <input type="text" name="pob" id="pob" value="" autocomplete="off"  placeholder="Place of Birth" required />
+                            </div>
+                        </div>
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-4 col-12-xsmall">
+                                <label for="dob">Date of Birth</label>
+                            </div>
+                            <div class="col-8 col-12-xsmall">
+                                <label for="pob">Place of Birth</label>
+                            </div>
+                        </div>
+
+                        <br />
 
                         <!--  -->
                         <div class="row gtr-uniform gtr-50">
