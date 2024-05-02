@@ -449,6 +449,12 @@ mysqli_close($conn);
                         <br />
 
                         <div class="row gtr-uniform gtr-50">
+
+                            <div class="col-6 col-12-xsmall">
+                                     <input type="text" name="username" id="email" value="" autocomplete="off"  placeholder="LRN No." maxlength="12" pattern= "[0-9]+" title="Only numbers allowed" required />
+
+                            </div>
+
                             <div class="col-6 col-12-xsmall">
                                     <select name="" value="" id="" required>
                                         <option value="" selected>
@@ -727,6 +733,15 @@ mysqli_close($conn);
 
             document.getElementById("dropcities").onchange = listbrgy;
             function listbrgy(){
+
+                
+                document.getElementById("dropbrgy").innerHTML = "";
+
+                var optbrgy = document.createElement('option');
+                optbrgy.value = "";
+                optbrgy.innerHTML = " -- Select Barangay --";
+                selectbrgy.appendChild(optbrgy);
+
                 $.ajax({
                 url: 'https://psgc.gitlab.io/api/cities/'+this.value+'/barangays/',
                 type: "GET",
