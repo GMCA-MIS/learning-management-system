@@ -23,7 +23,13 @@ if (isset($_SESSION['username'])) {
     } elseif ($_SESSION['user_type'] === 'registrar') { // Add support for 'admin' user type
       header('Location: registrar/index.php');
       exit();
+    } elseif ($_SESSION['user_type'] === 'accountant') { // Add support for 'admin' user type
+      header('Location: accountant/index.php');
+      exit();
     } 
+
+
+    
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -173,6 +179,12 @@ if ($result->num_rows > 0) {
           $_SESSION['username'] = $username;
           $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
           header('Location: registrar/index.php');
+          exit();
+        }elseif($row['user_type']=="accountant"){
+          $_SESSION['user_type'] = 'accountant';
+          $_SESSION['username'] = $username;
+          $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
+          header('Location: accountant/index.php');
           exit();
         }
           
