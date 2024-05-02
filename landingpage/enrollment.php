@@ -335,20 +335,25 @@ mysqli_close($conn);
                                             -- Select Region --
                                         </option>
                                 </select>   
+                                <input type="hidden" value="" id="inregion" name="inregion" required/>
                             </div>
                             <div class="col-3">
                                 <select name="dropcities" value="" id="dropcities" required>
                                         <option value="" selected>
                                             -- Select City --
                                         </option>
-                                </select>                               
+                                </select>                                          
+                                <input type="hidden" value="" id="incities" name="incities" required/>
+                    
                             </div>
                             <div class="col-3">
                                 <select name="dropbrgy" value="" id="dropbrgy" required>
                                         <option value="" selected>
                                             -- Select Barangay --
                                         </option>
-                                </select>                             
+                                </select>        
+                                <input type="hidden" value="" id="inbrgy" name="inbrgy" required/>
+                     
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
@@ -658,25 +663,27 @@ mysqli_close($conn);
         var selectregion = document.getElementById("dropregion");
         var selectcities = document.getElementById("dropcities");
         var selectbrgy = document.getElementById("dropbrgy");
-
+        //inbrgy
+        // incities
         function functionsload(){
             
             document.getElementById("dropregion").onchange = listdowncities;
             function listdowncities(){
                 document.getElementById("dropcities").innerHTML = "";
-
+                document.getElementById("dropbrgy").innerHTML = "";
+                
                 var optcity = document.createElement('option');
                 optcity.value = "";
                 optcity.innerHTML = " -- Select City --";
                 selectcities.appendChild(optcity);
-
-
-                document.getElementById("dropbrgy").innerHTML = "";
-
+                
                 var optbrgy = document.createElement('option');
                 optbrgy.value = "";
                 optbrgy.innerHTML = " -- Select Barangay --";
                 selectbrgy.appendChild(optbrgy);
+
+                $('#inregion').val($(this).find(':selected').attr('data-region'));
+                
 
                 $.ajax({
                 url: 'https://psgc.gitlab.io/api/regions/'+this.value+'/cities/',
@@ -685,7 +692,6 @@ mysqli_close($conn);
                 success: function (data) {
                     console.log(data)
                     var cities = JSON.parse(data);
-
                     for(var a in cities) {
                         console.log(a, cities[a].name);
 
@@ -695,41 +701,40 @@ mysqli_close($conn);
                         opt.innerHTML = cities[a].name;
                         selectcities.appendChild(opt);
                     }
-                }
-                });
+                }});
             }
             
 
-            document.getElementById("dropcities").onchange = listbrgy;
-            function listbrgy(){
+            document.getElementById("dropcities").onchange = listdownbrgy;
+            function listdownbrgy(){
 
-                
                 document.getElementById("dropbrgy").innerHTML = "";
-
                 var optbrgy = document.createElement('option');
                 optbrgy.value = "";
                 optbrgy.innerHTML = " -- Select Barangay --";
                 selectbrgy.appendChild(optbrgy);
+
+                $('#incities').val($(this).find(':selected').attr('data-cities'));
 
                 $.ajax({
                 url: 'https://psgc.gitlab.io/api/cities/'+this.value+'/barangays/',
                 type: "GET",
                 dataType: "text",
                 success: function (data) {
-                    console.log(data)
                     var brgy = JSON.parse(data);
-
                     for(var a in brgy) {
-                        console.log(a, brgy[a].name);
-
                         var opt = document.createElement('option');
                         opt.value = brgy[a].code;
                         opt.setAttribute("data-brgy",brgy[a].name);
                         opt.innerHTML = brgy[a].name;
                         selectbrgy.appendChild(opt);
                     }
-                }
-                });
+                }});
+            }
+
+            document.getElementById("dropbrgy").onchange = inputdrop;
+            function inputdrop(){
+                $('#inbrgy').val($(this).find(':selected').attr('data-brgy'));
             }
 
             $.ajax({
@@ -737,29 +742,15 @@ mysqli_close($conn);
             type: "GET",
             dataType: "text",
             success: function (data) {
-                console.log(data)
                 var region = JSON.parse(data);
-
                 for(var a in region) {
-                    console.log(a, region[a].name);
-
                     var opt = document.createElement('option');
                     opt.value = region[a].code;
                     opt.setAttribute("data-region",region[a].name);
                     opt.innerHTML = region[a].name;
                     selectregion.appendChild(opt);
                 }
-            }
-            });
-            $('formenrollment').on('submit',function(){
-
-                var regiondata = $('dropregion').attr('data-region');
-                var citydata = $('#dropcities').attr('data-cities');
-                var brgydata = $('#dropbrgy').attr('data-brgy');
-
-                $.post('register.php',{'data-region':regiondata, 'data-cities': citydata, 'data-brgy': brgydata});
-
-            });
+            }});
 
         }
 
