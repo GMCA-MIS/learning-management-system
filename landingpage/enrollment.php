@@ -183,9 +183,9 @@ mysqli_close($conn);
             </h1>
             <nav id="nav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html" style="color:white;">Home</a></li>
                     <li>
-                        <a href="#">Menu</a>
+                        <a href="#" style="color:white;">Menu</a>
                         <ul>
                             <li><a href="Announcements.html">Announcements</a></li>
                             <!-- <li><a href="school calendar.html">School Calendar</a></li> -->
@@ -205,14 +205,14 @@ mysqli_close($conn);
                             </li>
                             -->
                             <li>
-                                <a href="tor.html">Transcript of Record</a>
+                                <a href="tor.html" >Transcript of Record</a>
                             </li>
                             <li>
                                  <a href="enrollment.php">Enroll Now !</a>
                             </li>
                         </ul>
                     </li>
-                    <li><a href="elements.html">Contact Us</a></li>
+                    <li><a href="elements.html" style="color:white;">Contact Us</a></li>
                     <li>
                         <a href="../newlogin.php" class="button primary" id="login_btn">Log in</a>
                     </li>
@@ -457,7 +457,7 @@ mysqli_close($conn);
                         </div>
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-12 col-12-xsmall">
-                                <label for="address">LRN No.</label>
+                                <label for="address">LRN No. <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                         </div>
 
@@ -475,7 +475,7 @@ mysqli_close($conn);
                         </div>
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-12">
-                                <label for="course">Course/Program</label>
+                                <label for="course">Course/Program <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                         </div>
                         <br />
@@ -503,10 +503,10 @@ mysqli_close($conn);
                         </div>
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-6 col-12-xsmall">
-                                <label for="highschool">Highschool</label>
+                                <label for="highschool">Highschool <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                             <div class="col-6">
-                                <label for="highschool_address">Address of Highschool</label>
+                                <label for="highschool_address">Address of Highschool <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                         </div>
                         <br />
@@ -538,7 +538,7 @@ mysqli_close($conn);
                         <div class="row gtr-uniform gtr-50">
 
                             <div class="col-4">
-                                <label for="creds_submitted1">Upload Gradeslip (PDF, JPG, JPEG)</label>
+                                <label for="creds_submitted1">Upload Gradeslip (PDF, JPG, JPEG) <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                             <div class="col-4">
                                 <label for="creds_submitted2">Upload Certificate of Recognition (PDF, JPG, JPEG)</label>

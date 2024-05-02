@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $good_moral_target_file = $good_moral_target_dir . basename($_FILES["good_moral"]["name"]);
     $good_moral_uploadOk = 1;
     $good_moral_imageFileType = strtolower(pathinfo($good_moral_target_file, PATHINFO_EXTENSION));
-
+    /*
     $tor_target_dir = "../attachment/";
     $tor_target_file = $tor_target_dir . basename($_FILES["tor"]["name"]);
     $tor_uploadOk = 1;
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $others_target_file = $others_target_dir . basename($_FILES["others"]["name"]);
     $others_uploadOk = 1;
     $others_imageFileType = strtolower(pathinfo($others_target_file, PATHINFO_EXTENSION));
-
+    */
     // Function to generate a unique filename
     function generateUniqueFilename($file_name, $type)
     {
@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $lrn = $_POST["username"];
         $course = $_POST["course"];
 
-        
+
         $highschool = $_POST["highschool"];
         $highschool_address = $_POST["highschool_address"];
 
