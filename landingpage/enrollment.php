@@ -688,6 +688,22 @@ mysqli_close($conn);
             
             document.getElementById("dropregion").onchange = listdowncities;
             function listdowncities(){
+
+                document.getElementById("dropcities").innerHTML = "";
+
+                var optcity = document.createElement('option');
+                optcity.value = "";
+                optcity.innerHTML = " -- Select City --";
+                selectcities.appendChild(optcity);
+
+
+                document.getElementById("dropbrgy").innerHTML = "";
+
+                var optbrgy = document.createElement('option');
+                optbrgy.value = "";
+                optbrgy.innerHTML = " -- Select Barangay --";
+                selectbrgy.appendChild(optbrgy);
+
                 $.ajax({
                 url: 'https://psgc.gitlab.io/api/regions/'+this.value+'/cities/',
                 type: "GET",
