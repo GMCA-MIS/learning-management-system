@@ -566,6 +566,8 @@ mysqli_close($conn);
                             </div>
                         </div>
                         <br>
+
+                        <!--
                         <div class="row gtr-uniform gtr-50">
 
                             <div class="col-4">
@@ -592,6 +594,7 @@ mysqli_close($conn);
                                 <label for="creds_submitted5">Other (PDF, JPG, JPEG)</label>
                             </div>
                         </div>
+                        -->
 
                         <br />
                         <div class="col-12">
