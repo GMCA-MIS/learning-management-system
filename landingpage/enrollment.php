@@ -240,10 +240,10 @@ mysqli_close($conn);
                         <br />
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-6 col-12-xsmall">
-                                <input type="text"  name="lastname" id="lastname" value="" autocomplete="off" placeholder="Lastname" required />
+                                <input type="text"  name="lastname" id="lastname" value="" autocomplete="off" placeholder="Last Name" required />
                             </div>
                             <div class="col-6 col-12-xsmall">
-                                <input type="text" name="firstname" id="firstname" value="" autocomplete="off" placeholder="Firstname" required />
+                                <input type="text" name="firstname" id="firstname" value="" autocomplete="off" placeholder="First Name" required />
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
@@ -254,7 +254,6 @@ mysqli_close($conn);
                                 <label for="firstname">First Name <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                         </div>
-
                         <br />
                         <div class="row gtr-uniform gtr-50" >
                             <div class="col-6 col-12-xsmall">
@@ -266,10 +265,10 @@ mysqli_close($conn);
                         </div>
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-6 col-12-xsmall">
-                                <label for="">Middle Name [ optional ]</label>
+                                <label for="middle_initial">Middle Name [ optional ]</label>
                             </div>
                             <div class="col-6 col-12-xsmall">
-                                <label for="">Extended Name [ optional ]</label>
+                                <label for="extended_name">Extended Name [ optional ]</label>
                             </div>
                         </div>
 
@@ -290,10 +289,10 @@ mysqli_close($conn);
                         
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-6 col-12-xsmall">
-                                <label for="middle_initial">Gender <b style="color:red;font-weight:bold;">*</b></label>
+                                <label for="gender">Gender <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                             <div class="col-6 col-12-xsmall">
-                                <label for="extended_name">Nationality <b style="color:red;font-weight:bold;">*</b></label>
+                                <label for="nationality">Nationality <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                         </div>
                         <br />
@@ -331,6 +330,17 @@ mysqli_close($conn);
                                 <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="House No. & Street" required />
                             </div>
                             <div class="col-3">
+                                <select name="Region" value="" id="tor_purpose" required>
+                                        <option value="" selected>
+                                            -- Select Campus / Branch --
+                                        </option>
+                                        <option value="1">
+                                            Gold Minds College of Sta. Maria, Bulacan, Inc.
+                                        </option>
+                                        <option value="2">
+                                            Gold Minds College of Balagtas, Bulacan, Inc.
+                                        </option>
+                                </select>
                                 <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="Province/Region" required />
                             </div>
                             <div class="col-3">
@@ -670,6 +680,23 @@ mysqli_close($conn);
 
         // Set the maximum date
         dateInput.max = maxDate;
+
+
+
+        $.ajax({
+        url: 'https://psgc.gitlab.io/api/island-groups/luzon/regions/',
+        type: "GET",
+        dataType: "text",
+        success: function (data) {
+            console.log(data)
+            var region = JSON.parse(data);
+
+            for(var a in region) {
+                console.log(a, region[a].name);
+
+            }
+        }
+         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>

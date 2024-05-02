@@ -135,11 +135,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $lastname = $_POST["lastname"];
         $firstname = $_POST["firstname"];
         $middle_initial = $_POST["middle_initial"];
+        $extended_name = $_POST["extended_name"]; // new
+        $gender = $_POST["gender"]; // new
+        $nationality = $_POST["nationality"]; // new
+        $dob = $_POST["dob"];
+        $pob = $_POST["pob"];
+
         $email = $_POST["email"];
         $address = $_POST["address"];
         $course = $_POST["course"];
-        $dob = $_POST["dob"];
-        $pob = $_POST["pob"];
         $highschool = $_POST["highschool"];
         $other_colleges = $_POST["other_colleges"];
         $highschool_address = $_POST["highschool_address"];
