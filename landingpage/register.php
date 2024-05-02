@@ -255,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Password = "dqriavmkaochvtod"; // your email password
             $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges"); // Change "Your Name" to your name or desired sender name
             $mail->addAddress($email);
-            $mail->Subject = "LMS Enrollment";
+            $mail->Subject = "GMCA Enrollment Confirmation";
             $mail->isHTML(true);
             $mail->Body = $email_body;
 
