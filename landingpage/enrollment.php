@@ -227,7 +227,7 @@ mysqli_close($conn);
                     <h2>Enrollment Form</h2>
                 </header>
                 <section>
-                    <form action="register.php" method="post" enctype="multipart/form-data">
+                    <form name="formenrollment" action="register.php" method="post" enctype="multipart/form-data">
                        
                         <!-- Personal Information -->
 
@@ -653,12 +653,13 @@ mysqli_close($conn);
         // Set the maximum date
         dateInput.max = maxDate;
 
+        
+
+        var selectregion = document.getElementById("dropregion");
+        var selectcities = document.getElementById("dropcities");
+        var selectbrgy = document.getElementById("dropbrgy");
 
         function functionsload(){
-            var selectregion = document.getElementById("dropregion");
-            var selectcities = document.getElementById("dropcities");
-            var selectbrgy = document.getElementById("dropbrgy");
-
             
             document.getElementById("dropregion").onchange = listdowncities;
             function listdowncities(){
@@ -750,7 +751,15 @@ mysqli_close($conn);
                 }
             }
             });
+            $('formenrollment').on('submit',function(){
 
+                var regiondata = $('dropregion').attr('data-region');
+                var citydata = $('#dropcities').attr('data-cities');
+                var brgydata = $('#dropbrgy').attr('data-brgy');
+
+                $.post('register.php',{'data-region':regiondata, 'data-cities': citydata, 'data-brgy': brgydata});
+
+            });
 
         }
 
