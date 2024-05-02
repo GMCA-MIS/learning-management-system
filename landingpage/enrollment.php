@@ -430,9 +430,9 @@ mysqli_close($conn);
                                 <label for="grade12">Grade 12</label>    
                             </div>
                             <div class="col-6 col-12-xsmall" >
-                                <input type="radio" id="semester1" name="semester" value="1st semester" checked>
+                                <input type="radio" id="semester1" name="semester" value="1st Semester" checked>
                                 <label for="semester1" style="margin-right:30px;  ">1st Semester</label>
-                                <input type="radio" id="semester2" name="semester" value="2nd semester" >
+                                <input type="radio" id="semester2" name="semester" value="2nd Semester" >
                                 <label for="semester2">2nd Semester</label>    
                             </div>
                         </div>

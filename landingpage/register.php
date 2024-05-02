@@ -134,21 +134,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Extract POST data
         $lastname = $_POST["lastname"];
         $firstname = $_POST["firstname"];
-        $middle_initial = $_POST["middle_initial"];
-        $extended_name = $_POST["extended_name"]; // new
+
+
+        if(isset($_POST["middle_initial"])){
+            $middle_initial = $_POST["middle_initial"]; 
+        }else{
+            $middle_initial = "N/A";
+        }
+        if(isset($_POST["extended_name"])){
+            $extended_name = $_POST["extended_name"]; 
+        }else{
+            $extended_name = "N/A";
+        }
+
         $gender = $_POST["gender"]; // new
         $nationality = $_POST["nationality"]; // new
         $dob = $_POST["dob"];
         $pob = $_POST["pob"];
 
+        $streetaddress = $_POST["streetaddress"];
         $data_region = $_POST["data-region"];
         $data_cities = $_POST["data-cities"];
         $data_brgy = $_POST["data-brgy"];
         $contact = $_POST["contact"];
+        $email = $_POST["email"];
         $guardianname = $_POST["guardianname"];
         $guardianrelation = $_POST["guardianrelation"];
         $guardiancontact = $_POST["guardiancontact"];
-
+        
 
         $grade_level = $_POST["grade_level"];
         $semester = $_POST["semester"];
@@ -160,17 +173,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $highschool_address = $_POST["highschool_address"];
 
 
-        
-        
-
-
         date_default_timezone_set('Asia/Manila');
         $datesubmmited = date('Y-m-d');
         
 
         // Insert student data into the database
-        $sql = "INSERT INTO student (contact,enrollment_date , username, lastname, firstname, middle_initial, email, location, strand_id, dob, pob, highschool, other_colleges, highschool_address, grade_level, is_regular) 
-                VALUES ('$contact', '$datesubmmited' , '$lrn','$lastname', '$firstname', '$middle_initial', '$email', '$address', '$course', '$dob', '$pob', '$highschool', '$other_colleges', '$highschool_address','$grade_level','$is_regular')";
+        $sql = "INSERT INTO student ( lastname, firstname, middle_initial, extended_name, gender , nationality, dob, pob, house_street, data_region, data_cities, data_brgy, contact, email, guardian_name , guardian_relation , guardian_contact  , grade_level , strand_id ,  semester,  username,  highschool,  highschool_address, enrollment_date) 
+        VALUES ( '$lastname', '$firstname', '$middle_initial', '$extended_name',  '$gender', '$nationality', '$dob', '$pob', '$streetaddress', '$data_region', '$data_region', '$data_brgy', '$contact', '$email',  '$guardianname', '$guardianrelation', '$guardiancontact', '$grade_level', '$course' , '$semester' , '$lrn','$highschool', '$highschool_address','$datesubmmited')";
         if (mysqli_query($conn, $sql)) {
             // Get the ID of the inserted student record
             $inserted_id = mysqli_insert_id($conn);
