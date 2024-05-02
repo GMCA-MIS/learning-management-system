@@ -327,7 +327,7 @@ mysqli_close($conn);
                         <br />
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-3">
-                                <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="House No. & Street" required />
+                                <input type="text" name="streetaddress" id="streetaddress" value="" autocomplete="off" placeholder="House No. & Street" required />
                             </div>
                             <div class="col-3">
                                 <select name="dropregion" value="" id="dropregion" required>
@@ -353,16 +353,16 @@ mysqli_close($conn);
                         </div>
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-3">
-                                <label for="address">House No. & Street</label>
+                                <label for="address">House No. & Street <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                             <div class="col-3">
-                                <label for="address">Province/Region</label>
+                                <label for="address">Province/Region <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                             <div class="col-3">
-                                <label for="address">City</label>
+                                <label for="address">City <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                             <div class="col-3">
-                                <label for="address">Barangay</label>
+                                <label for="address">Barangay <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                         </div>
                         <br />
@@ -372,29 +372,29 @@ mysqli_close($conn);
                                 <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="09XXXXXXX" required />
                             </div>
                             <div class="col-8">
-                                <input type="email" style="width:100%;height:100%;padding:10px;border: 1px solid black;border-radius: 3px;" name="email" id="email" value="" autocomplete="off" placeholder="Email ( request status will be sent to this email )"  title="Not an email format" required />
+                                <input type="email" style="width:100%;height:100%;padding:10px;border: 1px solid black;border-radius: 3px;" name="email" id="email" value="" autocomplete="off" placeholder="sample@gmail.com"  title="Not an email format" required />
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
                             
                             <div class="col-4">
-                                <label for="address">Contact</label>
+                                <label for="address">Contact <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                             <div class="col-8">
-                                <label for="address">Email</label>
+                                <label for="address">Email <b style="color:red;font-weight:bold;">*</b></label>
                             </div> 
                         </div>
                         <br />
                         <div class="row gtr-uniform gtr-50">
                             
                             <div class="col-6   ">
-                                <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="Guardian Name" required />
+                                <input type="text" name="guardianname" placeholder="Guardian Name" required />
                             </div>
                             <div class="col-3">
-                                <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="Relationship" required />
+                                <input type="text" name="guardianrelation" id=""  placeholder="Relationship" required />
                             </div>
                             <div class="col-3">
-                                <input type="text" name="contact" id="contact" minlength="11" maxlength="11" autocomplete="off" placeholder="09XXXXXXX" required />
+                                <input type="text" name="guardiancontact" id="" minlength="11" maxlength="11" autocomplete="off" placeholder="09XXXXXXX" required />
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
@@ -450,31 +450,14 @@ mysqli_close($conn);
 
                         <div class="row gtr-uniform gtr-50">
 
-                            <div class="col-6 col-12-xsmall">
+                            <div class="col-12 col-12-xsmall">
                                      <input type="text" name="username" id="email" value="" autocomplete="off"  placeholder="LRN No." maxlength="12" pattern= "[0-9]+" title="Only numbers allowed" required />
 
                             </div>
-
-                            <div class="col-6 col-12-xsmall">
-                                    <select name="" value="" id="" required>
-                                        <option value="" selected>
-                                            -- Select Campus / Branch --
-                                        </option>
-                                        <option value="1">
-                                            Gold Minds College of Sta. Maria, Bulacan, Inc.
-                                        </option>
-                                        <option value="2">
-                                            Gold Minds College of Balagtas, Bulacan, Inc.
-                                        </option>
-                                    </select>
-                            </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
-                            <div class="col-6 col-12-xsmall">
+                            <div class="col-12 col-12-xsmall">
                                 <label for="address">LRN No.</label>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <label for="address">Select Campus / Branch </label>
                             </div>
                         </div>
 
@@ -498,7 +481,7 @@ mysqli_close($conn);
                         <br />
                         <br />
 
-                        <!-- Contact Details  -->
+                        <!-- Other Information  -->
 
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-3">
@@ -513,8 +496,9 @@ mysqli_close($conn);
                             <div class="col-6">
                                 <input type="text" name="highschool" id="highschool" value="" autocomplete="off" placeholder="Highschool" required />
                             </div>
+                            
                             <div class="col-6">
-                                <input type="text" name="other_colleges" id="other_colleges" value="" autocomplete="off" placeholder="Other Colleges" required />
+                                <input type="text" name="highschool_address" id="highschool_address" value="" autocomplete="off" placeholder="Address of Highschool" required />
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
@@ -522,38 +506,22 @@ mysqli_close($conn);
                                 <label for="highschool">Highschool</label>
                             </div>
                             <div class="col-6">
-                                <label for="other_colleges">Other Colleges - input N/A if not applicable</label>
-                            </div>
-                        </div>
-                        <br />
-
-                        <!--  -->
-
-                        <!-- hs address -->
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-12">
-                                <input type="text" name="highschool_address" id="highschool_address" value="" autocomplete="off" placeholder="Address of Highschool" required />
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-12">
                                 <label for="highschool_address">Address of Highschool</label>
                             </div>
                         </div>
                         <br />
+                        <br />
+                        <br />
+                        
+                        <!-- Documents  -->
+
                         <div class="row gtr-uniform gtr-50">
-
-                        <div class="col-4">
-                            <p style="color: red;">* For New Student Only</p>
-                        </div>
+                            <div class="col-3">
+                                <label for="" style="background:#341C14;padding: 10px 20px 10px 10px;margin: 0px 0px 20px 0px; border-radius: 0 20px 20px 0
+                                    "><b style="color:white;font-weight:bold;font-size:25px;">Documents</b></label>
+                            </div>
                         </div>
                         <br />
-
-                        <!-- GMC Admission, Requirements, and Purpose of Request -->
-
-
-                        <br />
-                        <!-- Request Info -->
 
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-4" for="creds_submitted1">
@@ -694,7 +662,6 @@ mysqli_close($conn);
             
             document.getElementById("dropregion").onchange = listdowncities;
             function listdowncities(){
-
                 document.getElementById("dropcities").innerHTML = "";
 
                 var optcity = document.createElement('option');
@@ -723,6 +690,7 @@ mysqli_close($conn);
 
                         var opt = document.createElement('option');
                         opt.value = cities[a].code;
+                        opt.setAttribute("data-cities",cities[a].name);
                         opt.innerHTML = cities[a].name;
                         selectcities.appendChild(opt);
                     }
@@ -755,6 +723,7 @@ mysqli_close($conn);
 
                         var opt = document.createElement('option');
                         opt.value = brgy[a].code;
+                        opt.setAttribute("data-brgy",brgy[a].name);
                         opt.innerHTML = brgy[a].name;
                         selectbrgy.appendChild(opt);
                     }
@@ -775,6 +744,7 @@ mysqli_close($conn);
 
                     var opt = document.createElement('option');
                     opt.value = region[a].code;
+                    opt.setAttribute("data-region",region[a].name);
                     opt.innerHTML = region[a].name;
                     selectregion.appendChild(opt);
                 }

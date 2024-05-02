@@ -125,8 +125,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $grade_slip_uploaded = handleFileUpload($_FILES["grade_slip"], $grade_slip_uploadOk, $grade_slip_imageFileType, "grade_slip");
     $cor_uploaded = handleFileUpload($_FILES["cor"], $cor_uploadOk, $cor_imageFileType, "cor");
     $good_moral_uploaded = handleFileUpload($_FILES["good_moral"], $good_moral_uploadOk, $good_moral_imageFileType, "good_moral");
-    $tor_uploaded = handleFileUpload($_FILES["tor"], $tor_uploadOk, $tor_imageFileType, "tor");
-    $others_uploaded = handleFileUpload($_FILES["others"], $others_uploadOk, $others_imageFileType, "others");
+    //$tor_uploaded = handleFileUpload($_FILES["tor"], $tor_uploadOk, $tor_imageFileType, "tor");
+    //$others_uploaded = handleFileUpload($_FILES["others"], $others_uploadOk, $others_imageFileType, "others");
 
     //if ($grade_slip_uploaded && $cor_uploaded && $good_moral_uploaded) {
     if ($grade_slip_uploaded) {
@@ -141,19 +141,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dob = $_POST["dob"];
         $pob = $_POST["pob"];
 
-        $email = $_POST["email"];
-        $address = $_POST["address"];
-        $course = $_POST["course"];
-        $highschool = $_POST["highschool"];
-        $other_colleges = $_POST["other_colleges"];
-        $highschool_address = $_POST["highschool_address"];
-        $lrn = $_POST["username"];
+        $data_region = $_POST["data-region"];
+        $data_cities = $_POST["data-cities"];
+        $data_brgy = $_POST["data-brgy"];
+        $contact = $_POST["contact"];
+        $guardianname = $_POST["guardianname"];
+        $guardianrelation = $_POST["guardianrelation"];
+        $guardiancontact = $_POST["guardiancontact"];
+
+
         $grade_level = $_POST["grade_level"];
-        $is_regular = $_POST["is_regular"];
+        $semester = $_POST["semester"];
+        $lrn = $_POST["username"];
+        $course = $_POST["course"];
+
+        
+        $highschool = $_POST["highschool"];
+        $highschool_address = $_POST["highschool_address"];
+
+
+        
+        
+
+
         date_default_timezone_set('Asia/Manila');
         $datesubmmited = date('Y-m-d');
         
-         $contact = $_POST["contact"];
 
         // Insert student data into the database
         $sql = "INSERT INTO student (contact,enrollment_date , username, lastname, firstname, middle_initial, email, location, strand_id, dob, pob, highschool, other_colleges, highschool_address, grade_level, is_regular) 
@@ -164,7 +177,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Insert attachment data into the database
             $data = [
-                $grade_slip_uploaded, $cor_uploaded, $good_moral_uploaded, $tor_uploaded, $others_uploaded
+            //    $grade_slip_uploaded, $cor_uploaded, $good_moral_uploaded, $tor_uploaded, $others_uploaded
+                  $grade_slip_uploaded, $cor_uploaded, $good_moral_uploaded
             ];
             foreach ($data as $uploaded_file) {
                 if (!empty($uploaded_file)) {
@@ -176,11 +190,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $description = "Certificate of Recognition";
                     } elseif ($uploaded_file == $good_moral_uploaded) {
                         $description = "Good Moral";
-                    } elseif ($uploaded_file == $tor_uploaded) {
-                        $description = "TOR";
-                    } else {
-                        $description = "Others";
-                    }
+                    } 
+                    
+                    //elseif ($uploaded_file == $tor_uploaded) {
+                    //    $description = "TOR";
+                    //} else {
+                    //    $description = "Others";
+                    //}
                     // Insert attachment data into the database
                     $document_sql = "INSERT INTO attachment (student_id, description, filename) 
                                      VALUES ('$inserted_id', '$description', '$uploaded_file')";
