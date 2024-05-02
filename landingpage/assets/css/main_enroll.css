@@ -194,10 +194,10 @@ body,
 input,
 select,
 textarea {
-  color: rgba(255, 255, 255, 0.75);
+  color: black;
   font-family: "Roboto", Helvetica, sans-serif;
   font-size: 15pt;
-  font-weight: 100;
+  font-weight: bold;
   line-height: 1.75em;
 }
 
@@ -2356,7 +2356,7 @@ input[type="date"]:focus,
 input[type="number"]:focus,
 select:focus,
 textarea:focus {
-  border-color: #e44c65;
+  border-color: gray;
 }
 
 select {
@@ -2367,6 +2367,7 @@ select {
   height: 3em;
   padding-right: 3em;
   text-overflow: ellipsis;
+  border: 1px solid black;
 }
 
 select option {

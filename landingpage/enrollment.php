@@ -172,7 +172,7 @@ mysqli_close($conn);
     
 </style>
 
-<body class="is-preload">
+<body class="is-preload" onload="functionsload()">
     
     <div id="page-wrapper">
         <!-- Header -->
@@ -330,24 +330,25 @@ mysqli_close($conn);
                                 <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="House No. & Street" required />
                             </div>
                             <div class="col-3">
-                                <select name="Region" value="" id="tor_purpose" required>
+                                <select name="dropregion" value="" id="dropregion" required>
                                         <option value="" selected>
-                                            -- Select Campus / Branch --
+                                            -- Select Region --
                                         </option>
-                                        <option value="1">
-                                            Gold Minds College of Sta. Maria, Bulacan, Inc.
-                                        </option>
-                                        <option value="2">
-                                            Gold Minds College of Balagtas, Bulacan, Inc.
-                                        </option>
-                                </select>
-                                <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="Province/Region" required />
+                                </select>   
                             </div>
                             <div class="col-3">
-                                <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="City" required />
+                                <select name="dropcities" value="" id="dropcities" required>
+                                        <option value="" selected>
+                                            -- Select City --
+                                        </option>
+                                </select>                               
                             </div>
                             <div class="col-3">
-                                <input type="text" name="address" id="address" value="" autocomplete="off" placeholder="Barangay" required />
+                                <select name="dropbrgy" value="" id="dropbrgy" required>
+                                        <option value="" selected>
+                                            -- Select Barangay --
+                                        </option>
+                                </select>                             
                             </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
@@ -448,11 +449,8 @@ mysqli_close($conn);
                         <br />
 
                         <div class="row gtr-uniform gtr-50">
-                            <div class="col-6 col-12-xsmall ">
-                                <input type="text" name="username" id="email" value="" autocomplete="off"  placeholder="LRN No." maxlength="12" pattern= "[0-9]+" title="Only numbers allowed" required />
-                            </div>
                             <div class="col-6 col-12-xsmall">
-                                    <select name="" value="" id="tor_purpose" required>
+                                    <select name="" value="" id="" required>
                                         <option value="" selected>
                                             -- Select Campus / Branch --
                                         </option>
@@ -682,21 +680,80 @@ mysqli_close($conn);
         dateInput.max = maxDate;
 
 
+        function functionsload(){
+            var selectregion = document.getElementById("dropregion");
+            var selectcities = document.getElementById("dropcities");
+            var selectbrgy = document.getElementById("dropbrgy");
 
-        $.ajax({
-        url: 'https://psgc.gitlab.io/api/island-groups/luzon/regions/',
-        type: "GET",
-        dataType: "text",
-        success: function (data) {
-            console.log(data)
-            var region = JSON.parse(data);
+            
+            document.getElementById("dropregion").onchange = listdowncities;
+            function listdowncities(){
+                $.ajax({
+                url: 'https://psgc.gitlab.io/api/regions/'+this.value+'/cities/',
+                type: "GET",
+                dataType: "text",
+                success: function (data) {
+                    console.log(data)
+                    var cities = JSON.parse(data);
 
-            for(var a in region) {
-                console.log(a, region[a].name);
+                    for(var a in cities) {
+                        console.log(a, cities[a].name);
 
+                        var opt = document.createElement('option');
+                        opt.value = cities[a].code;
+                        opt.innerHTML = cities[a].name;
+                        selectcities.appendChild(opt);
+                    }
+                }
+                });
             }
+            
+
+            document.getElementById("dropcities").onchange = listbrgy;
+            function listbrgy(){
+                $.ajax({
+                url: 'https://psgc.gitlab.io/api/cities/'+this.value+'/barangays/',
+                type: "GET",
+                dataType: "text",
+                success: function (data) {
+                    console.log(data)
+                    var brgy = JSON.parse(data);
+
+                    for(var a in brgy) {
+                        console.log(a, brgy[a].name);
+
+                        var opt = document.createElement('option');
+                        opt.value = brgy[a].code;
+                        opt.innerHTML = brgy[a].name;
+                        selectbrgy.appendChild(opt);
+                    }
+                }
+                });
+            }
+
+            $.ajax({
+            url: 'https://psgc.gitlab.io/api/regions/',
+            type: "GET",
+            dataType: "text",
+            success: function (data) {
+                console.log(data)
+                var region = JSON.parse(data);
+
+                for(var a in region) {
+                    console.log(a, region[a].name);
+
+                    var opt = document.createElement('option');
+                    opt.value = region[a].code;
+                    opt.innerHTML = region[a].name;
+                    selectregion.appendChild(opt);
+                }
+            }
+            });
+
+
         }
-         });
+
+        
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>
