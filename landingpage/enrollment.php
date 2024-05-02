@@ -400,13 +400,13 @@ mysqli_close($conn);
                         <div class="row gtr-uniform gtr-50">
                             
                             <div class="col-6">
-                                <label for="address">Guardian Name</label>
+                                <label for="address">Guardian Name <b style="color:red;font-weight:bold;">*</b></label>
                             </div> 
                             <div class="col-3">
-                                <label for="address">Relationship</label>
+                                <label for="address">Relationship <b style="color:red;font-weight:bold;">*</b></label>
                             </div> 
                             <div class="col-3">
-                                <label for="address">Contact</label>
+                                <label for="address">Contact <b style="color:red;font-weight:bold;">*</b></label>
                             </div>
                         </div>
                         <br />
