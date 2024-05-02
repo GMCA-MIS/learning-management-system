@@ -515,6 +515,19 @@ mysqli_close($conn);
                             </div>
                         </div>
                         <br />
+                        <div class="row gtr-uniform gtr-50" >
+                            <div class="col-6 col-12-xsmall" >
+                                <input type="radio" id="hssector1" name="hssector" value="Public" checked>
+                                <label for="hssector1" style="margin-right:30px;  ">Public</label>
+                                <input type="radio" id="hssector2" name="hssector" value="Private" >
+                                <label for="hssector2">Private</label>    
+                            </div>
+                        </div>
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-6">
+                                <label for="">High School Sector <b style="color:red;font-weight:bold;">*</b></label>
+                            </div>
+                        </div>
                         <br />
                         <br />
                         
