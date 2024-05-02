@@ -413,15 +413,15 @@ mysqli_close($conn);
 
                         <div class="row gtr-uniform gtr-50" >
                             <div class="col-6 col-12-xsmall" >
-                                <input type="radio" id="grade11" name="grade" value="11" checked>
+                                <input type="radio" id="grade11" name="grade_level" value="11" checked>
                                 <label for="grade11" style="margin-right:30px;">Grade 11</label>
-                                <input type="radio" id="grade12" name="grade" value="12" >
+                                <input type="radio" id="grade12" name="grade_level" value="12" >
                                 <label for="grade12">Grade 12</label>    
                             </div>
                             <div class="col-6 col-12-xsmall" >
-                                <input type="radio" id="semester1" name="gender" value="1st semester" checked>
+                                <input type="radio" id="semester1" name="semester" value="1st semester" checked>
                                 <label for="semester1" style="margin-right:30px;  ">1st Semester</label>
-                                <input type="radio" id="semester2" name="gender" value="2nd semester" >
+                                <input type="radio" id="semester2" name="semester" value="2nd semester" >
                                 <label for="semester2">2nd Semester</label>    
                             </div>
                         </div>
@@ -438,65 +438,29 @@ mysqli_close($conn);
                         <br />
 
                         <div class="row gtr-uniform gtr-50">
-                            <div class="col-12">
+                            <div class="col-6 col-12-xsmall ">
                                 <input type="text" name="username" id="email" value="" autocomplete="off"  placeholder="LRN No." maxlength="12" pattern= "[0-9]+" title="Only numbers allowed" required />
                             </div>
+                            <div class="col-6 col-12-xsmall">
+                                    <select name="" value="" id="tor_purpose" required>
+                                        <option value="" selected>
+                                            -- Select Campus / Branch --
+                                        </option>
+                                        <option value="1">
+                                            Gold Minds College of Sta. Maria, Bulacan, Inc.
+                                        </option>
+                                        <option value="2">
+                                            Gold Minds College of Balagtas, Bulacan, Inc.
+                                        </option>
+                                    </select>
+                            </div>
                         </div>
                         <div class="row gtr-uniform gtr-50">
-                            <div class="col-12">
+                            <div class="col-6 col-12-xsmall">
                                 <label for="address">LRN No.</label>
                             </div>
-                        </div>
-                        
-
-                        
-
-                        <!-- Requester's Course/Program -->
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-12">
-                                <select name="is_regular" value="" id="tor_purpose" required>
-                                    <option value="" selected>
-                                        -- Select Student Type --
-                                    </option>
-                                    <option value="1">
-                                        New Student
-                                    </option>
-                                    <option value="2">
-                                        Transferee
-                                    </option>
-                                    <!--
-                                    <option value="3">
-                                        Irregular Student
-                                    </option>
-                                    -->
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-12">
-                                <label for="course">Student Type</label>
-                            </div>
-                        </div>
-
-                        <br />
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-12">
-                                <select name="grade_level" value="" id="tor_purpose" required>
-                                    <option value="" selected>
-                                        -- Select Grade Level --
-                                    </option>
-                                    <option value="11">
-                                        Grade 11
-                                    </option>
-                                    <option value="12">
-                                        Grade 12
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-12">
-                                <label for="course">Grade Level</label>
+                            <div class="col-6 col-12-xsmall">
+                                <label for="address">Select Campus / Branch </label>
                             </div>
                         </div>
 
@@ -518,8 +482,17 @@ mysqli_close($conn);
                             </div>
                         </div>
                         <br />
+                        <br />
 
-                        
+                        <!-- Contact Details  -->
+
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-3">
+                                <label for="" style="background:#341C14;padding: 10px 20px 10px 10px;margin: 0px 0px 20px 0px; border-radius: 0 20px 20px 0
+                                    "><b style="color:white;font-weight:bold;font-size:25px;">Other Information</b></label>
+                            </div>
+                        </div>
+                        <br />
 
                         <!--  -->
                         <div class="row gtr-uniform gtr-50">
