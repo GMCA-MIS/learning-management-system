@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Insert student data into the database
         $sql = "INSERT INTO student ( lastname, firstname, middle_initial, extended_name, gender , nationality, dob, pob, house_street, region, city, barangay, contact, email, guardian_name , guardian_relation , guardian_contact  , grade_level , strand_id ,  semester,  username,  highschool,  highschool_address, enrollment_date) 
-        VALUES ( '$lastname', '$firstname', '$middle_initial', '$extended_name',  '$gender', '$nationality', '$dob', '$pob', '$streetaddress', '$data_region', '$data_region', '$data_brgy', '$contact', '$email',  '$guardianname', '$guardianrelation', '$guardiancontact', '$grade_level', '$course' , '$semester' , '$lrn','$highschool', '$highschool_address','$datesubmmited')";
+        VALUES ( '$lastname', '$firstname', '$middle_initial', '$extended_name',  '$gender', '$nationality', '$dob', '$pob', '$streetaddress', '$data_region', '$data_cities', '$data_brgy', '$contact', '$email',  '$guardianname', '$guardianrelation', '$guardiancontact', '$grade_level', '$course' , '$semester' , '$lrn','$highschool', '$highschool_address','$datesubmmited')";
         if (mysqli_query($conn, $sql)) {
             // Get the ID of the inserted student record
             $inserted_id = mysqli_insert_id($conn);
