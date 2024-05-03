@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="css/newheader.css">
 </head>
 <body>
-
-
 <?php
 include('dbcon.php');
 
@@ -19,23 +17,9 @@ include('dbcon.php');
 if (isset($_POST['deleted_fee'])) {
     $id = $_POST['delete_ID'];
 
-    $query2 ="SELECT * FROM component_charge_fees WHERE component_charge_id = $id";
-    $query_run2=mysqli_query($conn, $query2);
-    if(mysqli_num_rows($query_run2) > 0) {
-
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo '<script>Swal.fire({
-            title: "Warning",
-            text: "Unable to delete , Please clear the fees inside this Component",
-            icon: "warning",
-            confirmButtonText: "OK"
-        }).then(function() {
-            window.location.href = "manage-componentfees.php";
-        });</script>';
-        die();
-    }
-        
-    $query = "DELETE FROM component_charge WHERE component_charge_id = '$id'";
+    $component_charge_id = $_POST['component_charge_id'];
+    
+    $query = "DELETE FROM component_charge_fees  WHERE ccharge_fees_id = '$id'";
     $query_run = mysqli_query($conn, $query);
 
     if ($query_run) {
@@ -46,7 +30,7 @@ if (isset($_POST['deleted_fee'])) {
             icon: "success",
             confirmButtonText: "OK"
         }).then(function() {
-            window.location.href = "manage-componentfees.php";
+            window.location.href = "manage-componentfees_bundle.php?component_charge_id='.$component_charge_id.'";
         });</script>';
     } else {
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
@@ -64,7 +48,6 @@ if (isset($_POST['deleted_fee'])) {
 
 }
 ?>
-
 <?php 
     // Manage-Users Edit Function 
     if(isset($_POST['update_fees'])) // Button Name
@@ -100,19 +83,19 @@ if (isset($_POST['deleted_fee'])) {
         }
     } 
 ?>
-
 <?php
-if(isset($_POST['add_component']))
+if(isset($_POST['add_fee']))
 {
     // Collect form data
-    $intitle = $_POST['intitle'];
-    $txtdescription = $_POST['txtdescription'];
+    $component_charge_id = $_POST['component_charge_id'];
+    $ccid = $_POST['ccid'];
+    
 
     // Database connection (include your database connection file)
     include('dbcon.php');
 
     // SQL query to insert data into the department table
-    $insertQuery = "INSERT INTO  component_charge  (title, `description`, `created_date`) VALUES ('$intitle', '$txtdescription', NOW())";
+    $insertQuery = "INSERT INTO  component_charge_fees  (component_charge_id, `chargetype_id`) VALUES ('$component_charge_id', '$ccid')";
 
     // Execute the query
     if(mysqli_query($conn, $insertQuery)){
@@ -121,9 +104,9 @@ if(isset($_POST['add_component']))
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "New Component Fee added successfully!",
+                    text: "Included Another Fee successfully!",
                 }).then(function(){
-                    window.location.href = "manage-componentfees.php"; // Redirect to your desired page
+                    window.location.href = "manage-componentfees_bundle.php?component_charge_id='.$component_charge_id.'"; // Redirect to your desired page
                 });
               </script>';
     } else {
@@ -141,9 +124,5 @@ if(isset($_POST['add_component']))
     mysqli_close($conn);
 }
 ?>
-
-
-
-
 </body>
 </html>

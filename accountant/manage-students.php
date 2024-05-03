@@ -152,19 +152,17 @@ include('includes/navbar.php');
                             <th style="display:none;">Student ID</th>
                             <!-- <th>Photo</th> -->
                             
-                            <th>Student I.D</th>
                             <th>LRN</th>
                             <th style="display:none;">Firstname</th>
                             <th style="display:none;">Lastname</th>
                             <th>Name</th>
                             <th>Grade</th>
                             <th>Strand</th>
-                            <th>Section</th>
                             <th>Enrollment</th>
                             <th>Enrollment Date</th>
                             <th>Attachment</th>
                             <th>Approval</th>
-                            <th>Status</th>
+                            <th></th>
                             <!-- <th>Edit</th> -->
 
 
@@ -183,32 +181,12 @@ include('includes/navbar.php');
 
                                     <td style="display:none;"><?php echo $row['student_id']; ?></td>
                                     <!-- <td><img src="<?php echo $row['location']; ?>" alt="" class="rounded-circle d-block mx-auto" style="width: 60px;"></td> -->
-                                    <td><?php if (empty($row['class_name'])){  echo "Enlisted"; } else{  echo $row['student_id'];}  ?></td>
                                     <td><?php echo $row['username']; ?></td>
                                     <td><a href="profile.php?student_id=<?php echo $row['student_id']; ?>"><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></a></td>
                                     <td style="display:none;"><?php echo $row['firstname']; ?></td>
                                     <td style="display:none;"><?php echo $row['lastname']; ?></td>
                                     <td><?php echo $row['grade_level']; ?></td>
                                     <td><?php echo $row['strand_name']; ?></td>
-                                    <td><?php
-                                    /*
-                                    if(empty($row['class_name']) && $row['is_regular'] == 1 ){
-                                        echo "Need Approval";
-                                    }elseif(empty($row['class_name']) && $row['is_regular'] == 3 ){
-                                        echo "IRREGULAR";
-                                    }elseif(empty($row['class_name']) && $row['is_regular'] == 2 ){
-                                        echo "TRANSFEREE";
-                                    }else{
-                                        echo $row['class_name'];
-                                    }
-                                    */
-                                        if(!empty($row['class_name'])){
-                                            echo $row['class_name'];
-                                        }else{
-                                            echo "<b style='color:red'>For Approval</b>";
-                                        }
-                                    ?>
-                                    </td>
 
                                     <td>
                                         <?php if ($row['is_regular'] == 1) { ?>
@@ -345,77 +323,3 @@ include('includes/navbar.php');
         include('includes/scripts.php');
         include('includes/footer.php');
         ?>
-
-            <!--  <td>
-        Edit Pop Up Modal
-        <div class="modal fade" id="edit_studentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Student Information</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <form action="manage-students-function.php" method="POST">
-
-
-                        <div class="modal-body">
-
-                            <input type="hidden" name="edit_ID" id="edit_ID">
-
-
-                            <div class="form-group">
-                                <label for="#">Class - Section</label>
-                                <select name="class_id" class="form-control" required>
-                                    <option value="" disabled selected>Select Class</option>
-                                    <?php
-                                    $query = mysqli_query($conn, "SELECT * FROM class ORDER BY class_name");
-                                    while ($row = mysqli_fetch_array($query)) {
-                                    ?>
-                                        <option value="<?php echo $row['class_id']; ?>"><?php echo $row['class_name']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="#">Learner Reference Number (LRN)</label>
-                                <input type="text" class="form-control" id="edit_lrn" name="lrn" maxlength="13" minlength="13" placeholder="Enter 12-Digit LRN" oninput="formatStudentNumber(this)" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="#">First Name</label>
-                                <input type="text" class="form-control" name="firstname" id="edit_firstname" placeholder="Enter First Name" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="#">Last Name</label>
-                                <input type="text" class="form-control" name="lastname" id="edit_lastname" placeholder="Enter Last Name" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="#">Email</label>
-                                <input type="email" class="form-control" name="email" id="edit_email" placeholder="Enter email" required>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="dob">Date of Birth</label>
-                                <input type="text" class="form-control flatpickr" name="dob" id="edit_dob" required placeholder="Enter Date of Birth">
-                            </div>
-
-
-                        </div>
-                                            
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" name="edit_student" class="btn btn-primary">Update</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>  
-
-        <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_studentModal">Edit</button>
-    </td>-->

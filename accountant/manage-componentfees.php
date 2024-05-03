@@ -48,7 +48,7 @@ include('includes/navbar.php');
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Create New Fee</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Create New Component Fee</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -84,7 +84,7 @@ include('includes/navbar.php');
 
         
             <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
-                        <h1 class="h5 mb-0 text-gray-800">Department List</h1>
+                        <h1 class="h5 mb-0 text-gray-800">Component List</h1>
                     </div>
             <?php
             //Displaying data into tables
@@ -168,7 +168,7 @@ include('includes/navbar.php');
                         </td>
 
                         <td>
-                            <button type ="submit" name = "delete_btn" class = "btn btn-success ">EDIT</button>
+                            <a href="manage-componentfees_bundle.php?component_charge_id=<?php echo $row['component_charge_id']; ?> " class="btn btn-success "> EDIT </a>
 
                         </td>
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
@@ -180,7 +180,7 @@ include('includes/navbar.php');
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Fee</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Component Fee</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
@@ -191,7 +191,7 @@ include('includes/navbar.php');
 
                                         <div class="modal-body">
                                         
-                                                <input type="text" name= "delete_ID" id ="" value="<?php echo $row['component_charge_id']; ?>">
+                                                <input type="hidden" name= "delete_ID" id ="" value="<?php echo $row['component_charge_id']; ?>">
 
                                             <h5>Do you want to delete this Fee?</h5>
 
