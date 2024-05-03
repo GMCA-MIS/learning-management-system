@@ -158,7 +158,7 @@ include('includes/navbar.php');
                             <th>Name</th>
                             <th>Grade</th>
                             <th>Strand</th>
-                            <th>Enrollment</th>
+                            <!--<th>Enrollment</th>-->
                             <th>Enrollment Date</th>
                             <th>Attachment</th>
                             <th>Approval</th>
@@ -187,14 +187,14 @@ include('includes/navbar.php');
                                     <td style="display:none;"><?php echo $row['lastname']; ?></td>
                                     <td><?php echo $row['grade_level']; ?></td>
                                     <td><?php echo $row['strand_name']; ?></td>
-
+                                    <!--
                                     <td>
                                         <?php if ($row['is_regular'] == 1) { ?>
                                             <p>Regular</p>
                                         <?php } else {                        ?>
                                             <p>Irregular</p>
                                         <?php }                               ?>
-                                    </td>
+                                    </td>-->
                                     <td>
                                         <?php echo $row['enrollment_date'] ?>
                                     </td>
@@ -212,17 +212,7 @@ include('includes/navbar.php');
 
                                     </td>
                                     <td>
-                                        <?php
-                                        if ($row['status'] == 1) {
-                                        ?>
-                                            <p>Active</p>     
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <p>Archived</p>
-                                        <?php
-                                        }
-                                        ?>
+                                    <a href="manage-stud-transcation.php.php?student_id=<?php echo $row['student_id']; ?> " class="btn btn-success "> Transactions </a>
                                     </td>
 
                                 </tr>
