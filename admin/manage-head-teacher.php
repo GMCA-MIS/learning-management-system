@@ -222,6 +222,31 @@ include('includes/navbar.php');
                                                                         <input type="text" class="form-control" id="lastname" name="lastname"
                                                                             required placeholder="Enter Last Name" value="<?php echo $row['lastname'];?>">
                                                                     </div>
+                                                                    <!--department-->
+                                                                    
+                                                                    <div class="form-group">
+                                                                    <label for="email">Department Assigned</label>
+
+                                                                    <select class='form-control' name="departmentid" id="" required>
+                                                                    <!-- <option value="" >-- Select Department --</option>-->
+                                                                    <?php 
+                                                                        echo $user_id ;
+                                                                        $querydept = "SELECT *
+                                                                        FROM department where user_id = '' or user_id = '".$row['user_id']."' order by department_id DESC";
+                                                                        $query_rundept = mysqli_query($conn, $querydept);
+
+                                                                        if (mysqli_num_rows($query_rundept) > 0) {
+                                                                            while ($rowdept = mysqli_fetch_assoc($query_rundept)) {
+                                                                                if($row['department_id'] == $rowdept['department_id']){
+                                                                                    echo "<option  value='".$rowdept['department_id']."' selected>".$rowdept['department_name']."</option>";
+                                                                                }else{
+                                                                                    echo "<option  value='".$rowdept['department_id']."'>".$rowdept['department_name']."</option>";
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ?>
+                                                                    </select>
+                                                                    </div>
 
                                                                     <div class="form-group">
                                                                         <label for="email">Username</label>
