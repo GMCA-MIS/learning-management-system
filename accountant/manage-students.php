@@ -212,7 +212,7 @@ include('includes/navbar.php');
 
                                     </td>
                                     <td>
-                                    <a href="manage-stud-transcation.php.php?student_id=<?php echo $row['student_id']; ?> " class="btn btn-success "> Transactions </a>
+                                    <a href="manage-stud-transcation.php?student_id=<?php echo $row['student_id']; ?> " class="btn btn-success "> Transactions </a>
                                     </td>
 
                                 </tr>
