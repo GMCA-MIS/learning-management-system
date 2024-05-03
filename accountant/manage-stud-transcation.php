@@ -6,26 +6,21 @@ include('includes/navbar.php');
 $student_id = $_GET['student_id'];
 
 
-$querydept = "SELECT *   FROM  student  where student_id  = $student_id";
+$querydept = "SELECT *   FROM  student  s INNER JOIN strand st ON s.strand_id = st.id where student_id  = $student_id";
 $query_rundept = mysqli_query($conn, $querydept);
 
 if (mysqli_num_rows($query_rundept) > 0) {
     while ($row = mysqli_fetch_assoc($query_rundept)) {
                     
-            $componenttitle = $row["title"];
-            $componentdescription= $row["description"];
-            $componentdate= $row["created_date"];
+            $firstnamestud = $row["firstname"];
+            $lastnamestud= $row["lastname"];
+            $usernamestud= $row["username"];
+            $strandname= $row["name"];
+            $grade_levelstud= $row["grade_level"];
+            $semesterstud= $row["semester"];
     }
 }
 
-$query ="SELECT SUM(ct.amount) AS totals FROM component_charge_fees ccf INNER JOIN charge_types ct ON ccf.chargetype_id = ct.chargetype_id where component_charge_id = $component_charge_id ";
-$query_rundept = mysqli_query($conn, $query);
-
-if (mysqli_num_rows($query_rundept) > 0) {
-    while ($rowz = mysqli_fetch_assoc($query_rundept)) {
-            $componenttotal = $rowz["totals"];
-    }
-}
 
 
 ?>
@@ -47,7 +42,7 @@ if (mysqli_num_rows($query_rundept) > 0) {
                 
                  <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top: 27px; margin-left: 10px;">
-                        <h1 class="h3 mb-0 text-gray-800">Component Fees</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Student Transactions</h1>
                     </div>
 
 
@@ -124,124 +119,140 @@ if (mysqli_num_rows($query_rundept) > 0) {
                     </div>  <!--modal fade -->
             </td>
         
-            <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
-                <div class="form-group">
-                    <label for="department_name">Component Title:</label>
-                    <input type="text" disabled class="form-control" value="<?php echo $componenttitle; ?>">
+            <div class="container-fluid " style="margin-top: 10px; margin-left: 10px;">
+                <div class="row">
+                    <div class="col-5">
+                        <!-- -->
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <label>LRN:</label>
+                            </div>
+                            <div class="col-5">
+                                <input class="form-control" type="text" value="<?php echo $usernamestud ; ?>" disabled/>
+                            </div>
+                        </div>
+                        <!-- -->
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <label>Student Name:</label>
+                            </div>
+                            <div class="col-5">
+                                <input class="form-control" type="text" value="<?php echo $firstnamestud ." ". $lastnamestud ; ?>" disabled/>
+                            </div>
+                        </div>
+                        <!-- -->
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <label>Grade:</label>
+                            </div>
+                            <div class="col-5">
+                                <input class="form-control" type="text" value="<?php echo $grade_levelstud ; ?>" disabled/>
+                            </div>
+                        </div>
+                        <!-- -->
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <label>Semester:</label>
+                            </div>
+                            <div class="col-5">
+                                <input class="form-control" type="text" value="<?php echo $semesterstud ; ?>" disabled/>
+                            </div>
+                        </div>
+                        <!-- -->
+                    </div>
+                    <div class="col" style="border:1px solid gray;padding:20px;border-radius:5px">
+                        Panel for Component List
+                    </div>                              
                 </div>
             </div>
             <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
-                <div class="form-group">
-                    <label for="department_name">Description:</label>
-                    <textarea disabled class="form-control" cols="50%"><?php echo $componentdescription; ?></textarea>
-                </div>
+                
             </div>
             <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
-                <div class="form-group">
-                    <label for="department_name">Total Fees:</label>
-                    <input type="text" disabled class="form-control" value="₱<?php echo $componenttotal; ?>">
-                </div>
+                
             </div>
         
             <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
-                        <h1 class="h5 mb-0 text-gray-800">List of Fees under Component</h1>                     
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#adddepartment" 
-                            style="margin-bottom: 0;"><i class="fa fa-plus" aria-hidden="true"></i> Include Another Fee</button>
+                        <h1 class="h5 mb-0 text-gray-800">List of Fees under Component</h1>     
+                        <div>                
+                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#adddepartment" 
+                            style="margin-bottom: 0;"><i class="fa fa-plus" aria-hidden="true"></i> Additional Fee</button>
+                        <button type="button" class="btn bg-success text-white " data-toggle="modal" data-target="#adddepartment" 
+                            style="margin-bottom: 0;"><i class="fa fa-plus" aria-hidden="true"></i> Submit Payment</button>
+                        </div>
             </div>
 
-            <?php
-            //Displaying data into tables
-            $query ="SELECT * FROM component_charge_fees ccf INNER JOIN charge_types ct ON ccf.chargetype_id = ct.chargetype_id where component_charge_id = $component_charge_id ORDER BY ccharge_fees_id DESC";
-            $query_run=mysqli_query($conn, $query);
-            ?>
-            <table id = "dataTableID" class="table table-bordered table table-striped" width = "100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Delete</th>                             
-                    </tr>
-                </thead>
-                <tbody>
+            <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Charges</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Payment</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+            </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
                     <?php
-                        if(mysqli_num_rows($query_run) > 0) {
-                            while($row=mysqli_fetch_assoc($query_run))
-                            {
+                    //Displaying data into tables
+                    $query ="SELECT * FROM student_charge sc INNER JOIN charge_types ct ON sc.chargetype_id = ct.chargetype_id WHERE student_id = $student_id ORDER BY stud_charge_id  DESC";
+                    $query_run=mysqli_query($conn, $query);
+                    ?>
+                    <table id = "dataTableID" class="table table-bordered table table-striped" width = "100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fees</th>
+                                <th>Amount</th>                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                if(mysqli_num_rows($query_run) > 0) {
+                                    while($row=mysqli_fetch_assoc($query_run))
+                                    {
+                                        ?>
+                            <tr>
+                                <td><?php echo $row['stud_charge_id']; ?></td>   
+                                <td><?php echo $row['title']; ?></td>
+                                <td> ₱<?php echo $row['amount']; ?></td>
+                            </tr>
+                            <?php
+                                    }
+                                }
+                                else 
+                                {
+                                    echo "No Record Found";
+                                }
                                 ?>
-                    <tr>
-                        <td><?php echo $row['ccharge_fees_id']; ?></td>   
-                        <td><?php echo $row['title']; ?></td>
-                        <td><?php echo $row['purpose']; ?></td>
-                        <td> ₱<?php echo $row['amount']; ?></td>
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                        </tbody>
+                    </table>
 
-                        <td>
-                        </div>
-                        <!--Delete Pop Up Modal -->
-                        <div class="modal fade" id="delete<?php echo $row['ccharge_fees_id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Fee</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">asa...</div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+            </div>
 
-                                <form action="manage-componentfees-func_bundle.php" method = "POST"> 
-
-
-                                        <div class="modal-body">
-                                        
-                                            <input type="hidden" name= "delete_ID" id ="" value="<?php echo $row['ccharge_fees_id']; ?>">
-                                            <input type="hidden" name= "component_charge_id" id ="" value="<?php echo $component_charge_id; ?>">
-
-                                            <h5>Do you want to delete this Fee?</h5>
-
-                
-                                        
-                                        </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" name="deleted_fee" class="btn btn-primary">Confirm</button>
-                                            </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>  
-
-                        <!--  <form action="manage-users-function.php" method = "post"> -->
-                            <!--  <input type = "hidden" name = "delete_id" value="<?php echo $row['Reg_ID']; ?>"> -->
-                                <button type ="submit" name = "delete_btn" class = "btn btn-danger " data-toggle="modal" data-target="#delete<?php echo $row['ccharge_fees_id'];?>">Delete</button>
-                        <!-- </form> -->
-                        </td>
-
-
-                        
-                    </tr>
-                    <?php
-                            }
-                        }
-                        else 
-                        {
-                            echo "No Record Found";
-                        }
-                        ?>
-                </tbody>
-            </table>
+           
     </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
 
     //component_charge_id
     $(document).ready(function () {
 
+        
+        $('pills-tab').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
         document.getElementById("ccid").onchange = previewfee;
         function previewfee(){
 
