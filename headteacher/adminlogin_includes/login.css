@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+
+body{
+  /*  overflow: hidden; */
+   background-color: rgb(0, 0, 0);
+   overflow-x: hidden;
+}
+
+.registration-container{
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.897), rgba(68, 67, 67, 0.892)), url("pup2.jpg") center no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;  
+}
+
+.reg-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 98vh;
+}
+
+.reg-container{
+    position: relative;
+    max-width: 1050px;
+    width: 26%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #121212;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    margin-top: 7%;
+    margin-bottom: 50px;
+    
+}
+.reg-container header{
+    position: relative;
+    font-size: 23px;
+    font-weight: 600;
+    color: #dfdfdf;
+}
+
+.title{
+    border-bottom: 2px solid rgb(107, 10, 10);
+    padding: 2px;
+}
+
+.reg-container form{
+    position: relative;
+    margin-top: 16px;
+    min-height: 36vh; /**/
+    background-color: #121212;
+    overflow-y: hidden;
+    overflow-x: hidden; 
+}
+
+/* .reg-container form::-webkit-scrollbar {
+    display: none;
+  } */
+
+.reg-container form .tab{
+    position: absolute;
+    background-color: #121212;
+}
+
+form.secActive .tab.first{
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+.reg-container form .title{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 6px 0;
+    color: wheat;
+}
+
+.reg-container form .fields{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 10px;
+}
+
+form .fields .input-field{
+    display: flex;
+    width: calc(100% / 1 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+label{
+    color: #ffffff;
+}
+
+.input-field input, select{
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+}
+
+
+.logBtn{
+    width: 97%;
+    display: inline-block;
+    padding: .5rem 2rem;
+    color: rgb(255, 255, 255);
+    font-size: .9rem;
+    border-radius: .5rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    background-color: #500415;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+
+.logtBtn:hover{
+    background-color: maroon;
+}
+
+.RegBtn{
+    display: inline-block;
+    padding: .4rem 2rem;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    background-color: #121212;
+    float: left;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+h4{
+    margin-top: 5%;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.RegBtn:hover{
+    background-color: #103bb4;
+}
+
+
+
+.input-field label{
+    padding-bottom: 10px;
+}
+
+
+a {
+    color: white;
+}
+
+
+.message{
+    position: sticky;
+    top:0; left:0; right:0;
+    padding:15px 10px;
+    background-color: white;
+    text-align: center;
+    z-index: -1;
+    box-shadow: black;
+    color:black;
+    font-size: 20px;
+    text-transform: capitalize;
+    cursor: pointer;
+    margin-top: 4%;
+}
+
+
+.register-here{
+    margin-left: 3px;
+    margin-top: 30px;
+    display: flex;
+}
+
+.register-here p{
+    font-size: 17px;
+    color: white;
+}
+
+.register-underline{
+    display: inline-block;
+    margin-left: 5px;
+    position: relative;
+}
+
+.register-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color:#4c13a7;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.register-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.left{
+    margin-top: 20px;
+    margin-right: -15px;
+    
+}
+
+.left img{
+    object-fit: cover;
+    margin-top: 65px;
+    width: 500px;
+    height: 450px;
+  
+}
+
+.icon{
+    color: white;
+    font-size: 1.1rem;
+}
+
+
+@media (max-width: 1366px) {
+
+    .left img{
+        width: 0px;
+        height: 0px;
+      
+    }
+    .reg-container form::-webkit-scrollbar{
+       display: none;
+    }
+    form .fields .input-field{
+        width: calc(100% / 1 - 15px);
+    }
+
+    /* .reg-body{
+        min-height: 88vh;
+        margin-top: 10px;
+    } */
+
+    .reg-container form{
+    
+        margin-top: 16px;
+        /* min-height: 570px; */
+        min-height: 52vh;
+        
+        background-color: #121212;
+        overflow-y: scroll;
+        overflow-x: hidden; 
+    }
+
+    .reg-container{
+        margin-top: 70px;
+        width: 35%;
+        margin-left: 25px;
+    }
+
+}
+
+@media (max-width: 550px) {
+    form .fields .input-field{
+        width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    .reg-container{
+        margin-top: 70px;
+        width: 100%;
+        margin-left: 25px;
+    }
+}
