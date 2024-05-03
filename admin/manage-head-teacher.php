@@ -147,7 +147,7 @@ include('includes/navbar.php');
                     <?php
                     // Displaying data into tables
                     $query = "SELECT *
-                            FROM users u LEFT JOIN department_id d u.user_id = d.user_id ON where user_type = 'headteacher' order by user_id DESC";
+                            FROM users u LEFT JOIN department d  ON  u.user_id = d.user_id where u.user_type = 'headteacher' order by u.user_id DESC";
                     $query_run = mysqli_query($conn, $query);
                     ?>
 
@@ -159,6 +159,7 @@ include('includes/navbar.php');
                                 <th>User Name</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
+                                <th>Department Assigned</th>
                                 <th>User Type</th>
                                 <th>Actions</th>
                             </tr>
@@ -182,6 +183,9 @@ include('includes/navbar.php');
                                         </td>
                                         <td>
                                             <?php echo $row['lastname']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $row['department_name']; ?>
                                         </td>
                                         <td>
                                             <?php echo $row['user_type']; ?>
