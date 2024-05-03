@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>GMC LMS Admin</title>
+    <title>GMC LMS Accountant</title>
     <link rel="icon" href="img/slshslogo1.png" class="icon">
 
     <!-- Custom fonts -->

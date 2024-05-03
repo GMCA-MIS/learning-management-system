@@ -5,7 +5,7 @@
     <div class="sidebar-brand-icon">
       <img src="img/gmlogo.png" alt="">
     </div>
-    <div class="sidebar-brand-text mx-0">GMC Admin</div>
+    <div class="sidebar-brand-text mx-0">GMC Accountant</div>
   </a>
 
   <!-- Divider -->

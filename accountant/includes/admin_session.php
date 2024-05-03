@@ -3,7 +3,7 @@
 session_start();
 // Check whether the session variable SESS_MEMBER_ID is present or not
 if (!isset($_SESSION['username']) || ($_SESSION['username'] == '')) {
-    header("location: ../login.php"); // Redirect to login page if not logged in
+    header("location: ../newlogin.php"); // Redirect to login page if not logged in
     exit();
 }
 
