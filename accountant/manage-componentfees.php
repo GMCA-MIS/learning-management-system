@@ -54,23 +54,23 @@ include('includes/navbar.php');
                                                 </button>
                                             </div>
 
-                                            <form action="manage-typeoffees-func.php" method="POST">
+                                            <form action="manage-componentfees-func.php" method="POST">
                                                 <div class="modal-body">
                                                 <div class="form-group">
                                                         <label for="department_name">Title</label>
-                                                        <input type="text" class="form-control" id="intitle" name="intitle" required placeholder="Enter Fee's title.">
+                                                        <input type="text" class="form-control" id="intitle" name="intitle" required placeholder="Enter title.">
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="txtpurpose">Description</label>
-                                                        <textarea id="txtpurpose" name="txtdescription" class="form-control" required placeholder="Enter Fee's purpose."></textarea>
+                                                        <label for="txtdescription">Description</label>
+                                                        <textarea id="txtdescription" name="txtdescription" class="form-control" required placeholder="Enter Description."></textarea>
                                                     </div>
                                                     
                                                 </div>
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" name="add_fee" class="btn btn-primary">Submit</button>
+                                                    <button type="submit" name="add_component" class="btn btn-primary">Submit</button>
                                                 </div>
                                             </form>
                                     </div> <!--modal content -->
@@ -176,7 +176,7 @@ include('includes/navbar.php');
                         <td>
                         </div>
                         <!--Delete Pop Up Modal -->
-                        <div class="modal fade" id="deleteDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="delete<?php echo $row['component_charge_id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -191,7 +191,7 @@ include('includes/navbar.php');
 
                                         <div class="modal-body">
                                         
-                                                <input type="hidden" name= "delete_ID" id ="" value="<?php echo $row['chargetype_id']; ?>">
+                                                <input type="text" name= "delete_ID" id ="" value="<?php echo $row['component_charge_id']; ?>">
 
                                             <h5>Do you want to delete this Fee?</h5>
 
@@ -210,7 +210,7 @@ include('includes/navbar.php');
 
                         <!--  <form action="manage-users-function.php" method = "post"> -->
                             <!--  <input type = "hidden" name = "delete_id" value="<?php echo $row['Reg_ID']; ?>"> -->
-                                <button type ="submit" name = "delete_btn" class = "btn btn-danger delete_btn">Delete</button>
+                                <button type ="submit" name = "delete_btn" class = "btn btn-danger " data-toggle="modal" data-target="#delete<?php echo $row['component_charge_id'];?>">Delete</button>
                         <!-- </form> -->
                         </td>
 

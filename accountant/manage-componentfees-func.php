@@ -82,18 +82,17 @@ if (isset($_POST['deleted_fee'])) {
 ?>
 
 <?php
-if(isset($_POST['add_fee']))
+if(isset($_POST['add_component']))
 {
     // Collect form data
     $intitle = $_POST['intitle'];
-    $txtpurpose = $_POST['txtpurpose'];
-    $amountfee = $_POST['amountfee'];
+    $txtdescription = $_POST['txtdescription'];
 
     // Database connection (include your database connection file)
     include('dbcon.php');
 
     // SQL query to insert data into the department table
-    $insertQuery = "INSERT INTO  charge_types  (title, purpose, amount) VALUES ('$intitle', '$txtpurpose', '$amountfee')";
+    $insertQuery = "INSERT INTO  component_charge  (title, `description`, `created_date`) VALUES ('$intitle', '$txtdescription', NOW())";
 
     // Execute the query
     if(mysqli_query($conn, $insertQuery)){
@@ -102,9 +101,9 @@ if(isset($_POST['add_fee']))
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "New Fee added successfully!",
+                    text: "New Component Fee added successfully!",
                 }).then(function(){
-                    window.location.href = "manage-typeoffees.php"; // Redirect to your desired page
+                    window.location.href = "manage-componentfees.php"; // Redirect to your desired page
                 });
               </script>';
     } else {
