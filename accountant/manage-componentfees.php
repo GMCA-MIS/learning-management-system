@@ -186,7 +186,7 @@ include('includes/navbar.php');
                                             </button>
                                         </div>
 
-                                <form action="manage-typeoffees-func.php" method = "POST"> 
+                                <form action="manage-componentfees-func.php" method = "POST"> 
 
 
                                         <div class="modal-body">
