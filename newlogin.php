@@ -26,8 +26,11 @@ if (isset($_SESSION['username'])) {
     } elseif ($_SESSION['user_type'] === 'accountant') { // Add support for 'admin' user type
       header('Location: accountant/index.php');
       exit();
+    } elseif ($_SESSION['user_type'] === 'headteacher') { // Add support for 'admin' user type
+      header('Location: headteacher/index.php');
+      exit();
     } 
-
+    
 
     
 }
@@ -185,6 +188,12 @@ if ($result->num_rows > 0) {
           $_SESSION['username'] = $username;
           $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
           header('Location: accountant/index.php');
+          exit();
+        }elseif($row['user_type']=="headteacher"){
+          $_SESSION['user_type'] = 'headteacher';
+          $_SESSION['username'] = $username;
+          $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
+          header('Location: headteacher/index.php');
           exit();
         }
           
