@@ -81,7 +81,7 @@
   </a>
 </li> -->
 
-  <!-- Nav Item - Pages Collapse Menu -->
+  <!-- 
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-departments.php', 'manage-teachers.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapses" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-chalkboard-teacher"></i>
@@ -95,6 +95,7 @@
       </div>
     </div>
   </li>
+   -->
 
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-class.php', 'manage-students.php'])) echo 'active'; ?>">
@@ -114,45 +115,6 @@
 
 
 
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-courses.php', 'manage-assigncourses.php'])) echo 'active'; ?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapseTwo">
-      <i class='fas fa-book-open'></i>
-      <span>Manage Subjects</span>
-    </a>
-    <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Manage Subjects</h6>
-        <a class="collapse-item" href="manage-courses.php?id=<?php echo $school_year ?>"> <i class='fas fa-book-open'></i> Subject List</a>
-        <a class="collapse-item" href="manage-assigncourses.php?id=<?php echo $school_year ?>"> <i class="fas fa-book-reader" aria-hidden="true"></i> Assign Subject</a>
-      </div>
-    </div>
-  </li>
-  <!--
-  <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-coordinators.php') echo 'active'; ?>">
-    <a class="nav-link" href="manage-coordinators.php?id=<?php echo $school_year ?>">
-      <i class='fas fa-user-alt'></i>
-      <span>Manage Other Users</span>
-    </a>
-  </li>
-    -->
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-coordinators.php','manage-accounts.php'])) echo 'active'; ?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse20" aria-expanded="true" aria-controls="collapseTwo">
-      <i class='fas fa-user-alt'></i>
-      <span>Manage Other Users</span>
-    </a>
-    <div id="collapse20" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Manage Other Users</h6>
-        <a class="collapse-item" href="manage-coordinators.php?id=<?php echo $school_year ?>"> <i class='fas fa-book-open'></i> Manage Librarian</a>
-        <a class="collapse-item" href="manage-accounts.php?id=<?php echo $school_year ?>"> <i class="fas fa-user-alt" aria-hidden="true"></i> Manage Registrar</a>
-      </div>
-    </div>
-  </li>
-  <!-- tor req -->
-
-  <!--  -->
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['tor_admin.php', 'tor_transaction_confirm.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetor" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fas fa-book-open'></i>
@@ -161,7 +123,7 @@
     <div id="collapsetor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Manage TOR Requests</h6>
-        <a class="collapse-item" href="tor_admin.php?id=<?php echo $school_year ?>"> Requests Approval</a>
+        <!-- <a class="collapse-item" href="tor_admin.php?id=<?php echo $school_year ?>"> Requests Approval</a> -->
         <a class="collapse-item" href="tor_transaction_confirm.php?id=<?php echo $school_year ?>"> </i>Payment Confirmation</a>
       </div>
     </div>
