@@ -166,8 +166,6 @@ include('includes/navbar.php');
                             <th>Approval</th>
                             <th>Status</th>
                             <!-- <th>Edit</th> -->
-                            <th>Action</th>
-                            <th>Action</th>
 
 
                             <!--<th colspan ="2">Action</th> Hindi pwedeng may colspan para sa dataTables-->
@@ -249,70 +247,6 @@ include('includes/navbar.php');
                                         ?>
                                     </td>
 
-                                    <td>
-                                    <?php
-                                        if ($row['status'] == 1) {
-                                        ?>
-                                        <!--Delete Pop Up Modal -->
-                                        <div class="modal fade" id="deletestudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Archive User</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="manage-students-function.php" method="POST">
-                                                        <div class="modal-body">
-                                                            <input type="hidden" name="delete_ID" id="delete_ID">
-                                                            <h5>Do you want to archive this data?</h5>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                            <button type="submit" name="archivestudent" class="btn btn-primary">Confirm</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" name="delete_btn" class="btn btn-danger delete_btn">Archive</button>
-
-                                       <?php
-                                        }
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php if($row['grade_level']=="11" && !empty($row['password'])) { ?>
-                                            <button  type="submit" name="" data-toggle="modal" data-target="#modalg12<?php echo $row['student_id']; ?>" class="btn btn-success" style="background-color:#22DD22;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
-                                       <?php }else{ ?>
-                                            <button  type="submit" name="" data-toggle="modal"  class="btn " style="background-color:gray;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>
-                                        <?php } ?>
-
-                                        <div class="modal fade" id="modalg12<?php echo $row['student_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel"><b>PROMOTE</b></h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="manage-students-function.php" method="POST">
-                                                        <div class="modal-body">
-                                                            <input type="hidden" name="student_id" id="student_id" value="<?php echo $row['student_id']  ?>">
-                                                            
-                                                            <h5>Promote <b><?php echo $row['firstname'] . " " . $row['lastname']?></b> to Grade 12</h5>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                            <button type="submit" name="movetograde12" class="btn btn-primary">Confirm</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
                                 </tr>
                         <?php
                             }

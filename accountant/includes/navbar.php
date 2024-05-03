@@ -113,6 +113,21 @@
     </div>
   </li>
 
+  <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-typeoffees.php','manage-componentfees.php'])) echo 'active'; ?>">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetor2" aria-expanded="true" aria-controls="collapseTwo">
+      <i class='fas fa-book-open'></i>
+      <span>Components & Fees</span>
+    </a>
+    <div id="collapsetor2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Components & Fees</h6>
+        <!-- <a class="collapse-item" href="tor_admin.php?id=<?php echo $school_year ?>"> Requests Approval</a> -->
+        <a class="collapse-item" href="manage-typeoffees.php?id=<?php echo $school_year ?>"> </i> - Type Fees</a>
+        <a class="collapse-item" href="manage-componentfees.php?id=<?php echo $school_year ?>"> </i> - Component Fees</a>
+
+      </div>
+    </div>
+  </li>
 
 
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['tor_admin.php', 'tor_transaction_confirm.php'])) echo 'active'; ?>">
