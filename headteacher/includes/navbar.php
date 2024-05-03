@@ -5,7 +5,7 @@
     <div class="sidebar-brand-icon">
       <img src="img/gmlogo.png" alt="">
     </div>
-    <div class="sidebar-brand-text mx-0">GMC Admin</div>
+    <div class="sidebar-brand-text mx-0">GMC Head Teacher</div>
   </a>
 
   <!-- Divider -->
@@ -25,7 +25,7 @@
 
   <!-- Heading -->
   <div class="sidebar-heading">
-    Admin Menu
+    Teacher Menu
   </div>
 
 
@@ -90,7 +90,6 @@
     <div id="collapses" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Manage Teachers</h6>
-        <a class="collapse-item" href="manage-departments.php?id=<?php echo $school_year ?>"> <i class='far fa-building'></i> Department List</a>
         <a class="collapse-item" href="manage-teachers.php?id=<?php echo $school_year ?>"> <i class="fas fa-chalkboard-teacher"></i> Teacher List </a>
       </div>
     </div>
@@ -100,14 +99,12 @@
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-class.php', 'manage-students.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-book-reader" aria-hidden="true"></i>
-      <span>Manage Students</span>
+      <span>Manage Strands</span>
     </a>
     <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Manage Students</h6>
+        <h6 class="collapse-header">Strand List</h6>
         <a class="collapse-item" href="manage-strand.php?id=<?php echo $school_year ?>"> <i class='fas fa-chalkboard'></i> Strand List</a>
-        <a class="collapse-item" href="manage-students.php?id=<?php echo $school_year ?>"><i class="fas fa-book-reader" aria-hidden="true"></i> Student List </a>
-        <a class="collapse-item" href="manage-archive-students.php?id=<?php echo $school_year ?>"><i class="fas fa-book-reader" aria-hidden="true"></i> Archive Student List </a>
       </div>
     </div>
   </li>
@@ -128,64 +125,7 @@
       </div>
     </div>
   </li>
-  <!--
-  <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-coordinators.php') echo 'active'; ?>">
-    <a class="nav-link" href="manage-coordinators.php?id=<?php echo $school_year ?>">
-      <i class='fas fa-user-alt'></i>
-      <span>Manage Other Users</span>
-    </a>
-  </li>
-    -->
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-coordinators.php','manage-accounts.php','manage-head-teacher.php'])) echo 'active'; ?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse20" aria-expanded="true" aria-controls="collapseTwo">
-      <i class='fas fa-user-alt'></i>
-      <span>Manage Other Users</span>
-    </a>
-    <div id="collapse20" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Manage Other Users</h6>
-        <a class="collapse-item" href="manage-coordinators.php?id=<?php echo $school_year ?>"> <i class='fas fa-book-open'></i> Manage Librarian</a>
-        <a class="collapse-item" href="manage-accounts.php?id=<?php echo $school_year ?>"> <i class="fas fa-user-alt" aria-hidden="true"></i> Registrar</a>
-        <a class="collapse-item" href="manage-head-teacher.php?id=<?php echo $school_year ?>"> <i class="fas fa-user-alt" aria-hidden="true"></i> Head Teacher</a>
-      </div>
-    </div>
-  </li>
-  <!-- tor req -->
 
-  <!--  -->
-  <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['tor_admin.php', 'tor_transaction_confirm.php'])) echo 'active'; ?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetor" aria-expanded="true" aria-controls="collapseTwo">
-      <i class='fas fa-book-open'></i>
-      <span>TOR Requests</span>
-    </a>
-    <div id="collapsetor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Manage TOR Requests</h6>
-        <a class="collapse-item" href="tor_admin.php?id=<?php echo $school_year ?>"> Requests Approval</a>
-        <a class="collapse-item" href="tor_transaction_confirm.php?id=<?php echo $school_year ?>"> </i>Payment Confirmation</a>
-      </div>
-    </div>
-  </li>
-
-
-  <!--  -->
-
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['sectors.php', 'offices.php', 'process.php'])) echo 'active'; ?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class='fas fa-school'></i>
-      <span>School</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Select Classification</h6>
-        <a class="collapse-item" href="calendar.php?id=<?php echo $school_year ?>"><i class='far fa-calendar'></i> School Calendar</a>
-        <a class="collapse-item" href="schoolyear.php?id=<?php echo $school_year ?>"><i class='fas fa-graduation-cap'></i> School Year</a>
-        <a class="collapse-item" href="content.php?id=<?php echo $school_year ?>"><i class="fa fa-edit"></i> Website Content</a>
-      </div>
-    </div>
-  </li>
 
 
 
