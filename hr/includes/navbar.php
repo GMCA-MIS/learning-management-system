@@ -5,7 +5,7 @@
     <div class="sidebar-brand-icon">
       <img src="img/gmlogo.png" alt="">
     </div>
-    <div class="sidebar-brand-text mx-0">GMC Admin</div>
+    <div class="sidebar-brand-text mx-0">GMC Human Resource</div>
   </a>
 
   <!-- Divider -->
@@ -25,7 +25,7 @@
 
   <!-- Heading -->
   <div class="sidebar-heading">
-    Admin Menu
+    HR Menu
   </div>
 
 
@@ -36,50 +36,6 @@
   $school_year = $school_year_query_row['school_year_id'];
   ?>
 
-
-  <!-- <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-students.php') echo 'active'; ?>">
-  <a class="nav-link" href="manage-students.php">
-    <i class="fas fa-book-reader" aria-hidden="true"></i>
-    <span>Manage Students</span>
-  </a>
-</li> -->
-
-
-
-  <!-- <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-departments.php') echo 'active'; ?>">
-  <a class="nav-link" href="manage-departments.php">
-  <i class='far fa-building'></i>
-    <span>Departments</span>
-  </a>
-</li> -->
-
-  <!-- <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-class.php') echo 'active'; ?>">
-  <a class="nav-link" href="manage-class.php">
-  <i class='fas fa-chalkboard'></i>
-    <span>Sections</span>
-  </a>
-</li> -->
-
-  <!-- <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-courses.php') echo 'active'; ?>">
-  <a class="nav-link" href="manage-courses.php">
-  <i class='fas fa-book-open'></i>
-    <span>Manage Subjects</span>
-  </a>
-</li>
-
-<li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-assigncourses.php') echo 'active'; ?>">
-  <a class="nav-link" href="manage-assigncourses.php">
-    <i class="fas fa-book-reader" aria-hidden="true"></i>
-    <span>Assign Subjects</span>
-  </a>
-</li> -->
-
-  <!-- <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-teachers.php') echo 'active'; ?>">
-  <a class="nav-link" href="manage-teachers.php">
-  <i class="fas fa-chalkboard-teacher"></i>
-    <span>Manage Teachers</span>
-  </a>
-</li> -->
 
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-departments.php', 'manage-teachers.php'])) echo 'active'; ?>">
@@ -96,7 +52,7 @@
     </div>
   </li>
 
-  <!-- Nav Item - Pages Collapse Menu -->
+  <!-- 
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-class.php', 'manage-students.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-book-reader" aria-hidden="true"></i>
@@ -111,10 +67,10 @@
       </div>
     </div>
   </li>
+  -->
 
 
-
-  <!-- Nav Item - Pages Collapse Menu -->
+  <!--  
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-courses.php', 'manage-assigncourses.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fas fa-book-open'></i>
@@ -128,15 +84,8 @@
       </div>
     </div>
   </li>
-  <!--
-  <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'manage-coordinators.php') echo 'active'; ?>">
-    <a class="nav-link" href="manage-coordinators.php?id=<?php echo $school_year ?>">
-      <i class='fas fa-user-alt'></i>
-      <span>Manage Other Users</span>
-    </a>
-  </li>
-    -->
-    <!-- Nav Item - Pages Collapse Menu -->
+  -->
+    <!--  
     <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-coordinators.php','manage-accounts.php','manage-head-teacher.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse20" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fas fa-user-alt'></i>
@@ -151,9 +100,10 @@
       </div>
     </div>
   </li>
+  -->
   <!-- tor req -->
 
-  <!--  -->
+  <!-- 
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['tor_admin.php', 'tor_transaction_confirm.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetor" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fas fa-book-open'></i>
@@ -167,11 +117,10 @@
       </div>
     </div>
   </li>
+  -->
 
+  <!--  
 
-  <!--  -->
-
-  <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['sectors.php', 'offices.php', 'process.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fas fa-school'></i>
@@ -187,7 +136,7 @@
     </div>
   </li>
 
-
+  -->
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
