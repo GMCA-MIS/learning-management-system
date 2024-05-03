@@ -147,7 +147,7 @@ include('includes/navbar.php');
                     <?php
                     // Displaying data into tables
                     $query = "SELECT *
-                            FROM users where user_type = 'headteacher' order by user_id DESC";
+                            FROM users u LEFT JOIN department_id d u.user_id = d.user_id ON where user_type = 'headteacher' order by user_id DESC";
                     $query_run = mysqli_query($conn, $query);
                     ?>
 
