@@ -161,7 +161,7 @@ if(empty($PAIDTOTAL)){
                                                 </button>
                                             </div>
 
-                                            <form action="manage-stud-transaction-func.php" method="POST">
+                                            <form action="manage-enrolled-trans-func.php" method="POST">
                                                 <div class="modal-body">
                                                     <input type="hidden" name= "student_id" id ="student_id" value="<?php echo $student_id; ?>">
                                                     
@@ -298,7 +298,7 @@ if(empty($PAIDTOTAL)){
                                                     </button>
                                                 </div>
 
-                                                <form action="manage-stud-transaction-func.php" method="POST" id="componentsform">
+                                                <form action="manage-enrolled-trans-func.php" method="POST" id="componentsform">
                                                     <div class="modal-body">
                                                         <label>Are you sure to Include this component Fees?</label>
                                                         <input type="hidden" name= "student_id" id ="student_id" value="<?php echo $student_id; ?>">

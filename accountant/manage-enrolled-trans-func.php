@@ -116,7 +116,7 @@ if(isset($_POST['add_fee']))
                     title: "Success",
                     text: "Included Another Fee successfully!",
                 }).then(function(){
-                    window.location.href = "manage-stud-transcation.php?student_id='.$student_id.'"; // Redirect to your desired page
+                    window.location.href = "manage-enrolled-trans.php?student_id='.$student_id.'"; // Redirect to your desired page
                 });
               </script>';
     } else {
@@ -161,7 +161,7 @@ if(isset($_POST['submit_payment']))
                     title: "Success",
                     text: "Payment Submitted Succesfully !",
                 }).then(function(){
-                    window.location.href = "manage-stud-transcation.php?student_id='.$student_id.'"; // Redirect to your desired page
+                    window.location.href = "manage-enrolled-trans.php?student_id='.$student_id.'"; // Redirect to your desired page
                 });
               </script>';
     } else {
@@ -212,7 +212,7 @@ if(isset($_POST['submit_componentsfees']))
                     title: "Success",
                     text: "Fees under component are succesfully included!",
                 }).then(function(){
-                    window.location.href = "manage-stud-transcation.php?student_id='.$student_id.'"; // Redirect to your desired page
+                    window.location.href = "manage-enrolled-trans.php?student_id='.$student_id.'"; // Redirect to your desired page
                 });
               </script>';
     } else {
