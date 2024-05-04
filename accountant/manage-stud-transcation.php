@@ -20,6 +20,7 @@ if (mysqli_num_rows($query_rundept) > 0) {
             $strandname= $row["name"];
             $grade_levelstud= $row["grade_level"];
             $semesterstud= $row["semester"];
+            $highschool_sector= $row["highschool_sector"];
     }
 }
 
@@ -43,6 +44,18 @@ if (mysqli_num_rows($query_rundept) > 0) {
 }
 
 $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ; 
+if($BALANCETOTAL < 0 ){
+    $BALANCETOTAL = 0;
+}
+
+if(empty($TOTALPAYMENT)){
+    $TOTALPAYMENT = 0;
+}
+if(empty($PAIDTOTAL)){
+    $PAIDTOTAL = 0;
+}
+
+
 
 ?>
 
@@ -203,7 +216,7 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
                     <div class="col-5">
                         <!-- -->
                         <div class="row mb-2">
-                            <div class="col-4">
+                            <div class="col-5">
                                 <label>LRN:</label>
                             </div>
                             <div class="col-6">
@@ -212,7 +225,7 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
                         </div>
                         <!-- -->
                         <div class="row mb-2">
-                            <div class="col-4">
+                            <div class="col-5">
                                 <label>Student Name:</label>
                             </div>
                             <div class="col-6">
@@ -221,7 +234,7 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
                         </div>
                         <!-- -->
                         <div class="row mb-2">
-                            <div class="col-4">
+                            <div class="col-5">
                                 <label>Grade:</label>
                             </div>
                             <div class="col-6">
@@ -230,7 +243,7 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
                         </div>
                         <!-- -->
                         <div class="row mb-2">
-                            <div class="col-4">
+                            <div class="col-5">
                                 <label>Semester:</label>
                             </div>
                             <div class="col-6">
@@ -238,6 +251,14 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
                             </div>
                         </div>
                         <!-- -->
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                <label>High School Sector:</label>
+                            </div>
+                            <div class="col-6">
+                                <input class="form-control" type="text" value="<?php echo $highschool_sector ; ?>" disabled/>
+                            </div>
+                        </div>
                     </div>
                     <div class="col" style="border:1px solid gray;padding:20px;border-radius:5px">
                         <!-- Panel for Component List -->
@@ -347,9 +368,10 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
             <li class="nav-item">
                 <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Payment</a>
             </li>
+            <!--
             <li class="nav-item">
                 <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
-            </li>
+            </li>-->
             </ul>
             <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
