@@ -79,8 +79,6 @@ include('includes/navbar.php');
                                 </div> <!--modal dialog -->
                     </div>  <!--modal fade -->
                     
-                            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#adddepartment" 
-                            style="margin-bottom: 20px;"><i class="fa fa-plus" aria-hidden="true"></i> Add Department</button>
             </td>
         
 
@@ -100,8 +98,6 @@ include('includes/navbar.php');
                         <th>Department ID</th>
                         <th>Department Name</th>
                         <th>Person In-charge</th>
-                        <th>Edit</th>
-                        <th>Delete</th>                             
                     </tr>
                 </thead>
                 <tbody>
@@ -116,90 +112,7 @@ include('includes/navbar.php');
                         <td><?php echo $row['department_name']; ?></td>
                         <td><?php echo $row['firstname'] . " " . $row['lastname']; ?></td>
 
-                       
-
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-                        <td>
-                            <!--Edit Pop Up Modal -->
-                            <div class="modal fade" id="editManageDepartments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Department Information</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-
-                                    <form action="manage-departments-function.php" method = "POST"> 
-
-                                        <div class="modal-body">
-
-                                                <input type="hidden" name= "edit_ID" id ="edit_ID">
-
-                                                <div class="form-group">
-                                                    <label for="#">Department Name</label>
-                                                    <input type="text" class="form-control" id="edit_Department_Name" name="department_name" required>
-                                                </div>
-
-                                        </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" name="update_departments" class="btn btn-primary">Update</button>
-                                                </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>  
-
-                            <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#editManageDepartments " >Edit</button>
-                        </td>
-
-                        <td>
-                        </div>
                         
-
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-                        <!--Delete Pop Up Modal -->
-                        <div class="modal fade" id="deleteDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-
-                                <form action="manage-departments-function.php" method = "POST"> 
-
-
-                                        <div class="modal-body">
-                                        
-                                                <input type="hidden" name= "delete_ID" id ="delete_ID">
-
-                                            <h5>Do you want to delete this data?</h5>
-
-                
-                                        
-                                        </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" name="deletedepartment" class="btn btn-primary">Confirm</button>
-                                            </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>  
-
-                        <!--  <form action="manage-users-function.php" method = "post"> -->
-                            <!--  <input type = "hidden" name = "delete_id" value="<?php echo $row['Reg_ID']; ?>"> -->
-                                <button type ="submit" name = "delete_btn" class = "btn btn-danger delete_btn">Delete</button>
-                        <!-- </form> -->
-                        </td>
                     </tr>
                     <?php
                             }

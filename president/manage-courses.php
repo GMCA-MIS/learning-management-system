@@ -109,8 +109,6 @@ include('includes/navbar.php');
                                 </div> <!--modal dialog -->
                     </div>  <!--modal fade -->
                     
-                            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#add_courseModal" 
-                            style="margin-bottom: 20px;"><i class="fa fa-plus" aria-hidden="true"></i> Add Subject</button>
             </td>
         
 
@@ -133,9 +131,7 @@ include('includes/navbar.php');
                        
                         <th>Type</th>
                         <th>Track</th>
-                        <th>Description</th>
-                        <th>Edit</th>
-                        <th>Delete</th>                             
+                        <th>Description</th>                          
                     </tr>
                 </thead>
                 <tbody>
@@ -154,124 +150,6 @@ include('includes/navbar.php');
                         <td><?php echo $row['description']; ?></td>
 
                        
-
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-                        <td>
-                            <!--Edit Pop Up Modal -->
-                            <div class="modal fade" id="edit_courseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Subject Information</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-
-                                    <form action="manage-courses-function.php" method = "POST" enctype="multipart/form-data"> 
-
-                                        <div class="modal-body">
-
-                                                <input type="hidden" name= "edit_ID" id ="edit_ID">
-                                                <input type="hidden" name= "get_id" value = <?php echo $id?>>
-                                                <div class="form-group">
-                                                    <label for="course_code">Subject Code</label>
-                                                    <input type="text" class="form-control" id="edit_course_code" name="course_code" required placeholder="Enter Subject Code">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="course_title">Subject Title</label>
-                                                    <input type="text" class="form-control" id="edit_course_title" name="course_title" required placeholder="Enter Subject Title">
-                                                </div>
-
-                                                 <div class="form-group">
-                                                    <label for="course_type">Subject Type</label>
-                                                        <select type="text" class="form-control" id="edit_course_type" name="course_type" required placeholder="Enter Subject Type">
-                                                            <option class="form-control" disabled selected> Select Subject Type </Option>
-                                                            <option class="form-control" value = "Core"> Core </Option>
-                                                            <option class="form-control" value = "Applied"> Applied </Option>
-                                                            <option class="form-control" value = "Specialized"> Specialization </Option>
-                                                        <select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                        <label for="track">Track Type</label>
-                                                        <select type="text" class="form-control" id="edit_track" name="track" required placeholder="Enter Track Type">
-                                                            <option class="form-control" disabled selected> Select Subject Track </Option>
-                                                            <option class="form-control" value = "Academic"> Academic </Option>
-                                                            <option class="form-control" value = "TVL"> Technical-Vocational-Livelihood (TVL) </Option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="form-group" style="width: 100%;">
-                                                        <span class="details">Description</span>
-                                                        <!-- Textarea for Description -->
-                                                        <textarea  style="width: 100%;" rows= "6" id="edit_description" name="description"></textarea>
-                                                    </div>
-                                                    <div class="form-group" style="width: 100%;">
-                                                        <span class="details">Subject Photo :</span>
-                                                        <input type="file" class="form-control" name="images" id="images" >
-                                                    </div>
-
-
-                                        </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" name="edit_course" class="btn btn-primary">Update</button>
-                                                </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>  
-
-                            <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_courseModal ">Edit</button>
-                        </td>
-
-                        <td>
-                        </div>
-                        
-
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-                        <!--Delete Pop Up Modal -->
-                        <div class="modal fade" id="delete_courseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-
-                                <form action="manage-courses-function.php" method = "POST"> 
-
-
-                                        <div class="modal-body">
-                                        
-                                                <input type="hidden" name= "delete_ID" id ="delete_ID">
-                                                <input type="hidden" name= "get_id" value = <?php echo $id?>>
-                                            <h5>Do you want to delete this data?</h5>
-
-                
-                                        
-                                        </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" name="delete_course" class="btn btn-primary">Confirm</button>
-                                            </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>  
-
-                     
-                         
-                                <button type ="submit" name = "delete_btn" class = "btn btn-danger delete_btn">Delete</button>
-                   
-                        </td>
                     </tr>
                     <?php
                             }

@@ -124,7 +124,6 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Manage Subjects</h6>
         <a class="collapse-item" href="manage-courses.php?id=<?php echo $school_year ?>"> <i class='fas fa-book-open'></i> Subject List</a>
-        <a class="collapse-item" href="manage-assigncourses.php?id=<?php echo $school_year ?>"> <i class="fas fa-book-reader" aria-hidden="true"></i> Assign Subject</a>
       </div>
     </div>
   </li>
@@ -155,7 +154,7 @@
   </li>
   <!-- tor req -->
 
-  <!--  -->
+  <!--  
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['tor_admin.php', 'tor_transaction_confirm.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetor" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fas fa-book-open'></i>
@@ -169,7 +168,7 @@
       </div>
     </div>
   </li>
-
+-->
   <!--  -->
     <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-stud-population.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsanalaytics" aria-expanded="true" aria-controls="collapseTwo">
