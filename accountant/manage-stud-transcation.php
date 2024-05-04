@@ -232,7 +232,48 @@ if (mysqli_num_rows($query_rundept) > 0) {
                     </table>
 
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">asa...</div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <?php
+                    //Displaying data into tables
+                    $query ="SELECT * FROM student_payment WHERE student_id = $student_id ORDER BY stud_payment_id  DESC";
+                    $query_run=mysqli_query($conn, $query);
+                    ?>
+                    <table id = "dataTableID" class="table table-bordered table table-striped" width = "100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Submitted Date</th>
+                                <th>Amount</th>        
+                                <th>Status</th>         
+                                <th>Remarks</th>                     
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                if(mysqli_num_rows($query_run) > 0) {
+                                    while($row=mysqli_fetch_assoc($query_run))
+                                    {
+                                        ?>
+                            <tr>
+                                <td><?php echo $row['stud_payment_id ']; ?></td>   
+                                <td><?php echo $row['payment_date']; ?></td>
+                                <td> ₱<?php echo $row['payment_amount']; ?></td>
+                                <td> ₱<?php echo $row['status']; ?></td>
+                                <td> ₱<?php echo $row['remarks']; ?></td>
+                            </tr>
+                            <?php
+                                    }
+                                }
+                                else 
+                                {
+                                    echo "No Record Found";
+                                }
+                                ?>
+                        </tbody>
+                    </table>
+                
+
+            </div>
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
             </div>
 
