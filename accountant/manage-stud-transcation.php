@@ -76,7 +76,7 @@ if (mysqli_num_rows($query_rundept) > 0) {
 
                                             <form action="manage-componentfees-func_bundle.php" method="POST">
                                                 <div class="modal-body">
-                                                    <input type="hidden" name= "component_charge_id" id ="component_charge_id" value="<?php echo $component_charge_id; ?>">
+                                                    <input type="hidden" name= "studen_id" id ="studen_id" value="<?php echo $student_id; ?>">
 
                                                     <select class='form-control' name="ccid" id="ccid" required>
                                                         <option value="" >-- Select Fees --</option>
@@ -95,16 +95,16 @@ if (mysqli_num_rows($query_rundept) > 0) {
 
                                                     <div class="form-group">
                                                         <label for="department_name">Title</label>
-                                                        <input type="text" disabled class="form-control" id="intitle" name="intitle" required placeholder="Enter title.">
+                                                        <input type="text" readonly class="form-control" id="intitle" name="intitle" required placeholder="Enter title.">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="txtdescription">Description</label>
-                                                        <textarea id="txtdescription" disabled name="txtdescription" class="form-control" required placeholder="Enter Description."></textarea>
+                                                        <textarea id="txtdescription" readonly name="txtdescription" class="form-control" required placeholder="Enter Description."></textarea>
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label for="department_name">Amount</label>
-                                                        <input type="text" disabled class="form-control" id="amount" name="amount" required placeholder="Enter title.">
+                                                        <input type="text" readonly class="form-control" id="amount" name="amount" required placeholder="Enter title.">
                                                     </div>
                                                     
                                                 </div>
