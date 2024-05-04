@@ -95,14 +95,21 @@ include('includes/navbar.php');
                 <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
                     <h1 class="h5 mb-0 text-gray-800">Strand List</h1>
                 </div>
+
                 
+                <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
+                        <canvas id="myChart"></canvas>
+                </div>
+                
+
             </div>
         </div>
 
 
 
 
-        <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
         <?php
         include('includes/scripts.php');
         include('includes/footer.php');
@@ -113,7 +120,57 @@ include('includes/navbar.php');
 
 
         <script>
+
             $(document).ready(function() {
+
+                const ctx = document.getElementById('myChart');
+
+
+                
+                $.ajax({
+                url: 'parse-chart-v1.php?specific_strand_population=3',
+                type: "GET",
+                dataType: "text",
+                success: function (data) {
+                       
+                    const datas = JSON.parse(data);
+                    new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                    labels: datas.map(row => row.year),
+                    datasets: [{
+                        label: 'Population growth under strand',
+                        data: datas.map(row => row.count),
+                        borderWidth: 1,
+                        backgroundColor: '#9BD0F5',
+                    }]
+                        },
+                        options: {
+                        scales: {
+                            y: {
+                            beginAtZero: true
+                            }
+                        }
+                        }
+                    });
+                    
+                }});
+               
+                
+                /*
+                const data = [
+                    { year: 2010, count: 10 },
+                    { year: 2011, count: 20 },
+                    { year: 2012, count: 15 },
+                    { year: 2013, count: 25 },
+                    { year: 2014, count: 22 },
+                    { year: 2015, count: 30 },
+                    { year: 2016, count: 28 },
+                ];
+                */
+                
+                
+
 
                 $('.edit_btn').on('click', function() {
 
