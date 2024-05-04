@@ -141,7 +141,7 @@ include('includes/navbar.php');
                 $query = "SELECT student.*, class.class_name, strand.name as strand_name FROM student
                 LEFT JOIN class ON student.class_id = class.class_id
                 LEFT JOIN strand ON strand.id = student.strand_id 
-                WHERE student.status=1 ORDER BY student.student_id DESC";
+                WHERE student.status=3 ORDER BY student.student_id DESC";
                 
                 $query_run = mysqli_query($conn, $query);
                 ?>

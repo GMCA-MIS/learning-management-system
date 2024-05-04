@@ -147,7 +147,7 @@
 
   <!--  -->
 
-  <!-- Nav Item - Pages Collapse Menu -->
+  <!-- Nav Item - Pages Collapse Menu 
   <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['sectors.php', 'offices.php', 'process.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fas fa-school'></i>
@@ -162,7 +162,7 @@
       </div>
     </div>
   </li>
-
+-->
 
 
   <!-- Sidebar Toggler (Sidebar) -->

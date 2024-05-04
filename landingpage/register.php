@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 include('dbcon.php');
-echo $datesubmmited = date('Y-m-d');
+ $datesubmmited = date('Y-m-d');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -178,8 +178,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
         // Insert student data into the database
-        $sql = "INSERT INTO student ( lastname, firstname, middle_initial, extended_name, gender , nationality, dob, pob, house_street, region, city, barangay, contact, email, guardian_name , guardian_relation , guardian_contact  , grade_level , strand_id ,  semester,  username,  highschool,  highschool_address, enrollment_date, highschool_sector) 
-        VALUES ( '$lastname', '$firstname', '$middle_initial', '$extended_name',  '$gender', '$nationality', '$dob', '$pob', '$streetaddress', '$data_region', '$data_cities', '$data_brgy', '$contact', '$email',  '$guardianname', '$guardianrelation', '$guardiancontact', '$grade_level', '$course' , '$semester' , '$lrn','$highschool', '$highschool_address','$datesubmmited','$highschool_sector')";
+        $sql = "INSERT INTO student ( lastname, firstname, middle_initial, extended_name, gender , nationality, dob, pob, house_street, region, city, barangay, contact, email, guardian_name , guardian_relation , guardian_contact  , grade_level , strand_id ,  semester,  username,  highschool,  highschool_address, enrollment_date, highschool_sector,`status`) 
+        VALUES ( '$lastname', '$firstname', '$middle_initial', '$extended_name',  '$gender', '$nationality', '$dob', '$pob', '$streetaddress', '$data_region', '$data_cities', '$data_brgy', '$contact', '$email',  '$guardianname', '$guardianrelation', '$guardiancontact', '$grade_level', '$course' , '$semester' , '$lrn','$highschool', '$highschool_address','$datesubmmited','$highschool_sector',3)";
         if (mysqli_query($conn, $sql)) {
             // Get the ID of the inserted student record
             $inserted_id = mysqli_insert_id($conn);
@@ -219,14 +219,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             require 'includes/Exception.php';
 
             $email_body = "Hi, $firstname $lastname,<br><br>";
-            $email_body .= "Your commitment to furthering your education with us is truly commendable, and we are thrilled to have you join our community of passionate learners. At Golden Minds Colleges And Academy we strive to provide an enriching and supportive environment where every student can thrive academically, socially, and personally.<br>";
-            $email_body .= "By choosing to embark on this journey with us, you have placed your trust in our faculty, staff, and resources, and we are fully dedicated to helping you achieve your goals and aspirations. Whether you're pursuing your academic interests, developing new skills, or preparing for your future career, we are here to support you every step of the way.<br>";
-            $email_body .= "To complete the enrollment process, we kindly ask you to upload your payment confirmation using the following link: <br>";
-            $email_body .= '<a href="https://gmca.online/landingpage/uploadpayment.php?uppstdid=' . $inserted_id . '">Upload Payment Confirmation</a><br>';
-            $email_body .= "You can check your enrollment form by following the link: <br>";
-            $email_body .= '<a href="https://gmca.online/landingpage/enrollment_form.php?id=' . $inserted_id . '">Enrollment Form</a>';
-            $email_body .= "To complete the enrollment process, we kindly ask you to upload your payment confirmation using the following link: <br>";
-            $email_body .= "<br>";
+            //$email_body .= "Your commitment to furthering your education with us is truly commendable, and we are thrilled to have you join our community of passionate learners. At Golden Minds Colleges And Academy we strive to provide an enriching and supportive environment where every student can thrive academically, socially, and personally.<br>";
+            //$email_body .= "By choosing to embark on this journey with us, you have placed your trust in our faculty, staff, and resources, and we are fully dedicated to helping you achieve your goals and aspirations. Whether you're pursuing your academic interests, developing new skills, or preparing for your future career, we are here to support you every step of the way.<br>";
+            //$email_body .= "To complete the enrollment process, we kindly ask you to upload your payment confirmation using the following link: <br>";
+            //$email_body .= '<a href="https://gmca.online/landingpage/uploadpayment.php?uppstdid=' . $inserted_id . '">Upload Payment Confirmation</a><br>';
+           // $email_body .= "You can check your enrollment form by following the link: <br>";
+            //$email_body .= '<a href="https://gmca.online/landingpage/enrollment_form.php?id=' . $inserted_id . '">Enrollment Form</a>';
+           // $email_body .= "To complete the enrollment process, we kindly ask you to upload your payment confirmation using the following link: <br>";
+           // $email_body .= "<br>";
+            $email_body .= "We received your application and is currently being processed, we will notify you of the status of your admission once reviewed.\n";
+            $email_body .= "\n";
+            $email_body .= "Thank you for furthering your education with us, we are thrilled to have you join our community of passionate learners. \n";
+            $email_body .= "\n\n";
+
+            
+
+
 
             if(!$cor_uploaded || !$good_moral_uploaded ){
 
@@ -243,6 +251,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $email_body .= "Thank you! <br>";
 
             }
+            $email_body .= "Golden Minds Colleges and Academy\n";
+            $email_body .= "Registrar Office”\n";
 
 
             $mail = new PHPMailer();

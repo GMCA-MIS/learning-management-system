@@ -21,6 +21,7 @@ if (mysqli_num_rows($query_rundept) > 0) {
             $grade_levelstud= $row["grade_level"];
             $semesterstud= $row["semester"];
             $studstrand = $row["name"];
+            $studhighschool_sector = $row["highschool_sector"];
     }
 }
 
@@ -257,6 +258,15 @@ if(empty($PAIDTOTAL)){
                             </div>
                             <div class="col-6">
                                 <input class="form-control" type="text" value="<?php echo $studstrand ; ?>" disabled/>
+                            </div>
+                        </div>
+                        <!-- -->
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                <label>High School Sector:</label>
+                            </div>
+                            <div class="col-6">
+                                <input class="form-control" type="text" value="<?php echo $studhighschool_sector ; ?>" disabled/>
                             </div>
                         </div>
                     </div>
