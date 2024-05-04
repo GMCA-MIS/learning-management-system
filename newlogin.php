@@ -32,6 +32,9 @@ if (isset($_SESSION['username'])) {
     } elseif ($_SESSION['user_type'] === 'humanresource') { // Add support for 'admin' user type
       header('Location: hr/index.php');
       exit();
+    } elseif ($_SESSION['user_type'] === 'president') { // Add support for 'admin' user type
+      header('Location: president/index.php');
+      exit();
     } 
     
     
@@ -204,10 +207,16 @@ if ($result->num_rows > 0) {
           $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
           header('Location: hr/index.php');
           exit();
+        }elseif($row['user_type']=="president"){
+          $_SESSION['user_type'] = 'president';
+          $_SESSION['username'] = $username;
+          $_SESSION['user_id'] = $row['user_id']; // Include user_id in the session
+          header('Location: president/index.php');
+          exit();
         }
           
         
-
+        
 
       }else{
 
