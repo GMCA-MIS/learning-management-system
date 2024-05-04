@@ -229,6 +229,42 @@ if(isset($_POST['submit_componentsfees']))
     // Close the database connection
     mysqli_close($conn);
 }
+
+if(isset($_POST['update_paymentid']))
+{
+    // Collect form data
+    $paymentid = $_POST['paymentid'];
+    $student_id = $_POST['student_id'];
+    
+    $querydept = "UPDATE student_payment SET status = 'Paid' WHERE stud_payment_id = $paymentid";
+    $query_rundept = mysqli_query($conn, $querydept);
+
+    // Execute the query
+    if($query_rundept){
+        // Data inserted successfully
+        echo '<script>
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "Successfully set PAID the transaction!",
+                }).then(function(){
+                    window.location.href = "manage-enrolled-trans.php?student_id='.$student_id.'"; // Redirect to your desired page
+                });
+              </script>';
+    } else {
+        // Error occurred while inserting data
+        echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Error: ' . mysqli_error($conn) . '",
+                });
+              </script>';
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
 ?>
 </body>
 </html>

@@ -20,7 +20,7 @@ if (mysqli_num_rows($query_rundept) > 0) {
             $strandname= $row["name"];
             $grade_levelstud= $row["grade_level"];
             $semesterstud= $row["semester"];
-            $highschool_sector= $row["highschool_sector"];
+            $studstrand = $row["name"];
     }
 }
 
@@ -253,10 +253,10 @@ if(empty($PAIDTOTAL)){
                         <!-- -->
                         <div class="row mb-2">
                             <div class="col-5">
-                                <label>High School Sector:</label>
+                                <label>Strand:</label>
                             </div>
                             <div class="col-6">
-                                <input class="form-control" type="text" value="<?php echo $highschool_sector ; ?>" disabled/>
+                                <input class="form-control" type="text" value="<?php echo $studstrand ; ?>" disabled/>
                             </div>
                         </div>
                     </div>
@@ -427,11 +427,13 @@ if(empty($PAIDTOTAL)){
                             <tr>
                                 <th>ID</th>
                                 <th>Submitted Date</th>
-                                <th>Amount</th>          
+                                <th>Amount</th>         
+                                <th>Payment Type</th>          
                                 <th>Rerefence Number</th>        
                                 <th>Remarks</th>        
                                 <th>Status</th>      
-                                <th>Handled By</th>                    
+                                <th>Handled By</th>   
+                                <th></th>                   
                             </tr>
                         </thead>
                         <tbody>
@@ -444,10 +446,50 @@ if(empty($PAIDTOTAL)){
                                 <td><?php echo $row['stud_payment_id']; ?></td>   
                                 <td><?php echo $row['payment_date']; ?></td>
                                 <td> ₱<?php echo $row['payment_amount']; ?></td>
+                                <td> <?php echo $row['payment_type']; ?></td>
                                 <td> <?php echo $row['referencenumber']; ?></td>
                                 <td> <?php echo $row['remarks']; ?></td>
-                                <td> <?php echo $row['status']; ?></td>
+                                <td> 
+                                    <?php 
+                                        echo $row['status']; 
+                                    ?>
+                                </td>
                                 <td> <?php echo $row['handled_by']; ?></td>
+                                <td>
+                                <?php if($row['status'] == 'Pending'){ ?>
+                                <button type="button" class="btn bg-success text-white " data-toggle="modal" data-target="#approvedtransaction<?php echo $row['stud_payment_id']; ?>" 
+                                        style="margin-bottom: 0;">Received</button>
+                                <?php } ?>
+
+
+                                        <div class="modal fade" id="approvedtransaction<?php echo $row['stud_payment_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Update Payment Status</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <form action="manage-enrolled-trans-func.php" method="POST" id="componentsform">
+                                                        <div class="modal-body">
+                                                            <label>Are you sure to update the payment?</label>
+                                                            <input type="hidden" name= "student_id" id ="student_id" value="<?php echo $student_id; ?>">
+                                                            <input type="text" name= "paymentid" id ="paymentid" value="<?php echo $row['stud_payment_id']; ?>">
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" name="update_paymentid" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                    </div> <!--modal content -->
+                                                    </div> <!--modal dialog -->
+                                            </div>  <!--modal fade -->
+                                            
+                                        </div>
+                                </td>
                             </tr>
                             <?php
                                     }
