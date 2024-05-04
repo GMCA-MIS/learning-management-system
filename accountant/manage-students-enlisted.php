@@ -141,7 +141,7 @@ include('includes/navbar.php');
                 $query = "SELECT student.*, class.class_name, strand.name as strand_name FROM student
                 LEFT JOIN class ON student.class_id = class.class_id
                 LEFT JOIN strand ON strand.id = student.strand_id 
-                WHERE student.status=1 ORDER BY student.student_id DESC";
+                WHERE student.status=3 ORDER BY student.student_id DESC";
                 
                 $query_run = mysqli_query($conn, $query);
                 ?>
@@ -157,12 +157,14 @@ include('includes/navbar.php');
                             <th style="display:none;">Lastname</th>
                             <th>Name</th>
                             <th>Grade</th>
+                            <th>Semester</th>
                             <th>Strand</th>
                             <!--<th>Enrollment</th>-->
                             <th>Enrollment Date</th>
+                            <th>High School Sector</th>
                             <th>Attachment</th>
                             <th>Approval</th>
-                            <th></th>
+                            <th>Action</th>
                             <!-- <th>Edit</th> -->
 
 
@@ -186,30 +188,20 @@ include('includes/navbar.php');
                                     <td style="display:none;"><?php echo $row['firstname']; ?></td>
                                     <td style="display:none;"><?php echo $row['lastname']; ?></td>
                                     <td><?php echo $row['grade_level']; ?></td>
+                                    <td><?php echo $row['semester']; ?></td>
+
                                     <td><?php echo $row['strand_name']; ?></td>
-                                    <!--
-                                    <td>
-                                        <?php if ($row['is_regular'] == 1) { ?>
-                                            <p>Regular</p>
-                                        <?php } else {                        ?>
-                                            <p>Irregular</p>
-                                        <?php }                               ?>
-                                    </td>-->
                                     <td>
                                         <?php echo $row['enrollment_date'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['highschool_sector'] ?>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-secondary attachment-btn" data-student-id="<?php echo $row['student_id']; ?>" style="color:white">Attachment</button>
                                     </td>
                                     <td>
-                                    <?php if (empty($row['password'])) {    ?>
                                             <button type="submit" name="approval" class="btn btn-success" style="background-color:#22DD22;color:white;border:none" data-toggle="modal" data-target="#approveModal" onclick="doapprovedModal(<?php echo $row['student_id']; ?>)">Approve</button>
-                                    <?php } else {                           ?>
-                                            <p>Approved</p>
-
-                                    <?php  }                                ?>
-                                    
-
                                     </td>
                                     <td>
                                     <a href="manage-stud-transcation.php?student_id=<?php echo $row['student_id']; ?> " class="btn btn-success "> Transactions </a>
@@ -253,7 +245,7 @@ include('includes/navbar.php');
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" name="approve_student" class="btn btn-primary">Confirm</button>
+                            <button type="submit" name="move_to_registrar" class="btn btn-primary">Confirm</button>
                         </div>
                     </form>
                 </div>

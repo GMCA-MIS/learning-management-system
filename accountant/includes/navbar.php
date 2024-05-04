@@ -98,7 +98,7 @@
    -->
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-students-enlisted.php', 'manage-students.php'])) echo 'active'; ?>">
+  <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-students-enlisted.php', 'manage-students.php','manage-stud-transcation.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-book-reader" aria-hidden="true"></i>
       <span>Manage Transactions</span>

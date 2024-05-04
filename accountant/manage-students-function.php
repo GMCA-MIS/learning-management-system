@@ -651,158 +651,129 @@
     ?>
 <?php
     //PROMOTE / MOVE to GRADE 12
-    if (isset($_POST['movetograde12'])) //Button Name
+    if (isset($_POST['move_to_registrar'])) //Button Name
     {   
         //declare parameters
-        $student_id = $_POST['student_id'];
-        $class_id = "";
-        $class_name  = "";
-        $strand = "";
+        //Public & Private
+        $approvedinputid = $_POST['approvedinputid'];
+        $highschool_sector = ""; 
+        $studfname = ""; 
+        $studlname = ""; 
+        $studemail = "";
+        $total_balance = 0;
+        $paidamount = 0;
+        $total_fees = 0;
+        
 
-        // get active school year
-        $query = "SELECT school_year_id FROM school_year WHERE status = 1";
+        // send warning no fees added to student
+        $query = "SELECT * FROM student_charge WHERE student_id = $approvedinputid ";
         $result = mysqli_query($conn, $query);
-        if (mysqli_num_rows($result) != 0) {
-            while ($rowsclass = mysqli_fetch_array($result)) {
-                $school_year_id = $rowsclass['school_year_id'];
-            }
-        }
-
-        // get student information and class info
-        $query = "SELECT student_id,s.class_id,grade_level,class_name,strand 
-                    FROM student s 
-                    INNER JOIN class c 
-                    ON s.class_id = c.class_id 
-                    WHERE student_id = $student_id ";
-        $result = mysqli_query($conn, $query);
-        if (mysqli_num_rows($result) != 0)
+        if (mysqli_num_rows($result) <= 0)
         {
             while ($rowstudent = mysqli_fetch_array($result)) {
-                $student_id = $rowstudent['student_id'];
-                $class_id = $rowstudent['class_id'];
-                $grade_level = $rowstudent['grade_level'];
-                $class_name = $rowstudent['class_name'];
-                $strand = $rowstudent['strand'];
             }
-        }
-        
-        // divide the section
-        $classname_exploded = explode("-",$class_name);
-        $class_shortname = $classname_exploded[0];
-        $class_grade = $classname_exploded[1];
-        $class_section = $classname_exploded[2];
-
-        // check if student section is still grade 11
-        if($class_grade == "11" ){
-            $query = "SELECT class_id FROM class WHERE class_name = '$class_shortname-12-$class_section' ";
-            $result = mysqli_query($conn, $query);
-            if (mysqli_num_rows($result) != 0) {
-                // found existing class
-                while ($rowsclass12 = mysqli_fetch_array($result)) {
-                   
-                   echo $class_id12 = $rowsclass12['class_id'];
-
-                    // Check if the class_id exists in teacher_class table
-                    $check_class_query = "SELECT teacher_class_id, teacher_id FROM teacher_class WHERE class_id = '$class_id12'";
-                    $result = mysqli_query($conn, $check_class_query);
-
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        // If the class_id exists in teacher_class table
-                        $row = mysqli_fetch_assoc($result);
-                        $teacher_class_id = $row['teacher_class_id'];
-                        $teacher_id = $row['teacher_id'];
-
-                        // Insert data into teacher_class_student table
-                        $insert_student_class_query = "INSERT INTO teacher_class_student (teacher_class_id, student_id, teacher_id)   VALUES ('$teacher_class_id', '$student_id', '$teacher_id')";
-                        $insert_student_class_result = mysqli_query($conn, $insert_student_class_query);
-                    }
-                    // insert student to class
-                    $queryaw1 = "INSERT student_class SET student_id='$student_id', class_id ='$class_id12'";
-                    mysqli_query($conn, $queryaw1);
-                    // insert student
-                    $queryaw = "UPDATE student SET class_id = '$class_id12' , grade_level = '12' WHERE student_id='$student_id' ";
-                    if(mysqli_query($conn, $queryaw)){
-                        echo '<script>Swal.fire({
-                            title: "Success",
-                            text: "Student has been promoted successfully!",
-                            icon: "success",
-                            confirmButtonText: "OK",
-                            timer: 3000,
-                            allowOutsideClick: false
-                        }).then(function() {
-                            window.location.href = "manage-students.php";
-                        });</script>';
-                    }
-
-                }
-            }else{ 
-                // no existing class NEED TO generate new class
-                $query = "INSERT INTO  class (class_name,strand,school_year_id,status) VALUES('$class_shortname-12-$class_section','$strand',$school_year_id,1) ";
-                $result = mysqli_query($conn, $query);
-                $class_id12 = $conn->insert_id;
-
-                $queryaw1 = "INSERT student_class SET student_id='$student_id', class_id ='$class_id12'";
-                mysqli_query($conn, $queryaw1);
-                    
-                $queryaw = "UPDATE student SET class_id ='$class_id12', grade_level = '12' WHERE student_id='$student_id'";
-                if(mysqli_query($conn, $queryaw)){
-                    echo '<script>
-                    
-                    Swal.fire({
-                        title: "Success",
-                        text: "Student has been promoted successfully!",
-                        icon: "success",
-                        confirmButtonText: "OK",
-                        timer: 3000,
-                        allowOutsideClick: false
-                    }).then(function() {
-                        Swal.fire({
-                            title: "Warning",
-                            text: "New Class is generated, Please assigned Teachers!",
-                            icon: "warning",
-                            confirmButtonText: "OK",
-                            timer: 3000,
-                            allowOutsideClick: false
-                        }).then(function() {
-                            window.location.href = "manage-students.php";
-                        });
-
-                    });
-                    
-                    </script>';
-                }
-
-                
-
-            }
-        }
-
-        
-        
-
-
-        //$query = "UPDATE student SET username='$lrn', firstname='$firstname', lastname='$lastname', email='$email', class_id='$class_id', dob ='$dob' WHERE student_id='$id'  ";
-       // $query_run = mysqli_query($conn, $query);
-        /*
-        if ($query_run) {
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
             echo '<script>Swal.fire({
-                title: "Success",
-                text: "User has been updated successfully!",
-                icon: "success",
-                confirmButtonText: "OK"
+                title: "Warning",
+                text: "Please setup Student Fees before approving!",
+                icon: "warning",
+                confirmButtonText: "OK",
+                timer: 6000,
+                allowOutsideClick: false
             }).then(function() {
-                window.location.href = "manage-students.php";
+                window.location.href = "manage-students-enlisted.php";
             });</script>';
-        } else {
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-            echo '<script>Swal.fire({
-                title: "Error",
-                text: "Failed to update user!",
-                icon: "error",
-                confirmButtonText: "OK"
-            });</script>';
-        } */
+            exit();
+        }else{
+
+        // run if fees is setup for student
+
+            $query = "SELECT * FROM student WHERE student_id = $approvedinputid ";
+            $result = mysqli_query($conn, $query);
+            if (mysqli_num_rows($result) > 0)
+            {
+                while ($rowstudent = mysqli_fetch_array($result)) {
+                     $highschool_sector = $rowstudent['highschool_sector'];
+                     $studfname = $rowstudent['firstname'];
+                     $studlname = $rowstudent['lastname'];
+                     $studemail = $rowstudent['email'];
+
+                }
+            }
+            $query = "UPDATE student SET status=1 WHERE student_id = $approvedinputid ";
+            $result = mysqli_query($conn, $query);
+
+            $email_body = "Dear $studfname $studlname,\n\n";
+            $email_body .= "Your application has beed processed by accounting department.\n";
+            $email_body .= "\n";
+            $email_body .= "Please see your Tuition Fees:\n";
+
+            $query = "SELECT * FROM student_charge sc INNER JOIn charge_types ct ON sc.chargetype_id = ct.chargetype_id
+                WHERE student_id = $approvedinputid ORDER BY ct.amount ASC ";
+            $result = mysqli_query($conn, $query);
+            if (mysqli_num_rows($result) > 0)
+            {
+                while ($rowz = mysqli_fetch_array($result)) {
+                    $email_body .=  " - " .$rowz['title']. " : ₱ " . $rowz['amount'] . "\n";
+                    $total_fees = $total_fees + $rowz['amount'];
+                }
+            }
+            $query = "SELECT * FROM student_payment WHERE student_id = $approvedinputid and status='Paid'";
+            $result = mysqli_query($conn, $query);
+            if (mysqli_num_rows($result) > 0)
+            {
+                while ($rowz = mysqli_fetch_array($result)) {
+                    $paidamount = $paidamount + $rowz['payment_amount'];
+                }
+            }
+
+            $total_balance = $total_fees - $paidamount ; 
+            if($total_balance < 0){
+                $total_balance = 0;
+            }
+            $email_body .= "\nPaid Amount: ₱ $paidamount \n";
+            $email_body .= "Total Balance: ₱ $total_balance \n\n";
+            $email_body .= "Golden Minds Colleges and Academy\n ";
+            $email_body .= "Accounting Office”\n";
+
+            
+
+
+            
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = "tls";
+            $mail->Port = 587;
+            $mail->Username = "crustandrolls@gmail.com";
+            $mail->Password = "dqriavmkaochvtod";
+            $mail->setFrom("crustandrolls@gmail.com", "Golden Minds Colleges");
+            $mail->addAddress($studemail);
+            $mail->CharSet = "UTF-8";
+            $mail->Subject = "LMS Student Tuition Fees";
+            $mail->Body = $email_body;
+            
+            // Check if mail sent successfully
+            if ($mail->send()) {
+                echo '<script>
+                Swal.fire({
+                    title: "Success",
+                    text: "Student has been approved successfully, Move to Registrar now!",
+                    icon: "success",
+                    confirmButtonText: "OK",
+                    timer: 3000
+                }).then(function() {
+                    window.location.href = "manage-students-enlisted.php";
+                    
+                });
+                </script>';
+                exit;
+            } else {
+                echo '<script>alert("Error sending email: ' . $mail->ErrorInfo . '");</script>';
+            }
+
+
+        }
     }
     ?>
 </body>
