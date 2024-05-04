@@ -247,33 +247,64 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
                                 <label>Component Fees:</label>
                             </div>
                             <div class="col-6">
-                                <select class='form-control mb-2' name="ccid" id="ccid" required>
+                                <select class='form-control mb-2' form="componentsform" name="componentchargeiddrop" id="componentchargeiddrop" required>
                                     <option value="" >-- Select Fees --</option>
                                     <?php 
                                         $querydept = "SELECT *
-                                        FROM  charge_types ";
+                                        FROM  component_charge ";
                                         $query_rundept = mysqli_query($conn, $querydept);
 
                                         if (mysqli_num_rows($query_rundept) > 0) {
                                             while ($rowdept = mysqli_fetch_assoc($query_rundept)) {
-                                                echo "<option  value='".$rowdept['chargetype_id']."'>".$rowdept['title']."</option>";
+                                                echo "<option  value='".$rowdept['component_charge_id']."'>".$rowdept['title']."</option>";
                                             }
                                         }
                                     ?>
                                 </select>
                             </div>
+                            
                             <div class="col-3">
-                                    <button type="submit" name="add_fee" class="btn btn-primary">Include Fees</button>
-                            </div>
+                                <button type="button" class="btn btn-danger text-white" data-toggle="modal" data-target="#component" 
+                                style="margin-bottom: 0;" id="compobutton">Include Fees</button>
+
+                                    <div class="modal fade" id="component" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Include Component Fees</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+
+                                                <form action="manage-stud-transaction-func.php" method="POST" id="componentsform">
+                                                    <div class="modal-body">
+                                                        <label>Are you sure to Include this component Fees?</label>
+                                                        <input type="hidden" name= "student_id" id ="student_id" value="<?php echo $student_id; ?>">
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" name="submit_componentsfees" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </form>
+                                                </div> <!--modal content -->
+                                                </div> <!--modal dialog -->
+                                        </div>  <!--modal fade -->
+                                            
+                                    </div>
                         </div>
                         <hr style="boarder: 2px solid gray">
-
+                        <div class="row overflow-auto "  id="tablecompo" style="height:100px;display: flex;">
+                                    
+                            
+                        </div>
                     </div>                              
                 </div>
             </div>
             <hr style="border: 2px solid gray"> 
             <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
-                        <h1 class="h5 mb-0 text-gray-800">List of Fees under Component</h1>     
+                        <h1 class="h5 mb-0 text-gray-800">List of Transactions</h1>     
                         <div>                
                         <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#adddepartment" 
                             style="margin-bottom: 0;"><i class="fa fa-plus" aria-hidden="true"></i> Additional Fee</button>
@@ -288,7 +319,7 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
                                 <label>Total Fees:</label>
                             </div>
                             <div class="col-5">
-                                <input class="form-control" type="text" value="<?php echo $TOTALPAYMENT ; ?>" disabled/>
+                                <input class="form-control" type="text" value="₱<?php echo $TOTALPAYMENT ; ?>" disabled/>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -296,7 +327,7 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
                                 <label>Total Paid:</label>
                             </div>
                             <div class="col-5">
-                                <input class="form-control" type="text" value="<?php echo $PAIDTOTAL ; ?>" disabled/>
+                                <input class="form-control" type="text" value="₱<?php echo $PAIDTOTAL ; ?>" disabled/>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -304,14 +335,14 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
                                 <label>Total Balance :</label>
                             </div>
                             <div class="col-5">
-                                <input class="form-control" type="text" value="<?php echo $BALANCETOTAL ; ?>" disabled/>
+                                <input class="form-control" type="text" value="₱<?php echo $BALANCETOTAL ; ?>" disabled/>
                             </div>
                         </div>
             </div>
 
             <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Charges</a>
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Fees</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Payment</a>
@@ -431,6 +462,31 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
             e.preventDefault()
             $(this).tab('show')
         })
+        document.getElementById("compobutton").disabled = true; 
+
+        
+
+        //components
+        document.getElementById("componentchargeiddrop").onchange = previewcomponentfees;
+        function previewcomponentfees(){
+            if(this.value==""){
+                document.getElementById("compobutton").disabled = true; 
+
+                document.getElementById("tablecompo").innerHTML= "";
+            }else{
+                document.getElementById("compobutton").disabled = false; 
+
+                $.ajax({
+                url: 'manage-component-fees-list.php?component_charge_id='+this.value,
+                type: "GET",
+                dataType: "text",
+                success: function (data) {
+                        document.getElementById("tablecompo").innerHTML= data;
+
+                }});
+            }
+        }
+        //fees
         document.getElementById("ccid").onchange = previewfee;
         function previewfee(){
 
@@ -438,7 +494,6 @@ $BALANCETOTAL = $TOTALPAYMENT - $PAIDTOTAL ;
             //alert(this.value);
 
             if(this.value == ""){
-                
                 $('#intitle').val("");
                 $('#amount').val("");
                 $('#txtdescription').val("");

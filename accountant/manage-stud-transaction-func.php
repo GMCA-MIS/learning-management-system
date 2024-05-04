@@ -178,6 +178,57 @@ if(isset($_POST['submit_payment']))
     // Close the database connection
     mysqli_close($conn);
 }
+
+
+if(isset($_POST['submit_componentsfees']))
+{
+    // Collect form data
+    $componentchargeiddrop = $_POST['componentchargeiddrop'];
+    $student_id = $_POST['student_id'];
+    
+    $querydept = "SELECT *
+    FROM  component_charge_fees cc INNER JOIN charge_types ct ON cc.chargetype_id = ct.chargetype_id WHERE cc.component_charge_id = $componentchargeiddrop ";
+    $query_rundept = mysqli_query($conn, $querydept);
+
+    if (mysqli_num_rows($query_rundept) > 0) {
+        while ($rowdept = mysqli_fetch_assoc($query_rundept)) {
+            
+            $insertQuery = "INSERT INTO  student_charge  (chargetype_id, `student_id`, `amount`, `chargeby`, created_date) 
+            VALUES ('".$rowdept['chargetype_id']."','".$student_id."', '".$rowdept['amount']."','$firstname $lastname',NOW())";
+            mysqli_query($conn, $insertQuery);
+
+        }
+    }
+
+    
+
+
+    // Execute the query
+    if($query_rundept){
+        // Data inserted successfully
+        echo '<script>
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "Fees under component are succesfully included!",
+                }).then(function(){
+                    window.location.href = "manage-stud-transcation.php?student_id='.$student_id.'"; // Redirect to your desired page
+                });
+              </script>';
+    } else {
+        // Error occurred while inserting data
+        echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Error: ' . mysqli_error($conn) . '",
+                });
+              </script>';
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
 ?>
 </body>
 </html>
