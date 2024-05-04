@@ -26,7 +26,7 @@ include('includes/navbar.php');
                 
                  <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top: 27px; margin-left: 10px;">
-                        <h1 class="h3 mb-0 text-gray-800">Manage Teachers</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Manage Materials</h1>
                     </div>
 
 
@@ -118,57 +118,36 @@ include('includes/navbar.php');
                                 </div> <!--modal dialog -->
                     </div>  <!--modal fade -->
                     
-                            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#addinstructormodal" 
-                            style="margin-bottom: 20px; "><i class="fa fa-plus" aria-hidden="true"></i> Add Teacher</button>
+                           <!-- <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#addinstructormodal" 
+                            style="margin-bottom: 20px; "><i class="fa fa-plus" aria-hidden="true"></i> Add Teacher</button>-->
             </td>
-            <div class="form-group">
-                <label>Add teachers via .csv file</label>
-                <form method="post" action="manage-teachers-csv.php" enctype="multipart/form-data">
-                    <input type="file" id="csvFile" placeholder="Upload .csv file" name="file" accept=".csv" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px;">
-                    <button type="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading..." id="uploadBtn" disabled>Upload</button>
-                </form>
-            </div>
 
             <div class="card-body">
             <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
-                        <h1 class="h5 mb-0 text-gray-800">Teacher List</h1>
+                        <h1 class="h5 mb-0 text-gray-800">Pending Material List <b style='color:red'>[ Please Approved ]</b></h1>
                     </div>
                     <?php
                     // Displaying data into tables
-                    $query = "SELECT t.*, d.department_name 
-                            FROM teacher t
-                            INNER JOIN department d ON t.department_id = d.department_id ORDER BY t.teacher_id DESC"; // Assuming 'department_id' is the foreign key linking teacher and department tables
+                    $query = "SELECT * FROM files f INNER JOIN teacher t ON f.teacher_id = t.teacher_id
+                        WHERE `status` = '' "; 
                     $query_run = mysqli_query($conn, $query);
                     ?>
             
-            <script>
-                document.getElementById('csvFile').addEventListener('change', function() {
-                    const uploadBtn = document.getElementById('uploadBtn');
-                    if (this.files.length !== 0 && this.files[0].name.endsWith('.csv')) {
-                        uploadBtn.disabled = false;
-                    } else {
-                        uploadBtn.disabled = true;
-                    }
-                });
-            </script>
 
             <table id = "dataTableID" class="table table-bordered table table-striped" width = "100%" cellspacing="0">
                 <thead>
                          <tr>
                     
                       
-                            <th style="display:none;">Teacher ID </th>
-                            <th style="display:none;">Teacher ID </th>
-                            <th style="display:none;">Teacher ID </th>
-                            <th style="display:none;">Teacher ID </th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Department</th>
-                            <th>Email</th>
-                            <th>Date of Birth</th>
-                            <th>Specialization</th>
-                            <th>Edit</th>
+                            <th>Material ID </th>
+                            <th>Material Name</th>
+                            <th>Description</th>
+                            <th>Uploaded Date</th>
+                            <th>Link</th>
+                            <th>Teacher ID</th>
+                            <th>Teacher Name</th>
                             <th>Action</th>
+                            
                          </tr>
                 </thead>
                 <tbody>
@@ -180,94 +159,29 @@ include('includes/navbar.php');
                                 ?>
                     <tr>
                 
-                        <td style="display: none;"><?php echo $row['teacher_id']; ?></td>
-                        <td style="display:none;"><?php echo $row['firstname'];?></td>
-                        <td style="display:none;"><?php echo $row['lastname'];?></td>
-                        <td style="display:none;"><?php echo $row['email'];?></td>
-                        <td><?php echo $row['firstname'];?></td>
-                        <td><?php echo $row['lastname'];?></td>
-                        <td><?php echo $row['department_name']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td><?php echo $row['dob']; ?></td>
-                        <td><?php echo $row['specialization']; ?></td>
+                        <td><?php echo $row['file_id'];?></td>
+                        <td><?php echo $row['fname'];?></td>
+                        <td><?php echo $row['fdesc']; ?></td>
+                        <td><?php echo $row['fdatein']; ?></td>
+                        <td><?php
+                         $fileLocationWithNames = $row['floc'];
+                         $fileLocations = json_decode($fileLocationWithNames, true);
 
+                         
+                         if (is_array($fileLocations)) {
 
-                        
+                            
+                            foreach ($fileLocations as $file) {
+                                $filename = basename($file);
+                        ?>
+                               <a href="//docs.google.com/gview?url=https://gmca.online/uploads/<?php echo $file; ?>&embedded=true" download="<?php echo $filename; ?>" class="pdf-link">Downloadable File: Link <!--<?php echo $filename; ?>--> </a>
 
-                        <td>
-                            <!--Edit Pop Up Modal -->
-                            <div class="modal fade" id="editinstructorsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Teacher Information</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-
-                                <form action="manage-teachers-function.php" method = "POST"> 
-
-
-                                        <div class="modal-body">
-                                        
-                                                <input type="hidden" name= "edit_ID" id ="edit_ID">
-                                                <input type="hidden" name= "user_type" id ="user_type">
-                                        
-
-                                                <div class="form-group">
-                                                    <label for="#">Department</label>
-                                                    <select name="department_id" id ="edit_department" class="form-control" required>
-                                                                        <option value="" disabled selected>Select Department</option>
-                                                                        <?php
-                                                                        $query = mysqli_query($conn, "SELECT * FROM department ORDER BY department_name");
-                                                                        while ($row = mysqli_fetch_array($query)) {
-                                                                        ?>
-                                                                        <option value="<?php echo $row['department_id']; ?>"><?php echo $row['department_name']; ?></option>
-                                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label for="#">First Name</label>
-                                                    <input type="text" class="form-control" name="firstname" id="edit_firstname">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="#">Last Name</label>
-                                                    <input type="text" class="form-control" name="lastname" id="edit_lastname">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="#">Email</label>
-                                                    <input type="email" class="form-control" name="email" id="edit_email">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="dob">Date of Birth</label>
-                                                    <input type="text" class="form-control flatpickrz" id="edit_dob" name="dob" required placeholder="Enter Date of Birth">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="specialization">Specialization </label>
-                                                    <input type="text" class="form-control" id="edit_specialization" name="specialization" required placeholder="Enter Specialization(s)">
-                                                </div>
-
-                                        
-                                        </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" name="edit_instructors" class="btn btn-primary">Update</button>
-                                            </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>  
-
-                            <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#editManageUsersModal " >Edit</button>
-                        </td>
-
+                        <?php
+                            }
+                         }
+                        ?></td>
+                        <td><?php echo $row['teacher_id']; ?></td>
+                        <td><?php echo $row['firstname'] . " " . $row['lastname'];  ?></td>
                         <td> 
                         </div>
                         <!--Delete Pop Up Modal -->
@@ -275,20 +189,20 @@ include('includes/navbar.php');
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Approved Material</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
 
-                                <form action="manage-teachers-function.php" method = "POST"> 
+                                <form action="manage-materials-func.php" method = "POST"> 
 
 
                                         <div class="modal-body">
                                         
                                                 <input type="hidden" name= "delete_ID" id ="delete_ID">
 
-                                            <h5>Do you want to delete this data?</h5>
+                                            <h5>Please press Confirm to Approved.</h5>
 
                 
                                         
@@ -296,7 +210,7 @@ include('includes/navbar.php');
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" name="delete_instructors" class="btn btn-primary">Confirm</button>
+                                                <button type="submit" name="approvematerial" class="btn btn-primary">Confirm</button>
                                             </div>
                                     </form>
                                     </div>
@@ -305,7 +219,7 @@ include('includes/navbar.php');
 
                         <!--  <form action="manage-users-function.php" method = "post"> -->
                             <!--  <input type = "hidden" name = "delete_id" value="<?php echo $row['teacher_id']; ?>"> -->
-                            <button type ="submit" name = "delete_btn" class = "btn btn-danger delete_btn">Delete</button>
+                            <button type ="submit" name = "delete_btn" class = "btn btn-success delete_btn">Approved</button>
                         <!-- </form> -->
                         </td>
                     </tr>
