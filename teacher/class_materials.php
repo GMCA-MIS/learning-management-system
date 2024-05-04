@@ -129,7 +129,13 @@ if ($class_row) { ?>
                                     <div class="card mt-3 position-relative">
                                         <div class="card-body">
                                             <h6 class="card-title">
-                                                <?php echo $row['fname']; ?>
+                                                <?php echo $row['fname'];  
+                                                
+                                                if(empty($row['status'])){
+                                                    echo " <b style='color:red'>[ For Approval ]</b>";
+                                                }
+                                                
+                                                ?>
                                             </h6>
                                             <h6 class="card-title">
                                                 <?php echo $row['fdesc']; ?>
