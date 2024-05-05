@@ -274,7 +274,7 @@ include('includes/navbar.php');
                             </div>
                                             -->
 
-                                <div class="col-xl-8 col-md-12 mb-4">
+                                <div class="col-xl-10 col-md-12 mb-4">
                                     <div class="card-body">
                                             <b>TEACHERS UNDER SUBJECTS</b>
                                             <canvas id="listed"></canvas>
@@ -325,7 +325,7 @@ include('includes/navbar.php');
                     type: "GET",
                     dataType: "text",
                     success: function (data) {
-                        alert(data);
+                        //alert(data);
                         
                         const datas = JSON.parse(data);
                         currentchart = new Chart(ctx, {
