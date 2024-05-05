@@ -64,7 +64,13 @@ include('dbcon.php');
         $email = $_POST['email'];
         $dob = $_POST['dob'];
         $user_type = $_POST['user_type'];
-        $specialization = $_POST['specialization'];
+
+        
+        $specialization = "";
+        
+        foreach ($_POST['specialization'] as $a){
+            $specialization .=  $a . ",";
+       }
       
         $query = "UPDATE teacher SET department_id='$department_id', firstname='$firstname', lastname='$lastname', email='$email', dob ='$dob', user_type='teacher', specialization='$specialization' WHERE teacher_id='$id'";
         $query_run = mysqli_query($conn, $query);
@@ -101,7 +107,13 @@ if (isset($_POST['add_instructor'])) {
     $email = $_POST['email'];
     $dob = $_POST['dob'];
     $user_type = $_POST['user_type'];
-    $specialization = $_POST['specialization'];
+
+    $objarray1 = array();
+    $objarray1 = $_POST['specialization'];
+    $specialization = "" ; 
+    foreach ($objarray1 as $a){
+        $specialization .=  $a . ",";
+    }
 
     // Define the characters to use in the random password
     $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';

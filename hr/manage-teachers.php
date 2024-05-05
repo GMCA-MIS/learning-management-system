@@ -103,7 +103,17 @@ include('includes/navbar.php');
                                                          
                                                         <div class="form-group">
                                                             <label for="specialization">Specialization </label>
-                                                            <input type="text" class="form-control" id="specialization" name="specialization" required placeholder="Enter Specialization(s)">
+                                                            <!-- <input type="text" class="form-control" id="specialization" name="specialization" required placeholder="Enter Specialization(s)"> -->
+                                                            <select name="specialization[]" id="specialization" class="form-control" multiple>
+                                                                <option value="Applied Economics">Applied Economics</option>
+                                                                <option value="Business Math"  >Business Math</option>
+                                                                <option value="Business Finance" >Business Finance</option>
+                                                                <option value="Philippine Politics and Governance" >Philippine Politics and Governance</option>
+                                                                <option value="Pre-Calculus">Philippine Politics and Governance</option>
+                                                                <option value="General Physics 1">General Physics 1</option>
+                                                                <option value="Social Science">Social Science</option>
+                                                                <option value="General Biology">General Biology</option>
+                                                            </select>
                                                         </div>                       
 
                                                 
@@ -190,13 +200,14 @@ include('includes/navbar.php');
                         <td><?php echo $row['email']; ?></td>
                         <td><?php echo $row['dob']; ?></td>
                         <td><?php echo $row['specialization']; ?></td>
+                        <?php $pieces = explode(",", $row['specialization']); ?>
 
 
                         
 
                         <td>
                             <!--Edit Pop Up Modal -->
-                            <div class="modal fade" id="editinstructorsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="editManageUsersModal<?php echo $row['teacher_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -211,7 +222,7 @@ include('includes/navbar.php');
 
                                         <div class="modal-body">
                                         
-                                                <input type="hidden" name= "edit_ID" id ="edit_ID">
+                                                <input type="hidden" name= "edit_ID" id ="edit_ID" value="<?php echo $row['teacher_id']; ?>">
                                                 <input type="hidden" name= "user_type" id ="user_type">
                                         
 
@@ -221,36 +232,56 @@ include('includes/navbar.php');
                                                                         <option value="" disabled selected>Select Department</option>
                                                                         <?php
                                                                         $query = mysqli_query($conn, "SELECT * FROM department ORDER BY department_name");
-                                                                        while ($row = mysqli_fetch_array($query)) {
+                                                                        while ($rowz = mysqli_fetch_array($query)) {
                                                                         ?>
-                                                                        <option value="<?php echo $row['department_id']; ?>"><?php echo $row['department_name']; ?></option>
+                                                                        <option value="<?php echo $rowz['department_id']; ?>" <?php  if($rowz['department_id'] == $row['department_id']){ echo "selected";} ?>><?php echo $rowz['department_name']; ?></option>
                                                                         <?php } ?>
                                                     </select>
                                                 </div>
                                                 
                                                 <div class="form-group">
                                                     <label for="#">First Name</label>
-                                                    <input type="text" class="form-control" name="firstname" id="edit_firstname">
+                                                    <input type="text" class="form-control" name="firstname" id="edit_firstname" value="<?php echo $row['firstname'] ?>">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="#">Last Name</label>
-                                                    <input type="text" class="form-control" name="lastname" id="edit_lastname">
+                                                    <input type="text" class="form-control" name="lastname" id="edit_lastname" value="<?php echo $row['lastname'] ?>" >
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="#">Email</label>
-                                                    <input type="email" class="form-control" name="email" id="edit_email">
+                                                    <input type="email" class="form-control" name="email" id="edit_email" value="<?php echo $row['email'] ?>" >
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="dob">Date of Birth</label>
-                                                    <input type="text" class="form-control flatpickrz" id="edit_dob" name="dob" required placeholder="Enter Date of Birth">
+                                                    <input type="text" class="form-control flatpickrz" id="edit_dob" name="dob" required placeholder="Enter Date of Birth" value="<?php echo $row['dob'] ?>" >
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="specialization">Specialization </label>
-                                                    <input type="text" class="form-control" id="edit_specialization" name="specialization" required placeholder="Enter Specialization(s)">
+                                                    <!-- <input type="text" class="form-control"  name="specialization" required placeholder="Enter Specialization(s)"> -->
+                                                    <select name="specialization[]" id="" id="" class="form-control" multiple>
+                                                        
+
+                                                        <option value="Applied Economics" <?php if (in_array("Applied Economics", $pieces)) { echo "selected"; } ?> >Applied Economics</option>
+
+                                                        <option value="Business Math"  <?php if (in_array("Business Math", $pieces)) { echo "selected"; } ?> >Business Math</option>
+
+                                                        <option value="Business Finance" <?php if (in_array("Business Finance", $pieces)) { echo "selected"; } ?> >Business Finance</option>
+
+                                                        <option value="Philippine Politics and Governance" <?php if (in_array("Philippine Politics and Governance", $pieces)) { echo "selected"; } ?> >Philippine Politics and Governance</option>
+
+                                                        <option value="Pre-Calculus" <?php if (in_array("Pre-Calculus", $pieces)) { echo "selected"; } ?> >Pre-Calculus</option>
+
+                                                        <option value="General Physics 1" <?php if (in_array("General Physics 1", $pieces)) { echo "selected"; } ?> >General Physics 1</option>
+
+                                                        <option value="Social Science" <?php if (in_array("Social Science", $pieces)) { echo "selected"; } ?> >Social Science</option>
+
+                                                        <option value="General Biology" <?php if (in_array("General Biology", $pieces)) { echo "selected"; } ?> >General Biology</option>
+
+                                                    </select>
                                                 </div>
 
                                         
@@ -265,7 +296,7 @@ include('includes/navbar.php');
                                 </div>
                             </div>  
 
-                            <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#editManageUsersModal " >Edit</button>
+                            <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#editManageUsersModal<?php echo $row['teacher_id'] ;?>" >Edit</button>
                         </td>
 
                         <td> 
