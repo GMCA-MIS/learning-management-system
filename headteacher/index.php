@@ -328,7 +328,7 @@ include('includes/navbar.php');
                     const ctx = document.getElementById('listed');
 
                     $.ajax({
-                    url: 'parse-chart-v2.php?strandspopulation=yes',
+                    url: 'parse-chart-v2.php?teacherspersubjects=yes',
                     type: "GET",
                     dataType: "text",
                     success: function (data) {
