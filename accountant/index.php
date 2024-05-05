@@ -277,8 +277,24 @@ include('includes/navbar.php');
                                     </div>
                                     </a>
                                 </div>
-                            </div>
+                            
+
                                             -->
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card-body">
+                                            <b>ENROLLED STUDENTS</b>
+                                            <canvas id="listed"></canvas>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card-body">
+                                            <b>ENLISTED STUDENTS</b>
+                                            <canvas id="inlisted"></canvas>
+
+                                    </div>
+                                </div>
+
 <style>
     /* Custom CSS for Circular Progress Indicator */
 .progress-circle {
@@ -310,11 +326,79 @@ include('includes/navbar.php');
 
             </div>
             <!-- End of Main Content -->
-
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
             <script>
                 $(document).ready(function(){
-                    $("#section").on('change', function(){
+                    const ctx = document.getElementById('listed');
+                    const ctx2 = document.getElementById('inlisted');
+
+                    var chart1;
+                    var chart2;
+
+
+                    $.ajax({
+                    url: 'parse-chart-v2.php?strandspopulation=yes',
+                    type: "GET",
+                    dataType: "text",
+                    success: function (data) {
+                        //alert(data);
+                        
+                        const datas = JSON.parse(data);
+                        currentchart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                        labels: datas.map(row => row.strand),
+                        datasets: [{
+                            label: 'Population growth under strand',
+                            data: datas.map(row => row.count),
+                            borderWidth: 1,
+                            backgroundColor: '#9BD0F5',
+                        }]
+                            },
+                            options: {
+                            scales: {
+                                y: {
+                                beginAtZero: true
+                                }
+                            }
+                            }
+                        });
+
+                    }});
+                    $.ajax({
+                    url: 'parse-chart-v2.php?inlisted=yes',
+                    type: "GET",
+                    dataType: "text",
+                    success: function (data) {
+                        //alert(data);
+                        
+                        const datas = JSON.parse(data);
+                        currentchart = new Chart(ctx2, {
+                        type: 'bar',
+                        data: {
+                        labels: datas.map(row => row.strand),
+                        datasets: [{
+                            label: 'Population growth under strand',
+                            data: datas.map(row => row.count),
+                            borderWidth: 1,
+                            backgroundColor: '#9BD0F5',
+                        }]
+                            },
+                            options: {
+                            scales: {
+                                y: {
+                                beginAtZero: true
+                                }
+                            }
+                            }
+                        });
+
+                    }});
+
+
+
+                $("#section").on('change', function(){
                         var value = $(this).val();
                         $.ajax({
                             url:"filter.php",
