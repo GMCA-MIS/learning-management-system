@@ -286,6 +286,20 @@ include('includes/navbar.php');
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xl-6 col-md-6 mb-4">
+
+                                <div class="card shadow h-100">
+                                    <div class="card-body">
+                                        <label><b>STUDENTS POPULATION GRAPH</b></label>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                                <!-- income -->
+                                                <canvas id="populationchart"></canvas>
+
+                                                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 <style>
     /* Custom CSS for Circular Progress Indicator */
 .progress-circle {
@@ -325,6 +339,7 @@ include('includes/navbar.php');
 
                 $(document).ready(function(){
                     const ctx = document.getElementById('incomechart');
+                    const ctx2 = document.getElementById('populationchart');
 
 
                     $.ajax({
@@ -332,7 +347,7 @@ include('includes/navbar.php');
                     type: "GET",
                     dataType: "text",
                     success: function (data) {
-                        alert(data);
+                       // alert(data);
                         
                         const datas = JSON.parse(data);
                         currentchart = new Chart(ctx, {
@@ -342,7 +357,8 @@ include('includes/navbar.php');
                         datasets: [{
                             label: 'Population growth under strand',
                             data: datas.map(row => row.count),
-                            borderWidth: 1,
+                            borderWidth: 4,
+                            borderColor: '#36A2EB',
                             backgroundColor: '#9BD0F5',
                         }]
                             },
@@ -357,6 +373,36 @@ include('includes/navbar.php');
 
                     }});
 
+                    $.ajax({
+                    url: 'parse-chart-v2.php?strandspopulation=yes',
+                    type: "GET",
+                    dataType: "text",
+                    success: function (data) {
+                       // alert(data);
+                        
+                        const datas = JSON.parse(data);
+                        currentchart = new Chart(ctx2, {
+                        type: 'bar',
+                        data: {
+                        labels: datas.map(row => row.strand),
+                        datasets: [{
+                            label: 'Population growth under strand',
+                            data: datas.map(row => row.count),
+                            borderWidth: 1,
+                            borderColor: '#36A2EB',
+                            backgroundColor: '#9BD0F5',
+                        }]
+                            },
+                            options: {
+                            scales: {
+                                y: {
+                                beginAtZero: true
+                                }
+                            }
+                            }
+                        });
+
+                    }});
 
 
                     $("#section").on('change', function(){

@@ -19,3 +19,22 @@ if (isset($_GET['allincome'])) {
     }
 
 } 
+
+if (isset($_GET['strandspopulation'])) {
+
+    $querydept = "SELECT COUNT(*) as countstudent , `name`  FROM student  s INNER JOIN strand sta ON s.strand_id = sta.id WHERE s.status=1  GROUP BY strand_id ;";
+    
+    $query_rundept = mysqli_query($conn, $querydept);
+
+    if (mysqli_num_rows($query_rundept) > 0) {
+        while ($row = mysqli_fetch_assoc($query_rundept)) {
+
+            array_push($jsonarray, array( 
+                "strand" => $row['name'], 
+                "count" => $row['countstudent'] ));
+        }
+        echo json_encode($jsonarray);
+    }
+
+} 
+
