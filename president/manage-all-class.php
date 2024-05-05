@@ -102,8 +102,6 @@ include('includes/navbar.php');
                 <th>Section</th>
                 <th>Track-Strand</th>
                 <th>Status</th>
-                <th>Edit</th>
-                <th>Delete</th>
                 <th>View</th>
             </tr>
         </thead>
@@ -124,93 +122,7 @@ include('includes/navbar.php');
                         <?php
                         } ?>
                     </td>
-                    <td>
-                        <!--Edit Pop Up Modal -->
-                        <div class="modal fade" id="edit_classModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Edit Section Information</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
 
-                                    <form action="manage-class-function.php" method="POST">
-
-                                        <div class="modal-body">
-
-                                            <input type="hidden" name="edit_ID" id="edit_ID">
-
-                                            <div class="form-group">
-                                                <label for="strand">Track / Strand</label>
-                                                <!-- <select type="text" class="form-control" id="edit_strand" name="strand" required placeholder="Enter Strand Type">
-                                                    <option class="form-control" disabled selected> Select Track / Strand </Option>
-                                                    <option class="form-control" value="Academic-ABM"> Academic-ABM </Option>
-                                                    <option class="form-control" value="Academic-HUMSS"> Academic-HUMSS </Option>
-                                                    <option class="form-control" value="TVL-ICT"> TVL-ICT </Option>
-                                                    <option class="form-control" value="TVL-HE"> TVL-HE </Option>
-                                                    <option class="form-control" value="TVL-CSS"> TVL-CSS </Option>
-                                                    <option class="form-control" value="TVL-ANIMATION"> TVL-Animation </Option>
-                                                </select> -->
-                                                <input type="text" class="form-control" id="edit_Process_Name" name="class_name" required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="#">Section Name</label>
-                                                <input type="text" class="form-control" id="edit_Class_Name" name="class_name" required>
-                                            </div>
-
-
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" name="edit_class" class="btn btn-primary">Update</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit_classModal ">Edit</button>
-                    </td>
-
-                    <td>
-                        <!--Delete Pop Up Modal -->
-                            <div class="modal fade" id="delete_class" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Section</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-
-                                        <form action="manage-class-function.php" method="POST">
-
-
-                                            <div class="modal-body">
-
-                                                <input type="hidden" name="delete_ID" id="delete_ID">
-
-                                                <h5>Do you want to remove this section?</h5>
-
-
-
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" name="delete_class" class="btn btn-primary">Confirm</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        <button type="submit" name="delete_btn" class="btn btn-danger delete_btn">Delete</button>
-                    </td>
                     <td width="15%">
                         <a href="classprofile.php?class_id=<?php echo $row['class_id']; ?>" class="btn btn-secondary">View Student List</a>
                     </td>

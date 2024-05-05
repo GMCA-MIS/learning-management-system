@@ -141,7 +141,6 @@ include('includes/navbar.php');
                      
 
                         <!-- Total Students Card-->
-                            <!--
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-sector shadow h-100 py-2">
                                 <a href="manage-students.php">
@@ -171,9 +170,7 @@ include('includes/navbar.php');
                                     </a> 
                                 </div>
                             </div>
-                            -->
                             <!-- Total Instructors Card -->
-                            <!--
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-office shadow h-100 py-2">
                                 <a href="manage-teachers.php">
@@ -203,9 +200,7 @@ include('includes/navbar.php');
                                      </a>
                                 </div>
                             </div>
-                            -->
                              <!-- Total Class Card -->
-                             <!--
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card shadow h-100">
                                 <a href="manage-all-class.php">
@@ -240,9 +235,7 @@ include('includes/navbar.php');
                                     </a>
                                 </div>
                             </div>
-                                            -->
                              <!-- Total Departments Card -->
-                             <!--
                              <div class="col-xl-3 col-md-6 mb-4">
 
                                 <div class="card shadow h-100">
@@ -277,7 +270,22 @@ include('includes/navbar.php');
                                     </a>
                                 </div>
                             </div>
-                            -->
+                             <!-- Income -->
+
+                            <div class="col-xl-6 col-md-6 mb-4">
+
+                                <div class="card shadow h-100">
+                                    <div class="card-body">
+                                        <label><b>INCOME GRAPH</b></label>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                                <!-- income -->
+                                                <canvas id="incomechart"></canvas>
+
+                                                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 <style>
     /* Custom CSS for Circular Progress Indicator */
 .progress-circle {
@@ -309,10 +317,48 @@ include('includes/navbar.php');
 
             </div>
             <!-- End of Main Content -->
-
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
             <script>
+
+
                 $(document).ready(function(){
+                    const ctx = document.getElementById('incomechart');
+
+
+                    $.ajax({
+                    url: 'parse-chart-v2.php?allincome=yes',
+                    type: "GET",
+                    dataType: "text",
+                    success: function (data) {
+                        alert(data);
+                        
+                        const datas = JSON.parse(data);
+                        currentchart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                        labels: datas.map(row => row.year),
+                        datasets: [{
+                            label: 'Population growth under strand',
+                            data: datas.map(row => row.count),
+                            borderWidth: 1,
+                            backgroundColor: '#9BD0F5',
+                        }]
+                            },
+                            options: {
+                            scales: {
+                                y: {
+                                beginAtZero: true
+                                }
+                            }
+                            }
+                        });
+
+                    }});
+
+
+
                     $("#section").on('change', function(){
                         var value = $(this).val();
                         $.ajax({

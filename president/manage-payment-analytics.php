@@ -161,28 +161,13 @@ include('includes/navbar.php');
 
                     valuestrand = strand.options[strand.selectedIndex].value;
                     valuerange = range.options[range.selectedIndex].value;
-                    valuegender = gender.options[gender.selectedIndex].value;
-                    valuegrade = grade.options[grade.selectedIndex].value;
+                    //valuegender = gender.options[gender.selectedIndex].value;
+                    //valuegrade = grade.options[grade.selectedIndex].value;
                     // clear previos chart
                     if (currentchart) {    
                         currentchart.destroy();  
                     }
-                    if(valuerange != ""){
-                        parameter = parameter + "&range=" +  valuerange ; 
-                    }
-                    if(valuegender != ""){
-                        parameter = parameter + "&gender=" +  valuegender ; 
-                    }
-                    if(valuegrade != ""){
-                        parameter = parameter + "&grade=" +  valuegrade ; 
-                    }
-
-                    if(valuestrand =='ALL'){
-                        bargraph("strand=ALL" + parameter);
-
-                    }else if(valuestrand !='ALL' ){
-                        linegraph("strand="+valuestrand + parameter);
-                    }
+                     
                 }
                 function bargraph(value){
                     
@@ -216,52 +201,7 @@ include('includes/navbar.php');
 
                     }});
                 }
-                function linegraph(value){
 
-                     $.ajax({
-                     url: 'parse-chart-v1.php?'+ value,
-                     type: "GET",
-                     dataType: "text",
-                     success: function (data) {
-                        //alert(data);
-                         
-                         const datas = JSON.parse(data);
-                         currentchart = new Chart(ctx, {
-                         type: 'line',
-                         data: {
-                         labels: datas.map(row => row.year),
-                         datasets: [{
-                             label: 'Population growth under strand',
-                             data: datas.map(row => row.count),
-                             borderWidth: 1,
-                             backgroundColor: '#9BD0F5',
-                         }]
-                             },
-                             options: {
-                             scales: {
-                                 y: {
-                                 beginAtZero: true
-                                 }
-                             }
-                             }
-                         });
- 
-                     }});
-                 }
-
-                
-                /*
-                const data = [
-                    { year: 2010, count: 10 },
-                    { year: 2011, count: 20 },
-                    { year: 2012, count: 15 },
-                    { year: 2013, count: 25 },
-                    { year: 2014, count: 22 },
-                    { year: 2015, count: 30 },
-                    { year: 2016, count: 28 },
-                ];
-                */
-                
 
                 document.getElementById("printimage").onclick = PrintImage;
                 function PrintImage() {
