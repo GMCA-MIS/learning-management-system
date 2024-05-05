@@ -92,7 +92,7 @@ include('includes/navbar.php');
                         </div>
                                     -->
                         <div class="form-group ">
-                            <button class="form-control btn btn-primary mt-4 ml-3" id="printimage" name="printimage" onclick="location.reload();" >Reload</button>
+                            <button class="form-control btn btn-primary mt-4 ml-3" id="" name="" onclick="location.reload();" >Reload</button>
 
                         </div>
 
@@ -167,12 +167,21 @@ include('includes/navbar.php');
                     if (currentchart) {    
                         currentchart.destroy();  
                     }
+                    if(valuerange == "current-year"){
+                        parameter = "&range=current-year";
+                    }
+                    if( valuestrand == "ALL" ){
+                        bargraph('strand=ALL' + parameter);
+                    }else if(valuestrand != "ALL"){
+                        bargraph('strand=' + valuestrand + parameter);
+                    }
                      
                 }
+
                 function bargraph(value){
                     
                     $.ajax({
-                    url: 'parse-chart-v1.php?'+ value,
+                    url: 'parse-chart-v2.php?'+ value,
                     type: "GET",
                     dataType: "text",
                     success: function (data) {
@@ -180,11 +189,11 @@ include('includes/navbar.php');
                         
                         const datas = JSON.parse(data);
                         currentchart = new Chart(ctx, {
-                        type: 'bar',
+                        type: 'line',
                         data: {
                         labels: datas.map(row => row.year),
                         datasets: [{
-                            label: 'Population growth under strand',
+                            label: 'Income Chart',
                             data: datas.map(row => row.count),
                             borderWidth: 1,
                             backgroundColor: '#9BD0F5',
@@ -207,8 +216,6 @@ include('includes/navbar.php');
                 function PrintImage() {
                         var win = window.open();
                         win.document.write("<br><img src='" + ctx.toDataURL() + "'/>");
-                        //win.print();
-                        //win.location.reload();
                         setTimeout(() => {
                         win.print();
                         }, 1000);

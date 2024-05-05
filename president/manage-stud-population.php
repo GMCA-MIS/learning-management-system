@@ -90,7 +90,7 @@ include('includes/navbar.php');
                             </select>
                         </div>
                         <div class="form-group ">
-                            <button class="form-control btn btn-primary mt-4 ml-3" id="printimage" name="printimage" onclick="location.reload();" >Reload</button>
+                            <button class="form-control btn btn-primary mt-4 ml-3" id="" name="" onclick="location.reload();" >Reload</button>
 
                         </div>
 
