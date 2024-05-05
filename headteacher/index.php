@@ -281,21 +281,25 @@ include('includes/navbar.php');
 
                                     </div>
                                 </div>
+
+                                <!--
                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <b>TEACHERS SCHEDULES</b>
+
                                     <div class="card-body">
                                         
                                     <?php
                                     //Displaying data into tables
-                                    $query = "SELECT * FROM  class c INNER JOIN teacher_class  tc ON c.class_id = tc.class_id INNER JOIN subject  s ON tc.subject_id = s.subject_id  GROUP BY tc.subject_id ;"
+                                    $query = "SELECT * FROM  class c INNER JOIN teacher_class tc ON c.class_id=tc.class_id INNER JOIN teacher t ON tc.teacher_id = t.teacher_id";
                                     $query_run = mysqli_query($conn, $query);
                                     ?>
                                     <table id="dataTableID" class="table table-bordered table table-striped" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>CLASS</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Class</th>
+                                            <th>Day</th>
+                                            <th>Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -304,17 +308,10 @@ include('includes/navbar.php');
                                             while ($row = mysqli_fetch_assoc($query_run)) {
                                         ?>
                                                 <tr>
-                                                    <td><?php echo $row['name']; ?></td>
-                                                    <td><?php echo $row['full_name_strand']; ?></td>
-                                                    <td><?php if ($row['status'] == 1) { ?>
-                                                            <p>Active</p>
-                                                        <?php
-                                                        } else { ?>
-                                                            <p>Inactive</p>
-                                                        <?php
-                                                        } ?>
-                                                    </td>
-                                                    <td width="15%"><a href="manage-class.php?class_name=<?php echo urlencode($row['full_name_strand']); ?>" class="btn btn-secondary">View Section List</a></td>
+                                                    <td><?php echo $row['firstname'] . " " . $row['lastname'] ; ?></td>
+                                                    <td><?php echo $row['class_name']; ?></td>
+                                                    <td><?php echo $row['schedule_day']; ?></td>
+                                                    <td><?php echo $row['schedule_time']; ?></td>
                                                 </tr>
                                         <?php
                                             }
@@ -326,6 +323,7 @@ include('includes/navbar.php');
                                 </table>
                                     </div>
                                 </div>
+                                    -->
 <style>
     /* Custom CSS for Circular Progress Indicator */
 .progress-circle {

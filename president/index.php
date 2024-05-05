@@ -355,7 +355,7 @@ include('includes/navbar.php');
                         data: {
                         labels: datas.map(row => row.year),
                         datasets: [{
-                            label: 'Population growth under strand',
+                            label: 'Income',
                             data: datas.map(row => row.count),
                             borderWidth: 4,
                             borderColor: '#36A2EB',

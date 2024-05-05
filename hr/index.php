@@ -281,6 +281,48 @@ include('includes/navbar.php');
                                 </div>
                             </div>
                             -->
+<!--
+                            <div class="col-xl-12 col-md-12 mb-4">
+                                    <b>TEACHERS SCHEDULES</b>
+
+                                    <div class="card-body">
+                                        
+                                    <?php
+                                    //Displaying data into tables
+                                    $query = "SELECT * FROM  class c INNER JOIN teacher_class tc ON c.class_id=tc.class_id INNER JOIN teacher t ON tc.teacher_id = t.teacher_id";
+                                    $query_run = mysqli_query($conn, $query);
+                                    ?>
+                                    <table id="dataTableID" class="table table-bordered table table-striped" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Class</th>
+                                            <th>Day</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (mysqli_num_rows($query_run) > 0) {
+                                            while ($row = mysqli_fetch_assoc($query_run)) {
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo $row['firstname'] . " " . $row['lastname'] ; ?></td>
+                                                    <td><?php echo $row['class_name']; ?></td>
+                                                    <td><?php echo $row['schedule_day']; ?></td>
+                                                    <td><?php echo $row['schedule_time']; ?></td>
+                                                </tr>
+                                        <?php
+                                            }
+                                        } else {
+                                            echo "No Record Found";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                                    </div>
+                                </div>
+                                    -->
 <style>
     /* Custom CSS for Circular Progress Indicator */
 .progress-circle {
