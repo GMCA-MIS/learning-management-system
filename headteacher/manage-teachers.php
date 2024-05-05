@@ -118,9 +118,13 @@ include('includes/navbar.php');
                                 </div> <!--modal dialog -->
                     </div>  <!--modal fade -->
                     
-                            <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#addinstructormodal" 
-                            style="margin-bottom: 20px; "><i class="fa fa-plus" aria-hidden="true"></i> Add Teacher</button>
+                            <!-- 
+                                <button type="button" class="btn btn-success add_btn" data-toggle="modal" data-target="#addinstructormodal" 
+                            style="margin-bottom: 20px; "><i class="fa fa-plus" aria-hidden="true"></i> Add Teacher</button> 
+                                                                        
+                            -->
             </td>
+            <!--
             <div class="form-group">
                 <label>Add teachers via .csv file</label>
                 <form method="post" action="manage-teachers-csv.php" enctype="multipart/form-data">
@@ -128,6 +132,7 @@ include('includes/navbar.php');
                     <button type="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading..." id="uploadBtn" disabled>Upload</button>
                 </form>
             </div>
+            -->
 
             <div class="card-body">
             <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">

@@ -103,7 +103,7 @@ include('includes/navbar.php');
                                             <option value="Operations">Operations</option>
                                             <option value="Leadership and Planning">Leadership and Planning</option>
                                             <option value="Support">Support</option>
-                                            <option value="Performance Evaluation">Pe   rformance Evaluation</option>
+                                            <option value="Performance Evaluation">Performance Evaluation</option>
                                         </select>
 
                                         <select name="Type" id="Type">
@@ -141,7 +141,7 @@ include('includes/navbar.php');
                      
 
                         <!-- Total Students Card-->
-                      
+                        <!--
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-sector shadow h-100 py-2">
                                 <a href="manage-students.php">
@@ -171,8 +171,10 @@ include('includes/navbar.php');
                                     </a> 
                                 </div>
                             </div>
-                            
+                                                -->
                             <!-- Total Instructors Card -->
+                            
+                                                <!--
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-office shadow h-100 py-2">
                                 <a href="manage-teachers.php">
@@ -202,8 +204,9 @@ include('includes/navbar.php');
                                      </a>
                                 </div>
                             </div>
-
+                                                    -->
                              <!-- Total Class Card -->
+                             <!--
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card shadow h-100">
                                 <a href="manage-all-class.php">
@@ -238,8 +241,9 @@ include('includes/navbar.php');
                                     </a>
                                 </div>
                             </div>
-
+                                            -->
                              <!-- Total Departments Card -->
+                             <!--
                              <div class="col-xl-3 col-md-6 mb-4">
 
                                 <div class="card shadow h-100">
@@ -274,6 +278,7 @@ include('includes/navbar.php');
                                     </a>
                                 </div>
                             </div>
+                                            -->
 <style>
     /* Custom CSS for Circular Progress Indicator */
 .progress-circle {
