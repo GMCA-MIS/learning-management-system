@@ -136,7 +136,7 @@
   </li>
     -->
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-coordinators.php','manage-accounts.php','manage-head-teacher.php','manage-hr.php'])) echo 'active'; ?>">
+    <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-accountant.php','manage-coordinators.php','manage-accounts.php','manage-head-teacher.php','manage-hr.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse20" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fas fa-user-alt'></i>
       <span>Manage Other Users</span>
@@ -145,6 +145,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Manage Other Users</h6>
         <a class="collapse-item" href="manage-coordinators.php?id=<?php echo $school_year ?>"> <i class='fas fa-book-open'></i> Manage Librarian</a>
+        <a class="collapse-item" href="manage-accountant.php?id=<?php echo $school_year ?>"> <i class="fas fa-user-alt" aria-hidden="true"></i> Accountant</a>
         <a class="collapse-item" href="manage-accounts.php?id=<?php echo $school_year ?>"> <i class="fas fa-user-alt" aria-hidden="true"></i> Registrar</a>
         <a class="collapse-item" href="manage-head-teacher.php?id=<?php echo $school_year ?>"> <i class="fas fa-user-alt" aria-hidden="true"></i> Head Teacher</a>
         <a class="collapse-item" href="manage-hr.php?id=<?php echo $school_year ?>"> <i class="fas fa-user-alt" aria-hidden="true"></i> Human Resource</a>

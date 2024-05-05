@@ -184,7 +184,7 @@ include('includes/navbar.php');
                     type: "GET",
                     dataType: "text",
                     success: function (data) {
-                        alert(data);
+                        //alert(data);
                         
                         const datas = JSON.parse(data);
                         currentchart = new Chart(ctx, {
@@ -216,7 +216,7 @@ include('includes/navbar.php');
                      type: "GET",
                      dataType: "text",
                      success: function (data) {
-                        alert(data);
+                        //alert(data);
                          
                          const datas = JSON.parse(data);
                          currentchart = new Chart(ctx, {
