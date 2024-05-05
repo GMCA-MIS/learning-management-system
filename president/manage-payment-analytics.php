@@ -22,7 +22,7 @@ include('includes/navbar.php');
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top: 27px; margin-left: 10px;">
-                <h1 class="h3 mb-0 text-gray-800">Student Population Growth</h1>
+                <h1 class="h3 mb-0 text-gray-800">Income Growth</h1>
                 
             </div>
 
@@ -73,6 +73,7 @@ include('includes/navbar.php');
 
                             </select>
                         </div>
+                        <!--
                         <div class="form-group mr-5">
                             <label for="strand">Track by Gender</label>
                             <select type="text" class="form-control" id="selgender" name="selgender" required>
@@ -89,6 +90,7 @@ include('includes/navbar.php');
                                 <option class="form-control" value="12"> Grade 12 </Option>
                             </select>
                         </div>
+                                    -->
                         <div class="form-group ">
                             <button class="form-control btn btn-primary mt-4 ml-3" id="printimage" name="printimage" onclick="location.reload();" >Reload</button>
 
@@ -134,8 +136,8 @@ include('includes/navbar.php');
                 var currentchart ;
                 var strand = document.getElementById('selstrand');
                 var range = document.getElementById('selrange');
-                var gender = document.getElementById('selgender');
-                var grade = document.getElementById('selgrade');
+                //var gender = document.getElementById('selgender');
+                //var grade = document.getElementById('selgrade');
                 var valuestrand;
                 var valuerange;
                 var valuegender;
@@ -143,13 +145,13 @@ include('includes/navbar.php');
                 var parameter = ""; // get method paramater
 
                 $("#selrange").attr("disabled", true);
-                $("#selgender").attr("disabled", true);
-                $("#selgrade").attr("disabled", true);
+                //$("#selgender").attr("disabled", true);
+                //$("#selgrade").attr("disabled", true);
 
                 document.getElementById("selstrand").onchange = triggerchangedrops;
                 document.getElementById("selrange").onchange = triggerchangedrops;
-                document.getElementById("selgender").onchange = triggerchangedrops;
-                document.getElementById("selgrade").onchange = triggerchangedrops;
+                //document.getElementById("selgender").onchange = triggerchangedrops;
+                //document.getElementById("selgrade").onchange = triggerchangedrops;
 
                 function triggerchangedrops(){
                     

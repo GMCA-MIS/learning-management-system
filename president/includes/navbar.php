@@ -171,7 +171,7 @@
   </li>
 -->
   <!--  -->
-    <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-stud-population.php'])) echo 'active'; ?>">
+    <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-payment-analytics.php','manage-stud-population.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsanalaytics" aria-expanded="true" aria-controls="collapseTwo">
       <i class='fas fa-book-open'></i>
       <span>Analytics Reports</span>
@@ -180,6 +180,9 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Manage Reports</h6>
         <a class="collapse-item" href="manage-stud-population.php?id=<?php echo $school_year ?>">Student Population</a>
+        <a class="collapse-item" href="manage-payment-analytics.php?id=<?php echo $school_year ?>">Summary Income</a>
+        <a class="collapse-item" href="manage-payment-analytics.php?id=<?php echo $school_year ?>">- Grade 11</a>
+        <a class="collapse-item" href="manage-payment-analytics.php?id=<?php echo $school_year ?>">- Grade 12</a>
       </div>
     </div>
   </li>
