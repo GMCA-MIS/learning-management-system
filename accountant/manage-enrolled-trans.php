@@ -476,7 +476,7 @@ if(empty($PAIDTOTAL)){
                                                         <div class="modal-body">
                                                             <label>Are you sure to update the payment?</label>
                                                             <input type="hidden" name= "student_id" id ="student_id" value="<?php echo $student_id; ?>">
-                                                            <input type="text" name= "paymentid" id ="paymentid" value="<?php echo $row['stud_payment_id']; ?>">
+                                                            <input type="hidden" name= "paymentid" id ="paymentid" value="<?php echo $row['stud_payment_id']; ?>">
                                                         </div>
 
                                                         <div class="modal-footer">
