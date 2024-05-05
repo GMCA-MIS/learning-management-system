@@ -25,24 +25,77 @@ if(isset($_POST['delete_instructors']))
 {
     $id = $_POST['delete_ID'];
 
-    $query = "DELETE FROM teacher WHERE teacher_id = '$id' ";
+    // Define the characters to use in the random password
+    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';
+
+    // Shuffle the characters and select the first 10 to create the password
+    $password = substr(str_shuffle($characters), 0, 10);
+
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+
+    $query = "UPDATE teacher SET password = '$hashed_password' WHERE teacher_id = '$id' ";
     $query_run = mysqli_query($conn, $query);
 
+    $query = "SELECT *  FROM teacher WHERE teacher_id = '$id'";
+    $query_run = mysqli_query($conn, $query);
+
+    if(mysqli_num_rows($query_run) > 0) {
+        while($row=mysqli_fetch_assoc($query_run)){
+            $email = $row['email'];
+            $firstname  = $row['firstname'];
+            $lastname  = $row['lastname'];
+        }
+    }
+    
+    
+
     if($query_run) {
+
+        $email_body = "Dear $firstname $lastname,\n\n";
+        $email_body .= "Your account has been created successfully.\n";
+        $email_body .= "Here are your login credentials:\n";
+        $email_body .= "Username: $email\n";
+        $email_body .= "Password: $password\n"; // Note: You should consider a more secure way to send passwords.
+
+        // Send the email
+        require 'includes/PHPMailer.php';
+        require 'includes/SMTP.php';
+        require 'includes/Exception.php';
+        
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 587;
+        $mail->Username = "crustandrolls@gmail.com"; // your email address
+        $mail->Password = "dqriavmkaochvtod"; // your email password
+        $mail->setFrom("crustandrolls@gmail.com", "Golden Minds colleges and Academy"); // Change "Your Name" to your name or desired sender name
+        $mail->addAddress($email);
+        $mail->Subject = "LMS Credentials";
+        $mail->Body = $email_body;
+    
+        if ($mail->send()) {
+                
+        }
+
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo '<script>Swal.fire({
             title: "Success",
-            text: "User has been deleted successfully!",
+            text: "LMS Account has been generated, Credential sent via Email !",
             icon: "success",
             confirmButtonText: "OK"
         }).then(function() {
             window.location.href = "manage-teachers.php";
         });</script>';
+
     } else {
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo '<script>Swal.fire({
             title: "Error",
-            text: "Failed to delete user!",
+            text: "Failed to generate account!",
             icon: "error",
             confirmButtonText: "OK"
         });</script>';

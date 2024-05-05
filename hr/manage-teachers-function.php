@@ -70,7 +70,7 @@ include('dbcon.php');
         
         foreach ($_POST['specialization'] as $a){
             $specialization .=  $a . ",";
-       }
+        }
       
         $query = "UPDATE teacher SET department_id='$department_id', firstname='$firstname', lastname='$lastname', email='$email', dob ='$dob', user_type='teacher', specialization='$specialization' WHERE teacher_id='$id'";
         $query_run = mysqli_query($conn, $query);
@@ -146,9 +146,16 @@ if (isset($_POST['add_instructor'])) {
         </script>";
     } else {
         // Insert teacher data
-        mysqli_query($conn, "INSERT INTO teacher (username, firstname, lastname, department_id, teacher_stat, dob, location, email, password, user_type, specialization)
-            VALUES ('$username', '$firstname', '$lastname', '$department_id', 'Activated', '$dob', '../uploads/teacher.png', '$email', '$hashed_password', 'teacher', '$specialization')") or die(mysqli_error());
+       // mysqli_query($conn, "INSERT INTO teacher (username, firstname, lastname, department_id, teacher_stat, dob, location, email, password, user_type, specialization)
+            //VALUES ('$username', '$firstname', '$lastname', '$department_id', 'Activated', '$dob', '../uploads/teacher.png', '$email', '$hashed_password', 'teacher', '$specialization')") or die(mysqli_error());
+       
+       mysqli_query($conn, "INSERT INTO teacher (username, firstname, lastname, department_id, teacher_stat, dob, location, email, password, user_type, specialization)
+        VALUES ('$username', '$firstname', '$lastname', '$department_id', 'Activated', '$dob', '../uploads/teacher.png', '$email', '', 'teacher', '$specialization')") or die(mysqli_error());
+
+
 if (mysqli_affected_rows($conn) > 0) {
+
+    /*
     // Create the email body
     $email_body = "Dear $firstname $lastname,\n\n";
     $email_body .= "Your account has been created successfully.\n";
@@ -173,7 +180,8 @@ if (mysqli_affected_rows($conn) > 0) {
     $mail->addAddress($email);
     $mail->Subject = "LMS Credentials";
     $mail->Body = $email_body;
-
+    
+    
     
     if ($mail->send()) {
         echo "
@@ -181,7 +189,9 @@ if (mysqli_affected_rows($conn) > 0) {
         Swal.fire({
             icon: 'success',
             title: 'Success',
-            text: 'Teacher added successfully. Login credentials sent to the email.',
+            //text: 'Teacher added successfully. Login credentials sent to the email.',
+            //text: 'Teacher added successfully.',
+
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location = 'manage-teachers.php';
@@ -202,6 +212,22 @@ if (mysqli_affected_rows($conn) > 0) {
         });
         </script>";
     }
+    */
+
+    echo "
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        //text: 'Teacher added successfully. Login credentials sent to the email.',
+        //text: 'Teacher added successfully.',
+
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = 'manage-teachers.php';
+        }
+    });
+    </script>";
 } else {
     echo "
     <script>
