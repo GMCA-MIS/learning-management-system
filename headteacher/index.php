@@ -174,7 +174,6 @@ include('includes/navbar.php');
                                                 -->
                             
                             <!-- Total Instructors Card -->
-                            <!--
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-office shadow h-100 py-2">
                                 <a href="manage-teachers.php">
@@ -204,13 +203,9 @@ include('includes/navbar.php');
                                      </a>
                                 </div>
                             </div>
-                                                    -->
                              <!-- Total Class Card -->
-                             <!--
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card shadow h-100">
-                                <a href="manage-all-class.php">
-
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
@@ -238,10 +233,8 @@ include('includes/navbar.php');
                                             </div>
                                         </div>
                                     </div>
-                                    </a>
                                 </div>
                             </div>
-                                            -->
 
                              <!-- Total Departments Card -->
                              <!--
@@ -281,7 +274,7 @@ include('includes/navbar.php');
                             </div>
                                             -->
 
-                                <div class="col-xl-6 col-md-12 mb-4">
+                                <div class="col-xl-8 col-md-12 mb-4">
                                     <div class="card-body">
                                             <b>TEACHERS UNDER SUBJECTS</b>
                                             <canvas id="listed"></canvas>
