@@ -107,7 +107,7 @@
         <h6 class="collapse-header">Manage Students</h6>
         <a class="collapse-item" href="manage-strand.php?id=<?php echo $school_year ?>"> <i class='fas fa-chalkboard'></i> Strand List</a>
         <a class="collapse-item" href="manage-students.php?id=<?php echo $school_year ?>"><i class="fas fa-book-reader" aria-hidden="true"></i> Student List </a>
-        <a class="collapse-item" href="manage-archive-students.php?id=<?php echo $school_year ?>"><i class="fas fa-book-reader" aria-hidden="true"></i> Archive Student List </a>
+       <!-- <a class="collapse-item" href="manage-archive-students.php?id=<?php echo $school_year ?>"><i class="fas fa-book-reader" aria-hidden="true"></i> Archive Student List </a> -->
       </div>
     </div>
   </li>
@@ -181,8 +181,6 @@
         <h6 class="collapse-header">Manage Reports</h6>
         <a class="collapse-item" href="manage-stud-population.php?id=<?php echo $school_year ?>">Student Population</a>
         <a class="collapse-item" href="manage-payment-analytics.php?id=<?php echo $school_year ?>">Income Summary</a>
-        <a class="collapse-item" href="manage-payment-analytics.php?id=<?php echo $school_year ?>">- Grade 11</a>
-        <a class="collapse-item" href="manage-payment-analytics.php?id=<?php echo $school_year ?>">- Grade 12</a>
       </div>
     </div>
   </li>

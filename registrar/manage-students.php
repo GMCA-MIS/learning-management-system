@@ -166,7 +166,7 @@ include('includes/navbar.php');
                             <th>Approval</th>
                             <th>Status</th>
                             <!-- <th>Edit</th> -->
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
                             <th>Action</th>
 
 
@@ -248,12 +248,11 @@ include('includes/navbar.php');
                                         }
                                         ?>
                                     </td>
-
+                                    <!--
                                     <td>
                                     <?php
                                         if ($row['status'] == 1) {
                                         ?>
-                                        <!--Delete Pop Up Modal -->
                                         <div class="modal fade" id="deletestudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -282,6 +281,7 @@ include('includes/navbar.php');
                                         }
                                         ?>
                                     </td>
+                                    -->
                                     <td>
                                         <?php if($row['grade_level']=="11" && !empty($row['password'])) { ?>
                                             <button  type="submit" name="" data-toggle="modal" data-target="#modalg12<?php echo $row['student_id']; ?>" class="btn btn-success" style="background-color:#22DD22;color:white;border:none;width:95px" data-toggle="modal" data-target="#" ><i class="fa fa-arrow-up  "></i> <br>Grade 12</button>

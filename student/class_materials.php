@@ -61,7 +61,7 @@ $class_row = mysqli_fetch_array($class_query);
                     $student_id = $_SESSION['student_id'];
 
                     // Query to retrieve assignments
-                    $query = "SELECT * FROM files WHERE teacher_class_id = '$get_id'  ORDER BY fdatein DESC";
+                    $query = "SELECT * FROM files WHERE teacher_class_id = '$get_id'  and status=1  ORDER BY fdatein DESC";
                     $result = mysqli_query($conn, $query);
 
                     if (mysqli_num_rows($result) === 0) {
