@@ -283,7 +283,7 @@ include('includes/navbar.php');
 
                                 <div class="col-xl-6 col-md-12 mb-4">
                                     <div class="card-body">
-                                            <b>TEACHERS ASSIGNED IN SUBJECTS</b>
+                                            <b>TEACHERS UNDER SUBJECTS</b>
                                             <canvas id="listed"></canvas>
 
                                     </div>
