@@ -169,6 +169,9 @@ $count = mysqli_num_rows($query);
                                 <div class="col-auto">
                                     <img src="<?php echo $row['photo'] ?>" class="circle" alt="" width="100" height="100">
                                 </div>
+                                <div class="col-auto">
+                                <b><?php echo $row['schedule_day'] ?> : <?php echo $row['schedule_time'] ?></b>
+                                </div>
                             </div>
                         </div>
                     </div>

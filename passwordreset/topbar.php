@@ -13,7 +13,7 @@
     <div class="logoPic">
             <img src="../img/gmlogo.png" alt="logo">
                 <a href ="../login.php" class="logo" style="text-decoration: none;">
-                    <span>Golden Minds Colleges and Academiy</span>
+                    <span>Golden Minds Colleges and Academy</span>
                     <p class="subtitle">Management Information System</p>
                 </a>
         </div>
