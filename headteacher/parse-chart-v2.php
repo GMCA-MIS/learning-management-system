@@ -20,9 +20,9 @@ if (isset($_GET['allincome'])) {
 
 } 
 
-if (isset($_GET['strandspopulation'])) {
+if (isset($_GET['teacherspersubjects'])) {
 
-    $querydept = "SELECT COUNT(*) as countstudent , `name`  FROM student  s INNER JOIN strand sta ON s.strand_id = sta.id WHERE s.status=1  GROUP BY strand_id ;";
+    $querydept = "SELECT COUNT(*) as countteacher , subject_code FROM teacher_class  tc INNER JOIN subject  s ON tc.subject_id = s.subject_id  GROUP BY tc.subject_id ;";
     
     $query_rundept = mysqli_query($conn, $querydept);
 
@@ -30,8 +30,8 @@ if (isset($_GET['strandspopulation'])) {
         while ($row = mysqli_fetch_assoc($query_rundept)) {
 
             array_push($jsonarray, array( 
-                "strand" => $row['name'], 
-                "count" => $row['countstudent'] ));
+                "subject" => $row['subject_code'], 
+                "count" => $row['countteacher'] ));
         }
         echo json_encode($jsonarray);
     }

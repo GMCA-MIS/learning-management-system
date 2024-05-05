@@ -281,7 +281,7 @@ include('includes/navbar.php');
                             </div>
                                             -->
 
-                                <div class="col-xl-6 col-md-6 mb-4">
+                                <div class="col-xl-6 col-md-12 mb-4">
                                     <div class="card-body">
                                             <b>TEACHERS ASSIGNED IN SUBJECTS</b>
                                             <canvas id="listed"></canvas>
@@ -332,15 +332,15 @@ include('includes/navbar.php');
                     type: "GET",
                     dataType: "text",
                     success: function (data) {
-                        //alert(data);
+                        alert(data);
                         
                         const datas = JSON.parse(data);
                         currentchart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                        labels: datas.map(row => row.strand),
+                        labels: datas.map(row => row.subject),
                         datasets: [{
-                            label: 'Population growth under strand',
+                            label: 'Teachers Count per under Subject',
                             data: datas.map(row => row.count),
                             borderWidth: 1,
                             backgroundColor: '#9BD0F5',
