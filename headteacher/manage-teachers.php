@@ -215,7 +215,7 @@ include('includes/navbar.php');
 
                                         <div class="modal-body">
                                         
-                                                <input type="text" name= "delete_ID" id ="delete_ID">
+                                                <input type="hidden" name= "delete_ID" id ="delete_ID">
 
                                             <h5>Do you want to delete this data?</h5>
 
