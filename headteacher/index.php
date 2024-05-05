@@ -274,11 +274,56 @@ include('includes/navbar.php');
                             </div>
                                             -->
 
-                                <div class="col-xl-10 col-md-12 mb-4">
+                                <div class="col-xl-12 col-md-12 mb-4">
                                     <div class="card-body">
                                             <b>TEACHERS UNDER SUBJECTS</b>
                                             <canvas id="listed"></canvas>
 
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card-body">
+                                        
+                                    <?php
+                                    //Displaying data into tables
+                                    $query = "SELECT * FROM  class c INNER JOIN teacher_class  tc ON c.class_id = tc.class_id INNER JOIN subject  s ON tc.subject_id = s.subject_id  GROUP BY tc.subject_id ;"
+                                    $query_run = mysqli_query($conn, $query);
+                                    ?>
+                                    <table id="dataTableID" class="table table-bordered table table-striped" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>CLASS</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (mysqli_num_rows($query_run) > 0) {
+                                            while ($row = mysqli_fetch_assoc($query_run)) {
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo $row['name']; ?></td>
+                                                    <td><?php echo $row['full_name_strand']; ?></td>
+                                                    <td><?php if ($row['status'] == 1) { ?>
+                                                            <p>Active</p>
+                                                        <?php
+                                                        } else { ?>
+                                                            <p>Inactive</p>
+                                                        <?php
+                                                        } ?>
+                                                    </td>
+                                                    <td width="15%"><a href="manage-class.php?class_name=<?php echo urlencode($row['full_name_strand']); ?>" class="btn btn-secondary">View Section List</a></td>
+                                                </tr>
+                                        <?php
+                                            }
+                                        } else {
+                                            echo "No Record Found";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
                                     </div>
                                 </div>
 <style>
