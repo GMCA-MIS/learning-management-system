@@ -5,19 +5,19 @@ include('includes/header.php');
 include('includes/navbar.php');
 include "qrcode/phpqrcode/qrlib.php";
                 
-    $PNG_TEMP_DIR = 'temp/';
+$PNG_TEMP_DIR = 'temp/';
                 
-    if (!file_exists($PNG_TEMP_DIR))
-        mkdir($PNG_TEMP_DIR);
+if (!file_exists($PNG_TEMP_DIR))
+    mkdir($PNG_TEMP_DIR);
 
-    $filename = $PNG_TEMP_DIR . 'qr-code.png';
+$filename = $PNG_TEMP_DIR . 'qr-code.png';
 
-    if (isset($_POST["generate"])) {
+if (isset($_GET["teacher_id"])) {
 
-    $codeString = $_POST["first_name"] . "\n";
-    $filename = $PNG_TEMP_DIR . 'test' . md5($codeString) . '.png';
+$codeString = $_GET["teacher_id"] . "\n";
+$filename = $PNG_TEMP_DIR . 'test' . md5($codeString) . '.png';
 
-        QRcode::png($codeString, $filename);
+    QRcode::png($codeString, $filename);
 }
 
 $tfname = "";
@@ -142,7 +142,21 @@ if(isset($_GET['teacherid'])){
 
 
 ?>
+<style>
+    a {
+        text-decoration: none;
+        /* Remove underline to the anchor text */
+        color: black;
+        /* Set the text color to blue */
+    }
 
+    a:hover {
+        color: brown;
+    }
+    label {
+        margin-top: 5%;
+    }
+</style>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -248,8 +262,13 @@ if(isset($_GET['teacherid'])){
                                     <div class="col-3" >
 
                                         <img src="<?php if(!empty($tlocation)){ echo $tlocation ; }else{ echo "../uploads/teacher.png"; } ?>" alt="alternative" width="100" height="100"/> 
-                                        <?php echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" />'; ?>
 
+                                        <div class="qr-card">
+                                            <div class="qr-img card">
+                                                <?php echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" />'; ?>
+                                            </div>
+                                        
+                                        </div>
                                     </div>                             
 
                                     <div class="col-12 mt-2 ">
