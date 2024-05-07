@@ -261,11 +261,9 @@ if(isset($_GET['teacherid'])){
                                     <div class="col-3" >
 
                                         <img src="<?php if(!empty($tlocation)){ echo $tlocation ; }else{ echo "../uploads/teacher.png"; } ?>" alt="alternative" width="100" height="100"/> 
+                                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#qrmodule" >View QR code</button>
 
-                                                <?php 
-                                                    if (isset($_GET["teacherid"])){
-                                                    echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" />';
-                                                    } ?>
+                                        
                                     </div>                             
 
                                     <div class="col-12 mt-2 ">
@@ -376,7 +374,7 @@ if(isset($_GET['teacherid'])){
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Department Information</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit DTR Information</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
@@ -450,7 +448,41 @@ if(isset($_GET['teacherid'])){
             </table>
     </div>
 </div>
+<!--Edit Pop Up Modal -->
+<div class="modal fade" id="qrmodule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">USER QR CODE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+        <form action="manage-attendance-func.php" method = "POST"> 
+
+                    <div class="modal-body">
+                    <div class="qr-card">
+                        <div class="qr-img card">
+                            <?php 
+                                if (isset($_GET["teacherid"])){
+                                echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" />';
+                                } ?>
+                        </div>
+                    
+                    </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+        </form>
+        </div>
+    </div>
+</div>  
+
+                       
 
 
 <?php
