@@ -461,7 +461,7 @@ if(isset($_GET['teacherid'])){
         <form action="manage-attendance-func.php" method = "POST"> 
 
                     <div class="modal-body">
-                    <div class="qr-card" style="height:100px;width:100px;">
+                    <div class="qr-card" style="height:200px;width:200px;">
                         <div class="qr-img card">
                             <?php 
                                 if (isset($_GET["teacherid"])){
