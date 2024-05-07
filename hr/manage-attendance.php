@@ -12,7 +12,6 @@ if (!file_exists($PNG_TEMP_DIR))
 $filename = $PNG_TEMP_DIR . 'qr-code.png';
 
 if (isset($_GET["teacherid"])) {
-echo "inside";
 $codeString = $_GET["teacherid"] . "\n";
 $filename = $PNG_TEMP_DIR . 'test' . md5($codeString) . '.png';
 
@@ -462,7 +461,7 @@ if(isset($_GET['teacherid'])){
         <form action="manage-attendance-func.php" method = "POST"> 
 
                     <div class="modal-body">
-                    <div class="qr-card" width="200px" height="200px">
+                    <div class="qr-card" width="100px" height="100px">
                         <div class="qr-img card">
                             <?php 
                                 if (isset($_GET["teacherid"])){
