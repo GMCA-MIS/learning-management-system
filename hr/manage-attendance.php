@@ -257,12 +257,12 @@ if(isset($_GET['teacherid'])){
                                
                                 <div class="row col-12" >
 
-                                    <div class="col-3" >
+                                    <div class="col-12  " >
 
                                         <img src="<?php if(!empty($tlocation)){ echo $tlocation ; }else{ echo "../uploads/teacher.png"; } ?>" alt="alternative" width="100" height="100"/> 
+
                                         <button type="button" class="btn btn-success " data-toggle="modal" data-target="#qrmodule" >View QR code</button>
 
-                                        
                                     </div>                             
 
                                     <div class="col-12 mt-2 ">
