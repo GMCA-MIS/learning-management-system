@@ -151,7 +151,9 @@ if (isset($_POST['add_instructor'])) {
        
        mysqli_query($conn, "INSERT INTO teacher (username, firstname, lastname, department_id, teacher_stat, dob, location, email, password, user_type, specialization)
         VALUES ('$username', '$firstname', '$lastname', '$department_id', 'Activated', '$dob', '../uploads/teacher.png', '$email', '', 'teacher', '$specialization')") or die(mysqli_error());
-
+        $last_id = $conn->insert_id;
+        $query ="CALL fillattendance( $last_id , DATE(CONCAT(YEAR(CURDATE()),'-1-1')),DATE(CONCAT(YEAR(CURDATE()),'-12-31'))); ";
+        $query_run=mysqli_query($conn, $query);
 
 if (mysqli_affected_rows($conn) > 0) {
 
