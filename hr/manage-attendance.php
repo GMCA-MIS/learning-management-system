@@ -248,6 +248,8 @@ if(isset($_GET['teacherid'])){
                                     <div class="col-3" >
 
                                         <img src="<?php if(!empty($tlocation)){ echo $tlocation ; }else{ echo "../uploads/teacher.png"; } ?>" alt="alternative" width="100" height="100"/> 
+                                        <?php echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" />'; ?>
+
                                     </div>                             
 
                                     <div class="col-12 mt-2 ">
