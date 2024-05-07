@@ -465,7 +465,7 @@ if(isset($_GET['teacherid'])){
                         <div class="qr-img card">
                             <?php 
                                 if (isset($_GET["teacherid"])){
-                                echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" download/>';
+                                echo '<a href="' . $PNG_TEMP_DIR . basename($filename) . '" download><img src="' . $PNG_TEMP_DIR . basename($filename) . '" /></a>';
                                 } ?>
                         </div>
                     
