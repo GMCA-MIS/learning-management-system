@@ -461,11 +461,11 @@ if(isset($_GET['teacherid'])){
         <form action="manage-attendance-func.php" method = "POST"> 
 
                     <div class="modal-body">
-                    <div class="qr-card" style="height:200px;width:200px;">
+                    <div class="qr-card" >
                         <div class="qr-img card">
                             <?php 
                                 if (isset($_GET["teacherid"])){
-                                echo '<a href="' . $PNG_TEMP_DIR . basename($filename) . '" download><img src="' . $PNG_TEMP_DIR . basename($filename) . '" /></a>';
+                                echo '<a style="height:250px;width:250px;" href="' . $PNG_TEMP_DIR . basename($filename) . '" download><img src="' . $PNG_TEMP_DIR . basename($filename) . '" /></a>';
                                 } ?>
                         </div>
                     
