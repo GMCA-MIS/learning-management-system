@@ -2,7 +2,6 @@
 include('includes/admin_session.php');
 include('dbcon.php');
 include('includes/header.php');
-include('includes/navbar.php');
 
 
 $tfname = "";
@@ -77,13 +76,17 @@ $paramaters = " WHERE  DATE(a.expected_timein) = DATE(NOW()) AND NOT actual_time
                 <!-- Begin Page Content -->
                 <div class="card-body">
                 <div class="row justify-content-center">
-                <form action="check-in-out.php" method="post" class="form-group" id="divvideo">
+                <form action="check-in-out_outside.php" method="post" class="form-group" id="divvideo">
                     <div class="card">
                         <video id="preview"></video>
                     </div>
                     <div class="card">
                         <input type="text" class="form-control" name="stud_no" id="text"></input>
                     </div>
+                    <div class="card">
+                        <center><b>CURRENT DATE: <?php echo date('Y-m-d') ?> </b></center>
+                    </div>
+                    
                 </form>
             </div>
 

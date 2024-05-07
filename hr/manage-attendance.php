@@ -20,6 +20,8 @@ $tovertime  = 0 ;
 $startdate = "";
 $enddate = "";
 
+$paramaters = " WHERE   MONTH(a.expected_timein) = MONTH(NOW())"; 
+
 if(isset($_GET['teacherid'])){
 
     $teacherid = $_GET['teacherid'];
@@ -53,7 +55,7 @@ if(isset($_GET['teacherid'])){
             $tspecialization = $row['specialization'];
         }
         if((empty($startdate)) && (empty($enddate))){
-            $paramaters = " WHERE  a.teacher_id = $teacherid "; 
+            $paramaters = " WHERE  a.teacher_id = $teacherid AND DATE(a.expected_timein) >= DATE(NOW())"; 
         }else{
             $paramaters = " WHERE  a.teacher_id = $teacherid AND DATE(a.expected_timein) >= DATE('$startdate') AND DATE(a.expected_timeout) <= DATE('$enddate')"; 
 
@@ -230,7 +232,7 @@ if(isset($_GET['teacherid'])){
 
                                     <div class="col-3" >
 
-                                        <img src="<?php if(empty($tlocation)){ echo $tlocation ; }else{ echo "../uploads/teacher.png"; } ?>" alt="alternative" width="100" height="100"/> 
+                                        <img src="<?php if(!empty($tlocation)){ echo $tlocation ; }else{ echo "../uploads/teacher.png"; } ?>" alt="alternative" width="100" height="100"/> 
                                     </div>                             
 
                                     <div class="col-12 mt-2 ">
