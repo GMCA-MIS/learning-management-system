@@ -90,7 +90,7 @@ if (isset($_POST['deletedepartment'])) {
             echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
             echo '<script>Swal.fire({
                 title: "Success",
-                text: "Department has been updated successfully!",
+                text: "DTR has been updated successfully!",
                 icon: "success",
                 confirmButtonText: "OK"
             }).then(function() {

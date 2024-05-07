@@ -53,15 +53,17 @@
   </li>
   
   <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-attendance.php'])) echo 'active'; ?>">
+  <li class="nav-item <?php if (in_array(basename($_SERVER['PHP_SELF']), ['manage-attendance.php','manage-clockinandout.php'])) echo 'active'; ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapses2" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-user-clock"></i>
       <span>Daily Time Record</span>
     </a>
     <div id="collapses2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Manage Attendance</h6>
+        <h6 class="collapse-header">Manage DTR</h6>
         <a class="collapse-item" href="manage-attendance.php?id=<?php echo $school_year ?>"> <i class="fas fa-chalkboard-teacher"></i> Teacher Attendance </a>
+        <a class="collapse-item" href="manage-clockinandout.php?id=<?php echo $school_year ?>"> <i class="fas fa-chalkboard-teacher"></i> Time-In/Out Scanner </a>
+
       </div>
     </div>
   </li>
