@@ -262,15 +262,10 @@ if(isset($_GET['teacherid'])){
 
                                         <img src="<?php if(!empty($tlocation)){ echo $tlocation ; }else{ echo "../uploads/teacher.png"; } ?>" alt="alternative" width="100" height="100"/> 
 
-                                        <div class="qr-card">
-                                            <div class="qr-img card">
                                                 <?php 
                                                     if (isset($_GET["teacherid"])){
                                                     echo '<img src="' . $PNG_TEMP_DIR . basename($filename) . '" />';
                                                     } ?>
-                                            </div>
-                                        
-                                        </div>
                                     </div>                             
 
                                     <div class="col-12 mt-2 ">
