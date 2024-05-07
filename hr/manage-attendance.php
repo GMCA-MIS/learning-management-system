@@ -6,15 +6,14 @@ include('includes/navbar.php');
 include "qrcode/phpqrcode/qrlib.php";
                 
 $PNG_TEMP_DIR = 'temp/';
-                
 if (!file_exists($PNG_TEMP_DIR))
     mkdir($PNG_TEMP_DIR);
 
 $filename = $PNG_TEMP_DIR . 'qr-code.png';
 
-if (isset($_GET["teacher_id"])) {
-
-$codeString = $_GET["teacher_id"] . "\n";
+if (isset($_GET["teacherid"])) {
+echo "inside";
+$codeString = $_GET["teacherid"] . "\n";
 $filename = $PNG_TEMP_DIR . 'test' . md5($codeString) . '.png';
 
     QRcode::png($codeString, $filename);
