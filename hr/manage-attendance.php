@@ -309,6 +309,7 @@ if(isset($_GET['teacherid'])){
                 <thead>
                     <tr>
                         <th style="display:none;">DTR ID</th>
+                        <th>TEACHER ID</th>  
                         <th>TEACHER NAME</th>  
                         <th>STATUS</th>  
                         <th>SCHEDULE</th>
@@ -329,6 +330,8 @@ if(isset($_GET['teacherid'])){
                                 ?>
                     <tr>
                         <td style="display:none;"><?php echo $row['ta_id']; ?></td>      
+                        <td ><?php echo $row['teacher_id']; ?></td>      
+
                         <td><?php echo $row['firstname'] . " " . $row['lastname'] ; ?></td>   
                         <td><?php echo $row['status']; ?></td>
                         <td><?php echo $row['expected_timein'] . "<br>" . $row['expected_timeout']; ?></td>
