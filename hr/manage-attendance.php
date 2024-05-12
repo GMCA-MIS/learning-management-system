@@ -333,7 +333,18 @@ if(isset($_GET['teacherid'])){
                         <td ><?php echo $row['teacher_id']; ?></td>      
 
                         <td><?php echo $row['firstname'] . " " . $row['lastname'] ; ?></td>   
-                        <td><?php echo $row['status']; ?></td>
+                        <td><?php 
+                        
+                        
+                        if(($row['actual_timein']=='0000-00-00 00:00:00') && ($row['status'] == 'work')){
+                            echo "<b style='color:red'>absent</b>"; 
+                        }elseif(($row['actual_timein'] !='0000-00-00 00:00:00') && ($row['status'] == 'work')){
+                            echo "<b style='color:green'>absent</b>"; 
+                        }else{
+                            echo $row['status'];
+                        }
+
+                        ?></td>
                         <td><?php echo $row['expected_timein'] . "<br>" . $row['expected_timeout']; ?></td>
                         <td><?php echo $row['actual_timein']; ?></td>
                         <td><?php echo $row['actual_timeout']; ?></td>
