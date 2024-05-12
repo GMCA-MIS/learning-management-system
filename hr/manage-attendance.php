@@ -337,9 +337,9 @@ if(isset($_GET['teacherid'])){
                         
                         
                         if(($row['actual_timein']=='0000-00-00 00:00:00') && ($row['status'] == 'work')){
-                            echo "<b style='color:red'>absent</b>"; 
+                            echo "<b style='color:red'>Absent</b>"; 
                         }elseif(($row['actual_timein'] !='0000-00-00 00:00:00') && ($row['status'] == 'work')){
-                            echo "<b style='color:green'>absent</b>"; 
+                            echo "<b style='color:green'>Present</b>"; 
                         }else{
                             echo $row['status'];
                         }
@@ -396,12 +396,12 @@ if(isset($_GET['teacherid'])){
                                     <form action="manage-attendance-func.php" method = "POST"> 
 
                                         <div class="modal-body">
-                                                <input type="text" name= "teacherid" id ="" value="<?php echo $row['teacher_id']; ?>">
+                                                <input type="hidden" name= "teacherid" id ="" value="<?php echo $row['teacher_id']; ?>">
 
-                                                 <input type="text" name= "startdate" id ="" value="<?php echo $startdate; ?>">
-                                                 <input type="text" name= "enddate" id ="" value="<?php echo $enddate; ?>">
+                                                 <input type="hidden" name= "startdate" id ="" value="<?php echo $startdate; ?>">
+                                                 <input type="hidden" name= "enddate" id ="" value="<?php echo $enddate; ?>">
 
-                                                <input type="text" name= "edit_ID" id ="" value="<?php echo $row['ta_id']; ?>">
+                                                <input type="hidden" name= "edit_ID" id ="" value="<?php echo $row['ta_id']; ?>">
                                                 <div class="form-group">
                                                     <label for="#">Teacher Name</label>
                                                     <input type="text" class="form-control" id="" name="" readonly value="<?php echo $row['firstname'] . " " . $row['lastname'] ; ?>">
