@@ -318,7 +318,7 @@ if(isset($_GET['teacherid'])){
                         <th>LATE</th>          
                         <th>UNDERTIME</th>       
                         <th> OVERTIME </th>                             
-                        <th> ACTION </th>                         
+                        <!--<th> ACTION </th>   -->                      
                     
                     </tr>
                 </thead>
@@ -379,10 +379,8 @@ if(isset($_GET['teacherid'])){
                        
 
                        
-
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!--
                         <td>
-                            <!--Edit Pop Up Modal -->
                             <div class="modal fade" id="edit<?php echo $row['ta_id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -444,7 +442,7 @@ if(isset($_GET['teacherid'])){
 
                             <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit<?php echo $row['ta_id']?>" >Edit</button>
                         </td>
-
+                        -->
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
