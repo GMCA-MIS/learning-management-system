@@ -323,6 +323,174 @@ include('includes/navbar.php');
                                     </div>
                                 </div>
                                     -->
+
+            <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
+                        <b><h1 class="h5 mb-0 text-gray-800">Teachers Duty Today</h1></b>
+            </div>
+            <div class="d-sm-flex align-items-center justify-content-between mb-2" style="margin-top: 10px; margin-left: 10px;">
+
+            <?php
+            //Displaying data into tables
+            $paramaters = " WHERE DATE(a.expected_timein) LIKE DATE(NOW()) AND status = 'work'"; 
+
+            $query ="SELECT * FROM time_attendance a LEFT JOIN teacher b ON a.teacher_id = b.teacher_id $paramaters ORDER BY a.teacher_id DESC";
+            $query_run=mysqli_query($conn, $query);
+            ?>
+            <table id = "dataTableID" class="table table-bordered table table-striped" width = "100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th style="display:none;">DTR ID</th>
+                        <th>TEACHER ID</th>  
+                        <th>TEACHER NAME</th>  
+                        <th>STATUS</th>  
+                        <th>SCHEDULE</th>
+                        <th>CLOCK-IN</th>
+                        <th>CLOCK-OUT</th> 
+                        <th>LATE</th>          
+                        <th>UNDERTIME</th>       
+                        <th> OVERTIME </th>                             
+                        <th> ACTION </th>                         
+                    
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        if(mysqli_num_rows($query_run) > 0) {
+                            while($row=mysqli_fetch_assoc($query_run))
+                            {
+                                ?>
+                    <tr>
+                        <td style="display:none;"><?php echo $row['ta_id']; ?></td>      
+                        <td ><?php echo $row['teacher_id']; ?></td>      
+
+                        <td><?php echo $row['firstname'] . " " . $row['lastname'] ; ?></td>   
+                        <td><?php 
+                        
+                        
+                        if(($row['actual_timein']=='0000-00-00 00:00:00') && ($row['status'] == 'work')){
+                            echo "<b style='color:red'>Absent</b>"; 
+                        }elseif(($row['actual_timein'] !='0000-00-00 00:00:00') && ($row['status'] == 'work')){
+                            echo "<b style='color:green'>Present</b>"; 
+                        }else{
+                            echo $row['status'];
+                        }
+
+                        ?></td>
+                        <td><?php echo $row['expected_timein'] . "<br>" . $row['expected_timeout']; ?></td>
+                        <td><?php echo $row['actual_timein']; ?></td>
+                        <td><?php echo $row['actual_timeout']; ?></td>
+                        <td><?php 
+                         $expecteddate = strtotime($row['expected_timein']);
+                         $actualdate   = strtotime($row['actual_timein']);
+                         if($actualdate >= $expecteddate && ($actualdate > 0)  ){
+                            echo $late = round(abs ($actualdate - $expecteddate) / 3600,2) ."hr"; 
+                         }else{
+                            echo "0hr";
+                         }
+                        ?></td>
+                        <td><?php 
+                         $expecteddate = strtotime($row['expected_timeout']);
+                         $actualdate   = strtotime($row['actual_timeout']);
+                         if(($actualdate <= $expecteddate) && ($actualdate > 0)  ){
+                            echo $undertime = round(abs ($actualdate - $expecteddate) / 3600,2) ."hr"; 
+                         }else{
+                            echo "0hr";
+                         }
+                        
+                        ?></td>
+                        <td><?php 
+                          $expecteddate = strtotime($row['expected_timeout']);
+                          $actualdate   = strtotime($row['actual_timeout'] );
+                          if($actualdate >= $expecteddate && ($actualdate > 0) ){
+                             echo $overtime = round(abs ($actualdate - $expecteddate) / 3600,2) ."hr"; 
+                          }else{
+                             echo "0hr";
+                          }
+                         ?></td>
+                       
+
+                       
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                        <td>
+                            <!--Edit Pop Up Modal -->
+                            <div class="modal fade" id="edit<?php echo $row['ta_id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit DTR Information</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                    <form action="manage-attendance-func.php" method = "POST"> 
+
+                                        <div class="modal-body">
+                                                <input type="hidden" name= "teacherid" id ="" value="<?php echo $row['teacher_id']; ?>">
+
+                                                 <input type="hidden" name= "startdate" id ="" value="<?php echo $startdate; ?>">
+                                                 <input type="hidden" name= "enddate" id ="" value="<?php echo $enddate; ?>">
+
+                                                <input type="hidden" name= "edit_ID" id ="" value="<?php echo $row['ta_id']; ?>">
+                                                <div class="form-group">
+                                                    <label for="#">Teacher Name</label>
+                                                    <input type="text" class="form-control" id="" name="" readonly value="<?php echo $row['firstname'] . " " . $row['lastname'] ; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="#workstatus">Status</label>
+                                                    <select class="form-control" id="workstatus" name="workstatus" required>
+                                                        <option disabled selected> Select Status </option>
+                                                        <option  value="work" <?php if($row['status']=="work"){ echo "selected"; }?> >Work</option>                     
+                                                        <option  value="restday" <?php if($row['status']=="restday"){ echo "selected"; }?>>Rest Day</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="#">Expected Time-In</label>
+                                                    <input type="datetime-local" class="form-control" id="" name="exp_timein"  value="<?php echo $row['expected_timein']?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="#">Expected Time-Out</label>
+                                                    <input type="datetime-local" class="form-control" id="" name="exp_timeout"  value="<?php echo $row['expected_timeout']?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="#">Acutal Time-In</label>
+                                                    <input type="datetime-local" class="form-control" id="" name="act_timein"  value="<?php echo $row['actual_timein']?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="#">Acutal Time-Out</label>
+                                                    <input type="datetime-local" class="form-control" id="" name="act_timeout"  value="<?php echo $row['actual_timeout']?>">
+                                                </div>
+
+                                        </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" name="update_departments" class="btn btn-primary">Update</button>
+                                                </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>  
+
+                            <button type="button" class="btn btn-success edit_btn" data-toggle="modal" data-target="#edit<?php echo $row['ta_id']?>" >Edit</button>
+                        </td>
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+                    </tr>
+                    <?php
+                            }
+                        }
+                        else 
+                        {
+                            echo "No Record Found";
+                        }
+                        ?>
+                </tbody>
+            </table>
+    </div>
 <style>
     /* Custom CSS for Circular Progress Indicator */
 .progress-circle {
